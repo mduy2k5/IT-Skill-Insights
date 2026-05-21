@@ -176,7 +176,8 @@ CREATE TABLE dim_job_title (
 ```
 # 📊 Analytics & Interactive Dashboard (Power BI)
 The analytical front-end of this pipeline is a dynamic Power BI dashboard designed to provide stakeholders with deep insights into the IT job market. It connects directly to the PostgreSQL Data Warehouse.
-
+![DashboardA](https://github.com/mduy2k5/IT-Job-ETL-Pipeline/blob/main/PowerBI/DashBoardA.png)
+![DashboardB](https://github.com/mduy2k5/IT-Job-ETL-Pipeline/blob/main/PowerBI/DashBoardB.png)
 ## Core Analytical Features
 - Dynamic Dimensionality (Field Parameters): Implemented DAX Field Parameters allowing users to instantly pivot the analytical axis. Users can seamlessly switch between viewing job distributions by Tech Category (e.g., Engineering, Data) or Seniority Level (e.g., Junior, Senior) within the exact same visual footprint.
 - Advanced DAX Measures: Utilized context transition (CALCULATE, MAXX, MINX) and dynamic filtering logic to accurately aggregate job counts and skill demands across complex bridging tables (resolving many-to-many relationships between jobs and skills).
