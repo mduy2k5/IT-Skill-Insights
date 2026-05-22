@@ -8,31 +8,29 @@ services:
       POSTGRES_PASSWORD: airflow
       POSTGRES_DB: airflow
     ports:
-      - "5432:5432"
+      - "5433:5432"
+    # Thêm Healthcheck để kiểm tra DB đã thực sự sẵn sàng chưa
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "airflow"]
+      interval: 5s
+      retries: 5
 
   airflow-init:
     image: apache/airflow:2.9.0
     depends_on:
-      - postgres
+      postgres:
+        condition: service_healthy # Chỉ chạy khi Postgres vượt qua bài test Healthcheck
     environment:
       - AIRFLOW__CORE__EXECUTOR=LocalExecutor
       - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow@postgres/airflow
     entrypoint: >
-      bash -c "
-      airflow db init &&
-      airflow users create
-        --username airflow
-        --password airflow
-        --firstname admin
-        --lastname user
-        --role Admin
-        --email admin@example.com
-      "
+      bash -c "airflow db migrate && airflow users create --username airflow --password airflow --firstname admin --lastname user --role Admin --email admin@example.com"
 
   airflow-webserver:
     image: apache/airflow:2.9.0
     depends_on:
-      - airflow-init
+      airflow-init:
+        condition: service_completed_successfully # Chỉ chạy khi khởi tạo tài khoản xong
     environment:
       - AIRFLOW__CORE__EXECUTOR=LocalExecutor
       - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow@postgres/airflow
@@ -44,13 +42,14 @@ services:
       - ./data:/opt/airflow/data
       - /var/run/docker.sock:/var/run/docker.sock
     ports:
-      - "8080:8080"
+      - "8088:8080"
     command: webserver
 
   airflow-scheduler:
     image: apache/airflow:2.9.0
     depends_on:
-      - airflow-init
+      airflow-init:
+        condition: service_completed_successfully
     environment:
       - AIRFLOW__CORE__EXECUTOR=LocalExecutor
       - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow@postgres/airflow
@@ -65,9 +64,11 @@ services:
   scrapy:
     build: ./scraper
     volumes:
-      - ./scraper:/app
+      - ./scraper:/app/scraper
       - ./data:/opt/airflow/data
     working_dir: /app
+    environment:
+      - PYTHONPATH=/app
     command: tail -f /dev/null
   
   web:
@@ -75,4 +76,5 @@ services:
     ports:
       - "5000:5000"
     depends_on:
-      - postgres
+      postgres:
+        condition: service_healthy

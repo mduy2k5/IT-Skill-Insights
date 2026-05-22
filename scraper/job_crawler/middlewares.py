@@ -18,11 +18,15 @@ class CloudscraperMiddleware:
     — qua được cả JA3/JA4 fingerprint detection của Cloudflare.
     """
 
+    def __init__(self, crawler):
+        self.crawler = crawler
+
     @classmethod
     def from_crawler(cls, crawler):
-        return cls()
+        return cls(crawler)
 
     def process_request(self, request, spider):
+        # spider = self.crawler.spider
         try:
             response = cffi_requests.get(
                 request.url,

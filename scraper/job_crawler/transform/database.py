@@ -11,6 +11,24 @@ def lowercase_and_strip(df, column):
     df[column] = df[column].str.lower().str.strip()
     return df
 
+def delete_all_data(conn):
+    cur = conn.cursor()
+    tables = [
+        'fact_job_skill_mapping',
+        'job_level_mapping',
+        'jobs_clean',
+        'company_mapping',
+        'location_mapping',
+        'level_mapping',
+        'tag_mapping',
+        'date_mapping',
+        'job_type_mapping',
+        'dim_skill',
+        'dim_job_title'
+    ]
+    for table in tables:
+        cur.execute(f"DELETE FROM {table};")
+    conn.commit()
 
 def ensure_tables(conn):
     cur = conn.cursor()
@@ -117,6 +135,8 @@ def ensure_tables(conn):
             job_group VARCHAR(100) NOT NULL
         );
         CREATE UNIQUE INDEX IF NOT EXISTS idx_job_title ON dim_job_title (job_title);
+                
+        ALTER TABLE jobs_clean ADD FOREIGN KEY (job_title_mapping_id) REFERENCES dim_job_title(job_title_id);
     """)
 
     # FK constraints — dùng DO $$ để tránh lỗi nếu đã tồn tại
@@ -449,4 +469,5 @@ def update_job_title_mapping(conn):
         """
         cur.executemany(insert_query, mapping_data)
         conn.commit()
+    print(f"Updated job_title_mapping_id for {len(mapping_data)} jobs")
     conn.commit()

@@ -2,8 +2,11 @@ import psycopg2
 import pandas as pd
 
 from scraper.job_crawler.transform.weba_transformer import WebATransformer
-from transform.database import ensure_tables, insert_company_mapping, insert_location_mapping, \
+from transform.database import delete_all_data, ensure_tables, insert_company_mapping, insert_location_mapping, \
     insert_level_mapping, insert_tag_mapping, insert_date_mapping, insert_job_type_mapping, insert_jobs_clean, update_job_title_mapping
+
+import job_skill_requirement_transform
+import job_title_transform
 
 def run_job_transform(conn, df):
     # insert mapping data
@@ -64,8 +67,7 @@ def main():
     print(f"   Columns: {list(df.columns)}")
 
     # chia theo source
-    # topcv_df = df[df['source'] == 'topcv']
-    weba_df = df[df['source'] == 'weba']
+    weba_df = df[df['source'] == 'WebA']
     print(f"📊 Found {len(weba_df)} weba jobs")
     
     if len(weba_df) == 0:
@@ -75,7 +77,6 @@ def main():
         return
 
     # transform
-    # topcv_clean = TopCVTransformer(topcv_df).run()
     print(f"\n🔄 Starting weba transformation...")
     weba_clean = WebATransformer(weba_df).run()
     print(f"✅ Transformation complete. Result: {len(weba_clean)} jobs")
@@ -91,12 +92,15 @@ def main():
     
     # Đảm bảo các bảng tồn tại (IF NOT EXISTS — an toàn khi chạy nhiều lần)
     ensure_tables(conn)
+    job_skill_requirement_transform.main()
+    job_title_transform.main()
     try:
         run_job_transform(conn, weba_clean)       
         print("\n✅ Chạy job_transform thành công!")
     except Exception as e:
         print(f"\n❌ Error in job_transform: {e}")
-
+    # delete_all_data(conn)
+    conn.commit()
     conn.close()
 
 if __name__ == "__main__":

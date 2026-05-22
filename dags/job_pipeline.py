@@ -33,22 +33,12 @@ with DAG(
 
     crawl = BashOperator(
         task_id="crawl_jobs",
-        bash_command="docker exec it_job_pipeline-scrapy-1 scrapy crawl it_jobs"
+        bash_command="docker exec -w /app/scraper it_job_pipeline-scrapy-1 scrapy crawl it_jobs"
     )
 
     transform = BashOperator(
         task_id="transform_jobs",
-        bash_command="docker exec it_job_pipeline-scrapy-1 python job_crawler/run_transform.py"
+        bash_command="docker exec -w /app/scraper it_job_pipeline-scrapy-1 python job_crawler/run_transform.py"
     )
 
-    job_skill_transform = BashOperator(
-        task_id="transform_job_skills",
-        bash_command="docker exec it_job_pipeline-scrapy-1 python job_crawler/job_skill_requirement_transform.py"
-    )
-
-    job_title_transform = BashOperator(
-        task_id="transform_job_titles",
-        bash_command="docker exec it_job_pipeline-scrapy-1 python job_crawler/job_title_transform.py"
-    )
-
-    crawl >> transform >> job_skill_transform >> job_title_transform
+    crawl >> transform 

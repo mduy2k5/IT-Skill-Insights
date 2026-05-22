@@ -3,11 +3,11 @@ import scrapy
 class ItJobsSpider(scrapy.Spider):
     name = "it_jobs"
 
-    def start_requests(self):
-        url = getattr(self, 'target_url', 'https://link-du-phong-mac-dinh.com')
-        # Chạy hàng ngày: crawl 4 trang đầu
-        for page in range(1, 5):
-            yield scrapy.Request(url=url + str(page), callback=self.parse)
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.logger.info("IT_JOBS SPIDER INIT CALLED")
+        base_url = 'link-demo'
+        self.start_urls = [base_url + str(page) for page in range(1, 5)]
 
     def parse(self, response):
         # CloudscraperMiddleware đã xử lý HTTP — response ở đây là HTML thật

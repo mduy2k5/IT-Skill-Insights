@@ -9,41 +9,59 @@ from itemadapter import ItemAdapter
 import psycopg2
 
 class JobCrawlerPipeline:
-    def open_spider(self, spider):
-        self.conn = psycopg2.connect(
-            host="postgres",
-            database="airflow",
-            user="airflow",
-            password="airflow"
-        )
-        self.cur = self.conn.cursor()
+    def __init__(self, crawler):
+        self.crawler = crawler
 
-        # Tạo bảng nếu chưa có (không DROP — để bổ sung dữ liệu mới)
-        self.cur.execute("""
-        CREATE TABLE IF NOT EXISTS jobs (
-            id SERIAL PRIMARY KEY,
-            job_title TEXT,
-            company TEXT,
-            salary TEXT,
-            location TEXT,
-            level TEXT,
-            job_type TEXT,
-            experience TEXT,
-            tags TEXT[],
-            posted_at TEXT,
-            link TEXT,
-            logo_link TEXT,
-            responsibilities TEXT,
-            skills TEXT,
-            benefits TEXT,
-            status_crawl_detail BOOLEAN DEFAULT FALSE,
-            source TEXT DEFAULT 'job_crawler'
-        );
-        CREATE UNIQUE INDEX IF NOT EXISTS idx_jobs_link ON jobs (link);
-        """)
-        self.conn.commit()
+    @classmethod
+    def from_crawler(cls, crawler):
+        return cls(crawler)
 
-    def process_item(self, item, spider):
+    def open_spider(self):
+        print("PIPELINE OPEN_SPIDER CALLED", flush=True)
+        spider = self.crawler.spider
+        try:
+            self.conn = psycopg2.connect(
+                host="postgres",
+                database="airflow",
+                user="airflow",
+                password="airflow"
+            )
+            self.cur = self.conn.cursor()
+
+            # Tạo bảng nếu chưa có (không DROP — để bổ sung dữ liệu mới)
+            self.cur.execute("""
+            CREATE TABLE IF NOT EXISTS jobs (
+                id SERIAL PRIMARY KEY,
+                job_title TEXT,
+                company TEXT,
+                salary TEXT,
+                location TEXT,
+                level TEXT,
+                job_type TEXT,
+                experience TEXT,
+                tags TEXT[],
+                posted_at TEXT,
+                link TEXT,
+                logo_link TEXT,
+                responsibilities TEXT,
+                skills TEXT,
+                benefits TEXT,
+                status_crawl_detail BOOLEAN DEFAULT FALSE,
+                source TEXT DEFAULT 'job_crawler'
+            );
+            CREATE UNIQUE INDEX IF NOT EXISTS idx_jobs_link ON jobs (link);
+            """)
+            self.conn.commit()
+        except Exception as e:
+            spider.logger.error(f"Failed to connect to database in open_spider: {e}")
+            self.conn = None
+            self.cur = None
+
+    def process_item(self, item):
+        spider = self.crawler.spider
+        if not self.conn:
+            return item
+            
         if spider.name == "it_jobs_detail":
             self.cur.execute("""
             UPDATE jobs
@@ -84,6 +102,9 @@ class JobCrawlerPipeline:
         self.conn.commit()
         return item
 
-    def close_spider(self, spider):
-        self.cur.close()
-        self.conn.close()
+    def close_spider(self):
+        spider = self.crawler.spider
+        if self.cur:
+            self.cur.close()
+        if self.conn:
+            self.conn.close()
