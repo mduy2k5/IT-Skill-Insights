@@ -1,236 +1,134 @@
-# IT Job ETL Pipeline & Analytics Dashboard
+# IT Skill Insights
 
-An end-to-end automated pipeline for collecting, transforming, and analyzing IT job market data from recruitment websites. 
+**Turn IT job postings into a practical map of skills to learn.**
 
-This project bridges Data Engineering and Data Analytics by using **Scrapy**, **PostgreSQL**, **Apache Airflow**, **Docker**, and **Flask** to build a scalable data platform, and **Power BI** to deliver interactive, actionable market insights.
+IT Skill Insights is a data platform for collecting and organizing IT job postings, then studying which skills employers ask for by role, seniority, and time period. The long-term goal is to use those findings to help people choose what to learn and in what order.
 
-# 🚀 Project Goals
+> **Project status:** In active development. The repository has job collection, transformation, a job catalog, and an analytical warehouse foundation. Skill-demand reports and learning roadmaps are not yet implemented end to end.
 
-The system is designed to:
+## What the project aims to answer
 
-- Crawl IT job data from recruitment websites.
-- Visit job detail pages to extract: Responsibilities, Skills, Benefits.
-- Normalize raw job data and extract technical skills using RegEx.
-- Standardize job titles into unified categories.
-- Build APIs for job searching and analytics.
-- Model data into a structured Star Schema (Fact and Dimension tables) optimized for BI reporting.
-- Develop an interactive Power BI Dashboard providing actionable insights on market trends, skill demands, and job distributions.
+- Which technical and professional skills appear most often in job postings?
+- How does skill demand differ between roles and seniority levels?
+- Which skills are becoming more or less common over time?
+- What skills could someone prioritize when planning their studies?
 
-# 🛠️ Tech Stack
+The analysis is intended to show its sample size, data coverage, and supporting job-description evidence. Job-ad frequency is a signal of employer demand; it is not a guarantee of hiring success.
 
-| Component | Technology |
+## Current capabilities
+
+- Scrapy spiders and transformation code for job listings, job details, titles, and skills.
+- PostgreSQL schemas for job sources, postings, crawl activity, and staged job candidates.
+- A Flask catalog for browsing and filtering available jobs and opening job details.
+- A DuckDB warehouse schema with dimensions for seniority and skills, analysis/evidence facts, and a monthly skill-demand mart.
+- A verified-job loader that currently transfers job metadata and source-coverage data from PostgreSQL to DuckDB.
+
+The warehouse schema is ahead of the analysis workflow: skill-analysis facts and monthly skill-demand results are not populated yet. Building reliable skill normalization, evidence-backed analysis, and learning priorities is the next product focus.
+
+## Data flow
+
+```mermaid
+flowchart LR
+    S[Job board data] --> C[Scrapy collection]
+    C --> P[(PostgreSQL)]
+    P --> W[Flask job catalog]
+    P --> L[Verified-job loader]
+    L --> D[(DuckDB warehouse)]
+    D --> A[Skill demand analysis<br/>in development]
+    A --> R[Learning priorities<br/>planned]
+```
+
+Apache Airflow DAGs are included for pipeline orchestration. The crawler, database, and web application run as Docker Compose services.
+
+## Technology
+
+| Area | Tools |
 |---|---|
-| Web Crawling | Scrapy |
-| Data Processing | Python |
-| Database | PostgreSQL |
-| Workflow Orchestration | Apache Airflow |
-| Containerization | Docker |
-| Backend API | Flask |
-| Data Modeling | Star Schema (Dim-Fact Model) |
-| Data Visualization | Power BI, DAX |
+| Collection | Scrapy, Python |
+| Operational data | PostgreSQL |
+| Analytics warehouse | DuckDB |
+| Orchestration | Apache Airflow |
+| Job catalog | Flask |
+| Local environment | Docker Compose |
 
-# 📂 Project Structure
+## Run the job catalog locally
+
+### Requirements
+
+- Docker Desktop or Docker Engine with the Compose plugin
+- Git
+
+### Setup
+
+```bash
+git clone https://github.com/mduy2k5/IT-Skill-Insights.git
+cd IT-Skill-Insights
+```
+
+Create a local environment file and set unique development values for the database passwords and OLAP token:
+
+```powershell
+Copy-Item .env.example .env
+```
+
+On macOS or Linux, use `cp .env.example .env` instead. Edit `.env` before starting the services. The file is ignored by Git; do not commit it.
+
+Start PostgreSQL and the Flask catalog:
+
+```bash
+docker compose up --build -d job-postgres web
+```
+
+Open the catalog at [http://localhost:5000](http://localhost:5000). A fresh database starts without job data; load or ingest job records before expecting listings to appear.
+
+## Optional: start the full pipeline and warehouse
+
+Apply the initial DuckDB schema **before** starting the DuckDB server:
+
+```bash
+docker compose --profile olap-tools run --rm --no-deps job-olap-migrate
+docker compose up --build -d
+```
+
+The full Compose stack also starts the crawler and Airflow services. Airflow is available at [http://localhost:8088](http://localhost:8088); the development account configured in Compose is `airflow` / `airflow`.
+
+To preview a verified-job load before applying it, use the configured source code for your data. For example:
+
+```bash
+docker compose --profile olap-tools run --build --rm job-olap-loader --source-code saramin --project-track data --dry-run
+```
+
+Replace `--source-code saramin` with the source identifier present in your database. To apply the load, replace `--dry-run` with `--apply`. This loader currently loads verified job metadata and source-coverage data; it does not yet generate skill-demand analytics.
+
+See [database/olap/README.md](database/olap/README.md) for warehouse setup and loading details.
+
+## Repository layout
 
 ```text
-IT_JOB_PIPELINE/
-│
-├── dags/                                  # Airflow DAG definitions
-│   ├── __pycache__/
-│   └── job_pipeline.py                    # Main ETL pipeline DAG
-│
-├── data/                                  # Mapping datasets
-│   ├── job_skills.csv                     # Skill dictionary
-│   └── job_titles.csv                     # Job title normalization dictionary
-│
-├── logs/                                  # Airflow logs
-│
-├── plugins/                               # Airflow plugins
-│
-├── scraper/
-│   │
-│   ├── job_crawler/
-│   │   ├── __pycache__/
-│   │   │
-│   │   ├── spiders/                       # Scrapy spiders
-│   │   │   ├── __pycache__/
-│   │   │   ├── __init__.py
-│   │   │   ├── it_jobs.py                 # Crawl job list
-│   │   │   └── it_jobs_detail.py          # Crawl job detail
-│   │   │
-│   │   ├── transform/                     # Data transformation modules
-│   │   │   ├── __pycache__/
-│   │   │   ├── __init__.py
-│   │   │   ├── base_transformer.py
-│   │   │   ├── database.py                # PostgreSQL connection
-│   │   │   ├── weba_transformer.py
-│   │   │   └── webb_transformer.py
-│   │   │
-│   │   ├── __init__.py
-│   │   ├── items.py                       # Scrapy item definitions
-│   │   ├── job_skill_requirement_transform.py
-│   │   ├── job_title_transform.py
-│   │   ├── middlewares.py
-│   │   ├── pipelines.py                   # Scrapy pipelines
-│   │   ├── run_transform.py               # Run all transforms
-│   │   └── settings.py                    # Scrapy settings
-│   │
-│   ├── venv/
-│   ├── Dockerfile
-│   └── scrapy.cfg
-│
-├── web/
-│   ├── static/
-│   │   ├── css/
-│   │   │   └── style.css
-│   │   │
-│   │   └── js/
-│   │       └── main.js
-│   │
-│   ├── templates/
-│   │   └── index.html
-│   │
-│   ├── app.py                             # Flask application
-│   ├── Dockerfile
-│   └── requirements.txt
-│
-├── .dockerignore
-├── .gitignore
-└── docker-compose.yml
+database/
+  postgres/              PostgreSQL schemas and migrations
+  olap/                  DuckDB schema, loader, and warehouse notes
+dags/                    Airflow DAGs
+scraper/job_crawler/     Scrapy spiders and transformation code
+specs/                   Product and implementation specifications
+web/                     Flask application, templates, CSS, and JavaScript
+docker-compose.yml        Local services
 ```
 
-# 📌 Main Features
-## 1. Job Crawling
-The system uses Scrapy spiders to crawl:
-- Job title & Company
-- Salary & Location
-- Experience & Job level
-- Job type & Tags
-- Posted date & Company logo
-- Job detail links
+## Planned analysis work
 
-## 2. Job Detail Extraction
-A second spider crawls each job detail page to collect:
-- Responsibilities
-- Required skills
-- Benefits
+1. Build a maintainable skill taxonomy with aliases and versioned mappings.
+2. Extract skills from job descriptions and retain evidence for each match.
+3. Compare skill demand by role, seniority, source, and month, with clear denominators and coverage.
+4. Turn the analysis into transparent learning priorities and role-based study paths.
 
-# 🧹 Data Transformation
-The project applies ETL transformations to normalize and clean raw data.
+## Data and collection notes
 
-Data Standardization
-The system normalizes Company names, Locations, Job levels, Job types, and Dates using mapping tables and transformation modules.
+- Skill statistics should report how many eligible jobs were analyzed and how much source data is missing or unclassified.
+- Keep source labels and job records traceable so an analysis can be checked against the original posting.
+- Respect each source's access limits and configure collection conservatively.
+- Use `.env.example` as a template; `.env` contains local credentials and must stay private.
 
-# 🏗️ Data Warehouse Design
-The project follows a Dim-Fact model (Star Schema) to resolve many-to-many relationships and optimize analytical query performance.
+## License
 
-Main Fact Table
-```SQL
-CREATE TABLE jobs_clean (
-    id SERIAL PRIMARY KEY,
-    job_title TEXT,
-    company_id INTEGER,
-    salary TEXT,
-    location_id INTEGER,
-    job_type_id INTEGER,
-    experience TEXT,
-    tags_id TEXT[],
-    posted_at_id INTEGER,
-    link TEXT UNIQUE,
-    logo_link TEXT,
-    responsibilities TEXT,
-    skills TEXT,
-    benefits TEXT,
-    source TEXT DEFAULT 'job_crawler',
-    job_title_mapping_id INTEGER
-);
-```
-# 🧠 Skill Extraction
-The system extracts skills from job descriptions using Regex, Keyword matching, and Skill dictionaries (e.g., Python, SQL, PostgreSQL, Docker, Airflow, ETL).
-
-Skill Dimension
-```SQL
-CREATE TABLE dim_skill (
-    skill_id SERIAL PRIMARY KEY,
-    skill_keyword VARCHAR(100) UNIQUE NOT NULL,
-    skill_group VARCHAR(100) NOT NULL
-);
-```
-Skill Mapping Table
-```SQL
-CREATE TABLE fact_job_skill_mapping (
-    job_id INT REFERENCES jobs_clean(id) ON DELETE CASCADE,
-    skill_id INT REFERENCES dim_skill(skill_id) ON DELETE CASCADE,
-    PRIMARY KEY (job_id, skill_id)
-);
-```
-# 💼 Job Title Normalization
-Different companies may use different titles for the same role (e.g., Data Engineer, ETL Developer, Data Pipeline Engineer). The project standardizes them into common job groups using a mapping dataset.
-
-Job Title Dimension
-```SQL
-CREATE TABLE dim_job_title (
-    job_title_id SERIAL PRIMARY KEY,
-    job_title VARCHAR(255) UNIQUE NOT NULL,
-    job_group VARCHAR(100) NOT NULL
-);
-```
-# 📊 Analytics & Interactive Dashboard (Power BI)
-The analytical front-end of this pipeline is a dynamic Power BI dashboard designed to provide stakeholders with deep insights into the IT job market. It connects directly to the PostgreSQL Data Warehouse.
-![DashboardA](https://github.com/mduy2k5/IT-Job-ETL-Pipeline/blob/main/PowerBI/DashBoardA.png)
-![DashboardB](https://github.com/mduy2k5/IT-Job-ETL-Pipeline/blob/main/PowerBI/DashBoardB.png)
-## Core Analytical Features
-- Dynamic Dimensionality (Field Parameters): Implemented DAX Field Parameters allowing users to instantly pivot the analytical axis. Users can seamlessly switch between viewing job distributions by Tech Category (e.g., Engineering, Data) or Seniority Level (e.g., Junior, Senior) within the exact same visual footprint.
-- Advanced DAX Measures: Utilized context transition (CALCULATE, MAXX, MINX) and dynamic filtering logic to accurately aggregate job counts and skill demands across complex bridging tables (resolving many-to-many relationships between jobs and skills).
-- Market Trend Analysis: Statistical tracking of job distribution across provinces/categories, most in-demand skills mapped to specific job groups, and required experience level distributions.
-
-## UI/UX Engineering
-- Seamless Visual Toggling: Engineered a state-driven UI using Power BI Bookmarks and the Selection Pane. Users can toggle between comparative views (Bar Chart) and proportional views (Pie/Donut Chart) without visual clutter, while keeping all slicer selections fully intact.
-- High-Level KPIs: Clear, top-level KPI cards provide immediate context on total Jobs Count, Date ranges, and Location metrics.
-
-# 🔄 Airflow Workflow
-The ETL pipeline is orchestrated using Apache Airflow.
-DAG Workflow:
-```Plaintext
-crawl_jobs
-    ↓
-crawl_job_detail
-    ↓
-transform_jobs
-    ↓
-transform_skills
-    ↓
-transform_job_titles
-```
-# 🐳 Docker Deployment
-The entire system is containerized using Docker. Services include PostgreSQL, Airflow, Scrapy, and the Flask API.
-Run the Project
-```Bash
-docker compose up --build
-```
-# 🌐 Flask API
-The project exposes APIs for frontend dashboards and data access.
-Example endpoints:
-```HTTP
-GET /jobs
-GET /skills
-GET /analysis/top-skills
-GET /analysis/job-groups
-```
-# 📈 Future Improvements
-Potential future enhancements:
-- Salary band estimation and analysis.
-- NLP-based skill extraction (replacing RegEx).
-- Real-time streaming data ingestion.
-- Implement Row-Level Security (RLS) in Power BI for localized recruiter views.
-- Migrate dashboard to Power BI Service with scheduled automated refreshes via On-premises Data Gateway.
-
-# ⚠️ Notes
-- Data is collected from publicly accessible recruitment websites.
-- Website names and sensitive information are hidden.
-- Default database credentials are for development/demo purposes only.
-- Environment variables can be customized using .env.
-
-# 👨‍💻 Author
-Developed by Duy Mai
-
-Tech Stack: Scrapy • PostgreSQL • Airflow • Docker • Flask • Power BI
+No license has been added yet. Ask the repository owner before reusing or redistributing the project.
