@@ -1,107 +1,244 @@
-import psycopg2
+import json
+import sys
+
 import pandas as pd
+import psycopg2
 
 from scraper.job_crawler.transform.weba_transformer import WebATransformer
-from transform.database import delete_all_data, ensure_tables, insert_company_mapping, insert_location_mapping, \
-    insert_level_mapping, insert_tag_mapping, insert_date_mapping, insert_job_type_mapping, insert_jobs_clean, update_job_title_mapping
+from scraper.job_crawler.transform import database
+from scraper.job_crawler import job_skill_requirement_transform, job_title_transform
 
-import job_skill_requirement_transform
-import job_title_transform
 
-def run_job_transform(conn, df):
-    # insert mapping data
+SOURCE_LABEL = "WebA"
+REQUIRED_SCHEMA_MIGRATION = "001_transform_schema"
+
+
+def verify_transform_schema(conn):
+    """Check migration state without creating or changing database objects."""
     try:
-        insert_company_mapping(conn, df)
-        print("Insert company mapping success!")
-    except Exception as e:
-        print(e)
-    try:
-        insert_location_mapping(conn, df)
-        print("Insert location mapping success!")
-    except Exception as e:
-        print(e)
-    try:
-        insert_level_mapping(conn, df)
-        print("Insert level mapping success!")
-    except Exception as e:
-        print(e)
-    try:
-        insert_tag_mapping(conn, df)
-        print("Insert tag mapping success!")
-    except Exception as e:
-        print(e)
-    try:
-        insert_date_mapping(conn, df)
-        print("Insert date mapping success!")
-    except Exception as e:
-        print(e)
-    try:
-        insert_job_type_mapping(conn, df)   
-        print("Insert job type mapping success!")
-    except Exception as e:
-        print(e)
-    # insert clean data
-    try:
-        insert_jobs_clean(conn, df)
-        print("Insert jobs clean success!")
-    except Exception as e:
-        print(e)
-    try:
-        update_job_title_mapping(conn)
-        print("Update job title mapping success!")
-    except Exception as e:
-        print(e)
+        with conn.cursor() as cur:
+            cur.execute(
+                "SELECT 1 FROM schema_migrations WHERE version = %s",
+                (REQUIRED_SCHEMA_MIGRATION,),
+            )
+            applied = cur.fetchone()
+    except psycopg2.Error as exc:
+        if getattr(exc, "pgcode", None) == "42P01":
+            raise RuntimeError(
+                "Clean schema migration 001_transform_schema is missing. "
+                "Apply scraper/job_crawler/migrations/001_transform_schema.sql before running transform."
+            ) from None
+        raise
+
+    if not applied:
+        raise RuntimeError(
+            "Clean schema migration 001_transform_schema is missing. "
+            "Apply scraper/job_crawler/migrations/001_transform_schema.sql before running transform."
+        )
+
+
+def sanitize_error(error):
+    message = str(error)
+    sensitive_labels = ("password", "passwd", "pwd", "token", "secret", "api_key", "access_key")
+
+    for label in sensitive_labels:
+        search_from = 0
+        while True:
+            lowered = message.lower()
+            label_start = lowered.find(label, search_from)
+            if label_start < 0:
+                break
+            value_start = label_start + len(label)
+            while value_start < len(message) and message[value_start].isspace():
+                value_start += 1
+            if value_start >= len(message) or message[value_start] not in ("=", ":"):
+                search_from = label_start + len(label)
+                continue
+            value_start += 1
+            while value_start < len(message) and message[value_start].isspace():
+                value_start += 1
+            quote = message[value_start] if value_start < len(message) and message[value_start] in ("'", '"') else None
+            if quote:
+                value_start += 1
+                value_end = message.find(quote, value_start)
+                if value_end < 0:
+                    value_end = len(message)
+            else:
+                value_end = value_start
+                while value_end < len(message) and not message[value_end].isspace() and message[value_end] not in (",", ";", ")"):
+                    value_end += 1
+            message = message[:value_start] + "[REDACTED]" + message[value_end:]
+            search_from = value_start + len("[REDACTED]")
+
+    lowered = message.lower()
+    for scheme in ("postgres://", "postgresql://"):
+        scheme_start = lowered.find(scheme)
+        if scheme_start >= 0:
+            at_sign = lowered.find("@", scheme_start + len(scheme))
+            colon = lowered.find(":", scheme_start + len(scheme))
+            if colon >= 0 and at_sign > colon:
+                message = message[:colon + 1] + "[REDACTED]" + message[at_sign:]
+                lowered = message.lower()
+
+    bearer = lowered.find("bearer ")
+    if bearer >= 0:
+        value_start = bearer + len("bearer ")
+        value_end = value_start
+        while value_end < len(message) and not message[value_end].isspace():
+            value_end += 1
+        message = message[:value_start] + "[REDACTED]" + message[value_end:]
+
+    return message[:500]
+
+
+def initial_summary():
+    return {
+        "source": SOURCE_LABEL,
+        "status": "running",
+        "stages_completed": [],
+        "input_jobs": 0,
+        "normalized_jobs": 0,
+        "inserted_jobs": 0,
+        "updated_jobs": 0,
+        "unchanged_jobs": 0,
+        "mapping_added": 0,
+        "mapping_removed": 0,
+    }
+
+
+def complete_stage(summary, stage):
+    summary["stages_completed"].append(stage)
+
+
+def start_stage(summary, stage):
+    summary["current_stage"] = stage
+
+
+def log_summary(summary):
+    print("ETL_SUMMARY " + json.dumps(summary, ensure_ascii=False, default=str), flush=True)
+
+
+def run_job_transform(conn, df, summary, complete):
+    stage = "dictionary_load"
+    start_stage(summary, stage)
+    job_skill_requirement_transform.load_dictionary(conn)
+    job_title_transform.load_dictionary(conn)
+    complete(summary, stage)
+
+    stage = "normalize"
+    start_stage(summary, stage)
+    clean_df = WebATransformer(df.copy()).run()
+    clean_df["source"] = SOURCE_LABEL
+    summary["normalized_jobs"] = len(clean_df)
+    complete(summary, stage)
+
+    stage = "dimension_load"
+    start_stage(summary, stage)
+    database.insert_company_mapping(conn, clean_df)
+    database.insert_location_mapping(conn, clean_df)
+    database.insert_level_mapping(conn, clean_df)
+    database.insert_tag_mapping(conn, clean_df)
+    database.insert_date_mapping(conn, clean_df)
+    database.insert_job_type_mapping(conn, clean_df)
+    complete(summary, stage)
+
+    stage = "clean_upsert"
+    start_stage(summary, stage)
+    job_stats = database.insert_jobs_clean(conn, clean_df)
+    summary["inserted_jobs"] = job_stats["inserted"]
+    summary["updated_jobs"] = job_stats["updated"]
+    summary["unchanged_jobs"] = job_stats["unchanged"]
+    changed_ids = job_stats["changed_ids"]
+    complete(summary, stage)
+
+    stage = "title_mapping"
+    start_stage(summary, stage)
+    title_stats = job_title_transform.reconcile_mappings(conn, changed_ids)
+    summary["mapping_added"] += title_stats["added"]
+    summary["mapping_removed"] += title_stats["removed"]
+    complete(summary, stage)
+
+    stage = "skill_mapping"
+    start_stage(summary, stage)
+    skill_stats = job_skill_requirement_transform.reconcile_mappings(conn, changed_ids)
+    summary["mapping_added"] += skill_stats["added"]
+    summary["mapping_removed"] += skill_stats["removed"]
+    complete(summary, stage)
+
+    stage = "level_mapping"
+    start_stage(summary, stage)
+    level_stats = database.sync_job_level_mapping(conn, clean_df, changed_ids)
+    summary["mapping_added"] += level_stats["added"]
+    summary["mapping_removed"] += level_stats["removed"]
+    complete(summary, stage)
+
+    return stage
+
 
 def main():
-    # connect DB (example, adjust as needed)
-    conn = psycopg2.connect(
-        host="postgres",
-        database="airflow",
-        user="airflow",
-        password="airflow"
-    )
+    summary = initial_summary()
+    conn = None
+    stage = "connect"
 
-    # đọc raw data
-    df = pd.read_sql("SELECT * FROM jobs", conn)
-    print(f"📥 Read {len(df)} jobs from 'jobs' table")
-    print(f"   Columns: {list(df.columns)}")
-
-    # chia theo source
-    weba_df = df[df['source'] == 'WebA']
-    print(f"📊 Found {len(weba_df)} weba jobs")
-    
-    if len(weba_df) == 0:
-        print("⚠️  No weba jobs found! Checking available sources:")
-        print(f"   {df['source'].value_counts().to_dict()}")
-        conn.close()
-        return
-
-    # transform
-    print(f"\n🔄 Starting weba transformation...")
-    weba_clean = WebATransformer(weba_df).run()
-    print(f"✅ Transformation complete. Result: {len(weba_clean)} jobs")
-    print(f"   Columns after transform: {list(weba_clean.columns)}")
-    
-    # Check data quality
-    print(f"\n📈 Data Quality Check:")
-    print(f"   Jobs with job_title: {weba_clean['job_title'].notna().sum()}")
-    print(f"   Jobs with link: {weba_clean['link'].notna().sum()}")
-    print(f"   Jobs with company: {weba_clean['company'].notna().sum()}")
-    print(f"   Jobs with location: {weba_clean['location'].notna().sum()}")
-    print(f"   Jobs with posted_at: {weba_clean['posted_at'].notna().sum()}")
-    
-    # Đảm bảo các bảng tồn tại (IF NOT EXISTS — an toàn khi chạy nhiều lần)
-    ensure_tables(conn)
-    job_skill_requirement_transform.main()
-    job_title_transform.main()
     try:
-        run_job_transform(conn, weba_clean)       
-        print("\n✅ Chạy job_transform thành công!")
-    except Exception as e:
-        print(f"\n❌ Error in job_transform: {e}")
-    # delete_all_data(conn)
-    conn.commit()
-    conn.close()
+        start_stage(summary, stage)
+        conn = psycopg2.connect(
+            host="postgres",
+            database="airflow",
+            user="airflow",
+            password="airflow",
+        )
+
+        stage = "schema_check"
+        start_stage(summary, stage)
+        verify_transform_schema(conn)
+        conn.commit()
+        complete_stage(summary, stage)
+
+        stage = "raw_read"
+        start_stage(summary, stage)
+        raw_df = pd.read_sql_query("SELECT * FROM jobs;", conn)
+        conn.commit()
+        complete_stage(summary, stage)
+
+        stage = "source_filter"
+        start_stage(summary, stage)
+        if "source" not in raw_df.columns:
+            raise ValueError("The jobs table does not contain a source column.")
+        source_df = raw_df[raw_df["source"] == SOURCE_LABEL].copy()
+        summary["input_jobs"] = len(source_df)
+        complete_stage(summary, stage)
+
+        if source_df.empty:
+            summary["status"] = "no_data"
+            log_summary(summary)
+            return 99
+
+        run_job_transform(conn, source_df, summary, complete_stage)
+        stage = "commit"
+        start_stage(summary, stage)
+        conn.commit()
+        complete_stage(summary, "commit")
+        summary["status"] = "succeeded"
+        log_summary(summary)
+        return 0
+    except Exception as exc:
+        if conn is not None:
+            try:
+                conn.rollback()
+            except Exception:
+                pass
+        safe_error = sanitize_error(exc)
+        summary["status"] = "failed"
+        failed_stage = summary.get("current_stage", stage)
+        summary["failed_stage"] = failed_stage
+        summary["error"] = safe_error
+        log_summary(summary)
+        raise RuntimeError("Transform failed at " + failed_stage + ": " + safe_error) from None
+    finally:
+        if conn is not None:
+            conn.close()
+
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())

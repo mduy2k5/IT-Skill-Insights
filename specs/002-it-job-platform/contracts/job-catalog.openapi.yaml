@@ -1,0 +1,366 @@
+openapi: 3.1.0
+info:
+  title: IT Job Catalog Public Data API
+  version: 1.0.0
+  description: >-
+    Read-only contract for the public job catalog. The Supabase publishable key
+    identifies the project; PostgreSQL grants and RLS remain the authorization
+    boundary. Never place an ingestion/database secret in a browser.
+servers:
+  - url: https://{project_ref}.supabase.co
+    variables:
+      project_ref:
+        default: your-project-ref
+security:
+  - PublishableKey: []
+paths:
+  /rest/v1/rpc/search_public_jobs:
+    post:
+      operationId: searchPublicJobs
+      summary: Search and filter public job listings
+      description: Read-only RPC. Results include only source records authorized for public metadata display.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JobSearchRequest'
+      responses:
+        '200':
+          description: Paged job results.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobSearchResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+
+  /rest/v1/public_job_details:
+    get:
+      operationId: getPublicJobDetail
+      summary: Read one public job and its description availability
+      description: >-
+        Filter with job_id=eq.<uuid> and limit=1. Description text is returned
+        only when the source permission record explicitly allows public display.
+        Otherwise it is null and availability states why. A job hidden by the
+        public view returns an empty array.
+      parameters:
+        - name: job_id
+          in: query
+          required: true
+          schema:
+            type: string
+            pattern: '^eq\.[0-9a-fA-F-]{36}$'
+          example: eq.123e4567-e89b-12d3-a456-426614174000
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 1
+            default: 1
+      responses:
+        '200':
+          description: One public job, or an empty array if not found/public.
+          content:
+            application/json:
+              schema:
+                type: array
+                maxItems: 1
+                items:
+                  $ref: '#/components/schemas/JobDetail'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+
+  /rest/v1/rpc/get_public_skill_statistics:
+    post:
+      operationId: getPublicSkillStatistics
+      summary: Aggregate skill demand by seniority and period
+      description: >-
+        Only completed analyses from descriptions authorized for analysis and
+        public result display contribute. Unknown seniority remains an explicit
+        group. Every returned skill includes at least one permitted evidence item.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SkillStatisticsRequest'
+      responses:
+        '200':
+          description: Skill statistics and job sample sizes by seniority.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SkillStatisticsResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+
+  /rest/v1/public_source_coverage:
+    get:
+      operationId: getPublicSourceCoverage
+      summary: Read public source and historical coverage
+      description: >-
+        Returns only approved public source summaries. Does not expose crawl
+        credentials, private error details, or sources that are not approved for
+        public metadata display.
+      parameters:
+        - name: source_code
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: window_start
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date
+        - name: window_end
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 50
+      responses:
+        '200':
+          description: Coverage summaries by source and period.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SourceCoverage'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+
+components:
+  securitySchemes:
+    PublishableKey:
+      type: apiKey
+      in: header
+      name: apikey
+      description: Public project key only; grants and RLS must restrict access to read-only public views/RPCs.
+  responses:
+    BadRequest:
+      description: Invalid search, date range, seniority, or paging values.
+    Unauthorized:
+      description: Missing/invalid public project key or denied access.
+    RateLimited:
+      description: Public API quota/rate limit reached; caller should back off.
+  schemas:
+    JobSearchRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        query:
+          type: string
+          maxLength: 120
+        source_code:
+          type: string
+        project_track:
+          type: string
+          description: Lightweight project_track filter; use data for the initial experience.
+        province:
+          type: string
+        seniority_label:
+          type: string
+          description: Exact raw seniority label supplied by the source; no cross-source mapping in the job-list OLTP path.
+        posted_from:
+          type: string
+          format: date
+        posted_to:
+          type: string
+          format: date
+        page:
+          type: integer
+          minimum: 1
+          default: 1
+        per_page:
+          type: integer
+          minimum: 1
+          maximum: 50
+          default: 12
+    JobSearchResponse:
+      type: object
+      required: [jobs, total, page, per_page]
+      properties:
+        jobs:
+          type: array
+          items:
+            $ref: '#/components/schemas/JobSummary'
+        total:
+          type: integer
+          minimum: 0
+        page:
+          type: integer
+          minimum: 1
+        per_page:
+          type: integer
+          minimum: 1
+    JobSummary:
+      type: object
+      required: [job_id, source_code, title, project_track, description_status]
+      properties:
+        job_id:
+          type: string
+          format: uuid
+        source_code:
+          type: string
+        source_name:
+          type: string
+        source_url:
+          type: string
+          format: uri
+        title:
+          type: string
+        company_name:
+          type: [string, 'null']
+        location_text:
+          type: [string, 'null']
+        salary_text:
+          type: [string, 'null']
+        employment_labels:
+          type: array
+          items:
+            type: string
+        project_track:
+          type: string
+        seniority_labels:
+          type: array
+          items:
+            type: string
+        posted_at:
+          type: [string, 'null']
+          format: date-time
+        description_status:
+          $ref: '#/components/schemas/DescriptionStatus'
+    JobDetail:
+      allOf:
+        - $ref: '#/components/schemas/JobSummary'
+        - type: object
+          required: [description_availability]
+          properties:
+            overview_text:
+              type: [string, 'null']
+            description_availability:
+              type: string
+              enum: [available, not_collected, pending, unavailable, not_authorized]
+    DescriptionStatus:
+      type: string
+      enum: [not_requested, pending, complete, empty, unavailable, not_authorized]
+    SkillStatisticsRequest:
+      type: object
+      additionalProperties: false
+      required: [period_start, period_end]
+      properties:
+        period_start:
+          type: string
+          format: date
+        period_end:
+          type: string
+          format: date
+        source_code:
+          type: string
+        seniority_group:
+          type: string
+          description: Omit for all groups; unknown is a valid explicit value.
+        project_track:
+          type: string
+          default: data
+        limit:
+          type: integer
+          minimum: 1
+          maximum: 100
+          default: 30
+    SkillStatisticsResponse:
+      type: object
+      required: [period_start, period_end, groups]
+      properties:
+        period_start:
+          type: string
+          format: date
+        period_end:
+          type: string
+          format: date
+        groups:
+          type: array
+          items:
+            type: object
+            required: [seniority_group, analyzed_job_count, unclassified_job_count, skills]
+            properties:
+              seniority_group:
+                type: string
+              analyzed_job_count:
+                type: integer
+                minimum: 0
+              unclassified_job_count:
+                type: integer
+                minimum: 0
+              skills:
+                type: array
+                items:
+                  type: object
+                  required: [skill, job_count, evidence]
+                  properties:
+                    skill:
+                      type: string
+                    job_count:
+                      type: integer
+                      minimum: 0
+                    evidence:
+                      type: array
+                      minItems: 1
+                      items:
+                        type: object
+                        required: [job_id, source_code, excerpt]
+                        properties:
+                          job_id:
+                            type: string
+                            format: uuid
+                          source_code:
+                            type: string
+                          excerpt:
+                            type: string
+                            maxLength: 280
+    SourceCoverage:
+      type: object
+      required: [source_code, source_name, window_start, window_end, status, job_count]
+      properties:
+        source_code:
+          type: string
+        source_name:
+          type: string
+        window_start:
+          type: string
+          format: date
+        window_end:
+          type: string
+          format: date
+        status:
+          type: string
+          enum: [complete, empty, partial, unavailable]
+        job_count:
+          type: integer
+          minimum: 0

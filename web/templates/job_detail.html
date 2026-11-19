@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101827">
+  <title>{{ job.title }} | IT Jobs</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="/" aria-label="Quay lại danh sách việc làm">
+      <span class="brand-mark">IT</span>
+      <span>IT<span class="brand-accent">Jobs</span></span>
+    </a>
+    <span class="local-badge"><span class="local-dot"></span> Xem nội bộ · {{ project_track|upper }}</span>
+  </header>
+
+  <main class="page-shell detail-shell">
+    <a class="back-link" href="/">← Quay lại danh sách</a>
+    <article class="detail-card">
+      <div class="detail-topline">
+        <span class="company-label">{{ job.company_name or 'Chưa cập nhật công ty' }}</span>
+        {% if job.listing_status == 'active' %}
+          <span class="status-pill status-active">Đang tuyển</span>
+        {% elif job.listing_status == 'expired' %}
+          <span class="status-pill status-expired">Đã hết hạn</span>
+        {% elif job.listing_status == 'removed' %}
+          <span class="status-pill status-expired">Đã gỡ</span>
+        {% else %}
+          <span class="status-pill">Chưa rõ trạng thái</span>
+        {% endif %}
+      </div>
+
+      <h1>{{ job.title }}</h1>
+      <div class="detail-meta">
+        {% if job.published_at %}<span>Đăng ngày {{ job.published_at[:10] }}</span>{% endif %}
+        {% if job.work_mode == 'onsite' %}<span>Tại văn phòng</span>
+        {% elif job.work_mode == 'remote' %}<span>Từ xa</span>
+        {% elif job.work_mode == 'hybrid' %}<span>Kết hợp</span>
+        {% endif %}
+        {% if job.salary %}<span class="salary-text">{{ job.salary }}</span>{% endif %}
+      </div>
+
+      {% if job.levels %}<div class="tag-row"><span class="tag">{{ job.levels }}</span></div>{% endif %}
+
+      {% if locations %}
+        <section class="detail-section">
+          <h2>Địa điểm</h2>
+          <ul class="location-list">
+            {% for location in locations %}
+              <li>{{ location.province_city or '' }}{% if location.district %}, {{ location.district }}{% endif %}{% if location.ward %}, {{ location.ward }}{% endif %}{% if location.address_line %}<span class="address-line">{{ location.address_line }}</span>{% endif %}</li>
+            {% endfor %}
+          </ul>
+        </section>
+      {% endif %}
+
+      <section class="detail-section description-section">
+        <h2>Mô tả công việc</h2>
+        {% if job.overview_text %}
+          <div class="job-description">{{ job.overview_text }}</div>
+        {% else %}
+          <p class="muted-copy">Nguồn chưa có mô tả dạng text cho tin này.</p>
+        {% endif %}
+      </section>
+
+      <div class="detail-actions">
+        {% if job.application_url %}<a class="primary-button" href="{{ job.application_url }}" target="_blank" rel="noopener noreferrer">Mở trang ứng tuyển</a>{% endif %}
+        {% if job.source_url %}<a class="secondary-button" href="{{ job.source_url }}" target="_blank" rel="noopener noreferrer">Xem tin tại nguồn</a>{% endif %}
+      </div>
+    </article>
+  </main>
+  <footer class="site-footer">Bản xem nội bộ chạy trên máy cá nhân.</footer>
+</body>
+</html>

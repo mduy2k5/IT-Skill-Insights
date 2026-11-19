@@ -22,6 +22,10 @@ output_data/
 scraping_logs/
 *.log
 
+# Local crawl artifacts are retained on disk, not committed to the repository.
+data/staging/
+data/archive/
+
 postgres_data/
 pgdata/
 db_data/

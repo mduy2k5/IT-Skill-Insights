@@ -1,322 +1,302 @@
-from flask import Flask, render_template, jsonify, request
+import os
+from decimal import Decimal
+from urllib.parse import urlparse
+
 import psycopg2
+from flask import Flask, abort, jsonify, render_template, request, url_for
+from psycopg2.extras import RealDictCursor
+
 
 app = Flask(__name__)
+PROJECT_TRACK = os.environ.get("JOB_PROJECT_TRACK", "data")
+WORK_MODES = {"onsite", "remote", "hybrid", "unknown"}
+PAGE_SIZE = 12
 
-DB_CONFIG = dict(host="postgres", database="airflow", user="airflow", password="airflow")
 
 def get_conn():
-    return psycopg2.connect(**DB_CONFIG)
+    required = (
+        "JOB_POSTGRES_HOST",
+        "JOB_POSTGRES_DB",
+        "JOB_POSTGRES_USER",
+        "JOB_POSTGRES_PASSWORD",
+    )
+    missing = [key for key in required if not os.environ.get(key)]
+    if missing:
+        raise RuntimeError("Missing database settings: " + ", ".join(missing))
+    return psycopg2.connect(
+        host=os.environ["JOB_POSTGRES_HOST"],
+        port=int(os.environ.get("JOB_POSTGRES_PORT", "5432")),
+        dbname=os.environ["JOB_POSTGRES_DB"],
+        user=os.environ["JOB_POSTGRES_USER"],
+        password=os.environ["JOB_POSTGRES_PASSWORD"],
+        connect_timeout=5,
+    )
+
+
+def safe_http_url(value):
+    if not value:
+        return None
+    parsed = urlparse(value)
+    return value if parsed.scheme in {"http", "https"} and parsed.netloc else None
+
+
+def format_salary(row):
+    if row.get("salary_display"):
+        return row["salary_display"]
+    minimum = row.get("salary_min")
+    maximum = row.get("salary_max")
+    currency = (row.get("salary_currency") or "").strip()
+    period = (row.get("salary_period") or "").strip()
+    if minimum is None and maximum is None:
+        return ""
+
+    def amount(value):
+        if isinstance(value, Decimal):
+            return format(value.normalize(), "f")
+        return str(value)
+
+    if minimum is not None and maximum is not None:
+        text = f"{amount(minimum)} – {amount(maximum)}"
+    elif minimum is not None:
+        text = f"Từ {amount(minimum)}"
+    else:
+        text = f"Đến {amount(maximum)}"
+    if currency:
+        text += f" {currency}"
+    if period:
+        text += f" / {period.lower()}"
+    return text
+
+
+def job_filters():
+    conditions = ["j.project_track = %s"]
+    params = [PROJECT_TRACK]
+
+    query = request.args.get("q", "").strip()
+    if len(query) > 120:
+        raise ValueError("Từ khóa tìm kiếm tối đa 120 ký tự.")
+    if query:
+        conditions.append("(j.title ILIKE %s OR c.display_name ILIKE %s)")
+        params.extend([f"%{query}%", f"%{query}%"])
+
+    location = request.args.get("location", "").strip()
+    if location:
+        conditions.append(
+            """EXISTS (
+                SELECT 1 FROM job_locations loc_filter
+                WHERE loc_filter.job_id = j.job_id
+                  AND (loc_filter.province_city = %s OR loc_filter.district = %s)
+            )"""
+        )
+        params.extend([location, location])
+
+    work_mode = request.args.get("work_mode", "").strip().lower()
+    if work_mode:
+        if work_mode not in WORK_MODES:
+            raise ValueError("Hình thức làm việc không hợp lệ.")
+        conditions.append("j.work_mode = %s")
+        params.append(work_mode)
+
+    level = request.args.get("level", "").strip()
+    if level:
+        conditions.append(
+            """EXISTS (
+                SELECT 1 FROM job_source_labels level_filter
+                WHERE level_filter.job_id = j.job_id
+                  AND level_filter.label_type = 'seniority'
+                  AND level_filter.label_text = %s
+            )"""
+        )
+        params.append(level)
+
+    return " AND ".join(conditions), params
 
 
 @app.route("/")
 def home():
-    return render_template("index.html")
+    return render_template("index.html", project_track=PROJECT_TRACK)
+
+
+@app.route("/healthz")
+def healthz():
+    try:
+        with get_conn() as conn, conn.cursor() as cur:
+            cur.execute("SELECT 1")
+        return jsonify({"status": "ok"})
+    except Exception:
+        return jsonify({"status": "database_unavailable"}), 503
+
 
 @app.route("/api/filters")
 def api_filters():
-    conn = get_conn()
-    cur = conn.cursor()
-    try:
-        cur.execute("""
-            SELECT DISTINCT province FROM location_mapping
-            WHERE province IS NOT NULL AND province <> '' ORDER BY province
-        """)
-        locations = [r[0] for r in cur.fetchall()]
+    with get_conn() as conn, conn.cursor() as cur:
+        cur.execute(
+            """SELECT DISTINCT loc.province_city
+               FROM job_locations loc
+               JOIN jobs j ON j.job_id = loc.job_id
+               WHERE j.project_track = %s
+                 AND loc.province_city IS NOT NULL
+                 AND BTRIM(loc.province_city) <> ''
+               ORDER BY loc.province_city""",
+            (PROJECT_TRACK,),
+        )
+        locations = [row[0] for row in cur.fetchall()]
 
-        cur.execute("""
-            SELECT DISTINCT raw_level FROM level_mapping
-            WHERE raw_level IS NOT NULL AND raw_level <> '' ORDER BY raw_level
-        """)
-        levels = [r[0] for r in cur.fetchall()]
+        cur.execute(
+            """SELECT DISTINCT label.label_text
+               FROM job_source_labels label
+               JOIN jobs j ON j.job_id = label.job_id
+               WHERE j.project_track = %s
+                 AND label.label_type = 'seniority'
+               ORDER BY label.label_text""",
+            (PROJECT_TRACK,),
+        )
+        levels = [row[0] for row in cur.fetchall()]
 
-        cur.execute("""
-            SELECT DISTINCT raw_job_type FROM job_type_mapping
-            WHERE raw_job_type IS NOT NULL AND raw_job_type <> '' ORDER BY raw_job_type
-        """)
-        job_types = [r[0] for r in cur.fetchall()]
-
-        cur.execute("""
-            SELECT DISTINCT skill_keyword FROM dim_skill
-            WHERE skill_keyword IS NOT NULL AND skill_keyword <> '' ORDER BY skill_keyword
-        """)
-        skills = [r[0] for r in cur.fetchall()]
-
-        cur.execute("""
-            SELECT DISTINCT job_group FROM dim_job_title
-            WHERE job_group IS NOT NULL AND job_group <> '' ORDER BY job_group
-        """)
-        job_groups = [r[0] for r in cur.fetchall()]
-
-        return jsonify({"locations": locations, "levels": levels, "job_types": job_types, "skills": skills, "job_groups": job_groups})
-    finally:
-        cur.close()
-        conn.close()
+    return jsonify({"locations": locations, "levels": levels})
 
 
 @app.route("/api/jobs")
 def api_jobs():
-    conn = get_conn()
-    cur = conn.cursor()
-    conn.rollback()
     try:
-        q        = request.args.get("q", "").strip()
-        location = request.args.get("location", "").strip()
-        level    = request.args.get("level", "").strip()
-        job_type = request.args.get("job_type", "").strip()
-        job_group = request.args.get("job_group", "").strip()
-        skills   = request.args.get("skills", "").strip()
-        page     = max(1, int(request.args.get("page", 1)))
-        per_page = 12
-        offset   = (page - 1) * per_page
+        where_sql, params = job_filters()
+        page = int(request.args.get("page", "1"))
+        if page < 1 or page > 10000:
+            raise ValueError("Trang phải nằm trong khoảng 1–10000.")
+    except ValueError as exc:
+        return jsonify({"error": str(exc)}), 400
 
-        conditions, params = [], []
+    offset = (page - 1) * PAGE_SIZE
+    with get_conn() as conn, conn.cursor(cursor_factory=RealDictCursor) as cur:
+        cur.execute(
+            f"""SELECT COUNT(*) AS total
+                FROM jobs j
+                LEFT JOIN companies c ON c.company_id = j.company_id
+                WHERE {where_sql}""",
+            params,
+        )
+        total = cur.fetchone()["total"]
 
-        if q:
-            conditions.append("(j.job_title ILIKE %s OR c.raw_name ILIKE %s)")
-            params += [f"%{q}%", f"%{q}%"]
+        cur.execute(
+            f"""SELECT
+                    j.job_id,
+                    j.title,
+                    j.work_mode,
+                    j.listing_status,
+                    j.published_at,
+                    c.display_name AS company_name,
+                    loc.province_city,
+                    loc.district,
+                    comp.display_text AS salary_display,
+                    comp.min_amount AS salary_min,
+                    comp.max_amount AS salary_max,
+                    comp.currency_code AS salary_currency,
+                    comp.pay_period AS salary_period,
+                    labels.levels
+                FROM jobs j
+                LEFT JOIN companies c ON c.company_id = j.company_id
+                LEFT JOIN LATERAL (
+                    SELECT province_city, district
+                    FROM job_locations
+                    WHERE job_id = j.job_id
+                    ORDER BY position
+                    LIMIT 1
+                ) loc ON TRUE
+                LEFT JOIN job_compensations comp ON comp.job_id = j.job_id
+                LEFT JOIN LATERAL (
+                    SELECT string_agg(DISTINCT label_text, ', ' ORDER BY label_text)
+                           FILTER (WHERE label_type = 'seniority') AS levels
+                    FROM job_source_labels
+                    WHERE job_id = j.job_id
+                ) labels ON TRUE
+                WHERE {where_sql}
+                ORDER BY j.published_at DESC NULLS LAST, j.created_at DESC
+                LIMIT %s OFFSET %s""",
+            params + [PAGE_SIZE, offset],
+        )
+        rows = cur.fetchall()
 
-        if location:
-            conditions.append("(l.city ILIKE %s OR l.province ILIKE %s)")
-            params += [f"%{location}%", f"%{location}%"]
+    jobs = []
+    for row in rows:
+        job_id = str(row["job_id"])
+        jobs.append(
+            {
+                "job_id": job_id,
+                "title": row["title"],
+                "company_name": row["company_name"] or "Chưa cập nhật công ty",
+                "work_mode": row["work_mode"],
+                "listing_status": row["listing_status"],
+                "published_at": row["published_at"].isoformat() if row["published_at"] else None,
+                "province_city": row["province_city"],
+                "district": row["district"],
+                "salary": format_salary(row),
+                "levels": row["levels"] or "",
+                "detail_url": url_for("job_detail", job_id=job_id),
+            }
+        )
 
-        if job_type:
-            conditions.append("t.raw_job_type ILIKE %s")
-            params.append(f"%{job_type}%")
-
-        if job_group:
-            conditions.append("""
-                EXISTS (
-                    SELECT 1 FROM dim_job_title djt
-                    WHERE j.job_title_mapping_id = djt.job_title_id 
-                    AND djt.job_group ILIKE %s
-                )
-            """)
-            params.append(f"%{job_group}%")
-
-        if level:
-            conditions.append("""
-                EXISTS (
-                    SELECT 1 FROM job_level_mapping jlm2
-                    JOIN level_mapping lv2 ON jlm2.level_id = lv2.id
-                    WHERE jlm2.job_id = j.id AND lv2.raw_level ILIKE %s
-                )
-            """)
-            params.append(f"%{level}%")
-
-        if skills:
-            skill_list = [s.strip() for s in skills.split(",") if s.strip()]
-            conditions.append("""
-                EXISTS (
-                    SELECT 1 FROM fact_job_skill_mapping fjs
-                    JOIN dim_skill ds ON fjs.skill_id = ds.skill_id
-                    WHERE fjs.job_id = j.id AND ds.skill_keyword ILIKE ANY(%s)
-                )
-            """)
-            params.append(skill_list)
-
-        where = ("WHERE " + " AND ".join(conditions)) if conditions else ""
-
-        base_from = f"""
-            FROM jobs_clean j
-            LEFT JOIN location_mapping l   ON j.location_id   = l.id
-            LEFT JOIN company_mapping c    ON j.company_id    = c.id
-            LEFT JOIN date_mapping p       ON j.posted_at_id  = p.id
-            LEFT JOIN job_type_mapping t   ON j.job_type_id   = t.id
-            LEFT JOIN job_level_mapping jlm ON j.id = jlm.job_id
-            LEFT JOIN level_mapping lv      ON jlm.level_id = lv.id
-            LEFT JOIN fact_job_skill_mapping fjs_main ON j.id = fjs_main.job_id
-            LEFT JOIN dim_skill ds_main ON fjs_main.skill_id = ds_main.skill_id
-            {where}
-        """
-
-        cur.execute(f"SELECT COUNT(DISTINCT j.id) {base_from}", params)
-        total = cur.fetchone()[0]
-
-        cur.execute(f"""
-            SELECT
-                j.id, j.job_title, j.link,
-                l.city, l.province,
-                c.raw_name,
-                p.clean_date,
-                t.raw_job_type,
-                STRING_AGG(DISTINCT lv.raw_level, ', ') AS levels,
-                j.salary,
-                j.experience,
-                j.logo_link,
-                STRING_AGG(DISTINCT ds_main.skill_keyword, ', ') AS skills
-            {base_from}
-            GROUP BY j.id, j.job_title, j.link,
-                     l.city, l.province, c.raw_name,
-                     p.clean_date, t.raw_job_type,
-                     j.salary, j.experience, j.logo_link
-            ORDER BY p.clean_date DESC NULLS LAST
-            LIMIT %s OFFSET %s
-        """, params + [per_page, offset])
-
-        jobs = []
-        for r in cur.fetchall():
-            jobs.append({
-                "id": r[0], "job_title": r[1], "link": r[2],
-                "city": r[3] or "", "province": r[4] or "",
-                "company": r[5] or "",
-                "posted_date": str(r[6]) if r[6] else None,
-                "job_type": r[7] or "", "level": r[8] or "",
-                "salary": r[9] or "", "experience": r[10] or "",
-                "logo_link": r[11] or "",
-                "skills": r[12] or ""
-            })
-
-        return jsonify({
-            "jobs": jobs, "total": total,
-            "page": page, "per_page": per_page,
-            "total_pages": max(1, (total + per_page - 1) // per_page),
-        })
-    finally:
-        cur.close()
-        conn.close()
+    return jsonify(
+        {
+            "jobs": jobs,
+            "total": total,
+            "page": page,
+            "per_page": PAGE_SIZE,
+            "total_pages": max(1, (total + PAGE_SIZE - 1) // PAGE_SIZE),
+        }
+    )
 
 
-# ── ANALYTICS ENDPOINTS ──
+@app.route("/jobs/<uuid:job_id>")
+def job_detail(job_id):
+    with get_conn() as conn, conn.cursor(cursor_factory=RealDictCursor) as cur:
+        cur.execute(
+            """SELECT j.job_id, j.title, j.source_url, j.application_url,
+                      j.work_mode, j.listing_status, j.published_at, j.expires_at,
+                      c.display_name AS company_name, c.logo_url,
+                      d.overview_text, d.fetch_status,
+                      comp.display_text AS salary_display,
+                      comp.min_amount AS salary_min, comp.max_amount AS salary_max,
+                      comp.currency_code AS salary_currency, comp.pay_period AS salary_period,
+                      labels.levels
+               FROM jobs j
+               LEFT JOIN companies c ON c.company_id = j.company_id
+               LEFT JOIN job_descriptions d ON d.job_id = j.job_id
+               LEFT JOIN job_compensations comp ON comp.job_id = j.job_id
+               LEFT JOIN LATERAL (
+                   SELECT string_agg(DISTINCT label_text, ', ' ORDER BY label_text)
+                          FILTER (WHERE label_type = 'seniority') AS levels
+                   FROM job_source_labels
+                   WHERE job_id = j.job_id
+               ) labels ON TRUE
+               WHERE j.job_id = %s AND j.project_track = %s""",
+            (str(job_id), PROJECT_TRACK),
+        )
+        job = cur.fetchone()
+        if job is None:
+            abort(404)
 
-@app.route("/api/analytics/job-category-distribution")
-def api_analytics_job_category_distribution():
-    """Get distribution of jobs by job_group (category)"""
-    conn = get_conn()
-    cur = conn.cursor()
-    try:
-        cur.execute("""
-            SELECT 
-                djt.job_group,
-                COUNT(*) as count
-            FROM jobs_clean j
-            LEFT JOIN dim_job_title djt ON j.job_title_mapping_id = djt.job_title_id
-            WHERE djt.job_group IS NOT NULL AND djt.job_group <> ''
-            GROUP BY djt.job_group
-            ORDER BY count DESC
-        """)
-        
-        categories = [{"category": r[0], "count": r[1]} for r in cur.fetchall()]
-        return jsonify({"categories": categories})
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500
-    finally:
-        cur.close()
-        conn.close()
+        cur.execute(
+            """SELECT province_city, district, ward, address_line
+               FROM job_locations
+               WHERE job_id = %s
+               ORDER BY position""",
+            (str(job_id),),
+        )
+        locations = cur.fetchall()
 
-
-@app.route("/api/analytics/skills-by-category")
-def api_analytics_skills_by_category():
-    """Get top 20 skills for a specific job_group"""
-    conn = get_conn()
-    cur = conn.cursor()
-    try:
-        category = request.args.get("category", "").strip()
-        if not category:
-            return jsonify({"error": "category parameter is required"}), 400
-        
-        cur.execute("""
-            SELECT 
-                ds.skill_keyword,
-                COUNT(fjs.job_id) as frequency
-            FROM dim_job_title djt
-            JOIN jobs_clean j ON djt.job_title_id = j.job_title_mapping_id
-            JOIN fact_job_skill_mapping fjs ON j.job_title_mapping_id = fjs.job_id
-            JOIN dim_skill ds ON fjs.skill_id = ds.skill_id
-            WHERE djt.job_group = %s
-            GROUP BY ds.skill_keyword
-            ORDER BY frequency DESC
-            LIMIT 20
-        """, [category])
-        
-        skills = [{"skill": r[0], "frequency": r[1]} for r in cur.fetchall()]
-        return jsonify({"category": category, "skills": skills})
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500
-    finally:
-        cur.close()
-        conn.close()
-
-
-@app.route("/api/analytics/level-distribution")
-def api_analytics_level_distribution():
-    """Get distribution of jobs by level"""
-    conn = get_conn()
-    cur = conn.cursor()
-    try:
-        cur.execute("""
-            SELECT 
-                lv.raw_level,
-                COUNT(DISTINCT j.id) as count
-            FROM jobs_clean j
-            LEFT JOIN job_level_mapping jlm ON j.id = jlm.job_id
-            LEFT JOIN level_mapping lv ON jlm.level_id = lv.id
-            WHERE lv.raw_level IS NOT NULL AND lv.raw_level <> ''
-            GROUP BY lv.raw_level
-            ORDER BY count DESC
-        """)
-        
-        levels = [{"level": r[0], "count": r[1]} for r in cur.fetchall()]
-        return jsonify({"levels": levels})
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500
-    finally:
-        cur.close()
-        conn.close()
-
-
-@app.route("/api/analytics/top-skills")
-def api_analytics_top_skills():
-    """Get top 10 most demanded skills across all jobs"""
-    conn = get_conn()
-    cur = conn.cursor()
-    try:
-        cur.execute("""
-            SELECT 
-                ds.skill_keyword,
-                COUNT(fjs.job_id) as frequency
-            FROM fact_job_skill_mapping fjs
-            JOIN dim_skill ds ON fjs.skill_id = ds.skill_id
-            GROUP BY ds.skill_keyword
-            ORDER BY frequency DESC
-            LIMIT 10
-        """)
-        
-        skills = [{"skill": r[0], "frequency": r[1]} for r in cur.fetchall()]
-        return jsonify({"skills": skills})
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500
-    finally:
-        cur.close()
-        conn.close()
-
-
-@app.route("/api/analytics/jobs-posted-trend")
-def api_analytics_jobs_posted_trend():
-    """Get jobs posted trend by month"""
-    conn = get_conn()
-    cur = conn.cursor()
-    try:
-        cur.execute("""
-            SELECT 
-                dm.year,
-                dm.month,
-                COUNT(*) as count
-            FROM jobs_clean j
-            LEFT JOIN date_mapping dm ON j.posted_at_id = dm.id
-            WHERE dm.year IS NOT NULL AND dm.month IS NOT NULL
-            GROUP BY dm.year, dm.month
-            ORDER BY dm.year ASC, dm.month ASC
-        """)
-        
-        trend = [{"year": r[0], "month": r[1], "count": r[2]} for r in cur.fetchall()]
-        return jsonify({"trend": trend})
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500
-    finally:
-        cur.close()
-        conn.close()
+    job["salary"] = format_salary(job)
+    job["source_url"] = safe_http_url(job["source_url"])
+    job["application_url"] = safe_http_url(job["application_url"])
+    job["logo_url"] = safe_http_url(job["logo_url"])
+    job["published_at"] = job["published_at"].isoformat() if job["published_at"] else None
+    job["expires_at"] = job["expires_at"].isoformat() if job["expires_at"] else None
+    return render_template(
+        "job_detail.html",
+        job=job,
+        locations=locations,
+        project_track=PROJECT_TRACK,
+    )
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000, debug=True)
+    app.run(host="0.0.0.0", port=5000, debug=False)

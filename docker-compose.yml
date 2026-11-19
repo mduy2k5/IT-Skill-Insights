@@ -1,6 +1,30 @@
-version: '3.8'
-
 services:
+  job-postgres:
+    image: postgres:16-alpine
+    container_name: it-job-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${JOB_POSTGRES_DB:-it_job_platform}
+      POSTGRES_USER: ${JOB_POSTGRES_USER:-job_pipeline}
+      POSTGRES_PASSWORD: ${JOB_POSTGRES_PASSWORD:?Set JOB_POSTGRES_PASSWORD in the ignored .env file}
+      JOB_WEB_DB_USER: ${JOB_WEB_DB_USER:-job_web_reader}
+      JOB_WEB_DB_PASSWORD: ${JOB_WEB_DB_PASSWORD:?Set JOB_WEB_DB_PASSWORD in the ignored .env file}
+    ports:
+      - "127.0.0.1:5434:5432"
+    volumes:
+      - job_postgres_data:/var/lib/postgresql/data
+      - ./database/postgres/001_job_platform_schema.sql:/docker-entrypoint-initdb.d/001_job_platform_schema.sql:ro
+      - ./database/postgres/002_crawl_artifacts.sql:/docker-entrypoint-initdb.d/002_crawl_artifacts.sql:ro
+      - ./database/postgres/003_web_reader.sh:/docker-entrypoint-initdb.d/003_web_reader.sh:ro
+      - ./database/postgres/004_job_ingest_candidates.sql:/docker-entrypoint-initdb.d/004_job_ingest_candidates.sql:ro
+      - ./database/postgres/005_olap_verified_export.sql:/docker-entrypoint-initdb.d/005_olap_verified_export.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+
   postgres:
     image: postgres:13
     environment:
@@ -63,18 +87,92 @@ services:
 
   scrapy:
     build: ./scraper
+    depends_on:
+      job-postgres:
+        condition: service_healthy
     volumes:
       - ./scraper:/app/scraper
       - ./data:/opt/airflow/data
     working_dir: /app
     environment:
-      - PYTHONPATH=/app
+      PYTHONPATH: /app
+      JOB_POSTGRES_HOST: job-postgres
+      JOB_POSTGRES_PORT: "5432"
+      JOB_POSTGRES_DB: ${JOB_POSTGRES_DB:-it_job_platform}
+      JOB_POSTGRES_USER: ${JOB_POSTGRES_USER:-job_pipeline}
+      JOB_POSTGRES_PASSWORD: ${JOB_POSTGRES_PASSWORD:?Set JOB_POSTGRES_PASSWORD in the ignored .env file}
     command: tail -f /dev/null
   
+  job-olap:
+    image: duckdb/duckdb:2.0.0
+    container_name: it-job-olap
+    restart: unless-stopped
+    init: true
+    stdin_open: true
+    tty: true
+    entrypoint: ["duckdb"]
+    environment:
+      JOB_OLAP_TOKEN: ${JOB_OLAP_TOKEN:?Set JOB_OLAP_TOKEN in the ignored .env file}
+    volumes:
+      - job_olap_data:/var/lib/duckdb
+      - ./database/olap:/opt/olap:ro
+    ports:
+      - "127.0.0.1:9494:9494"
+    command:
+      - -init
+      - /opt/olap/duckdbrc
+      - /var/lib/duckdb/it_job_analytics.duckdb
+      - -serve
+
+  job-olap-migrate:
+    image: duckdb/duckdb:2.0.0
+    profiles: ["olap-tools"]
+    volumes:
+      - job_olap_data:/var/lib/duckdb
+      - ./database/olap:/opt/olap:ro
+    entrypoint: ["duckdb"]
+    command:
+      - /var/lib/duckdb/it_job_analytics.duckdb
+      - -f
+      - /opt/olap/migrations/001_warehouse_core.sql
+
+  job-olap-loader:
+    build:
+      context: .
+      dockerfile: database/olap/loader.Dockerfile
+    profiles: ["olap-tools"]
+    depends_on:
+      job-postgres:
+        condition: service_healthy
+      job-olap:
+        condition: service_started
+    environment:
+      JOB_POSTGRES_HOST: job-postgres
+      JOB_POSTGRES_PORT: "5432"
+      JOB_POSTGRES_DB: ${JOB_POSTGRES_DB:-it_job_platform}
+      JOB_POSTGRES_USER: ${JOB_WEB_DB_USER:-job_web_reader}
+      JOB_POSTGRES_PASSWORD: ${JOB_WEB_DB_PASSWORD:?Set JOB_WEB_DB_PASSWORD in the ignored .env file}
+      JOB_OLAP_HOST: job-olap
+      JOB_OLAP_PORT: "9494"
+      JOB_OLAP_TOKEN: ${JOB_OLAP_TOKEN:?Set JOB_OLAP_TOKEN in the ignored .env file}
+
   web:
     build: ./web
     ports:
-      - "5000:5000"
+      - "127.0.0.1:5000:5000"
     depends_on:
-      postgres:
+      job-postgres:
         condition: service_healthy
+    environment:
+      JOB_POSTGRES_HOST: job-postgres
+      JOB_POSTGRES_PORT: "5432"
+      JOB_POSTGRES_DB: ${JOB_POSTGRES_DB:-it_job_platform}
+      JOB_POSTGRES_USER: ${JOB_WEB_DB_USER:-job_web_reader}
+      JOB_POSTGRES_PASSWORD: ${JOB_WEB_DB_PASSWORD:?Set JOB_WEB_DB_PASSWORD in the ignored .env file}
+      JOB_PROJECT_TRACK: data
+
+volumes:
+  job_postgres_data:
+    name: it_job_postgres_data
+  job_olap_data:
+    name: it_job_olap_data

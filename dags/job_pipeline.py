@@ -38,7 +38,8 @@ with DAG(
 
     transform = BashOperator(
         task_id="transform_jobs",
-        bash_command="docker exec -w /app/scraper it_job_pipeline-scrapy-1 python job_crawler/run_transform.py"
+        bash_command="docker exec -w /app/scraper it_job_pipeline-scrapy-1 python job_crawler/run_transform.py",
+        skip_on_exit_code=99,
     )
 
-    crawl >> transform 
+    crawl >> transform

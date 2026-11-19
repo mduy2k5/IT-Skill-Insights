@@ -1,0 +1,2 @@
+.output /dev/null
+.serve_command CALL quack_serve('quack:0.0.0.0:9494', token = getenv('JOB_OLAP_TOKEN'), allow_other_hostname = true, disable_ssl = true)
