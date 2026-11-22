@@ -1,0 +1,1862 @@
+{
+  "timestamp": "2026-11-20T09:12:04.289657+00:00",
+  "model_version": "jobbert-v3-prototype-v0.1",
+  "parameters": {
+    "tau": 0.6,
+    "delta": 0.06
+  },
+  "total_benchmark_titles": 87,
+  "ruleset_v01": {
+    "auto_classified_count": 21,
+    "auto_classified_rate": 0.2414,
+    "correct_count": 8,
+    "false_merges": 13,
+    "false_merge_rate": 0.619,
+    "unmatched_count": 66
+  },
+  "jobbert_shadow": {
+    "auto_assigned_count": 50,
+    "auto_assigned_rate": 0.5747,
+    "correct_count": 48,
+    "false_merges": 2,
+    "false_merge_rate": 0.04,
+    "ambiguous_count": 5,
+    "low_confidence_count": 32,
+    "review_needed_count": 37
+  },
+  "gate_evaluation": {
+    "crit_1_coverage_improved": true,
+    "crit_2_no_false_merge_increase": true,
+    "decision": "PROMOTE_APPROVED",
+    "justification": "JobBERT tăng tỷ lệ auto-classify từ 24.1% lên 57.5%, đồng thời GIẢM mạnh lỗi gộp nhầm (False Merges) từ 13 (61.9%) xuống còn 2 (4.0%)."
+  },
+  "detailed_sample": [
+    {
+      "raw_title": "AI Engineer",
+      "true_family": "Software Engineering (AI / ML)",
+      "ruleset": {
+        "prediction": "Cần rà title",
+        "status": "UNMATCHED",
+        "is_false_merge": false
+      },
+      "jobbert": {
+        "status": "AUTO_ASSIGNED",
+        "top1_family": "Software Engineering (AI / ML)",
+        "confidence": 0.8129,
+        "margin": 0.2461,
+        "is_false_merge": false,
+        "candidates": [
+          "Software Engineering (AI / ML)",
+          "Data Engineering",
+          "Software Engineering (Fullstack / Web)"
+        ]
+      }
+    },
+    {
+      "raw_title": "AI QUANTITATIVE RESEARCHER INTERN (On-site)",
+      "true_family": "AI / Quantitative Research",
+      "ruleset": {
+        "prediction": "AI Quantitative Research",
+        "status": "MATCHED",
+        "is_false_merge": true
+      },
+      "jobbert": {
+        "status": "LOW_CONFIDENCE_REVIEW",
+        "top1_family": "Software Engineering (AI / ML)",
+        "confidence": 0.5495,
+        "margin": 0.2436,
+        "is_false_merge": false,
+        "candidates": [
+          "Software Engineering (AI / ML)",
+          "Business Analysis",
+          "Software Engineering (Backend)"
+        ]
+      }
+    },
+    {
+      "raw_title": "Associate Quality Engineer (Automation)",
+      "true_family": "Software Testing / QA / QC",
+      "ruleset": {
+        "prediction": "Cần rà title",
+        "status": "UNMATCHED",
+        "is_false_merge": false
+      },
+      "jobbert": {
+        "status": "AUTO_ASSIGNED",
+        "top1_family": "Software Testing / QA / QC",
+        "confidence": 0.7154,
+        "margin": 0.2916,
+        "is_false_merge": false,
+        "candidates": [
+          "Software Testing / QA / QC",
+          "Software Engineering (Backend)",
+          "Data Engineering"
+        ]
+      }
+    },
+    {
+      "raw_title": "Business Analyst",
+      "true_family": "Business Analysis",
+      "ruleset": {
+        "prediction": "Cần rà title",
+        "status": "UNMATCHED",
+        "is_false_merge": false
+      },
+      "jobbert": {
+        "status": "AUTO_ASSIGNED",
+        "top1_family": "Business Analysis",
+        "confidence": 0.8505,
+        "margin": 0.2853,
+        "is_false_merge": false,
+        "candidates": [
+          "Business Analysis",
+          "IT Project Management / Product Management",
+          "Data Engineering"
+        ]
+      }
+    },
+    {
+      "raw_title": "C/C++ Software Developer – Telecom (All Levels)",
+      "true_family": "Software Engineering (Backend)",
+      "ruleset": {
+        "prediction": "Cần rà title",
+        "status": "UNMATCHED",
+        "is_false_merge": false
+      },
+      "jobbert": {
+        "status": "LOW_CONFIDENCE_REVIEW",
+        "top1_family": "Software Engineering (Backend)",
+        "confidence": 0.4198,
+        "margin": 0.0614,
+        "is_false_merge": false,
+        "candidates": [
+          "Software Engineering (Backend)",
+          "DevOps & DevSecOps",
+          "IT Architecture & Strategy"
+        ]
+      }
+    },
+    {
+      "raw_title": "Chuyên Gia Kiểm Thử & Đánh Giá An Ninh (Pentest) - Hà Nội",
+      "true_family": "Information Security / Cybersecurity",
+      "ruleset": {
+        "prediction": "Cần rà title",
+        "status": "UNMATCHED",
+        "is_false_merge": false
+      },
+      "jobbert": {
+        "status": "AUTO_ASSIGNED",
+        "top1_family": "Information Security / Cybersecurity",
+        "confidence": 0.7152,
+        "margin": 0.2893,
+        "is_false_merge": false,
+        "candidates": [
+          "Information Security / Cybersecurity",
+          "Software Testing / QA / QC",
+          "Business Analysis"
+        ]
+      }
+    },
+    {
+      "raw_title": "Chuyên Gia Vận Hành Thẻ",
+      "true_family": "IT Operations & Integration Services",
+      "ruleset": {
+        "prediction": "Cần rà title",
+        "status": "UNMATCHED",
+        "is_false_merge": false
+      },
+      "jobbert": {
+        "status": "LOW_CONFIDENCE_REVIEW",
+        "top1_family": "Business Analysis",
+        "confidence": 0.325,
+        "margin": 0.034,
+        "is_false_merge": false,
+        "candidates": [
+          "Business Analysis",
+          "Software Testing / QA / QC",
+          "IT Project Management / Product Management"
+        ]
+      }
+    },
+    {
+      "raw_title": "Chuyên Viên Cao Cấp Vận Hành An Toàn An Ninh Thông Tin - Hà Nội",
+      "true_family": "Information Security / Cybersecurity",
+      "ruleset": {
+        "prediction": "Cần rà title",
+        "status": "UNMATCHED",
+        "is_false_merge": false
+      },
+      "jobbert": {
+        "status": "LOW_CONFIDENCE_REVIEW",
+        "top1_family": "Information Security / Cybersecurity",
+        "confidence": 0.5128,
+        "margin": 0.2209,
+        "is_false_merge": false,
+        "candidates": [
+          "Information Security / Cybersecurity",
+          "IT Support & Systems Operations",
+          "Cloud, Systems & Network Infrastructure"
+        ]
+      }
+    },
+    {
+      "raw_title": "Chuyên gia Chiến lược công nghệ",
+      "true_family": "IT Architecture & Strategy",
+      "ruleset": {
+        "prediction": "Cần rà title",
+        "status": "UNMATCHED",
+        "is_false_merge": false
+      },
+      "jobbert": {
+        "status": "AUTO_ASSIGNED",
+        "top1_family": "IT Architecture & Strategy",
+        "confidence": 0.9187,
+        "margin": 0.4718,
+        "is_false_merge": false,
+        "candidates": [
+          "IT Architecture & Strategy",
+          "IT Project Management / Product Management",
+          "Business Analysis"
+        ]
+      }
+    },
+    {
+      "raw_title": "Chuyên gia Kiến trúc doanh nghiệp (EA)",
+      "true_family": "IT Architecture & Strategy",
+      "ruleset": {
+        "prediction": "Cần rà title",
+        "status": "UNMATCHED",
+        "is_false_merge": false
+      },
+      "jobbert": {
+        "status": "AUTO_ASSIGNED",
+        "top1_family": "IT Architecture & Strategy",
+        "confidence": 0.7798,
+        "margin": 0.4469,
+        "is_false_merge": false,
+        "candidates": [
+          "IT Architecture & Strategy",
+          "DevOps & DevSecOps",
+          "Business Analysis"
+        ]
+      }
+    },
+    {
+      "raw_title": "Chuyên viên Cao cấp QA",
+      "true_family": "Software Testing / QA / QC",
+      "ruleset": {
+        "prediction": "Software Testing / QA",
+        "status": "MATCHED",
+        "is_false_merge": true
+      },
+      "jobbert": {
+        "status": "AUTO_ASSIGNED",
+        "top1_family": "Software Testing / QA / QC",
+        "confidence": 0.8173,
+        "margin": 0.3538,
+        "is_false_merge": false,
+        "candidates": [
+          "Software Testing / QA / QC",
+          "Data Engineering",
+          "Business Analysis"
+        ]
+      }
+    },
+    {
+      "raw_title": "Chuyên viên Công nghệ & phát triển sản phẩm Cloud, Data Center và ANM",
+      "true_family": "Cloud, Systems & Network Infrastructure",
+      "ruleset": {
+        "prediction": "Cloud, Data Center & Network",
+        "status": "MATCHED",
+        "is_false_merge": true
+      },
+      "jobbert": {
+        "status": "LOW_CONFIDENCE_REVIEW",
+        "top1_family": "DevOps & DevSecOps",
+        "confidence": 0.5171,
+        "margin": 0.0236,
+        "is_false_merge": false,
+        "candidates": [
+          "DevOps & DevSecOps",
+          "Cloud, Systems & Network Infrastructure",
+          "IT Architecture & Strategy"
+        ]
+      }
+    },
+    {
+      "raw_title": "Chuyên viên Hỗ trợ Tích hợp Dịch vụ - Khối Ngân hàng Số (2026TD457689)",
+      "true_family": "IT Operations & Integration Services",
+      "ruleset": {
+        "prediction": "Data Services & Integration",
+        "status": "MATCHED",
+        "is_false_merge": true
+      },
+      "jobbert": {
+        "status": "LOW_CONFIDENCE_REVIEW",
+        "top1_family": "IT Operations & Integration Services",
+        "confidence": 0.557,
+        "margin": 0.2183,
+        "is_false_merge": false,
+        "candidates": [
+          "IT Operations & Integration Services",
+          "IT Support & Systems Operations",
+          "Database Administration"
+        ]
+      }
+    },
+    {
+      "raw_title": "Chuyên viên Hỗ trợ bán hàng (Kỹ thuật)",
+      "true_family": "IT Sales & Presales",
+      "ruleset": {
+        "prediction": "Cần rà title",
+        "status": "UNMATCHED",
+        "is_false_merge": false
+      },
+      "jobbert": {
+        "status": "LOW_CONFIDENCE_REVIEW",
+        "top1_family": "IT Support & Systems Operations",
+        "confidence": 0.3332,
+        "margin": 0.0425,
+        "is_false_merge": false,
+        "candidates": [
+          "IT Support & Systems Operations",
+          "IT Sales & Presales",
+          "IT Project Management / Product Management"
+        ]
+      }
+    },
+    {
+      "raw_title": "Chuyên viên Kinh doanh Cloud, An ninh mạng",
+      "true_family": "IT Sales & Presales",
+      "ruleset": {
+        "prediction": "Cloud, Data Center & Network",
+        "status": "MATCHED",
+        "is_false_merge": true
+      },
+      "jobbert": {
+        "status": "AUTO_ASSIGNED",
+        "top1_family": "IT Sales & Presales",
+        "confidence": 0.8026,
+        "margin": 0.3662,
+        "is_false_merge": false,
+        "candidates": [
+          "IT Sales & Presales",
+          "Cloud, Systems & Network Infrastructure",
+          "Information Security / Cybersecurity"
+        ]
+      }
+    },
+    {
+      "raw_title": "Chuyên viên Kiến trúc doanh nghiệp (EA)",
+      "true_family": "IT Architecture & Strategy",
+      "ruleset": {
+        "prediction": "Cần rà title",
+        "status": "UNMATCHED",
+        "is_false_merge": false
+      },
+      "jobbert": {
+        "status": "AUTO_ASSIGNED",
+        "top1_family": "IT Architecture & Strategy",
+        "confidence": 0.7798,
+        "margin": 0.4469,
+        "is_false_merge": false,
+        "candidates": [
+          "IT Architecture & Strategy",
+          "DevOps & DevSecOps",
+          "Business Analysis"
+        ]
+      }
+    },
+    {
+      "raw_title": "Chuyên viên Kiểm thử - Tester - Khối Công nghệ thông tin (2026TD456989)",
+      "true_family": "Software Testing / QA / QC",
+      "ruleset": {
+        "prediction": "Software Testing / QA",
+        "status": "MATCHED",
+        "is_false_merge": true
+      },
+      "jobbert": {
+        "status": "AUTO_ASSIGNED",
+        "top1_family": "Software Testing / QA / QC",
+        "confidence": 0.6349,
+        "margin": 0.1332,
+        "is_false_merge": false,
+        "candidates": [
+          "Software Testing / QA / QC",
+          "Information Security / Cybersecurity",
+          "Software Engineering (Backend)"
+        ]
+      }
+    },
+    {
+      "raw_title": "Chuyên viên Phát triển Hệ thống",
+      "true_family": "Software Engineering (Backend)",
+      "ruleset": {
+        "prediction": "Cần rà title",
+        "status": "UNMATCHED",
+        "is_false_merge": false
+      },
+      "jobbert": {
+        "status": "AUTO_ASSIGNED",
+        "top1_family": "Software Engineering (Backend)",
+        "confidence": 0.7029,
+        "margin": 0.0678,
+        "is_false_merge": false,
+        "candidates": [
+          "Software Engineering (Backend)",
+          "DevOps & DevSecOps",
+          "Cloud, Systems & Network Infrastructure"
+        ]
+      }
+    },
+    {
+      "raw_title": "Chuyên viên Phân tích nghiệp vụ",
+      "true_family": "Business Analysis",
+      "ruleset": {
+        "prediction": "Cần rà title",
+        "status": "UNMATCHED",
+        "is_false_merge": false
+      },
+      "jobbert": {
+        "status": "LOW_CONFIDENCE_REVIEW",
+        "top1_family": "Business Analysis",
+        "confidence": 0.5646,
+        "margin": 0.2367,
+        "is_false_merge": false,
+        "candidates": [
+          "Business Analysis",
+          "IT Operations & Integration Services",
+          "IT Architecture & Strategy"
+        ]
+      }
+    },
+    {
+      "raw_title": "Chuyên viên Phân tích nghiệp vụ (BA)",
+      "true_family": "Business Analysis",
+      "ruleset": {
+        "prediction": "Cần rà title",
+        "status": "UNMATCHED",
+        "is_false_merge": false
+      },
+      "jobbert": {
+        "status": "AUTO_ASSIGNED",
+        "top1_family": "Business Analysis",
+        "confidence": 0.6031,
+        "margin": 0.3066,
+        "is_false_merge": false,
+        "candidates": [
+          "Business Analysis",
+          "IT Architecture & Strategy",
+          "Software Testing / QA / QC"
+        ]
+      }
+    },
+    {
+      "raw_title": "Chuyên viên cao cấp Kiểm thử",
+      "true_family": "Software Testing / QA / QC",
+      "ruleset": {
+        "prediction": "Cần rà title",
+        "status": "UNMATCHED",
+        "is_false_merge": false
+      },
+      "jobbert": {
+        "status": "AUTO_ASSIGNED",
+        "top1_family": "Software Testing / QA / QC",
+        "confidence": 0.6793,
+        "margin": 0.3572,
+        "is_false_merge": false,
+        "candidates": [
+          "Software Testing / QA / QC",
+          "Information Security / Cybersecurity",
+          "Data Engineering"
+        ]
+      }
+    },
+    {
+      "raw_title": "Chuyên viên cao cấp Phát triển Hệ thống",
+      "true_family": "Software Engineering (Backend)",
+      "ruleset": {
+        "prediction": "Cần rà title",
+        "status": "UNMATCHED",
+        "is_false_merge": false
+      },
+      "jobbert": {
+        "status": "AUTO_ASSIGNED",
+        "top1_family": "Software Engineering (Backend)",
+        "confidence": 0.7029,
+        "margin": 0.0678,
+        "is_false_merge": false,
+        "candidates": [
+          "Software Engineering (Backend)",
+          "DevOps & DevSecOps",
+          "Cloud, Systems & Network Infrastructure"
+        ]
+      }
+    },
+    {
+      "raw_title": "Chuyên viên cao cấp Vận hành hệ thống",
+      "true_family": "Cloud, Systems & Network Infrastructure",
+      "ruleset": {
+        "prediction": "Cần rà title",
+        "status": "UNMATCHED",
+        "is_false_merge": false
+      },
+      "jobbert": {
+        "status": "AUTO_ASSIGNED",
+        "top1_family": "Cloud, Systems & Network Infrastructure",
+        "confidence": 0.7103,
+        "margin": 0.2266,
+        "is_false_merge": false,
+        "candidates": [
+          "Cloud, Systems & Network Infrastructure",
+          "DevOps & DevSecOps",
+          "IT Operations & Integration Services"
+        ]
+      }
+    },
+    {
+      "raw_title": "Chuyên viên cao cấp an ninh mạng",
+      "true_family": "Information Security / Cybersecurity",
+      "ruleset": {
+        "prediction": "Cần rà title",
+        "status": "UNMATCHED",
+        "is_false_merge": false
+      },
+      "jobbert": {
+        "status": "AUTO_ASSIGNED",
+        "top1_family": "Information Security / Cybersecurity",
+        "confidence": 0.8506,
+        "margin": 0.3669,
+        "is_false_merge": false,
+        "candidates": [
+          "Information Security / Cybersecurity",
+          "Cloud, Systems & Network Infrastructure",
+          "IT Support & Systems Operations"
+        ]
+      }
+    },
+    {
+      "raw_title": "Chuyên viên cao cấp phát triển sản phẩm/giải pháp CNTT",
+      "true_family": "IT Project Management / Product Management",
+      "ruleset": {
+        "prediction": "Cần rà title",
+        "status": "UNMATCHED",
+        "is_false_merge": false
+      },
+      "jobbert": {
+        "status": "LOW_CONFIDENCE_REVIEW",
+        "top1_family": "IT Project Management / Product Management",
+        "confidence": 0.5303,
+        "margin": 0.0311,
+        "is_false_merge": false,
+        "candidates": [
+          "IT Project Management / Product Management",
+          "IT Architecture & Strategy",
+          "DevOps & DevSecOps"
+        ]
+      }
+    },
+    {
+      "raw_title": "Chuyên viên lập trình Back-end (Java)",
+      "true_family": "Software Engineering (Backend)",
+      "ruleset": {
+        "prediction": "Cần rà title",
+        "status": "UNMATCHED",
+        "is_false_merge": false
+      },
+      "jobbert": {
+        "status": "AUTO_ASSIGNED",
+        "top1_family": "Software Engineering (Backend)",
+        "confidence": 0.7796,
+        "margin": 0.1134,
+        "is_false_merge": false,
+        "candidates": [
+          "Software Engineering (Backend)",
+          "Software Engineering (Fullstack / Web)",
+          "Data Engineering"
+        ]
+      }
+    },
+    {
+      "raw_title": "Chuyên viên phân tích nghiệp vụ phần mềm",
+      "true_family": "Business Analysis",
+      "ruleset": {
+        "prediction": "Cần rà title",
+        "status": "UNMATCHED",
+        "is_false_merge": false
+      },
+      "jobbert": {
+        "status": "AUTO_ASSIGNED",
+        "top1_family": "Business Analysis",
+        "confidence": 0.9201,
+        "margin": 0.3848,
+        "is_false_merge": false,
+        "candidates": [
+          "Business Analysis",
+          "IT Project Management / Product Management",
+          "IT Support & Systems Operations"
+        ]
+      }
+    },
+    {
+      "raw_title": "Chuyên viên quản lý dự án phần mềm",
+      "true_family": "IT Project Management / Product Management",
+      "ruleset": {
+        "prediction": "Cần rà title",
+        "status": "UNMATCHED",
+        "is_false_merge": false
+      },
+      "jobbert": {
+        "status": "AUTO_ASSIGNED",
+        "top1_family": "IT Project Management / Product Management",
+        "confidence": 0.9563,
+        "margin": 0.4115,
+        "is_false_merge": false,
+        "candidates": [
+          "IT Project Management / Product Management",
+          "IT Support & Systems Operations",
+          "Business Analysis"
+        ]
+      }
+    },
+    {
+      "raw_title": "Chuyên viên triển khai dự án",
+      "true_family": "IT Support & Systems Operations",
+      "ruleset": {
+        "prediction": "Cần rà title",
+        "status": "UNMATCHED",
+        "is_false_merge": false
+      },
+      "jobbert": {
+        "status": "LOW_CONFIDENCE_REVIEW",
+        "top1_family": "IT Project Management / Product Management",
+        "confidence": 0.5996,
+        "margin": 0.1747,
+        "is_false_merge": false,
+        "candidates": [
+          "IT Project Management / Product Management",
+          "Software Engineering (Fullstack / Web)",
+          "IT Architecture & Strategy"
+        ]
+      }
+    },
+    {
+      "raw_title": "Chuyên viên đảm bảo chất lượng (QA/QC)",
+      "true_family": "Software Testing / QA / QC",
+      "ruleset": {
+        "prediction": "Software Testing / QA",
+        "status": "MATCHED",
+        "is_false_merge": true
+      },
+      "jobbert": {
+        "status": "AUTO_ASSIGNED",
+        "top1_family": "Software Testing / QA / QC",
+        "confidence": 0.8422,
+        "margin": 0.537,
+        "is_false_merge": false,
+        "candidates": [
+          "Software Testing / QA / QC",
+          "IT Operations & Integration Services",
+          "Data Engineering"
+        ]
+      }
+    },
+    {
+      "raw_title": "Chuyên viên Ứng dụng Microsoft 365 & Copilot",
+      "true_family": "Cloud, Systems & Network Infrastructure",
+      "ruleset": {
+        "prediction": "Cần rà title",
+        "status": "UNMATCHED",
+        "is_false_merge": false
+      },
+      "jobbert": {
+        "status": "LOW_CONFIDENCE_REVIEW",
+        "top1_family": "Cloud, Systems & Network Infrastructure",
+        "confidence": 0.4569,
+        "margin": 0.0324,
+        "is_false_merge": false,
+        "candidates": [
+          "Cloud, Systems & Network Infrastructure",
+          "DevOps & DevSecOps",
+          "IT Architecture & Strategy"
+        ]
+      }
+    },
+    {
+      "raw_title": "Cloud & DevOps Engineer (Azure, AWS)",
+      "true_family": "DevOps & DevSecOps",
+      "ruleset": {
+        "prediction": "Cloud, Data Center & Network",
+        "status": "MATCHED",
+        "is_false_merge": true
+      },
+      "jobbert": {
+        "status": "AMBIGUOUS_REVIEW",
+        "top1_family": "Cloud, Systems & Network Infrastructure",
+        "confidence": 0.6645,
+        "margin": 0.0394,
+        "is_false_merge": false,
+        "candidates": [
+          "Cloud, Systems & Network Infrastructure",
+          "DevOps & DevSecOps",
+          "Information Security / Cybersecurity"
+        ]
+      }
+    },
+    {
+      "raw_title": "Cobol Developer (English speaking)",
+      "true_family": "Software Engineering (Backend)",
+      "ruleset": {
+        "prediction": "Cần rà title",
+        "status": "UNMATCHED",
+        "is_false_merge": false
+      },
+      "jobbert": {
+        "status": "LOW_CONFIDENCE_REVIEW",
+        "top1_family": "Software Engineering (Backend)",
+        "confidence": 0.3282,
+        "margin": 0.0025,
+        "is_false_merge": false,
+        "candidates": [
+          "Software Engineering (Backend)",
+          "Enterprise Applications (ERP / CRM)",
+          "Software Engineering (Fullstack / Web)"
+        ]
+      }
+    },
+    {
+      "raw_title": "Customer Support Engineer",
+      "true_family": "IT Support & Systems Operations",
+      "ruleset": {
+        "prediction": "Cần rà title",
+        "status": "UNMATCHED",
+        "is_false_merge": false
+      },
+      "jobbert": {
+        "status": "LOW_CONFIDENCE_REVIEW",
+        "top1_family": "IT Support & Systems Operations",
+        "confidence": 0.5331,
+        "margin": 0.0808,
+        "is_false_merge": false,
+        "candidates": [
+          "IT Support & Systems Operations",
+          "Cloud, Systems & Network Infrastructure",
+          "IT Sales & Presales"
+        ]
+      }
+    },
+    {
+      "raw_title": "Data Engineer (Big Data / Lakehouse)",
+      "true_family": "Data Engineering",
+      "ruleset": {
+        "prediction": "Data Engineering",
+        "status": "MATCHED",
+        "is_false_merge": false
+      },
+      "jobbert": {
+        "status": "AUTO_ASSIGNED",
+        "top1_family": "Data Engineering",
+        "confidence": 0.7502,
+        "margin": 0.3244,
+        "is_false_merge": false,
+        "candidates": [
+          "Data Engineering",
+          "IT Operations & Integration Services",
+          "Software Engineering (AI / ML)"
+        ]
+      }
+    },
+    {
+      "raw_title": "Data Engineer at DATATYK CO., LTD",
+      "true_family": "Data Engineering",
+      "ruleset": {
+        "prediction": "Data Engineering",
+        "status": "MATCHED",
+        "is_false_merge": false
+      },
+      "jobbert": {
+        "status": "AUTO_ASSIGNED",
+        "top1_family": "Data Engineering",
+        "confidence": 0.6892,
+        "margin": 0.2362,
+        "is_false_merge": false,
+        "candidates": [
+          "Data Engineering",
+          "Software Engineering (Backend)",
+          "DevOps & DevSecOps"
+        ]
+      }
+    },
+    {
+      "raw_title": "Data Engineer/ Senior Data Engineer",
+      "true_family": "Data Engineering",
+      "ruleset": {
+        "prediction": "Data Engineering",
+        "status": "MATCHED",
+        "is_false_merge": false
+      },
+      "jobbert": {
+        "status": "AUTO_ASSIGNED",
+        "top1_family": "Data Engineering",
+        "confidence": 0.8788,
+        "margin": 0.2717,
+        "is_false_merge": false,
+        "candidates": [
+          "Data Engineering",
+          "Software Engineering (Fullstack / Web)",
+          "IT Operations & Integration Services"
+        ]
+      }
+    },
+    {
+      "raw_title": "Data Services Specialist",
+      "true_family": "IT Operations & Integration Services",
+      "ruleset": {
+        "prediction": "Data Services & Integration",
+        "status": "MATCHED",
+        "is_false_merge": true
+      },
+      "jobbert": {
+        "status": "AUTO_ASSIGNED",
+        "top1_family": "IT Operations & Integration Services",
+        "confidence": 0.7867,
+        "margin": 0.085,
+        "is_false_merge": false,
+        "candidates": [
+          "IT Operations & Integration Services",
+          "Database Administration",
+          "Data Engineering"
+        ]
+      }
+    },
+    {
+      "raw_title": "DevOps Engineer (Middle/Senior)",
+      "true_family": "DevOps & DevSecOps",
+      "ruleset": {
+        "prediction": "Cần rà title",
+        "status": "UNMATCHED",
+        "is_false_merge": false
+      },
+      "jobbert": {
+        "status": "AUTO_ASSIGNED",
+        "top1_family": "DevOps & DevSecOps",
+        "confidence": 0.8699,
+        "margin": 0.2163,
+        "is_false_merge": false,
+        "candidates": [
+          "DevOps & DevSecOps",
+          "Cloud, Systems & Network Infrastructure",
+          "Data Engineering"
+        ]
+      }
+    },
+    {
+      "raw_title": "DevOps Engineer - Khối Công nghệ thông tin (2025TD945)",
+      "true_family": "DevOps & DevSecOps",
+      "ruleset": {
+        "prediction": "Cần rà title",
+        "status": "UNMATCHED",
+        "is_false_merge": false
+      },
+      "jobbert": {
+        "status": "AUTO_ASSIGNED",
+        "top1_family": "DevOps & DevSecOps",
+        "confidence": 0.7606,
+        "margin": 0.2766,
+        "is_false_merge": false,
+        "candidates": [
+          "DevOps & DevSecOps",
+          "Cloud, Systems & Network Infrastructure",
+          "Software Engineering (AI / ML)"
+        ]
+      }
+    },
+    {
+      "raw_title": "DevSecOps Engineer - Khối Công nghệ thông tin (2025TD946)",
+      "true_family": "DevOps & DevSecOps",
+      "ruleset": {
+        "prediction": "Cần rà title",
+        "status": "UNMATCHED",
+        "is_false_merge": false
+      },
+      "jobbert": {
+        "status": "AUTO_ASSIGNED",
+        "top1_family": "DevOps & DevSecOps",
+        "confidence": 0.6446,
+        "margin": 0.1477,
+        "is_false_merge": false,
+        "candidates": [
+          "DevOps & DevSecOps",
+          "Information Security / Cybersecurity",
+          "Cloud, Systems & Network Infrastructure"
+        ]
+      }
+    },
+    {
+      "raw_title": "ERP Application Developer",
+      "true_family": "Enterprise Applications (ERP / CRM)",
+      "ruleset": {
+        "prediction": "Cần rà title",
+        "status": "UNMATCHED",
+        "is_false_merge": false
+      },
+      "jobbert": {
+        "status": "AUTO_ASSIGNED",
+        "top1_family": "Enterprise Applications (ERP / CRM)",
+        "confidence": 0.7976,
+        "margin": 0.3236,
+        "is_false_merge": false,
+        "candidates": [
+          "Enterprise Applications (ERP / CRM)",
+          "Software Engineering (Fullstack / Web)",
+          "Business Analysis"
+        ]
+      }
+    },
+    {
+      "raw_title": "Expert/Senior/Middle Software Engineer (Java, Spring boot, PostgreSQL)",
+      "true_family": "Software Engineering (Backend)",
+      "ruleset": {
+        "prediction": "Cần rà title",
+        "status": "UNMATCHED",
+        "is_false_merge": false
+      },
+      "jobbert": {
+        "status": "LOW_CONFIDENCE_REVIEW",
+        "top1_family": "Software Engineering (Backend)",
+        "confidence": 0.5304,
+        "margin": 0.1397,
+        "is_false_merge": false,
+        "candidates": [
+          "Software Engineering (Backend)",
+          "Software Engineering (Fullstack / Web)",
+          "Data Engineering"
+        ]
+      }
+    },
+    {
+      "raw_title": "Fresher/Junior PHP Developer",
+      "true_family": "Software Engineering (Backend)",
+      "ruleset": {
+        "prediction": "Cần rà title",
+        "status": "UNMATCHED",
+        "is_false_merge": false
+      },
+      "jobbert": {
+        "status": "AMBIGUOUS_REVIEW",
+        "top1_family": "Software Engineering (Fullstack / Web)",
+        "confidence": 0.6282,
+        "margin": 0.046,
+        "is_false_merge": false,
+        "candidates": [
+          "Software Engineering (Fullstack / Web)",
+          "Software Engineering (Backend)",
+          "Enterprise Applications (ERP / CRM)"
+        ]
+      }
+    },
+    {
+      "raw_title": "Fullstack Engineer (AI Product Builder)",
+      "true_family": "Software Engineering (Fullstack / Web)",
+      "ruleset": {
+        "prediction": "Cần rà title",
+        "status": "UNMATCHED",
+        "is_false_merge": false
+      },
+      "jobbert": {
+        "status": "AUTO_ASSIGNED",
+        "top1_family": "Software Engineering (AI / ML)",
+        "confidence": 0.7269,
+        "margin": 0.1204,
+        "is_false_merge": true,
+        "candidates": [
+          "Software Engineering (AI / ML)",
+          "Software Engineering (Fullstack / Web)",
+          "Software Engineering (Backend)"
+        ]
+      }
+    },
+    {
+      "raw_title": "Functional Consultant – ORIS Business Suite",
+      "true_family": "Enterprise Applications (ERP / CRM)",
+      "ruleset": {
+        "prediction": "Cần rà title",
+        "status": "UNMATCHED",
+        "is_false_merge": false
+      },
+      "jobbert": {
+        "status": "LOW_CONFIDENCE_REVIEW",
+        "top1_family": "Enterprise Applications (ERP / CRM)",
+        "confidence": 0.4723,
+        "margin": 0.0306,
+        "is_false_merge": false,
+        "candidates": [
+          "Enterprise Applications (ERP / CRM)",
+          "Business Analysis",
+          "IT Operations & Integration Services"
+        ]
+      }
+    },
+    {
+      "raw_title": "IT Business Analyst - Chuyên viên phân tích nghiệp vụ",
+      "true_family": "Business Analysis",
+      "ruleset": {
+        "prediction": "Cần rà title",
+        "status": "UNMATCHED",
+        "is_false_merge": false
+      },
+      "jobbert": {
+        "status": "AUTO_ASSIGNED",
+        "top1_family": "Business Analysis",
+        "confidence": 0.6228,
+        "margin": 0.1617,
+        "is_false_merge": false,
+        "candidates": [
+          "Business Analysis",
+          "IT Project Management / Product Management",
+          "IT Support & Systems Operations"
+        ]
+      }
+    },
+    {
+      "raw_title": "IT Business Analyst / QA Specialist (Biết tiếng Hàn)",
+      "true_family": "Business Analysis",
+      "ruleset": {
+        "prediction": "Software Testing / QA",
+        "status": "MATCHED",
+        "is_false_merge": true
+      },
+      "jobbert": {
+        "status": "AUTO_ASSIGNED",
+        "top1_family": "Business Analysis",
+        "confidence": 0.6095,
+        "margin": 0.0973,
+        "is_false_merge": false,
+        "candidates": [
+          "Business Analysis",
+          "Software Testing / QA / QC",
+          "IT Project Management / Product Management"
+        ]
+      }
+    },
+    {
+      "raw_title": "IT Senior Staff",
+      "true_family": "IT Support & Systems Operations",
+      "ruleset": {
+        "prediction": "Cần rà title",
+        "status": "UNMATCHED",
+        "is_false_merge": false
+      },
+      "jobbert": {
+        "status": "AUTO_ASSIGNED",
+        "top1_family": "IT Support & Systems Operations",
+        "confidence": 0.7619,
+        "margin": 0.085,
+        "is_false_merge": false,
+        "candidates": [
+          "IT Support & Systems Operations",
+          "Business Analysis",
+          "Cloud, Systems & Network Infrastructure"
+        ]
+      }
+    },
+    {
+      "raw_title": "IT Supervisor/ Giám sát IT – Resort/Khách sạn",
+      "true_family": "IT Support & Systems Operations",
+      "ruleset": {
+        "prediction": "Cần rà title",
+        "status": "UNMATCHED",
+        "is_false_merge": false
+      },
+      "jobbert": {
+        "status": "LOW_CONFIDENCE_REVIEW",
+        "top1_family": "IT Support & Systems Operations",
+        "confidence": 0.4672,
+        "margin": 0.0365,
+        "is_false_merge": false,
+        "candidates": [
+          "IT Support & Systems Operations",
+          "IT Project Management / Product Management",
+          "Cloud, Systems & Network Infrastructure"
+        ]
+      }
+    },
+    {
+      "raw_title": "IT Systems Administrator",
+      "true_family": "Cloud, Systems & Network Infrastructure",
+      "ruleset": {
+        "prediction": "Cần rà title",
+        "status": "UNMATCHED",
+        "is_false_merge": false
+      },
+      "jobbert": {
+        "status": "AUTO_ASSIGNED",
+        "top1_family": "Cloud, Systems & Network Infrastructure",
+        "confidence": 0.9417,
+        "margin": 0.2116,
+        "is_false_merge": false,
+        "candidates": [
+          "Cloud, Systems & Network Infrastructure",
+          "IT Support & Systems Operations",
+          "Database Administration"
+        ]
+      }
+    },
+    {
+      "raw_title": "Java Backend Developer",
+      "true_family": "Software Engineering (Backend)",
+      "ruleset": {
+        "prediction": "Cần rà title",
+        "status": "UNMATCHED",
+        "is_false_merge": false
+      },
+      "jobbert": {
+        "status": "AUTO_ASSIGNED",
+        "top1_family": "Software Engineering (Backend)",
+        "confidence": 0.8327,
+        "margin": 0.1871,
+        "is_false_merge": false,
+        "candidates": [
+          "Software Engineering (Backend)",
+          "Software Engineering (Fullstack / Web)",
+          "Data Engineering"
+        ]
+      }
+    },
+    {
+      "raw_title": "Junior MarTech Solutions Consultant",
+      "true_family": "Enterprise Applications (ERP / CRM)",
+      "ruleset": {
+        "prediction": "Cần rà title",
+        "status": "UNMATCHED",
+        "is_false_merge": false
+      },
+      "jobbert": {
+        "status": "LOW_CONFIDENCE_REVIEW",
+        "top1_family": "Enterprise Applications (ERP / CRM)",
+        "confidence": 0.5256,
+        "margin": 0.1434,
+        "is_false_merge": false,
+        "candidates": [
+          "Enterprise Applications (ERP / CRM)",
+          "IT Architecture & Strategy",
+          "IT Operations & Integration Services"
+        ]
+      }
+    },
+    {
+      "raw_title": "Junior/Middle/Senior IT Business Analyst (LOS, CRM System)",
+      "true_family": "Business Analysis",
+      "ruleset": {
+        "prediction": "Cần rà title",
+        "status": "UNMATCHED",
+        "is_false_merge": false
+      },
+      "jobbert": {
+        "status": "AMBIGUOUS_REVIEW",
+        "top1_family": "Business Analysis",
+        "confidence": 0.7229,
+        "margin": 0.0382,
+        "is_false_merge": false,
+        "candidates": [
+          "Business Analysis",
+          "Enterprise Applications (ERP / CRM)",
+          "IT Project Management / Product Management"
+        ]
+      }
+    },
+    {
+      "raw_title": "Junior/Senior Software Backend (.NET, dotnet, netcore)",
+      "true_family": "Software Engineering (Backend)",
+      "ruleset": {
+        "prediction": "Cần rà title",
+        "status": "UNMATCHED",
+        "is_false_merge": false
+      },
+      "jobbert": {
+        "status": "LOW_CONFIDENCE_REVIEW",
+        "top1_family": "Software Engineering (Backend)",
+        "confidence": 0.5368,
+        "margin": 0.1259,
+        "is_false_merge": false,
+        "candidates": [
+          "Software Engineering (Backend)",
+          "Software Engineering (Fullstack / Web)",
+          "IT Support & Systems Operations"
+        ]
+      }
+    },
+    {
+      "raw_title": "KOREAN IT INTERPRETER",
+      "true_family": "IT Translation / Interpretation",
+      "ruleset": {
+        "prediction": "Cần rà title",
+        "status": "UNMATCHED",
+        "is_false_merge": false
+      },
+      "jobbert": {
+        "status": "LOW_CONFIDENCE_REVIEW",
+        "top1_family": "IT Support & Systems Operations",
+        "confidence": 0.4465,
+        "margin": 0.0896,
+        "is_false_merge": false,
+        "candidates": [
+          "IT Support & Systems Operations",
+          "Business Analysis",
+          "IT Project Management / Product Management"
+        ]
+      }
+    },
+    {
+      "raw_title": "Kiến trúc sư giải pháp CNTT",
+      "true_family": "IT Architecture & Strategy",
+      "ruleset": {
+        "prediction": "Cần rà title",
+        "status": "UNMATCHED",
+        "is_false_merge": false
+      },
+      "jobbert": {
+        "status": "AMBIGUOUS_REVIEW",
+        "top1_family": "IT Sales & Presales",
+        "confidence": 0.6051,
+        "margin": 0.0514,
+        "is_false_merge": false,
+        "candidates": [
+          "IT Sales & Presales",
+          "IT Architecture & Strategy",
+          "Cloud, Systems & Network Infrastructure"
+        ]
+      }
+    },
+    {
+      "raw_title": "Kỹ Sư Dữ Liệu (Data Engineer)",
+      "true_family": "Data Engineering",
+      "ruleset": {
+        "prediction": "Data Engineering",
+        "status": "MATCHED",
+        "is_false_merge": false
+      },
+      "jobbert": {
+        "status": "AUTO_ASSIGNED",
+        "top1_family": "Data Engineering",
+        "confidence": 0.8712,
+        "margin": 0.2564,
+        "is_false_merge": false,
+        "candidates": [
+          "Data Engineering",
+          "IT Operations & Integration Services",
+          "Database Administration"
+        ]
+      }
+    },
+    {
+      "raw_title": "Kỹ sư Presale giải pháp Công nghệ thông tin (khối Chính phủ)",
+      "true_family": "IT Sales & Presales",
+      "ruleset": {
+        "prediction": "Cần rà title",
+        "status": "UNMATCHED",
+        "is_false_merge": false
+      },
+      "jobbert": {
+        "status": "AUTO_ASSIGNED",
+        "top1_family": "IT Sales & Presales",
+        "confidence": 0.7782,
+        "margin": 0.3775,
+        "is_false_merge": false,
+        "candidates": [
+          "IT Sales & Presales",
+          "Enterprise Applications (ERP / CRM)",
+          "IT Architecture & Strategy"
+        ]
+      }
+    },
+    {
+      "raw_title": "Kỹ sư Quản lý Chất lượng Phần mềm",
+      "true_family": "Software Testing / QA / QC",
+      "ruleset": {
+        "prediction": "Cần rà title",
+        "status": "UNMATCHED",
+        "is_false_merge": false
+      },
+      "jobbert": {
+        "status": "AUTO_ASSIGNED",
+        "top1_family": "Software Testing / QA / QC",
+        "confidence": 0.6673,
+        "margin": 0.085,
+        "is_false_merge": false,
+        "candidates": [
+          "Software Testing / QA / QC",
+          "Business Analysis",
+          "Software Engineering (Backend)"
+        ]
+      }
+    },
+    {
+      "raw_title": "Kỹ sư công nghệ thông tin - Quản trị viên phần mềm và dữ liệu (03)",
+      "true_family": "Database Administration",
+      "ruleset": {
+        "prediction": "Cần rà title",
+        "status": "UNMATCHED",
+        "is_false_merge": false
+      },
+      "jobbert": {
+        "status": "LOW_CONFIDENCE_REVIEW",
+        "top1_family": "Database Administration",
+        "confidence": 0.5711,
+        "margin": 0.0562,
+        "is_false_merge": false,
+        "candidates": [
+          "Database Administration",
+          "IT Support & Systems Operations",
+          "Software Engineering (Backend)"
+        ]
+      }
+    },
+    {
+      "raw_title": "Kỹ sư dữ liệu (Data Engineer)",
+      "true_family": "Data Engineering",
+      "ruleset": {
+        "prediction": "Data Engineering",
+        "status": "MATCHED",
+        "is_false_merge": false
+      },
+      "jobbert": {
+        "status": "AUTO_ASSIGNED",
+        "top1_family": "Data Engineering",
+        "confidence": 0.9097,
+        "margin": 0.2987,
+        "is_false_merge": false,
+        "candidates": [
+          "Data Engineering",
+          "IT Operations & Integration Services",
+          "Database Administration"
+        ]
+      }
+    },
+    {
+      "raw_title": "Kỹ sư lập trình Backend (Java)",
+      "true_family": "Software Engineering (Backend)",
+      "ruleset": {
+        "prediction": "Cần rà title",
+        "status": "UNMATCHED",
+        "is_false_merge": false
+      },
+      "jobbert": {
+        "status": "AUTO_ASSIGNED",
+        "top1_family": "Software Engineering (Backend)",
+        "confidence": 0.7567,
+        "margin": 0.1288,
+        "is_false_merge": false,
+        "candidates": [
+          "Software Engineering (Backend)",
+          "Software Engineering (Fullstack / Web)",
+          "Data Engineering"
+        ]
+      }
+    },
+    {
+      "raw_title": "Lập trình viên (.NET Full-stack Developer)",
+      "true_family": "Software Engineering (Fullstack / Web)",
+      "ruleset": {
+        "prediction": "Cần rà title",
+        "status": "UNMATCHED",
+        "is_false_merge": false
+      },
+      "jobbert": {
+        "status": "AUTO_ASSIGNED",
+        "top1_family": "Software Engineering (Fullstack / Web)",
+        "confidence": 0.695,
+        "margin": 0.1652,
+        "is_false_merge": false,
+        "candidates": [
+          "Software Engineering (Fullstack / Web)",
+          "Enterprise Applications (ERP / CRM)",
+          "Software Engineering (Backend)"
+        ]
+      }
+    },
+    {
+      "raw_title": "Mobile App Executive Officer",
+      "true_family": "IT Project Management / Product Management",
+      "ruleset": {
+        "prediction": "Cần rà title",
+        "status": "UNMATCHED",
+        "is_false_merge": false
+      },
+      "jobbert": {
+        "status": "LOW_CONFIDENCE_REVIEW",
+        "top1_family": "IT Architecture & Strategy",
+        "confidence": 0.2604,
+        "margin": 0.0146,
+        "is_false_merge": false,
+        "candidates": [
+          "IT Architecture & Strategy",
+          "IT Operations & Integration Services",
+          "Business Analysis"
+        ]
+      }
+    },
+    {
+      "raw_title": "Mobile Game QA",
+      "true_family": "Software Testing / QA / QC",
+      "ruleset": {
+        "prediction": "Software Testing / QA",
+        "status": "MATCHED",
+        "is_false_merge": true
+      },
+      "jobbert": {
+        "status": "LOW_CONFIDENCE_REVIEW",
+        "top1_family": "Software Testing / QA / QC",
+        "confidence": 0.5263,
+        "margin": 0.2124,
+        "is_false_merge": false,
+        "candidates": [
+          "Software Testing / QA / QC",
+          "Information Security / Cybersecurity",
+          "Business Analysis"
+        ]
+      }
+    },
+    {
+      "raw_title": "NHÂN VIÊN IT",
+      "true_family": "IT Support & Systems Operations",
+      "ruleset": {
+        "prediction": "Cần rà title",
+        "status": "UNMATCHED",
+        "is_false_merge": false
+      },
+      "jobbert": {
+        "status": "AMBIGUOUS_REVIEW",
+        "top1_family": "IT Support & Systems Operations",
+        "confidence": 0.7231,
+        "margin": 0.0077,
+        "is_false_merge": false,
+        "candidates": [
+          "IT Support & Systems Operations",
+          "Business Analysis",
+          "IT Project Management / Product Management"
+        ]
+      }
+    },
+    {
+      "raw_title": "NHÂN VIÊN TRIỂN KHAI BẢO TRÌ PHẦN MỀM",
+      "true_family": "IT Support & Systems Operations",
+      "ruleset": {
+        "prediction": "Cần rà title",
+        "status": "UNMATCHED",
+        "is_false_merge": false
+      },
+      "jobbert": {
+        "status": "LOW_CONFIDENCE_REVIEW",
+        "top1_family": "Business Analysis",
+        "confidence": 0.3454,
+        "margin": 0.0269,
+        "is_false_merge": false,
+        "candidates": [
+          "Business Analysis",
+          "Software Engineering (Fullstack / Web)",
+          "Software Engineering (Backend)"
+        ]
+      }
+    },
+    {
+      "raw_title": "Nhân Viên Hành Chính: Gán Nhãn Dữ Liệu Hình Anh AI - Không Yêu Cầu Kinh Nghiệm",
+      "true_family": "Data Annotation",
+      "ruleset": {
+        "prediction": "Cần rà title",
+        "status": "UNMATCHED",
+        "is_false_merge": false
+      },
+      "jobbert": {
+        "status": "LOW_CONFIDENCE_REVIEW",
+        "top1_family": "Software Engineering (AI / ML)",
+        "confidence": 0.5986,
+        "margin": 0.2457,
+        "is_false_merge": false,
+        "candidates": [
+          "Software Engineering (AI / ML)",
+          "Software Engineering (Fullstack / Web)",
+          "Software Engineering (Backend)"
+        ]
+      }
+    },
+    {
+      "raw_title": "Odoo Developer",
+      "true_family": "Enterprise Applications (ERP / CRM)",
+      "ruleset": {
+        "prediction": "Cần rà title",
+        "status": "UNMATCHED",
+        "is_false_merge": false
+      },
+      "jobbert": {
+        "status": "AUTO_ASSIGNED",
+        "top1_family": "Enterprise Applications (ERP / CRM)",
+        "confidence": 0.7934,
+        "margin": 0.3145,
+        "is_false_merge": false,
+        "candidates": [
+          "Enterprise Applications (ERP / CRM)",
+          "Software Engineering (Fullstack / Web)",
+          "Software Engineering (Backend)"
+        ]
+      }
+    },
+    {
+      "raw_title": "PLM Systems Manager",
+      "true_family": "IT Project Management / Product Management",
+      "ruleset": {
+        "prediction": "Cần rà title",
+        "status": "UNMATCHED",
+        "is_false_merge": false
+      },
+      "jobbert": {
+        "status": "LOW_CONFIDENCE_REVIEW",
+        "top1_family": "IT Project Management / Product Management",
+        "confidence": 0.518,
+        "margin": 0.0733,
+        "is_false_merge": false,
+        "candidates": [
+          "IT Project Management / Product Management",
+          "Software Engineering (Backend)",
+          "Enterprise Applications (ERP / CRM)"
+        ]
+      }
+    },
+    {
+      "raw_title": "Project Management Office (PMO) Specialist - Service Delivery & Operations",
+      "true_family": "IT Project Management / Product Management",
+      "ruleset": {
+        "prediction": "Cần rà title",
+        "status": "UNMATCHED",
+        "is_false_merge": false
+      },
+      "jobbert": {
+        "status": "LOW_CONFIDENCE_REVIEW",
+        "top1_family": "IT Project Management / Product Management",
+        "confidence": 0.414,
+        "margin": 0.0372,
+        "is_false_merge": false,
+        "candidates": [
+          "IT Project Management / Product Management",
+          "IT Operations & Integration Services",
+          "Cloud, Systems & Network Infrastructure"
+        ]
+      }
+    },
+    {
+      "raw_title": "Project Manager",
+      "true_family": "IT Project Management / Product Management",
+      "ruleset": {
+        "prediction": "Cần rà title",
+        "status": "UNMATCHED",
+        "is_false_merge": false
+      },
+      "jobbert": {
+        "status": "AUTO_ASSIGNED",
+        "top1_family": "IT Project Management / Product Management",
+        "confidence": 0.772,
+        "margin": 0.3046,
+        "is_false_merge": false,
+        "candidates": [
+          "IT Project Management / Product Management",
+          "Business Analysis",
+          "IT Architecture & Strategy"
+        ]
+      }
+    },
+    {
+      "raw_title": "Remote Data Engineer - AI Data Platform Japan (Python)",
+      "true_family": "Data Engineering",
+      "ruleset": {
+        "prediction": "Data Engineering",
+        "status": "MATCHED",
+        "is_false_merge": false
+      },
+      "jobbert": {
+        "status": "LOW_CONFIDENCE_REVIEW",
+        "top1_family": "Software Engineering (AI / ML)",
+        "confidence": 0.558,
+        "margin": 0.0227,
+        "is_false_merge": false,
+        "candidates": [
+          "Software Engineering (AI / ML)",
+          "Data Engineering",
+          "Software Engineering (Backend)"
+        ]
+      }
+    },
+    {
+      "raw_title": "Senior Business Analyst (English)",
+      "true_family": "Business Analysis",
+      "ruleset": {
+        "prediction": "Cần rà title",
+        "status": "UNMATCHED",
+        "is_false_merge": false
+      },
+      "jobbert": {
+        "status": "AUTO_ASSIGNED",
+        "top1_family": "Business Analysis",
+        "confidence": 0.7356,
+        "margin": 0.3177,
+        "is_false_merge": false,
+        "candidates": [
+          "Business Analysis",
+          "IT Project Management / Product Management",
+          "IT Operations & Integration Services"
+        ]
+      }
+    },
+    {
+      "raw_title": "Senior Data Services Consultant",
+      "true_family": "IT Operations & Integration Services",
+      "ruleset": {
+        "prediction": "Data Services & Integration",
+        "status": "MATCHED",
+        "is_false_merge": true
+      },
+      "jobbert": {
+        "status": "AUTO_ASSIGNED",
+        "top1_family": "IT Operations & Integration Services",
+        "confidence": 0.7867,
+        "margin": 0.1467,
+        "is_false_merge": false,
+        "candidates": [
+          "IT Operations & Integration Services",
+          "Database Administration",
+          "Data Engineering"
+        ]
+      }
+    },
+    {
+      "raw_title": "Senior Verification Engineer/Verification Engineer",
+      "true_family": "Hardware / Verification Engineering",
+      "ruleset": {
+        "prediction": "Cần rà title",
+        "status": "UNMATCHED",
+        "is_false_merge": false
+      },
+      "jobbert": {
+        "status": "LOW_CONFIDENCE_REVIEW",
+        "top1_family": "Software Testing / QA / QC",
+        "confidence": 0.5862,
+        "margin": 0.1761,
+        "is_false_merge": false,
+        "candidates": [
+          "Software Testing / QA / QC",
+          "Software Engineering (Backend)",
+          "Information Security / Cybersecurity"
+        ]
+      }
+    },
+    {
+      "raw_title": "Software Development Manager",
+      "true_family": "IT Project Management / Product Management",
+      "ruleset": {
+        "prediction": "Cần rà title",
+        "status": "UNMATCHED",
+        "is_false_merge": false
+      },
+      "jobbert": {
+        "status": "AUTO_ASSIGNED",
+        "top1_family": "IT Project Management / Product Management",
+        "confidence": 0.6428,
+        "margin": 0.1308,
+        "is_false_merge": false,
+        "candidates": [
+          "IT Project Management / Product Management",
+          "Software Engineering (Fullstack / Web)",
+          "IT Architecture & Strategy"
+        ]
+      }
+    },
+    {
+      "raw_title": "Solution Consulting Manager (FC Manager)",
+      "true_family": "IT Project Management / Product Management",
+      "ruleset": {
+        "prediction": "Cần rà title",
+        "status": "UNMATCHED",
+        "is_false_merge": false
+      },
+      "jobbert": {
+        "status": "LOW_CONFIDENCE_REVIEW",
+        "top1_family": "Enterprise Applications (ERP / CRM)",
+        "confidence": 0.4874,
+        "margin": 0.1199,
+        "is_false_merge": false,
+        "candidates": [
+          "Enterprise Applications (ERP / CRM)",
+          "IT Sales & Presales",
+          "IT Architecture & Strategy"
+        ]
+      }
+    },
+    {
+      "raw_title": "Technical Leader (Domain ITSM)",
+      "true_family": "Software Engineering (Backend)",
+      "ruleset": {
+        "prediction": "Cần rà title",
+        "status": "UNMATCHED",
+        "is_false_merge": false
+      },
+      "jobbert": {
+        "status": "LOW_CONFIDENCE_REVIEW",
+        "top1_family": "IT Architecture & Strategy",
+        "confidence": 0.4232,
+        "margin": 0.0231,
+        "is_false_merge": false,
+        "candidates": [
+          "IT Architecture & Strategy",
+          "Database Administration",
+          "Cloud, Systems & Network Infrastructure"
+        ]
+      }
+    },
+    {
+      "raw_title": "Tester",
+      "true_family": "Software Testing / QA / QC",
+      "ruleset": {
+        "prediction": "Software Testing / QA",
+        "status": "MATCHED",
+        "is_false_merge": true
+      },
+      "jobbert": {
+        "status": "AUTO_ASSIGNED",
+        "top1_family": "Software Testing / QA / QC",
+        "confidence": 0.8019,
+        "margin": 0.3933,
+        "is_false_merge": false,
+        "candidates": [
+          "Software Testing / QA / QC",
+          "Information Security / Cybersecurity",
+          "Business Analysis"
+        ]
+      }
+    },
+    {
+      "raw_title": "Web Developer (Backend/Fullstack)",
+      "true_family": "Software Engineering (Fullstack / Web)",
+      "ruleset": {
+        "prediction": "Cần rà title",
+        "status": "UNMATCHED",
+        "is_false_merge": false
+      },
+      "jobbert": {
+        "status": "AUTO_ASSIGNED",
+        "top1_family": "Software Engineering (Fullstack / Web)",
+        "confidence": 0.9167,
+        "margin": 0.2231,
+        "is_false_merge": false,
+        "candidates": [
+          "Software Engineering (Fullstack / Web)",
+          "Software Engineering (Backend)",
+          "IT Support & Systems Operations"
+        ]
+      }
+    },
+    {
+      "raw_title": "[HN] CHUYÊN VIÊN QUẢN TRỊ CƠ SỞ DỮ LIỆU DBA",
+      "true_family": "Database Administration",
+      "ruleset": {
+        "prediction": "Database Administration",
+        "status": "MATCHED",
+        "is_false_merge": false
+      },
+      "jobbert": {
+        "status": "AUTO_ASSIGNED",
+        "top1_family": "Database Administration",
+        "confidence": 0.8035,
+        "margin": 0.3387,
+        "is_false_merge": false,
+        "candidates": [
+          "Database Administration",
+          "IT Operations & Integration Services",
+          "Data Engineering"
+        ]
+      }
+    },
+    {
+      "raw_title": "[HN] CHUYÊN VIÊN QUẢN TRỊ CƠ SỞ DỮ LIỆU DBA (Senior)",
+      "true_family": "Database Administration",
+      "ruleset": {
+        "prediction": "Database Administration",
+        "status": "MATCHED",
+        "is_false_merge": false
+      },
+      "jobbert": {
+        "status": "AUTO_ASSIGNED",
+        "top1_family": "Database Administration",
+        "confidence": 0.8035,
+        "margin": 0.3387,
+        "is_false_merge": false,
+        "candidates": [
+          "Database Administration",
+          "IT Operations & Integration Services",
+          "Data Engineering"
+        ]
+      }
+    },
+    {
+      "raw_title": "[IT 운영 PM 채용 - POSCO DX 베트남법인]",
+      "true_family": "IT Project Management / Product Management",
+      "ruleset": {
+        "prediction": "Cần rà title",
+        "status": "UNMATCHED",
+        "is_false_merge": false
+      },
+      "jobbert": {
+        "status": "LOW_CONFIDENCE_REVIEW",
+        "top1_family": "IT Project Management / Product Management",
+        "confidence": 0.5858,
+        "margin": 0.1128,
+        "is_false_merge": false,
+        "candidates": [
+          "IT Project Management / Product Management",
+          "Business Analysis",
+          "IT Support & Systems Operations"
+        ]
+      }
+    },
+    {
+      "raw_title": "[URGENT] Business Analyst - Manufacturing (SAP/ERP) - HCM",
+      "true_family": "Business Analysis",
+      "ruleset": {
+        "prediction": "Cần rà title",
+        "status": "UNMATCHED",
+        "is_false_merge": false
+      },
+      "jobbert": {
+        "status": "LOW_CONFIDENCE_REVIEW",
+        "top1_family": "Business Analysis",
+        "confidence": 0.539,
+        "margin": 0.0136,
+        "is_false_merge": false,
+        "candidates": [
+          "Business Analysis",
+          "Enterprise Applications (ERP / CRM)",
+          "IT Project Management / Product Management"
+        ]
+      }
+    },
+    {
+      "raw_title": "[Vũng Tàu] AI Full Stack Engineer (Agentic AI Platform)",
+      "true_family": "Software Engineering (Fullstack / Web)",
+      "ruleset": {
+        "prediction": "Cần rà title",
+        "status": "UNMATCHED",
+        "is_false_merge": false
+      },
+      "jobbert": {
+        "status": "AUTO_ASSIGNED",
+        "top1_family": "Software Engineering (AI / ML)",
+        "confidence": 0.8166,
+        "margin": 0.3118,
+        "is_false_merge": true,
+        "candidates": [
+          "Software Engineering (AI / ML)",
+          "Software Engineering (Fullstack / Web)",
+          "Software Engineering (Backend)"
+        ]
+      }
+    }
+  ]
+}

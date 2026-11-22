@@ -28,6 +28,8 @@ register_uuid()
 REPORTING_ZONE = ZoneInfo("Asia/Ho_Chi_Minh")
 ALLOWED_WORK_MODES = {"onsite", "remote", "hybrid", "unknown"}
 ALLOWED_LISTING_STATUSES = {"active", "expired", "removed", "unknown"}
+RAW_SKILL_TAXONOMY_VERSION = "source-label-v1"
+RAW_SENIORITY_MAPPING_VERSION = "source-label-v1"
 
 
 def postgres_connection():
@@ -315,7 +317,7 @@ def upsert_job(olap, source_key: int, job: dict[str, Any]) -> int:
         job["source_url"],
         mode,
         status,
-        None,  # Full descriptions remain in OLTP; this source disallows analysis.
+        None,  # Description text stays in OLTP; this loader does not copy it to OLAP.
         utc_naive(job["first_seen_at"]),
         utc_naive(job["last_seen_at"]),
     )
@@ -400,10 +402,71 @@ def upsert_location(olap, location: dict[str, Any]) -> int:
     ).fetchone()[0])
 
 
+def normalize_raw_skill_name(value: Any) -> str | None:
+    if value is None:
+        return None
+    name = " ".join(str(value).split())
+    return name or None
+
+
+def upsert_skill(olap, raw_name: str) -> None:
+    execute_remote(
+        olap,
+        """INSERT INTO warehouse.dim_skill
+               (canonical_name, taxonomy_version, is_active)
+           VALUES (?, ?, TRUE)
+           ON CONFLICT (canonical_name, taxonomy_version)
+           DO UPDATE SET is_active = TRUE""",
+        (raw_name, RAW_SKILL_TAXONOMY_VERSION),
+    )
+
+
+def upsert_seniority(olap, source_key: int, source_label: str) -> int:
+    """Store an identity mapping until a reviewed cross-source taxonomy exists."""
+    execute_remote(
+        olap,
+        """INSERT INTO warehouse.dim_seniority
+               (source_key, source_label, normalized_level, mapping_version, is_unknown)
+           VALUES (?, ?, ?, ?, FALSE)
+           ON CONFLICT (source_key, source_label, mapping_version)
+           DO UPDATE SET normalized_level = EXCLUDED.normalized_level,
+                         is_unknown = FALSE""",
+        (source_key, source_label, source_label, RAW_SENIORITY_MAPPING_VERSION),
+    )
+    return int(execute_remote(
+        olap,
+        """SELECT seniority_key FROM warehouse.dim_seniority
+           WHERE source_key = ? AND source_label = ? AND mapping_version = ?""",
+        (source_key, source_label, RAW_SENIORITY_MAPPING_VERSION),
+    ).fetchone()[0])
+
+
 def load_batch(olap, source_key: int, jobs: list[dict[str, Any]], pg):
     job_ids = [uuid.UUID(str(job["job_id"])) for job in jobs]
     company_ids = sorted({uuid.UUID(str(job["company_id"])) for job in jobs if job["company_id"]})
     _, companies, compensations, locations, labels = fetch_related(pg, job_ids, company_ids)
+    skill_names = {
+        name
+        for job_labels in labels.values()
+        for label in job_labels
+        if label["label_type"] == "skill"
+        if (name := normalize_raw_skill_name(label["label_text"])) is not None
+    }
+    for skill_name in sorted(skill_names):
+        upsert_skill(olap, skill_name)
+
+    seniority_labels_seen = {
+        label["label_text"]
+        for job_labels in labels.values()
+        for label in job_labels
+        if label["source_field"] == "job_levels_arr"
+        and label["label_type"] == "seniority"
+        and label["label_text"]
+    }
+    seniority_keys = {
+        label: upsert_seniority(olap, source_key, label)
+        for label in sorted(seniority_labels_seen)
+    }
 
     company_keys = {}
     for company_id, company in companies.items():
@@ -433,19 +496,31 @@ def load_batch(olap, source_key: int, jobs: list[dict[str, Any]], pg):
         expires = local_date(job["expires_at"])
         company_key = company_keys.get(str(job["company_id"])) if job["company_id"] else None
         mode = job["work_mode"] if job["work_mode"] in ALLOWED_WORK_MODES else "unknown"
+        job_seniority_labels = {
+            label["label_text"]
+            for label in labels.get(job_id, [])
+            if label["source_field"] == "job_levels_arr"
+            and label["label_type"] == "seniority"
+            and label["label_text"]
+        }
+        seniority_key = (
+            seniority_keys[next(iter(job_seniority_labels))]
+            if len(job_seniority_labels) == 1
+            else None
+        )
         execute_remote(
             olap,
             """INSERT INTO warehouse.fact_job_posting
                    (job_key, source_key, published_date_key, expires_date_key,
                     company_key, seniority_key, work_mode, salary_min, salary_max,
                     salary_currency, salary_period, job_count)
-               VALUES (?, ?, ?, ?, ?, NULL, ?, ?, ?, ?, ?, 1)
+               VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 1)
                ON CONFLICT (job_key) DO UPDATE SET
                    source_key = EXCLUDED.source_key,
                    published_date_key = EXCLUDED.published_date_key,
                    expires_date_key = EXCLUDED.expires_date_key,
                    company_key = EXCLUDED.company_key,
-                   seniority_key = NULL,
+                   seniority_key = EXCLUDED.seniority_key,
                    work_mode = EXCLUDED.work_mode,
                    salary_min = EXCLUDED.salary_min,
                    salary_max = EXCLUDED.salary_max,
@@ -453,7 +528,7 @@ def load_batch(olap, source_key: int, jobs: list[dict[str, Any]], pg):
                    salary_period = EXCLUDED.salary_period""",
             (
                 job_key, source_key,
-                date_keys.get(published), date_keys.get(expires), company_key,
+                date_keys.get(published), date_keys.get(expires), company_key, seniority_key,
                 mode, compensation.get("min_amount"), compensation.get("max_amount"),
                 compensation.get("currency_code"), compensation.get("pay_period"),
             ),
@@ -498,7 +573,7 @@ def load_batch(olap, source_key: int, jobs: list[dict[str, Any]], pg):
             if item["latest_date"] is None or published > item["latest_date"]:
                 item["latest_date"] = published
 
-    return counts, coverage
+    return counts, coverage, skill_names, seniority_labels_seen
 
 
 def load_olap(args) -> dict[str, Any]:
@@ -530,9 +605,13 @@ def load_olap(args) -> dict[str, Any]:
         olap.execute("BEGIN TRANSACTION")
         source_key = upsert_source(olap, source)
         aggregate = {"jobs": 0, "companies": 0, "locations": 0, "labels": 0}
+        skill_names_seen: set[str] = set()
+        seniority_labels_seen: set[str] = set()
         monthly_coverage: dict[int, dict[str, Any]] = {}
         for batch in batches:
-            counts, coverage = load_batch(olap, source_key, batch, pg)
+            counts, coverage, skill_names, seniority_labels = load_batch(olap, source_key, batch, pg)
+            skill_names_seen.update(skill_names)
+            seniority_labels_seen.update(seniority_labels)
             for key, value in counts.items():
                 aggregate[key] += value
             for month_key, value in coverage.items():
@@ -573,6 +652,8 @@ def load_olap(args) -> dict[str, Any]:
 
         olap.execute("COMMIT")
         pg.rollback()
+        aggregate["distinct_skill_names_upserted"] = len(skill_names_seen)
+        aggregate["distinct_seniority_labels_upserted"] = len(seniority_labels_seen)
         aggregate["months_in_source_coverage_mart"] = len(monthly_coverage)
         aggregate["source_key"] = source_key
         aggregate["status"] = "loaded"

@@ -1,0 +1,354 @@
+# Skill trong gold benchmark cần rà soát
+
+> Danh sách lấy từ `found` và `missed` của benchmark v0; đã gộp tên trùng giữa các job. Có 352 tên skill riêng (509 nhãn theo từng job). Xóa dòng nào bạn xác định không phải skill.
+
+- Active Data Guard
+- advanced SQL
+- AI/ML
+- Airbyte
+- Airflow
+- Airflow DAG orchestration
+- AJAX
+- Amazon Bedrock
+- analytical datasets
+- analytics
+- Android
+- anomaly detection
+- Antsomi
+- Apache Airflow
+- Apache Iceberg
+- Apache NiFi
+- API
+- API Banking
+- API integration
+- API integrations
+- API Keys
+- API security
+- API testing
+- ASM
+- asynchronous processing
+- Auditing
+- automated testing
+- AWS
+- AWS Lambda
+- AWS S3
+- Azure
+- BaaS
+- backtesting
+- backup and recovery
+- batch files
+- batch integration
+- batch processing
+- BCP
+- behavioral data
+- BI
+- BI reporting
+- BI visualization
+- Big Data
+- BigQuery
+- Billing
+- calculus
+- capacity planning
+- CDP
+- change control
+- CI/CD
+- classification
+- Claude
+- Claude Code
+- Cloud
+- cloud architecture
+- Cloud Data Center
+- cloud deployment
+- cloud operations
+- cloud platform
+- cloud platforms
+- cloud resource management
+- cloud service provisioning
+- cloud storage
+- CodeRabbit
+- Codex
+- Compute
+- computer networking
+- containers
+- Core Banking
+- CRM
+- CSS
+- Cucumber
+- Cursor
+- Customer 360
+- customer identity
+- cybersecurity
+- Cypress
+- Dagster
+- dashboards
+- dashboards and reports
+- dashboards/reporting
+- data analysis
+- data architecture
+- Data Center
+- data center infrastructure
+- data center operations
+- data cleaning
+- data consistency
+- data dictionaries
+- data enrichment
+- data freshness
+- data governance
+- data integration
+- Data Lake
+- data lake
+- Data Lakehouse
+- data mapping
+- Data Mart
+- data migration
+- data modeling
+- data pipelines
+- Data Pump
+- data quality
+- data quality checks
+- data quality controls
+- data quality frameworks
+- data quality management
+- data quality monitoring
+- data reconciliation
+- data standardization
+- data storage systems
+- data transformation
+- data transformations
+- data validation
+- Data Warehouse
+- data warehouse
+- database administration
+- database architecture
+- database capacity planning
+- database maintenance
+- database operations
+- database performance assessment
+- database security
+- database system
+- database upgrades
+- Databricks
+- dbt
+- deduplication
+- deep learning
+- deep learning pipelines
+- Delta
+- Delta Lake
+- dependency management
+- dimensional modeling
+- disaster recovery
+- distributed data processing
+- distributed data storage
+- DRP
+- DWH
+- Ecommerce
+- ECS
+- Elasticsearch
+- ELT
+- English
+- English reading ability
+- ensemble methods
+- entity resolution
+- ERP
+- error handling
+- ETL
+- ETL tools
+- event-driven integration
+- execution plans
+- Fact/Dimension
+- failure recovery
+- FastAPI
+- fault-tolerant pipelines
+- feature engineering
+- file-based integration
+- financial markets
+- Fivetran
+- Flink
+- Functional Testing
+- GCP
+- Gemini
+- Git
+- GitHub
+- GitHub Actions
+- GitHub Copilot
+- go-live process
+- graph databases
+- Hadoop
+- HBase
+- HDFS
+- high availability
+- Hive
+- Hive Metastore
+- HTML
+- hyperparameter tuning
+- IBM Big Data
+- IBM DataStage
+- Iceberg
+- idempotency
+- identity resolution
+- integration architecture
+- iOS
+- IT operations
+- Japanese
+- Java
+- JavaScript
+- JMeter
+- JSON
+- JWT
+- Kafka
+- KPI logic
+- KPI metrics
+- Kubernetes
+- large-scale data processing
+- large-scale databases
+- linear algebra
+- Linux
+- LMS
+- load testing
+- logging
+- Looker
+- Looker Studio
+- LOS
+- Loyalty
+- machine learning
+- manual testing
+- MapReduce
+- market microstructure
+- Marketing Automation
+- master data
+- MCP
+- Metabase
+- migration
+- ML/DL
+- mobile app development
+- model evaluation
+- model performance optimization
+- monitoring
+- monitoring and alerting
+- MWAA
+- MySQL
+- n8n
+- near-real-time processing
+- Networking
+- NoSQL
+- Notion
+- OAuth 2.0
+- observability
+- Open Banking
+- OpenSearch
+- OpenStack
+- operating system upgrades
+- optimization
+- Oracle
+- Oracle Data Guard
+- Oracle Database Vault
+- Oracle Real Application Clusters
+- Oracle RMAN
+- Parquet
+- patching
+- payment services
+- performance optimization
+- Performance Testing
+- performance tuning
+- Pig
+- portfolio optimization
+- POS
+- PostgreSQL
+- Postman
+- Power BI
+- predictive modeling
+- Prefect
+- Presto
+- probability
+- production data pipelines
+- production deployment
+- production support
+- PySpark
+- Python
+- PyTorch
+- QA testing
+- quantitative finance
+- query optimization
+- query tuning
+- RAG pipelines
+- RDBMS
+- RDS
+- real-time data pipelines
+- real-time pipelines
+- regression
+- relational databases
+- reporting tools
+- reports
+- REST API
+- retries
+- risk management
+- Robot Framework
+- SalesNow
+- Scala
+- scheduled integration
+- scheduled jobs
+- schema changes
+- schema validation
+- Scrapy
+- security architecture
+- security compliance
+- security controls
+- segmentation
+- Selenium
+- SFTP
+- Slack
+- Snowflake
+- SOP
+- source-to-target mappings
+- Spark
+- SQL
+- SQL libraries
+- SQL scripts
+- SQL Server
+- SQL troubleshooting
+- SQL window functions
+- Star Schema
+- StarRocks
+- statistics
+- Storage
+- stream processing
+- streaming
+- stress testing
+- Superset
+- system integration
+- system integration flow
+- System Integration Testing
+- table design
+- Tableau
+- TDE
+- technical analysis
+- technical indicators
+- Terraform
+- test case design
+- test cases
+- test data
+- test result analysis
+- test scenarios
+- test specification design
+- test strategy development
+- Test/UAT/Production environments
+- testing
+- time series data
+- time series modeling
+- time series preprocessing
+- timeout handling
+- trading strategies
+- Trino
+- troubleshooting
+- vector databases
+- Vercel
+- virtualization
+- VMware
+- web scraping
+- Webhooks
+- Windows
+- workflow automation
+- workflow orchestration
+- workflow scheduling
+- YARN
+- Zookeeper

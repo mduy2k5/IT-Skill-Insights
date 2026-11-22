@@ -1,0 +1,3491 @@
+{
+  "benchmark_name": "it_jobbert_title_mapping",
+  "version": "v0.1",
+  "reference_paper": "Decorte et al., ECML-PKDD FEAST 2021",
+  "confidence_threshold": 0.58,
+  "margin_threshold": 0.04,
+  "validation_metrics": {
+    "total_evaluated": 87,
+    "overall_top1_accuracy": 0.7931,
+    "overall_top3_recall": 0.8851,
+    "auto_assignment": {
+      "total_auto_assigned": 56,
+      "auto_assignment_rate": 0.6437,
+      "auto_assigned_correct": 49,
+      "auto_assignment_precision": 0.875,
+      "auto_assignment_error_count": 7
+    },
+    "review_routing": {
+      "ambiguous_count": 3,
+      "low_confidence_count": 28,
+      "total_review_needed": 31,
+      "review_rate": 0.3563
+    },
+    "item_results": [
+      {
+        "raw_title": "AI Engineer",
+        "cleaned_title": "AI Engineer",
+        "status": "AUTO_ASSIGNED",
+        "assigned_family": "Software Engineering (AI / ML)",
+        "top1_family": "Software Engineering (AI / ML)",
+        "top1_similarity": 0.8129,
+        "top1_prototype": "AI Platform Developer",
+        "top2_family": "Data Engineering",
+        "top2_similarity": 0.5668,
+        "margin": 0.2461,
+        "decision_note": "Độ tin cậy cao (0.8129 >= 0.58) và cách biệt rõ ràng so với vị trí 2 (margin=0.2461 >= 0.04). Tự động gán.",
+        "top_candidates": [
+          {
+            "family_id": "software_engineering_ai_ml",
+            "family_name": "Software Engineering (AI / ML)",
+            "similarity": 0.8129,
+            "best_matching_prototype": "AI Platform Developer"
+          },
+          {
+            "family_id": "data_engineering",
+            "family_name": "Data Engineering",
+            "similarity": 0.5668,
+            "best_matching_prototype": "Data Engineer"
+          },
+          {
+            "family_id": "software_engineering_fullstack_web",
+            "family_name": "Software Engineering (Fullstack / Web)",
+            "similarity": 0.4989,
+            "best_matching_prototype": "Lập trình viên Full-stack"
+          }
+        ],
+        "true_family": "Software Engineering (AI / ML)",
+        "is_top1_correct": true,
+        "is_top3_correct": true
+      },
+      {
+        "raw_title": "AI QUANTITATIVE RESEARCHER INTERN (On-site)",
+        "cleaned_title": "AI QUANTITATIVE RESEARCHER (On-site)",
+        "status": "LOW_CONFIDENCE_REVIEW",
+        "assigned_family": "Needs Review",
+        "top1_family": "Software Engineering (AI / ML)",
+        "top1_similarity": 0.5495,
+        "top1_prototype": "AI Engineer",
+        "top2_family": "Business Analysis",
+        "top2_similarity": 0.3059,
+        "margin": 0.2436,
+        "decision_note": "Điểm tương đồng cao nhất (0.5495) dưới ngưỡng tin cậy (0.58). Có thể là chức danh mới chưa có trong từ điển chuẩn. Cần người rà soát.",
+        "top_candidates": [
+          {
+            "family_id": "software_engineering_ai_ml",
+            "family_name": "Software Engineering (AI / ML)",
+            "similarity": 0.5495,
+            "best_matching_prototype": "AI Engineer"
+          },
+          {
+            "family_id": "business_analysis",
+            "family_name": "Business Analysis",
+            "similarity": 0.3059,
+            "best_matching_prototype": "Chuyên viên phân tích nghiệp vụ phần mềm"
+          },
+          {
+            "family_id": "software_engineering_backend",
+            "family_name": "Software Engineering (Backend)",
+            "similarity": 0.2877,
+            "best_matching_prototype": "Software Engineer (Backend)"
+          }
+        ],
+        "true_family": "AI / Quantitative Research",
+        "is_top1_correct": false,
+        "is_top3_correct": false
+      },
+      {
+        "raw_title": "Associate Quality Engineer (Automation)",
+        "cleaned_title": "Quality Engineer (Automation)",
+        "status": "AUTO_ASSIGNED",
+        "assigned_family": "Software Testing / QA / QC",
+        "top1_family": "Software Testing / QA / QC",
+        "top1_similarity": 0.7154,
+        "top1_prototype": "Quality Assurance (QA) Engineer",
+        "top2_family": "Software Engineering (Backend)",
+        "top2_similarity": 0.4238,
+        "margin": 0.2916,
+        "decision_note": "Độ tin cậy cao (0.7154 >= 0.58) và cách biệt rõ ràng so với vị trí 2 (margin=0.2916 >= 0.04). Tự động gán.",
+        "top_candidates": [
+          {
+            "family_id": "software_testing_qa_qc",
+            "family_name": "Software Testing / QA / QC",
+            "similarity": 0.7154,
+            "best_matching_prototype": "Quality Assurance (QA) Engineer"
+          },
+          {
+            "family_id": "software_engineering_backend",
+            "family_name": "Software Engineering (Backend)",
+            "similarity": 0.4238,
+            "best_matching_prototype": "Kỹ sư phát triển hệ thống phần mềm"
+          },
+          {
+            "family_id": "data_engineering",
+            "family_name": "Data Engineering",
+            "similarity": 0.3652,
+            "best_matching_prototype": "Data Engineer"
+          }
+        ],
+        "true_family": "Software Testing / QA / QC",
+        "is_top1_correct": true,
+        "is_top3_correct": true
+      },
+      {
+        "raw_title": "Business Analyst",
+        "cleaned_title": "Business Analyst",
+        "status": "AUTO_ASSIGNED",
+        "assigned_family": "Business Analysis",
+        "top1_family": "Business Analysis",
+        "top1_similarity": 0.8505,
+        "top1_prototype": "IT Business Analyst",
+        "top2_family": "IT Project Management / Product Management",
+        "top2_similarity": 0.5652,
+        "margin": 0.2853,
+        "decision_note": "Độ tin cậy cao (0.8505 >= 0.58) và cách biệt rõ ràng so với vị trí 2 (margin=0.2853 >= 0.04). Tự động gán.",
+        "top_candidates": [
+          {
+            "family_id": "business_analysis",
+            "family_name": "Business Analysis",
+            "similarity": 0.8505,
+            "best_matching_prototype": "IT Business Analyst"
+          },
+          {
+            "family_id": "it_project_management",
+            "family_name": "IT Project Management / Product Management",
+            "similarity": 0.5652,
+            "best_matching_prototype": "Product Manager"
+          },
+          {
+            "family_id": "data_engineering",
+            "family_name": "Data Engineering",
+            "similarity": 0.4865,
+            "best_matching_prototype": "Data Engineer"
+          }
+        ],
+        "true_family": "Business Analysis",
+        "is_top1_correct": true,
+        "is_top3_correct": true
+      },
+      {
+        "raw_title": "C/C++ Software Developer – Telecom (All Levels)",
+        "cleaned_title": "C/C++ Software Developer – Telecom",
+        "status": "LOW_CONFIDENCE_REVIEW",
+        "assigned_family": "Needs Review",
+        "top1_family": "Software Engineering (Backend)",
+        "top1_similarity": 0.4198,
+        "top1_prototype": "Kỹ sư phát triển hệ thống phần mềm",
+        "top2_family": "DevOps & DevSecOps",
+        "top2_similarity": 0.3584,
+        "margin": 0.0614,
+        "decision_note": "Điểm tương đồng cao nhất (0.4198) dưới ngưỡng tin cậy (0.58). Có thể là chức danh mới chưa có trong từ điển chuẩn. Cần người rà soát.",
+        "top_candidates": [
+          {
+            "family_id": "software_engineering_backend",
+            "family_name": "Software Engineering (Backend)",
+            "similarity": 0.4198,
+            "best_matching_prototype": "Kỹ sư phát triển hệ thống phần mềm"
+          },
+          {
+            "family_id": "devops_devsecops",
+            "family_name": "DevOps & DevSecOps",
+            "similarity": 0.3584,
+            "best_matching_prototype": "DevOps Engineer"
+          },
+          {
+            "family_id": "it_architecture_strategy",
+            "family_name": "IT Architecture & Strategy",
+            "similarity": 0.3526,
+            "best_matching_prototype": "Kiến trúc sư giải pháp CNTT"
+          }
+        ],
+        "true_family": "Software Engineering (Backend)",
+        "is_top1_correct": true,
+        "is_top3_correct": true
+      },
+      {
+        "raw_title": "Chuyên Gia Kiểm Thử & Đánh Giá An Ninh (Pentest) - Hà Nội",
+        "cleaned_title": "Kiểm Thử & Đánh Giá An Ninh (Pentest)",
+        "status": "AUTO_ASSIGNED",
+        "assigned_family": "Information Security / Cybersecurity",
+        "top1_family": "Information Security / Cybersecurity",
+        "top1_similarity": 0.7152,
+        "top1_prototype": "Penetration Tester (Pentest)",
+        "top2_family": "Software Testing / QA / QC",
+        "top2_similarity": 0.4259,
+        "margin": 0.2893,
+        "decision_note": "Độ tin cậy cao (0.7152 >= 0.58) và cách biệt rõ ràng so với vị trí 2 (margin=0.2893 >= 0.04). Tự động gán.",
+        "top_candidates": [
+          {
+            "family_id": "information_security_cybersecurity",
+            "family_name": "Information Security / Cybersecurity",
+            "similarity": 0.7152,
+            "best_matching_prototype": "Penetration Tester (Pentest)"
+          },
+          {
+            "family_id": "software_testing_qa_qc",
+            "family_name": "Software Testing / QA / QC",
+            "similarity": 0.4259,
+            "best_matching_prototype": "Kỹ sư kiểm thử phần mềm"
+          },
+          {
+            "family_id": "business_analysis",
+            "family_name": "Business Analysis",
+            "similarity": 0.351,
+            "best_matching_prototype": "Chuyên viên phân tích nghiệp vụ phần mềm"
+          }
+        ],
+        "true_family": "Information Security / Cybersecurity",
+        "is_top1_correct": true,
+        "is_top3_correct": true
+      },
+      {
+        "raw_title": "Chuyên Gia Vận Hành Thẻ",
+        "cleaned_title": "Vận Hành Thẻ",
+        "status": "LOW_CONFIDENCE_REVIEW",
+        "assigned_family": "Needs Review",
+        "top1_family": "Business Analysis",
+        "top1_similarity": 0.325,
+        "top1_prototype": "Business Analyst",
+        "top2_family": "Software Testing / QA / QC",
+        "top2_similarity": 0.291,
+        "margin": 0.034,
+        "decision_note": "Điểm tương đồng cao nhất (0.3250) dưới ngưỡng tin cậy (0.58). Có thể là chức danh mới chưa có trong từ điển chuẩn. Cần người rà soát.",
+        "top_candidates": [
+          {
+            "family_id": "business_analysis",
+            "family_name": "Business Analysis",
+            "similarity": 0.325,
+            "best_matching_prototype": "Business Analyst"
+          },
+          {
+            "family_id": "software_testing_qa_qc",
+            "family_name": "Software Testing / QA / QC",
+            "similarity": 0.291,
+            "best_matching_prototype": "Software Tester"
+          },
+          {
+            "family_id": "it_project_management",
+            "family_name": "IT Project Management / Product Management",
+            "similarity": 0.2863,
+            "best_matching_prototype": "Product Manager"
+          }
+        ],
+        "true_family": "IT Operations & Integration Services",
+        "is_top1_correct": false,
+        "is_top3_correct": false
+      },
+      {
+        "raw_title": "Chuyên Viên Cao Cấp Vận Hành An Toàn An Ninh Thông Tin - Hà Nội",
+        "cleaned_title": "Vận Hành An Toàn An Ninh Thông Tin",
+        "status": "LOW_CONFIDENCE_REVIEW",
+        "assigned_family": "Needs Review",
+        "top1_family": "Information Security / Cybersecurity",
+        "top1_similarity": 0.5128,
+        "top1_prototype": "Chuyên viên an toàn an ninh mạng",
+        "top2_family": "IT Support & Systems Operations",
+        "top2_similarity": 0.2919,
+        "margin": 0.2209,
+        "decision_note": "Điểm tương đồng cao nhất (0.5128) dưới ngưỡng tin cậy (0.58). Có thể là chức danh mới chưa có trong từ điển chuẩn. Cần người rà soát.",
+        "top_candidates": [
+          {
+            "family_id": "information_security_cybersecurity",
+            "family_name": "Information Security / Cybersecurity",
+            "similarity": 0.5128,
+            "best_matching_prototype": "Chuyên viên an toàn an ninh mạng"
+          },
+          {
+            "family_id": "it_support_systems_operations",
+            "family_name": "IT Support & Systems Operations",
+            "similarity": 0.2919,
+            "best_matching_prototype": "Nhân viên hỗ trợ kỹ thuật IT"
+          },
+          {
+            "family_id": "cloud_systems_network_infrastructure",
+            "family_name": "Cloud, Systems & Network Infrastructure",
+            "similarity": 0.2317,
+            "best_matching_prototype": "Chuyên viên quản trị và vận hành hệ thống"
+          }
+        ],
+        "true_family": "Information Security / Cybersecurity",
+        "is_top1_correct": true,
+        "is_top3_correct": true
+      },
+      {
+        "raw_title": "Chuyên gia Chiến lược công nghệ",
+        "cleaned_title": "Chiến lược công nghệ",
+        "status": "AUTO_ASSIGNED",
+        "assigned_family": "IT Architecture & Strategy",
+        "top1_family": "IT Architecture & Strategy",
+        "top1_similarity": 0.9187,
+        "top1_prototype": "Chuyên gia chiến lược công nghệ",
+        "top2_family": "IT Project Management / Product Management",
+        "top2_similarity": 0.4469,
+        "margin": 0.4718,
+        "decision_note": "Độ tin cậy cao (0.9187 >= 0.58) và cách biệt rõ ràng so với vị trí 2 (margin=0.4718 >= 0.04). Tự động gán.",
+        "top_candidates": [
+          {
+            "family_id": "it_architecture_strategy",
+            "family_name": "IT Architecture & Strategy",
+            "similarity": 0.9187,
+            "best_matching_prototype": "Chuyên gia chiến lược công nghệ"
+          },
+          {
+            "family_id": "it_project_management",
+            "family_name": "IT Project Management / Product Management",
+            "similarity": 0.4469,
+            "best_matching_prototype": "Product Manager"
+          },
+          {
+            "family_id": "business_analysis",
+            "family_name": "Business Analysis",
+            "similarity": 0.4367,
+            "best_matching_prototype": "IT Business Analyst"
+          }
+        ],
+        "true_family": "IT Architecture & Strategy",
+        "is_top1_correct": true,
+        "is_top3_correct": true
+      },
+      {
+        "raw_title": "Chuyên gia Kiến trúc doanh nghiệp (EA)",
+        "cleaned_title": "Kiến trúc doanh nghiệp (EA)",
+        "status": "AUTO_ASSIGNED",
+        "assigned_family": "IT Architecture & Strategy",
+        "top1_family": "IT Architecture & Strategy",
+        "top1_similarity": 0.7798,
+        "top1_prototype": "Enterprise Architect (EA)",
+        "top2_family": "DevOps & DevSecOps",
+        "top2_similarity": 0.3329,
+        "margin": 0.4469,
+        "decision_note": "Độ tin cậy cao (0.7798 >= 0.58) và cách biệt rõ ràng so với vị trí 2 (margin=0.4469 >= 0.04). Tự động gán.",
+        "top_candidates": [
+          {
+            "family_id": "it_architecture_strategy",
+            "family_name": "IT Architecture & Strategy",
+            "similarity": 0.7798,
+            "best_matching_prototype": "Enterprise Architect (EA)"
+          },
+          {
+            "family_id": "devops_devsecops",
+            "family_name": "DevOps & DevSecOps",
+            "similarity": 0.3329,
+            "best_matching_prototype": "Cloud & DevOps Engineer"
+          },
+          {
+            "family_id": "business_analysis",
+            "family_name": "Business Analysis",
+            "similarity": 0.3264,
+            "best_matching_prototype": "IT Business Analyst"
+          }
+        ],
+        "true_family": "IT Architecture & Strategy",
+        "is_top1_correct": true,
+        "is_top3_correct": true
+      },
+      {
+        "raw_title": "Chuyên viên Cao cấp QA",
+        "cleaned_title": "QA",
+        "status": "AUTO_ASSIGNED",
+        "assigned_family": "Software Testing / QA / QC",
+        "top1_family": "Software Testing / QA / QC",
+        "top1_similarity": 0.8173,
+        "top1_prototype": "Quality Assurance (QA) Engineer",
+        "top2_family": "Data Engineering",
+        "top2_similarity": 0.4635,
+        "margin": 0.3538,
+        "decision_note": "Độ tin cậy cao (0.8173 >= 0.58) và cách biệt rõ ràng so với vị trí 2 (margin=0.3538 >= 0.04). Tự động gán.",
+        "top_candidates": [
+          {
+            "family_id": "software_testing_qa_qc",
+            "family_name": "Software Testing / QA / QC",
+            "similarity": 0.8173,
+            "best_matching_prototype": "Quality Assurance (QA) Engineer"
+          },
+          {
+            "family_id": "data_engineering",
+            "family_name": "Data Engineering",
+            "similarity": 0.4635,
+            "best_matching_prototype": "Kỹ sư dữ liệu"
+          },
+          {
+            "family_id": "business_analysis",
+            "family_name": "Business Analysis",
+            "similarity": 0.4587,
+            "best_matching_prototype": "Business Analyst"
+          }
+        ],
+        "true_family": "Software Testing / QA / QC",
+        "is_top1_correct": true,
+        "is_top3_correct": true
+      },
+      {
+        "raw_title": "Chuyên viên Công nghệ & phát triển sản phẩm Cloud, Data Center và ANM",
+        "cleaned_title": "Công nghệ & phát triển sản phẩm Cloud, Data Center và ANM",
+        "status": "LOW_CONFIDENCE_REVIEW",
+        "assigned_family": "Needs Review",
+        "top1_family": "DevOps & DevSecOps",
+        "top1_similarity": 0.5171,
+        "top1_prototype": "Cloud & DevOps Engineer",
+        "top2_family": "Cloud, Systems & Network Infrastructure",
+        "top2_similarity": 0.4935,
+        "margin": 0.0236,
+        "decision_note": "Điểm tương đồng cao nhất (0.5171) dưới ngưỡng tin cậy (0.58). Có thể là chức danh mới chưa có trong từ điển chuẩn. Cần người rà soát.",
+        "top_candidates": [
+          {
+            "family_id": "devops_devsecops",
+            "family_name": "DevOps & DevSecOps",
+            "similarity": 0.5171,
+            "best_matching_prototype": "Cloud & DevOps Engineer"
+          },
+          {
+            "family_id": "cloud_systems_network_infrastructure",
+            "family_name": "Cloud, Systems & Network Infrastructure",
+            "similarity": 0.4935,
+            "best_matching_prototype": "Kỹ sư hạ tầng Cloud và mạng"
+          },
+          {
+            "family_id": "it_architecture_strategy",
+            "family_name": "IT Architecture & Strategy",
+            "similarity": 0.4673,
+            "best_matching_prototype": "Chuyên gia chiến lược công nghệ"
+          }
+        ],
+        "true_family": "Cloud, Systems & Network Infrastructure",
+        "is_top1_correct": false,
+        "is_top3_correct": true
+      },
+      {
+        "raw_title": "Chuyên viên Hỗ trợ Tích hợp Dịch vụ - Khối Ngân hàng Số (2026TD457689)",
+        "cleaned_title": "Hỗ trợ Tích hợp Dịch vụ - Khối Ngân hàng Số",
+        "status": "LOW_CONFIDENCE_REVIEW",
+        "assigned_family": "Needs Review",
+        "top1_family": "IT Operations & Integration Services",
+        "top1_similarity": 0.557,
+        "top1_prototype": "Chuyên viên vận hành dịch vụ kỹ thuật số",
+        "top2_family": "IT Support & Systems Operations",
+        "top2_similarity": 0.3387,
+        "margin": 0.2183,
+        "decision_note": "Điểm tương đồng cao nhất (0.5570) dưới ngưỡng tin cậy (0.58). Có thể là chức danh mới chưa có trong từ điển chuẩn. Cần người rà soát.",
+        "top_candidates": [
+          {
+            "family_id": "it_operations_integration_services",
+            "family_name": "IT Operations & Integration Services",
+            "similarity": 0.557,
+            "best_matching_prototype": "Chuyên viên vận hành dịch vụ kỹ thuật số"
+          },
+          {
+            "family_id": "it_support_systems_operations",
+            "family_name": "IT Support & Systems Operations",
+            "similarity": 0.3387,
+            "best_matching_prototype": "Customer Support Engineer"
+          },
+          {
+            "family_id": "database_administration",
+            "family_name": "Database Administration",
+            "similarity": 0.2793,
+            "best_matching_prototype": "Quản trị cơ sở dữ liệu DBA"
+          }
+        ],
+        "true_family": "IT Operations & Integration Services",
+        "is_top1_correct": true,
+        "is_top3_correct": true
+      },
+      {
+        "raw_title": "Chuyên viên Hỗ trợ bán hàng (Kỹ thuật)",
+        "cleaned_title": "Hỗ trợ bán hàng (Kỹ thuật)",
+        "status": "LOW_CONFIDENCE_REVIEW",
+        "assigned_family": "Needs Review",
+        "top1_family": "IT Support & Systems Operations",
+        "top1_similarity": 0.3332,
+        "top1_prototype": "Customer Support Engineer",
+        "top2_family": "IT Sales & Presales",
+        "top2_similarity": 0.2907,
+        "margin": 0.0425,
+        "decision_note": "Điểm tương đồng cao nhất (0.3332) dưới ngưỡng tin cậy (0.58). Có thể là chức danh mới chưa có trong từ điển chuẩn. Cần người rà soát.",
+        "top_candidates": [
+          {
+            "family_id": "it_support_systems_operations",
+            "family_name": "IT Support & Systems Operations",
+            "similarity": 0.3332,
+            "best_matching_prototype": "Customer Support Engineer"
+          },
+          {
+            "family_id": "it_sales_presales",
+            "family_name": "IT Sales & Presales",
+            "similarity": 0.2907,
+            "best_matching_prototype": "Technical Sales Specialist"
+          },
+          {
+            "family_id": "it_project_management",
+            "family_name": "IT Project Management / Product Management",
+            "similarity": 0.1662,
+            "best_matching_prototype": "Product Manager"
+          }
+        ],
+        "true_family": "IT Sales & Presales",
+        "is_top1_correct": false,
+        "is_top3_correct": true
+      },
+      {
+        "raw_title": "Chuyên viên Kinh doanh Cloud, An ninh mạng",
+        "cleaned_title": "Kinh doanh Cloud, An ninh mạng",
+        "status": "AUTO_ASSIGNED",
+        "assigned_family": "IT Sales & Presales",
+        "top1_family": "IT Sales & Presales",
+        "top1_similarity": 0.8026,
+        "top1_prototype": "Chuyên viên kinh doanh giải pháp Cloud và An ninh mạng",
+        "top2_family": "Cloud, Systems & Network Infrastructure",
+        "top2_similarity": 0.4364,
+        "margin": 0.3662,
+        "decision_note": "Độ tin cậy cao (0.8026 >= 0.58) và cách biệt rõ ràng so với vị trí 2 (margin=0.3662 >= 0.04). Tự động gán.",
+        "top_candidates": [
+          {
+            "family_id": "it_sales_presales",
+            "family_name": "IT Sales & Presales",
+            "similarity": 0.8026,
+            "best_matching_prototype": "Chuyên viên kinh doanh giải pháp Cloud và An ninh mạng"
+          },
+          {
+            "family_id": "cloud_systems_network_infrastructure",
+            "family_name": "Cloud, Systems & Network Infrastructure",
+            "similarity": 0.4364,
+            "best_matching_prototype": "Kỹ sư hạ tầng Cloud và mạng"
+          },
+          {
+            "family_id": "information_security_cybersecurity",
+            "family_name": "Information Security / Cybersecurity",
+            "similarity": 0.4065,
+            "best_matching_prototype": "Chuyên viên an toàn an ninh mạng"
+          }
+        ],
+        "true_family": "IT Sales & Presales",
+        "is_top1_correct": true,
+        "is_top3_correct": true
+      },
+      {
+        "raw_title": "Chuyên viên Kiến trúc doanh nghiệp (EA)",
+        "cleaned_title": "Kiến trúc doanh nghiệp (EA)",
+        "status": "AUTO_ASSIGNED",
+        "assigned_family": "IT Architecture & Strategy",
+        "top1_family": "IT Architecture & Strategy",
+        "top1_similarity": 0.7798,
+        "top1_prototype": "Enterprise Architect (EA)",
+        "top2_family": "DevOps & DevSecOps",
+        "top2_similarity": 0.3329,
+        "margin": 0.4469,
+        "decision_note": "Độ tin cậy cao (0.7798 >= 0.58) và cách biệt rõ ràng so với vị trí 2 (margin=0.4469 >= 0.04). Tự động gán.",
+        "top_candidates": [
+          {
+            "family_id": "it_architecture_strategy",
+            "family_name": "IT Architecture & Strategy",
+            "similarity": 0.7798,
+            "best_matching_prototype": "Enterprise Architect (EA)"
+          },
+          {
+            "family_id": "devops_devsecops",
+            "family_name": "DevOps & DevSecOps",
+            "similarity": 0.3329,
+            "best_matching_prototype": "Cloud & DevOps Engineer"
+          },
+          {
+            "family_id": "business_analysis",
+            "family_name": "Business Analysis",
+            "similarity": 0.3264,
+            "best_matching_prototype": "IT Business Analyst"
+          }
+        ],
+        "true_family": "IT Architecture & Strategy",
+        "is_top1_correct": true,
+        "is_top3_correct": true
+      },
+      {
+        "raw_title": "Chuyên viên Kiểm thử - Tester - Khối Công nghệ thông tin (2026TD456989)",
+        "cleaned_title": "Kiểm thử - Tester - Khối Công nghệ thông tin",
+        "status": "AUTO_ASSIGNED",
+        "assigned_family": "Software Testing / QA / QC",
+        "top1_family": "Software Testing / QA / QC",
+        "top1_similarity": 0.6349,
+        "top1_prototype": "Kỹ sư kiểm thử phần mềm",
+        "top2_family": "Information Security / Cybersecurity",
+        "top2_similarity": 0.5017,
+        "margin": 0.1332,
+        "decision_note": "Độ tin cậy cao (0.6349 >= 0.58) và cách biệt rõ ràng so với vị trí 2 (margin=0.1332 >= 0.04). Tự động gán.",
+        "top_candidates": [
+          {
+            "family_id": "software_testing_qa_qc",
+            "family_name": "Software Testing / QA / QC",
+            "similarity": 0.6349,
+            "best_matching_prototype": "Kỹ sư kiểm thử phần mềm"
+          },
+          {
+            "family_id": "information_security_cybersecurity",
+            "family_name": "Information Security / Cybersecurity",
+            "similarity": 0.5017,
+            "best_matching_prototype": "Penetration Tester (Pentest)"
+          },
+          {
+            "family_id": "software_engineering_backend",
+            "family_name": "Software Engineering (Backend)",
+            "similarity": 0.356,
+            "best_matching_prototype": "Kỹ sư phát triển hệ thống phần mềm"
+          }
+        ],
+        "true_family": "Software Testing / QA / QC",
+        "is_top1_correct": true,
+        "is_top3_correct": true
+      },
+      {
+        "raw_title": "Chuyên viên Phát triển Hệ thống",
+        "cleaned_title": "Phát triển Hệ thống",
+        "status": "AUTO_ASSIGNED",
+        "assigned_family": "Software Engineering (Backend)",
+        "top1_family": "Software Engineering (Backend)",
+        "top1_similarity": 0.7029,
+        "top1_prototype": "Kỹ sư phát triển hệ thống phần mềm",
+        "top2_family": "DevOps & DevSecOps",
+        "top2_similarity": 0.6351,
+        "margin": 0.0678,
+        "decision_note": "Độ tin cậy cao (0.7029 >= 0.58) và cách biệt rõ ràng so với vị trí 2 (margin=0.0678 >= 0.04). Tự động gán.",
+        "top_candidates": [
+          {
+            "family_id": "software_engineering_backend",
+            "family_name": "Software Engineering (Backend)",
+            "similarity": 0.7029,
+            "best_matching_prototype": "Kỹ sư phát triển hệ thống phần mềm"
+          },
+          {
+            "family_id": "devops_devsecops",
+            "family_name": "DevOps & DevSecOps",
+            "similarity": 0.6351,
+            "best_matching_prototype": "Kỹ sư DevOps hệ thống"
+          },
+          {
+            "family_id": "cloud_systems_network_infrastructure",
+            "family_name": "Cloud, Systems & Network Infrastructure",
+            "similarity": 0.5519,
+            "best_matching_prototype": "Systems Administrator"
+          }
+        ],
+        "true_family": "Software Engineering (Backend)",
+        "is_top1_correct": true,
+        "is_top3_correct": true
+      },
+      {
+        "raw_title": "Chuyên viên Phân tích nghiệp vụ",
+        "cleaned_title": "Phân tích nghiệp vụ",
+        "status": "LOW_CONFIDENCE_REVIEW",
+        "assigned_family": "Needs Review",
+        "top1_family": "Business Analysis",
+        "top1_similarity": 0.5646,
+        "top1_prototype": "Chuyên viên phân tích nghiệp vụ phần mềm",
+        "top2_family": "IT Operations & Integration Services",
+        "top2_similarity": 0.3279,
+        "margin": 0.2367,
+        "decision_note": "Điểm tương đồng cao nhất (0.5646) dưới ngưỡng tin cậy (0.58). Có thể là chức danh mới chưa có trong từ điển chuẩn. Cần người rà soát.",
+        "top_candidates": [
+          {
+            "family_id": "business_analysis",
+            "family_name": "Business Analysis",
+            "similarity": 0.5646,
+            "best_matching_prototype": "Chuyên viên phân tích nghiệp vụ phần mềm"
+          },
+          {
+            "family_id": "it_operations_integration_services",
+            "family_name": "IT Operations & Integration Services",
+            "similarity": 0.3279,
+            "best_matching_prototype": "Data Services Consultant"
+          },
+          {
+            "family_id": "it_architecture_strategy",
+            "family_name": "IT Architecture & Strategy",
+            "similarity": 0.325,
+            "best_matching_prototype": "Chuyên gia chiến lược công nghệ"
+          }
+        ],
+        "true_family": "Business Analysis",
+        "is_top1_correct": true,
+        "is_top3_correct": true
+      },
+      {
+        "raw_title": "Chuyên viên Phân tích nghiệp vụ (BA)",
+        "cleaned_title": "Phân tích nghiệp vụ (BA)",
+        "status": "AUTO_ASSIGNED",
+        "assigned_family": "Business Analysis",
+        "top1_family": "Business Analysis",
+        "top1_similarity": 0.6031,
+        "top1_prototype": "Chuyên viên BA",
+        "top2_family": "IT Architecture & Strategy",
+        "top2_similarity": 0.2965,
+        "margin": 0.3066,
+        "decision_note": "Độ tin cậy cao (0.6031 >= 0.58) và cách biệt rõ ràng so với vị trí 2 (margin=0.3066 >= 0.04). Tự động gán.",
+        "top_candidates": [
+          {
+            "family_id": "business_analysis",
+            "family_name": "Business Analysis",
+            "similarity": 0.6031,
+            "best_matching_prototype": "Chuyên viên BA"
+          },
+          {
+            "family_id": "it_architecture_strategy",
+            "family_name": "IT Architecture & Strategy",
+            "similarity": 0.2965,
+            "best_matching_prototype": "Chuyên gia chiến lược công nghệ"
+          },
+          {
+            "family_id": "software_testing_qa_qc",
+            "family_name": "Software Testing / QA / QC",
+            "similarity": 0.2752,
+            "best_matching_prototype": "Software Tester"
+          }
+        ],
+        "true_family": "Business Analysis",
+        "is_top1_correct": true,
+        "is_top3_correct": true
+      },
+      {
+        "raw_title": "Chuyên viên cao cấp Kiểm thử",
+        "cleaned_title": "Kiểm thử",
+        "status": "AUTO_ASSIGNED",
+        "assigned_family": "Software Testing / QA / QC",
+        "top1_family": "Software Testing / QA / QC",
+        "top1_similarity": 0.6793,
+        "top1_prototype": "Software Tester",
+        "top2_family": "Information Security / Cybersecurity",
+        "top2_similarity": 0.3221,
+        "margin": 0.3572,
+        "decision_note": "Độ tin cậy cao (0.6793 >= 0.58) và cách biệt rõ ràng so với vị trí 2 (margin=0.3572 >= 0.04). Tự động gán.",
+        "top_candidates": [
+          {
+            "family_id": "software_testing_qa_qc",
+            "family_name": "Software Testing / QA / QC",
+            "similarity": 0.6793,
+            "best_matching_prototype": "Software Tester"
+          },
+          {
+            "family_id": "information_security_cybersecurity",
+            "family_name": "Information Security / Cybersecurity",
+            "similarity": 0.3221,
+            "best_matching_prototype": "Penetration Tester (Pentest)"
+          },
+          {
+            "family_id": "data_engineering",
+            "family_name": "Data Engineering",
+            "similarity": 0.2894,
+            "best_matching_prototype": "Kỹ sư dữ liệu"
+          }
+        ],
+        "true_family": "Software Testing / QA / QC",
+        "is_top1_correct": true,
+        "is_top3_correct": true
+      },
+      {
+        "raw_title": "Chuyên viên cao cấp Phát triển Hệ thống",
+        "cleaned_title": "Phát triển Hệ thống",
+        "status": "AUTO_ASSIGNED",
+        "assigned_family": "Software Engineering (Backend)",
+        "top1_family": "Software Engineering (Backend)",
+        "top1_similarity": 0.7029,
+        "top1_prototype": "Kỹ sư phát triển hệ thống phần mềm",
+        "top2_family": "DevOps & DevSecOps",
+        "top2_similarity": 0.6351,
+        "margin": 0.0678,
+        "decision_note": "Độ tin cậy cao (0.7029 >= 0.58) và cách biệt rõ ràng so với vị trí 2 (margin=0.0678 >= 0.04). Tự động gán.",
+        "top_candidates": [
+          {
+            "family_id": "software_engineering_backend",
+            "family_name": "Software Engineering (Backend)",
+            "similarity": 0.7029,
+            "best_matching_prototype": "Kỹ sư phát triển hệ thống phần mềm"
+          },
+          {
+            "family_id": "devops_devsecops",
+            "family_name": "DevOps & DevSecOps",
+            "similarity": 0.6351,
+            "best_matching_prototype": "Kỹ sư DevOps hệ thống"
+          },
+          {
+            "family_id": "cloud_systems_network_infrastructure",
+            "family_name": "Cloud, Systems & Network Infrastructure",
+            "similarity": 0.5519,
+            "best_matching_prototype": "Systems Administrator"
+          }
+        ],
+        "true_family": "Software Engineering (Backend)",
+        "is_top1_correct": true,
+        "is_top3_correct": true
+      },
+      {
+        "raw_title": "Chuyên viên cao cấp Vận hành hệ thống",
+        "cleaned_title": "Vận hành hệ thống",
+        "status": "AUTO_ASSIGNED",
+        "assigned_family": "Cloud, Systems & Network Infrastructure",
+        "top1_family": "Cloud, Systems & Network Infrastructure",
+        "top1_similarity": 0.7103,
+        "top1_prototype": "Chuyên viên quản trị và vận hành hệ thống",
+        "top2_family": "DevOps & DevSecOps",
+        "top2_similarity": 0.4837,
+        "margin": 0.2266,
+        "decision_note": "Độ tin cậy cao (0.7103 >= 0.58) và cách biệt rõ ràng so với vị trí 2 (margin=0.2266 >= 0.04). Tự động gán.",
+        "top_candidates": [
+          {
+            "family_id": "cloud_systems_network_infrastructure",
+            "family_name": "Cloud, Systems & Network Infrastructure",
+            "similarity": 0.7103,
+            "best_matching_prototype": "Chuyên viên quản trị và vận hành hệ thống"
+          },
+          {
+            "family_id": "devops_devsecops",
+            "family_name": "DevOps & DevSecOps",
+            "similarity": 0.4837,
+            "best_matching_prototype": "Kỹ sư DevOps hệ thống"
+          },
+          {
+            "family_id": "it_operations_integration_services",
+            "family_name": "IT Operations & Integration Services",
+            "similarity": 0.4593,
+            "best_matching_prototype": "Data Services Specialist"
+          }
+        ],
+        "true_family": "Cloud, Systems & Network Infrastructure",
+        "is_top1_correct": true,
+        "is_top3_correct": true
+      },
+      {
+        "raw_title": "Chuyên viên cao cấp an ninh mạng",
+        "cleaned_title": "an ninh mạng",
+        "status": "AUTO_ASSIGNED",
+        "assigned_family": "Information Security / Cybersecurity",
+        "top1_family": "Information Security / Cybersecurity",
+        "top1_similarity": 0.8506,
+        "top1_prototype": "Chuyên viên an toàn an ninh mạng",
+        "top2_family": "Cloud, Systems & Network Infrastructure",
+        "top2_similarity": 0.4837,
+        "margin": 0.3669,
+        "decision_note": "Độ tin cậy cao (0.8506 >= 0.58) và cách biệt rõ ràng so với vị trí 2 (margin=0.3669 >= 0.04). Tự động gán.",
+        "top_candidates": [
+          {
+            "family_id": "information_security_cybersecurity",
+            "family_name": "Information Security / Cybersecurity",
+            "similarity": 0.8506,
+            "best_matching_prototype": "Chuyên viên an toàn an ninh mạng"
+          },
+          {
+            "family_id": "cloud_systems_network_infrastructure",
+            "family_name": "Cloud, Systems & Network Infrastructure",
+            "similarity": 0.4837,
+            "best_matching_prototype": "Kỹ sư hạ tầng Cloud và mạng"
+          },
+          {
+            "family_id": "it_support_systems_operations",
+            "family_name": "IT Support & Systems Operations",
+            "similarity": 0.4495,
+            "best_matching_prototype": "IT Support / Helpdesk"
+          }
+        ],
+        "true_family": "Information Security / Cybersecurity",
+        "is_top1_correct": true,
+        "is_top3_correct": true
+      },
+      {
+        "raw_title": "Chuyên viên cao cấp phát triển sản phẩm/giải pháp CNTT",
+        "cleaned_title": "phát triển sản phẩm/giải pháp CNTT",
+        "status": "LOW_CONFIDENCE_REVIEW",
+        "assigned_family": "Needs Review",
+        "top1_family": "IT Project Management / Product Management",
+        "top1_similarity": 0.5303,
+        "top1_prototype": "Product Manager",
+        "top2_family": "IT Architecture & Strategy",
+        "top2_similarity": 0.4992,
+        "margin": 0.0311,
+        "decision_note": "Điểm tương đồng cao nhất (0.5303) dưới ngưỡng tin cậy (0.58). Có thể là chức danh mới chưa có trong từ điển chuẩn. Cần người rà soát.",
+        "top_candidates": [
+          {
+            "family_id": "it_project_management",
+            "family_name": "IT Project Management / Product Management",
+            "similarity": 0.5303,
+            "best_matching_prototype": "Product Manager"
+          },
+          {
+            "family_id": "it_architecture_strategy",
+            "family_name": "IT Architecture & Strategy",
+            "similarity": 0.4992,
+            "best_matching_prototype": "Kiến trúc sư giải pháp CNTT"
+          },
+          {
+            "family_id": "devops_devsecops",
+            "family_name": "DevOps & DevSecOps",
+            "similarity": 0.4066,
+            "best_matching_prototype": "DevOps Engineer"
+          }
+        ],
+        "true_family": "IT Project Management / Product Management",
+        "is_top1_correct": true,
+        "is_top3_correct": true
+      },
+      {
+        "raw_title": "Chuyên viên lập trình Back-end (Java)",
+        "cleaned_title": "lập trình Back-end (Java)",
+        "status": "AUTO_ASSIGNED",
+        "assigned_family": "Software Engineering (Backend)",
+        "top1_family": "Software Engineering (Backend)",
+        "top1_similarity": 0.7796,
+        "top1_prototype": "Backend Developer",
+        "top2_family": "Software Engineering (Fullstack / Web)",
+        "top2_similarity": 0.6662,
+        "margin": 0.1134,
+        "decision_note": "Độ tin cậy cao (0.7796 >= 0.58) và cách biệt rõ ràng so với vị trí 2 (margin=0.1134 >= 0.04). Tự động gán.",
+        "top_candidates": [
+          {
+            "family_id": "software_engineering_backend",
+            "family_name": "Software Engineering (Backend)",
+            "similarity": 0.7796,
+            "best_matching_prototype": "Backend Developer"
+          },
+          {
+            "family_id": "software_engineering_fullstack_web",
+            "family_name": "Software Engineering (Fullstack / Web)",
+            "similarity": 0.6662,
+            "best_matching_prototype": "Fullstack Engineer"
+          },
+          {
+            "family_id": "data_engineering",
+            "family_name": "Data Engineering",
+            "similarity": 0.5271,
+            "best_matching_prototype": "Data Engineer"
+          }
+        ],
+        "true_family": "Software Engineering (Backend)",
+        "is_top1_correct": true,
+        "is_top3_correct": true
+      },
+      {
+        "raw_title": "Chuyên viên phân tích nghiệp vụ phần mềm",
+        "cleaned_title": "phân tích nghiệp vụ phần mềm",
+        "status": "AUTO_ASSIGNED",
+        "assigned_family": "Business Analysis",
+        "top1_family": "Business Analysis",
+        "top1_similarity": 0.9201,
+        "top1_prototype": "Chuyên viên phân tích nghiệp vụ phần mềm",
+        "top2_family": "IT Project Management / Product Management",
+        "top2_similarity": 0.5353,
+        "margin": 0.3848,
+        "decision_note": "Độ tin cậy cao (0.9201 >= 0.58) và cách biệt rõ ràng so với vị trí 2 (margin=0.3848 >= 0.04). Tự động gán.",
+        "top_candidates": [
+          {
+            "family_id": "business_analysis",
+            "family_name": "Business Analysis",
+            "similarity": 0.9201,
+            "best_matching_prototype": "Chuyên viên phân tích nghiệp vụ phần mềm"
+          },
+          {
+            "family_id": "it_project_management",
+            "family_name": "IT Project Management / Product Management",
+            "similarity": 0.5353,
+            "best_matching_prototype": "Chuyên viên quản lý dự án phần mềm"
+          },
+          {
+            "family_id": "it_support_systems_operations",
+            "family_name": "IT Support & Systems Operations",
+            "similarity": 0.5186,
+            "best_matching_prototype": "Chuyên viên triển khai và bảo trì phần mềm"
+          }
+        ],
+        "true_family": "Business Analysis",
+        "is_top1_correct": true,
+        "is_top3_correct": true
+      },
+      {
+        "raw_title": "Chuyên viên quản lý dự án phần mềm",
+        "cleaned_title": "quản lý dự án phần mềm",
+        "status": "AUTO_ASSIGNED",
+        "assigned_family": "IT Project Management / Product Management",
+        "top1_family": "IT Project Management / Product Management",
+        "top1_similarity": 0.9563,
+        "top1_prototype": "Chuyên viên quản lý dự án phần mềm",
+        "top2_family": "IT Support & Systems Operations",
+        "top2_similarity": 0.5448,
+        "margin": 0.4115,
+        "decision_note": "Độ tin cậy cao (0.9563 >= 0.58) và cách biệt rõ ràng so với vị trí 2 (margin=0.4115 >= 0.04). Tự động gán.",
+        "top_candidates": [
+          {
+            "family_id": "it_project_management",
+            "family_name": "IT Project Management / Product Management",
+            "similarity": 0.9563,
+            "best_matching_prototype": "Chuyên viên quản lý dự án phần mềm"
+          },
+          {
+            "family_id": "it_support_systems_operations",
+            "family_name": "IT Support & Systems Operations",
+            "similarity": 0.5448,
+            "best_matching_prototype": "Chuyên viên triển khai và bảo trì phần mềm"
+          },
+          {
+            "family_id": "business_analysis",
+            "family_name": "Business Analysis",
+            "similarity": 0.5346,
+            "best_matching_prototype": "Chuyên viên phân tích nghiệp vụ phần mềm"
+          }
+        ],
+        "true_family": "IT Project Management / Product Management",
+        "is_top1_correct": true,
+        "is_top3_correct": true
+      },
+      {
+        "raw_title": "Chuyên viên triển khai dự án",
+        "cleaned_title": "triển khai dự án",
+        "status": "AUTO_ASSIGNED",
+        "assigned_family": "IT Project Management / Product Management",
+        "top1_family": "IT Project Management / Product Management",
+        "top1_similarity": 0.5996,
+        "top1_prototype": "IT Project Manager",
+        "top2_family": "Software Engineering (Fullstack / Web)",
+        "top2_similarity": 0.4249,
+        "margin": 0.1747,
+        "decision_note": "Độ tin cậy cao (0.5996 >= 0.58) và cách biệt rõ ràng so với vị trí 2 (margin=0.1747 >= 0.04). Tự động gán.",
+        "top_candidates": [
+          {
+            "family_id": "it_project_management",
+            "family_name": "IT Project Management / Product Management",
+            "similarity": 0.5996,
+            "best_matching_prototype": "IT Project Manager"
+          },
+          {
+            "family_id": "software_engineering_fullstack_web",
+            "family_name": "Software Engineering (Fullstack / Web)",
+            "similarity": 0.4249,
+            "best_matching_prototype": "Lập trình viên Full-stack"
+          },
+          {
+            "family_id": "it_architecture_strategy",
+            "family_name": "IT Architecture & Strategy",
+            "similarity": 0.406,
+            "best_matching_prototype": "Solution Architect"
+          }
+        ],
+        "true_family": "IT Support & Systems Operations",
+        "is_top1_correct": false,
+        "is_top3_correct": false
+      },
+      {
+        "raw_title": "Chuyên viên đảm bảo chất lượng (QA/QC)",
+        "cleaned_title": "đảm bảo chất lượng (QA/QC)",
+        "status": "AUTO_ASSIGNED",
+        "assigned_family": "Software Testing / QA / QC",
+        "top1_family": "Software Testing / QA / QC",
+        "top1_similarity": 0.8422,
+        "top1_prototype": "Chuyên viên đảm bảo chất lượng QA QC",
+        "top2_family": "IT Operations & Integration Services",
+        "top2_similarity": 0.3052,
+        "margin": 0.537,
+        "decision_note": "Độ tin cậy cao (0.8422 >= 0.58) và cách biệt rõ ràng so với vị trí 2 (margin=0.5370 >= 0.04). Tự động gán.",
+        "top_candidates": [
+          {
+            "family_id": "software_testing_qa_qc",
+            "family_name": "Software Testing / QA / QC",
+            "similarity": 0.8422,
+            "best_matching_prototype": "Chuyên viên đảm bảo chất lượng QA QC"
+          },
+          {
+            "family_id": "it_operations_integration_services",
+            "family_name": "IT Operations & Integration Services",
+            "similarity": 0.3052,
+            "best_matching_prototype": "Data Services Specialist"
+          },
+          {
+            "family_id": "data_engineering",
+            "family_name": "Data Engineering",
+            "similarity": 0.3033,
+            "best_matching_prototype": "Kỹ sư dữ liệu"
+          }
+        ],
+        "true_family": "Software Testing / QA / QC",
+        "is_top1_correct": true,
+        "is_top3_correct": true
+      },
+      {
+        "raw_title": "Chuyên viên Ứng dụng Microsoft 365 & Copilot",
+        "cleaned_title": "Ứng dụng Microsoft 365 & Copilot",
+        "status": "LOW_CONFIDENCE_REVIEW",
+        "assigned_family": "Needs Review",
+        "top1_family": "Cloud, Systems & Network Infrastructure",
+        "top1_similarity": 0.4569,
+        "top1_prototype": "Kỹ sư hạ tầng Cloud và mạng",
+        "top2_family": "DevOps & DevSecOps",
+        "top2_similarity": 0.4245,
+        "margin": 0.0324,
+        "decision_note": "Điểm tương đồng cao nhất (0.4569) dưới ngưỡng tin cậy (0.58). Có thể là chức danh mới chưa có trong từ điển chuẩn. Cần người rà soát.",
+        "top_candidates": [
+          {
+            "family_id": "cloud_systems_network_infrastructure",
+            "family_name": "Cloud, Systems & Network Infrastructure",
+            "similarity": 0.4569,
+            "best_matching_prototype": "Kỹ sư hạ tầng Cloud và mạng"
+          },
+          {
+            "family_id": "devops_devsecops",
+            "family_name": "DevOps & DevSecOps",
+            "similarity": 0.4245,
+            "best_matching_prototype": "Cloud & DevOps Engineer"
+          },
+          {
+            "family_id": "it_architecture_strategy",
+            "family_name": "IT Architecture & Strategy",
+            "similarity": 0.3396,
+            "best_matching_prototype": "Kiến trúc sư giải pháp CNTT"
+          }
+        ],
+        "true_family": "Cloud, Systems & Network Infrastructure",
+        "is_top1_correct": true,
+        "is_top3_correct": true
+      },
+      {
+        "raw_title": "Cloud & DevOps Engineer (Azure, AWS)",
+        "cleaned_title": "Cloud & DevOps Engineer (Azure, AWS)",
+        "status": "AMBIGUOUS_REVIEW",
+        "assigned_family": "Needs Review",
+        "top1_family": "Cloud, Systems & Network Infrastructure",
+        "top1_similarity": 0.6645,
+        "top1_prototype": "Kỹ sư hạ tầng Cloud và mạng",
+        "top2_family": "DevOps & DevSecOps",
+        "top2_similarity": 0.6251,
+        "margin": 0.0394,
+        "decision_note": "Điểm tương đồng cao (0.6645) nhưng cách biệt giữa Top 1 (Cloud, Systems & Network Infrastructure) và Top 2 (DevOps & DevSecOps) quá hẹp (0.0394 < 0.04). Cần người rà soát chọn 1 trong 2.",
+        "top_candidates": [
+          {
+            "family_id": "cloud_systems_network_infrastructure",
+            "family_name": "Cloud, Systems & Network Infrastructure",
+            "similarity": 0.6645,
+            "best_matching_prototype": "Kỹ sư hạ tầng Cloud và mạng"
+          },
+          {
+            "family_id": "devops_devsecops",
+            "family_name": "DevOps & DevSecOps",
+            "similarity": 0.6251,
+            "best_matching_prototype": "DevOps Engineer"
+          },
+          {
+            "family_id": "information_security_cybersecurity",
+            "family_name": "Information Security / Cybersecurity",
+            "similarity": 0.392,
+            "best_matching_prototype": "Kỹ sư bảo mật thông tin"
+          }
+        ],
+        "true_family": "DevOps & DevSecOps",
+        "is_top1_correct": false,
+        "is_top3_correct": true
+      },
+      {
+        "raw_title": "Cobol Developer (English speaking)",
+        "cleaned_title": "Cobol Developer (English speaking)",
+        "status": "LOW_CONFIDENCE_REVIEW",
+        "assigned_family": "Needs Review",
+        "top1_family": "Software Engineering (Backend)",
+        "top1_similarity": 0.3282,
+        "top1_prototype": "Lập trình viên Backend",
+        "top2_family": "Enterprise Applications (ERP / CRM)",
+        "top2_similarity": 0.3257,
+        "margin": 0.0025,
+        "decision_note": "Điểm tương đồng cao nhất (0.3282) dưới ngưỡng tin cậy (0.58). Có thể là chức danh mới chưa có trong từ điển chuẩn. Cần người rà soát.",
+        "top_candidates": [
+          {
+            "family_id": "software_engineering_backend",
+            "family_name": "Software Engineering (Backend)",
+            "similarity": 0.3282,
+            "best_matching_prototype": "Lập trình viên Backend"
+          },
+          {
+            "family_id": "enterprise_applications_erp_crm",
+            "family_name": "Enterprise Applications (ERP / CRM)",
+            "similarity": 0.3257,
+            "best_matching_prototype": "ERP Application Developer"
+          },
+          {
+            "family_id": "software_engineering_fullstack_web",
+            "family_name": "Software Engineering (Fullstack / Web)",
+            "similarity": 0.3192,
+            "best_matching_prototype": "Lập trình viên Full-stack"
+          }
+        ],
+        "true_family": "Software Engineering (Backend)",
+        "is_top1_correct": true,
+        "is_top3_correct": true
+      },
+      {
+        "raw_title": "Customer Support Engineer",
+        "cleaned_title": "Customer Support Engineer",
+        "status": "LOW_CONFIDENCE_REVIEW",
+        "assigned_family": "Needs Review",
+        "top1_family": "IT Support & Systems Operations",
+        "top1_similarity": 0.5331,
+        "top1_prototype": "IT Support / Helpdesk",
+        "top2_family": "Cloud, Systems & Network Infrastructure",
+        "top2_similarity": 0.4523,
+        "margin": 0.0808,
+        "decision_note": "Điểm tương đồng cao nhất (0.5331) dưới ngưỡng tin cậy (0.58). Có thể là chức danh mới chưa có trong từ điển chuẩn. Cần người rà soát.",
+        "top_candidates": [
+          {
+            "family_id": "it_support_systems_operations",
+            "family_name": "IT Support & Systems Operations",
+            "similarity": 0.5331,
+            "best_matching_prototype": "IT Support / Helpdesk"
+          },
+          {
+            "family_id": "cloud_systems_network_infrastructure",
+            "family_name": "Cloud, Systems & Network Infrastructure",
+            "similarity": 0.4523,
+            "best_matching_prototype": "Systems Administrator"
+          },
+          {
+            "family_id": "it_sales_presales",
+            "family_name": "IT Sales & Presales",
+            "similarity": 0.435,
+            "best_matching_prototype": "IT Presales Engineer"
+          }
+        ],
+        "true_family": "IT Support & Systems Operations",
+        "is_top1_correct": true,
+        "is_top3_correct": true
+      },
+      {
+        "raw_title": "Data Engineer (Big Data / Lakehouse)",
+        "cleaned_title": "Data Engineer (Big Data / Lakehouse)",
+        "status": "AUTO_ASSIGNED",
+        "assigned_family": "Data Engineering",
+        "top1_family": "Data Engineering",
+        "top1_similarity": 0.7502,
+        "top1_prototype": "Big Data Engineer",
+        "top2_family": "IT Operations & Integration Services",
+        "top2_similarity": 0.4258,
+        "margin": 0.3244,
+        "decision_note": "Độ tin cậy cao (0.7502 >= 0.58) và cách biệt rõ ràng so với vị trí 2 (margin=0.3244 >= 0.04). Tự động gán.",
+        "top_candidates": [
+          {
+            "family_id": "data_engineering",
+            "family_name": "Data Engineering",
+            "similarity": 0.7502,
+            "best_matching_prototype": "Big Data Engineer"
+          },
+          {
+            "family_id": "it_operations_integration_services",
+            "family_name": "IT Operations & Integration Services",
+            "similarity": 0.4258,
+            "best_matching_prototype": "Data Services Consultant"
+          },
+          {
+            "family_id": "software_engineering_ai_ml",
+            "family_name": "Software Engineering (AI / ML)",
+            "similarity": 0.4007,
+            "best_matching_prototype": "AI Platform Developer"
+          }
+        ],
+        "true_family": "Data Engineering",
+        "is_top1_correct": true,
+        "is_top3_correct": true
+      },
+      {
+        "raw_title": "Data Engineer at DATATYK CO., LTD",
+        "cleaned_title": "Data Engineer at DATATYK CO., LTD",
+        "status": "AUTO_ASSIGNED",
+        "assigned_family": "Data Engineering",
+        "top1_family": "Data Engineering",
+        "top1_similarity": 0.6892,
+        "top1_prototype": "Kỹ sư dữ liệu",
+        "top2_family": "Software Engineering (Backend)",
+        "top2_similarity": 0.453,
+        "margin": 0.2362,
+        "decision_note": "Độ tin cậy cao (0.6892 >= 0.58) và cách biệt rõ ràng so với vị trí 2 (margin=0.2362 >= 0.04). Tự động gán.",
+        "top_candidates": [
+          {
+            "family_id": "data_engineering",
+            "family_name": "Data Engineering",
+            "similarity": 0.6892,
+            "best_matching_prototype": "Kỹ sư dữ liệu"
+          },
+          {
+            "family_id": "software_engineering_backend",
+            "family_name": "Software Engineering (Backend)",
+            "similarity": 0.453,
+            "best_matching_prototype": "Kỹ sư phát triển hệ thống phần mềm"
+          },
+          {
+            "family_id": "devops_devsecops",
+            "family_name": "DevOps & DevSecOps",
+            "similarity": 0.4431,
+            "best_matching_prototype": "DevOps Engineer"
+          }
+        ],
+        "true_family": "Data Engineering",
+        "is_top1_correct": true,
+        "is_top3_correct": true
+      },
+      {
+        "raw_title": "Data Engineer/ Senior Data Engineer",
+        "cleaned_title": "Data Engineer/ Data Engineer",
+        "status": "AUTO_ASSIGNED",
+        "assigned_family": "Data Engineering",
+        "top1_family": "Data Engineering",
+        "top1_similarity": 0.8788,
+        "top1_prototype": "Kỹ sư dữ liệu",
+        "top2_family": "Software Engineering (Fullstack / Web)",
+        "top2_similarity": 0.6071,
+        "margin": 0.2717,
+        "decision_note": "Độ tin cậy cao (0.8788 >= 0.58) và cách biệt rõ ràng so với vị trí 2 (margin=0.2717 >= 0.04). Tự động gán.",
+        "top_candidates": [
+          {
+            "family_id": "data_engineering",
+            "family_name": "Data Engineering",
+            "similarity": 0.8788,
+            "best_matching_prototype": "Kỹ sư dữ liệu"
+          },
+          {
+            "family_id": "software_engineering_fullstack_web",
+            "family_name": "Software Engineering (Fullstack / Web)",
+            "similarity": 0.6071,
+            "best_matching_prototype": "Fullstack Engineer"
+          },
+          {
+            "family_id": "it_operations_integration_services",
+            "family_name": "IT Operations & Integration Services",
+            "similarity": 0.6021,
+            "best_matching_prototype": "Data Services Specialist"
+          }
+        ],
+        "true_family": "Data Engineering",
+        "is_top1_correct": true,
+        "is_top3_correct": true
+      },
+      {
+        "raw_title": "Data Services Specialist",
+        "cleaned_title": "Data Services Specialist",
+        "status": "AUTO_ASSIGNED",
+        "assigned_family": "IT Operations & Integration Services",
+        "top1_family": "IT Operations & Integration Services",
+        "top1_similarity": 0.7867,
+        "top1_prototype": "Data Services Consultant",
+        "top2_family": "Database Administration",
+        "top2_similarity": 0.7017,
+        "margin": 0.085,
+        "decision_note": "Độ tin cậy cao (0.7867 >= 0.58) và cách biệt rõ ràng so với vị trí 2 (margin=0.0850 >= 0.04). Tự động gán.",
+        "top_candidates": [
+          {
+            "family_id": "it_operations_integration_services",
+            "family_name": "IT Operations & Integration Services",
+            "similarity": 0.7867,
+            "best_matching_prototype": "Data Services Consultant"
+          },
+          {
+            "family_id": "database_administration",
+            "family_name": "Database Administration",
+            "similarity": 0.7017,
+            "best_matching_prototype": "Quản trị viên dữ liệu và cơ sở dữ liệu"
+          },
+          {
+            "family_id": "data_engineering",
+            "family_name": "Data Engineering",
+            "similarity": 0.6871,
+            "best_matching_prototype": "Kỹ sư dữ liệu"
+          }
+        ],
+        "true_family": "IT Operations & Integration Services",
+        "is_top1_correct": true,
+        "is_top3_correct": true
+      },
+      {
+        "raw_title": "DevOps Engineer (Middle/Senior)",
+        "cleaned_title": "DevOps Engineer",
+        "status": "AUTO_ASSIGNED",
+        "assigned_family": "DevOps & DevSecOps",
+        "top1_family": "DevOps & DevSecOps",
+        "top1_similarity": 0.8699,
+        "top1_prototype": "Kỹ sư DevOps hệ thống",
+        "top2_family": "Cloud, Systems & Network Infrastructure",
+        "top2_similarity": 0.6536,
+        "margin": 0.2163,
+        "decision_note": "Độ tin cậy cao (0.8699 >= 0.58) và cách biệt rõ ràng so với vị trí 2 (margin=0.2163 >= 0.04). Tự động gán.",
+        "top_candidates": [
+          {
+            "family_id": "devops_devsecops",
+            "family_name": "DevOps & DevSecOps",
+            "similarity": 0.8699,
+            "best_matching_prototype": "Kỹ sư DevOps hệ thống"
+          },
+          {
+            "family_id": "cloud_systems_network_infrastructure",
+            "family_name": "Cloud, Systems & Network Infrastructure",
+            "similarity": 0.6536,
+            "best_matching_prototype": "Cloud Infrastructure Engineer"
+          },
+          {
+            "family_id": "data_engineering",
+            "family_name": "Data Engineering",
+            "similarity": 0.5882,
+            "best_matching_prototype": "Data Engineer"
+          }
+        ],
+        "true_family": "DevOps & DevSecOps",
+        "is_top1_correct": true,
+        "is_top3_correct": true
+      },
+      {
+        "raw_title": "DevOps Engineer - Khối Công nghệ thông tin (2025TD945)",
+        "cleaned_title": "DevOps Engineer - Khối Công nghệ thông tin",
+        "status": "AUTO_ASSIGNED",
+        "assigned_family": "DevOps & DevSecOps",
+        "top1_family": "DevOps & DevSecOps",
+        "top1_similarity": 0.7606,
+        "top1_prototype": "Kỹ sư DevOps hệ thống",
+        "top2_family": "Cloud, Systems & Network Infrastructure",
+        "top2_similarity": 0.484,
+        "margin": 0.2766,
+        "decision_note": "Độ tin cậy cao (0.7606 >= 0.58) và cách biệt rõ ràng so với vị trí 2 (margin=0.2766 >= 0.04). Tự động gán.",
+        "top_candidates": [
+          {
+            "family_id": "devops_devsecops",
+            "family_name": "DevOps & DevSecOps",
+            "similarity": 0.7606,
+            "best_matching_prototype": "Kỹ sư DevOps hệ thống"
+          },
+          {
+            "family_id": "cloud_systems_network_infrastructure",
+            "family_name": "Cloud, Systems & Network Infrastructure",
+            "similarity": 0.484,
+            "best_matching_prototype": "Cloud Infrastructure Engineer"
+          },
+          {
+            "family_id": "software_engineering_ai_ml",
+            "family_name": "Software Engineering (AI / ML)",
+            "similarity": 0.4418,
+            "best_matching_prototype": "AI Platform Developer"
+          }
+        ],
+        "true_family": "DevOps & DevSecOps",
+        "is_top1_correct": true,
+        "is_top3_correct": true
+      },
+      {
+        "raw_title": "DevSecOps Engineer - Khối Công nghệ thông tin (2025TD946)",
+        "cleaned_title": "DevSecOps Engineer - Khối Công nghệ thông tin",
+        "status": "AUTO_ASSIGNED",
+        "assigned_family": "DevOps & DevSecOps",
+        "top1_family": "DevOps & DevSecOps",
+        "top1_similarity": 0.6446,
+        "top1_prototype": "Kỹ sư DevOps hệ thống",
+        "top2_family": "Information Security / Cybersecurity",
+        "top2_similarity": 0.4969,
+        "margin": 0.1477,
+        "decision_note": "Độ tin cậy cao (0.6446 >= 0.58) và cách biệt rõ ràng so với vị trí 2 (margin=0.1477 >= 0.04). Tự động gán.",
+        "top_candidates": [
+          {
+            "family_id": "devops_devsecops",
+            "family_name": "DevOps & DevSecOps",
+            "similarity": 0.6446,
+            "best_matching_prototype": "Kỹ sư DevOps hệ thống"
+          },
+          {
+            "family_id": "information_security_cybersecurity",
+            "family_name": "Information Security / Cybersecurity",
+            "similarity": 0.4969,
+            "best_matching_prototype": "Kỹ sư bảo mật thông tin"
+          },
+          {
+            "family_id": "cloud_systems_network_infrastructure",
+            "family_name": "Cloud, Systems & Network Infrastructure",
+            "similarity": 0.4644,
+            "best_matching_prototype": "Cloud Infrastructure Engineer"
+          }
+        ],
+        "true_family": "DevOps & DevSecOps",
+        "is_top1_correct": true,
+        "is_top3_correct": true
+      },
+      {
+        "raw_title": "ERP Application Developer",
+        "cleaned_title": "ERP Application Developer",
+        "status": "AUTO_ASSIGNED",
+        "assigned_family": "Enterprise Applications (ERP / CRM)",
+        "top1_family": "Enterprise Applications (ERP / CRM)",
+        "top1_similarity": 0.7976,
+        "top1_prototype": "Odoo ERP Developer",
+        "top2_family": "Software Engineering (Fullstack / Web)",
+        "top2_similarity": 0.474,
+        "margin": 0.3236,
+        "decision_note": "Độ tin cậy cao (0.7976 >= 0.58) và cách biệt rõ ràng so với vị trí 2 (margin=0.3236 >= 0.04). Tự động gán.",
+        "top_candidates": [
+          {
+            "family_id": "enterprise_applications_erp_crm",
+            "family_name": "Enterprise Applications (ERP / CRM)",
+            "similarity": 0.7976,
+            "best_matching_prototype": "Odoo ERP Developer"
+          },
+          {
+            "family_id": "software_engineering_fullstack_web",
+            "family_name": "Software Engineering (Fullstack / Web)",
+            "similarity": 0.474,
+            "best_matching_prototype": "Lập trình viên Full-stack"
+          },
+          {
+            "family_id": "business_analysis",
+            "family_name": "Business Analysis",
+            "similarity": 0.4196,
+            "best_matching_prototype": "IT Business Analyst"
+          }
+        ],
+        "true_family": "Enterprise Applications (ERP / CRM)",
+        "is_top1_correct": true,
+        "is_top3_correct": true
+      },
+      {
+        "raw_title": "Expert/Senior/Middle Software Engineer (Java, Spring boot, PostgreSQL)",
+        "cleaned_title": "Software Engineer (Java, Spring boot, PostgreSQL)",
+        "status": "LOW_CONFIDENCE_REVIEW",
+        "assigned_family": "Needs Review",
+        "top1_family": "Software Engineering (Backend)",
+        "top1_similarity": 0.5304,
+        "top1_prototype": "Software Engineer (Backend)",
+        "top2_family": "Software Engineering (Fullstack / Web)",
+        "top2_similarity": 0.3907,
+        "margin": 0.1397,
+        "decision_note": "Điểm tương đồng cao nhất (0.5304) dưới ngưỡng tin cậy (0.58). Có thể là chức danh mới chưa có trong từ điển chuẩn. Cần người rà soát.",
+        "top_candidates": [
+          {
+            "family_id": "software_engineering_backend",
+            "family_name": "Software Engineering (Backend)",
+            "similarity": 0.5304,
+            "best_matching_prototype": "Software Engineer (Backend)"
+          },
+          {
+            "family_id": "software_engineering_fullstack_web",
+            "family_name": "Software Engineering (Fullstack / Web)",
+            "similarity": 0.3907,
+            "best_matching_prototype": "Fullstack Engineer"
+          },
+          {
+            "family_id": "data_engineering",
+            "family_name": "Data Engineering",
+            "similarity": 0.3276,
+            "best_matching_prototype": "Big Data Engineer"
+          }
+        ],
+        "true_family": "Software Engineering (Backend)",
+        "is_top1_correct": true,
+        "is_top3_correct": true
+      },
+      {
+        "raw_title": "Fresher/Junior PHP Developer",
+        "cleaned_title": "PHP Developer",
+        "status": "AUTO_ASSIGNED",
+        "assigned_family": "Software Engineering (Fullstack / Web)",
+        "top1_family": "Software Engineering (Fullstack / Web)",
+        "top1_similarity": 0.6282,
+        "top1_prototype": "Frontend & Backend Web Developer",
+        "top2_family": "Software Engineering (Backend)",
+        "top2_similarity": 0.5822,
+        "margin": 0.046,
+        "decision_note": "Độ tin cậy cao (0.6282 >= 0.58) và cách biệt rõ ràng so với vị trí 2 (margin=0.0460 >= 0.04). Tự động gán.",
+        "top_candidates": [
+          {
+            "family_id": "software_engineering_fullstack_web",
+            "family_name": "Software Engineering (Fullstack / Web)",
+            "similarity": 0.6282,
+            "best_matching_prototype": "Frontend & Backend Web Developer"
+          },
+          {
+            "family_id": "software_engineering_backend",
+            "family_name": "Software Engineering (Backend)",
+            "similarity": 0.5822,
+            "best_matching_prototype": "Backend Developer"
+          },
+          {
+            "family_id": "enterprise_applications_erp_crm",
+            "family_name": "Enterprise Applications (ERP / CRM)",
+            "similarity": 0.375,
+            "best_matching_prototype": "ERP Application Developer"
+          }
+        ],
+        "true_family": "Software Engineering (Backend)",
+        "is_top1_correct": false,
+        "is_top3_correct": true
+      },
+      {
+        "raw_title": "Fullstack Engineer (AI Product Builder)",
+        "cleaned_title": "Fullstack Engineer (AI Product Builder)",
+        "status": "AUTO_ASSIGNED",
+        "assigned_family": "Software Engineering (AI / ML)",
+        "top1_family": "Software Engineering (AI / ML)",
+        "top1_similarity": 0.7269,
+        "top1_prototype": "AI Engineer",
+        "top2_family": "Software Engineering (Fullstack / Web)",
+        "top2_similarity": 0.6065,
+        "margin": 0.1204,
+        "decision_note": "Độ tin cậy cao (0.7269 >= 0.58) và cách biệt rõ ràng so với vị trí 2 (margin=0.1204 >= 0.04). Tự động gán.",
+        "top_candidates": [
+          {
+            "family_id": "software_engineering_ai_ml",
+            "family_name": "Software Engineering (AI / ML)",
+            "similarity": 0.7269,
+            "best_matching_prototype": "AI Engineer"
+          },
+          {
+            "family_id": "software_engineering_fullstack_web",
+            "family_name": "Software Engineering (Fullstack / Web)",
+            "similarity": 0.6065,
+            "best_matching_prototype": "Fullstack Engineer"
+          },
+          {
+            "family_id": "software_engineering_backend",
+            "family_name": "Software Engineering (Backend)",
+            "similarity": 0.4917,
+            "best_matching_prototype": "Software Engineer (Backend)"
+          }
+        ],
+        "true_family": "Software Engineering (Fullstack / Web)",
+        "is_top1_correct": false,
+        "is_top3_correct": true
+      },
+      {
+        "raw_title": "Functional Consultant – ORIS Business Suite",
+        "cleaned_title": "Functional Consultant – ORIS Business Suite",
+        "status": "LOW_CONFIDENCE_REVIEW",
+        "assigned_family": "Needs Review",
+        "top1_family": "Enterprise Applications (ERP / CRM)",
+        "top1_similarity": 0.4723,
+        "top1_prototype": "CRM Functional Consultant",
+        "top2_family": "Business Analysis",
+        "top2_similarity": 0.4417,
+        "margin": 0.0306,
+        "decision_note": "Điểm tương đồng cao nhất (0.4723) dưới ngưỡng tin cậy (0.58). Có thể là chức danh mới chưa có trong từ điển chuẩn. Cần người rà soát.",
+        "top_candidates": [
+          {
+            "family_id": "enterprise_applications_erp_crm",
+            "family_name": "Enterprise Applications (ERP / CRM)",
+            "similarity": 0.4723,
+            "best_matching_prototype": "CRM Functional Consultant"
+          },
+          {
+            "family_id": "business_analysis",
+            "family_name": "Business Analysis",
+            "similarity": 0.4417,
+            "best_matching_prototype": "IT Business Analyst"
+          },
+          {
+            "family_id": "it_operations_integration_services",
+            "family_name": "IT Operations & Integration Services",
+            "similarity": 0.3483,
+            "best_matching_prototype": "Data Services Consultant"
+          }
+        ],
+        "true_family": "Enterprise Applications (ERP / CRM)",
+        "is_top1_correct": true,
+        "is_top3_correct": true
+      },
+      {
+        "raw_title": "IT Business Analyst - Chuyên viên phân tích nghiệp vụ",
+        "cleaned_title": "IT Business Analyst - phân tích nghiệp vụ",
+        "status": "AUTO_ASSIGNED",
+        "assigned_family": "Business Analysis",
+        "top1_family": "Business Analysis",
+        "top1_similarity": 0.6228,
+        "top1_prototype": "Business Analyst",
+        "top2_family": "IT Project Management / Product Management",
+        "top2_similarity": 0.4611,
+        "margin": 0.1617,
+        "decision_note": "Độ tin cậy cao (0.6228 >= 0.58) và cách biệt rõ ràng so với vị trí 2 (margin=0.1617 >= 0.04). Tự động gán.",
+        "top_candidates": [
+          {
+            "family_id": "business_analysis",
+            "family_name": "Business Analysis",
+            "similarity": 0.6228,
+            "best_matching_prototype": "Business Analyst"
+          },
+          {
+            "family_id": "it_project_management",
+            "family_name": "IT Project Management / Product Management",
+            "similarity": 0.4611,
+            "best_matching_prototype": "IT Project Manager"
+          },
+          {
+            "family_id": "it_support_systems_operations",
+            "family_name": "IT Support & Systems Operations",
+            "similarity": 0.4084,
+            "best_matching_prototype": "IT Support / Helpdesk"
+          }
+        ],
+        "true_family": "Business Analysis",
+        "is_top1_correct": true,
+        "is_top3_correct": true
+      },
+      {
+        "raw_title": "IT Business Analyst / QA Specialist (Biết tiếng Hàn)",
+        "cleaned_title": "IT Business Analyst / QA Specialist (Biết tiếng Hàn)",
+        "status": "AUTO_ASSIGNED",
+        "assigned_family": "Business Analysis",
+        "top1_family": "Business Analysis",
+        "top1_similarity": 0.6095,
+        "top1_prototype": "IT Business Analyst",
+        "top2_family": "Software Testing / QA / QC",
+        "top2_similarity": 0.5122,
+        "margin": 0.0973,
+        "decision_note": "Độ tin cậy cao (0.6095 >= 0.58) và cách biệt rõ ràng so với vị trí 2 (margin=0.0973 >= 0.04). Tự động gán.",
+        "top_candidates": [
+          {
+            "family_id": "business_analysis",
+            "family_name": "Business Analysis",
+            "similarity": 0.6095,
+            "best_matching_prototype": "IT Business Analyst"
+          },
+          {
+            "family_id": "software_testing_qa_qc",
+            "family_name": "Software Testing / QA / QC",
+            "similarity": 0.5122,
+            "best_matching_prototype": "Quality Assurance (QA) Engineer"
+          },
+          {
+            "family_id": "it_project_management",
+            "family_name": "IT Project Management / Product Management",
+            "similarity": 0.4058,
+            "best_matching_prototype": "IT Project Manager"
+          }
+        ],
+        "true_family": "Business Analysis",
+        "is_top1_correct": true,
+        "is_top3_correct": true
+      },
+      {
+        "raw_title": "IT Senior Staff",
+        "cleaned_title": "IT Staff",
+        "status": "AUTO_ASSIGNED",
+        "assigned_family": "IT Support & Systems Operations",
+        "top1_family": "IT Support & Systems Operations",
+        "top1_similarity": 0.7619,
+        "top1_prototype": "IT Support / Helpdesk",
+        "top2_family": "Business Analysis",
+        "top2_similarity": 0.6769,
+        "margin": 0.085,
+        "decision_note": "Độ tin cậy cao (0.7619 >= 0.58) và cách biệt rõ ràng so với vị trí 2 (margin=0.0850 >= 0.04). Tự động gán.",
+        "top_candidates": [
+          {
+            "family_id": "it_support_systems_operations",
+            "family_name": "IT Support & Systems Operations",
+            "similarity": 0.7619,
+            "best_matching_prototype": "IT Support / Helpdesk"
+          },
+          {
+            "family_id": "business_analysis",
+            "family_name": "Business Analysis",
+            "similarity": 0.6769,
+            "best_matching_prototype": "IT Business Analyst"
+          },
+          {
+            "family_id": "cloud_systems_network_infrastructure",
+            "family_name": "Cloud, Systems & Network Infrastructure",
+            "similarity": 0.6722,
+            "best_matching_prototype": "Systems Administrator"
+          }
+        ],
+        "true_family": "IT Support & Systems Operations",
+        "is_top1_correct": true,
+        "is_top3_correct": true
+      },
+      {
+        "raw_title": "IT Supervisor/ Giám sát IT – Resort/Khách sạn",
+        "cleaned_title": "IT Supervisor/ Giám sát IT – Resort/Khách sạn",
+        "status": "LOW_CONFIDENCE_REVIEW",
+        "assigned_family": "Needs Review",
+        "top1_family": "IT Support & Systems Operations",
+        "top1_similarity": 0.4672,
+        "top1_prototype": "IT Support / Helpdesk",
+        "top2_family": "IT Project Management / Product Management",
+        "top2_similarity": 0.4307,
+        "margin": 0.0365,
+        "decision_note": "Điểm tương đồng cao nhất (0.4672) dưới ngưỡng tin cậy (0.58). Có thể là chức danh mới chưa có trong từ điển chuẩn. Cần người rà soát.",
+        "top_candidates": [
+          {
+            "family_id": "it_support_systems_operations",
+            "family_name": "IT Support & Systems Operations",
+            "similarity": 0.4672,
+            "best_matching_prototype": "IT Support / Helpdesk"
+          },
+          {
+            "family_id": "it_project_management",
+            "family_name": "IT Project Management / Product Management",
+            "similarity": 0.4307,
+            "best_matching_prototype": "IT Project Manager"
+          },
+          {
+            "family_id": "cloud_systems_network_infrastructure",
+            "family_name": "Cloud, Systems & Network Infrastructure",
+            "similarity": 0.3942,
+            "best_matching_prototype": "Systems Administrator"
+          }
+        ],
+        "true_family": "IT Support & Systems Operations",
+        "is_top1_correct": true,
+        "is_top3_correct": true
+      },
+      {
+        "raw_title": "IT Systems Administrator",
+        "cleaned_title": "IT Systems Administrator",
+        "status": "AUTO_ASSIGNED",
+        "assigned_family": "Cloud, Systems & Network Infrastructure",
+        "top1_family": "Cloud, Systems & Network Infrastructure",
+        "top1_similarity": 0.9417,
+        "top1_prototype": "Systems Administrator",
+        "top2_family": "IT Support & Systems Operations",
+        "top2_similarity": 0.7301,
+        "margin": 0.2116,
+        "decision_note": "Độ tin cậy cao (0.9417 >= 0.58) và cách biệt rõ ràng so với vị trí 2 (margin=0.2116 >= 0.04). Tự động gán.",
+        "top_candidates": [
+          {
+            "family_id": "cloud_systems_network_infrastructure",
+            "family_name": "Cloud, Systems & Network Infrastructure",
+            "similarity": 0.9417,
+            "best_matching_prototype": "Systems Administrator"
+          },
+          {
+            "family_id": "it_support_systems_operations",
+            "family_name": "IT Support & Systems Operations",
+            "similarity": 0.7301,
+            "best_matching_prototype": "IT Support / Helpdesk"
+          },
+          {
+            "family_id": "database_administration",
+            "family_name": "Database Administration",
+            "similarity": 0.6245,
+            "best_matching_prototype": "Database Administrator"
+          }
+        ],
+        "true_family": "Cloud, Systems & Network Infrastructure",
+        "is_top1_correct": true,
+        "is_top3_correct": true
+      },
+      {
+        "raw_title": "Java Backend Developer",
+        "cleaned_title": "Java Backend Developer",
+        "status": "AUTO_ASSIGNED",
+        "assigned_family": "Software Engineering (Backend)",
+        "top1_family": "Software Engineering (Backend)",
+        "top1_similarity": 0.8327,
+        "top1_prototype": "Backend Developer",
+        "top2_family": "Software Engineering (Fullstack / Web)",
+        "top2_similarity": 0.6456,
+        "margin": 0.1871,
+        "decision_note": "Độ tin cậy cao (0.8327 >= 0.58) và cách biệt rõ ràng so với vị trí 2 (margin=0.1871 >= 0.04). Tự động gán.",
+        "top_candidates": [
+          {
+            "family_id": "software_engineering_backend",
+            "family_name": "Software Engineering (Backend)",
+            "similarity": 0.8327,
+            "best_matching_prototype": "Backend Developer"
+          },
+          {
+            "family_id": "software_engineering_fullstack_web",
+            "family_name": "Software Engineering (Fullstack / Web)",
+            "similarity": 0.6456,
+            "best_matching_prototype": "Fullstack Engineer"
+          },
+          {
+            "family_id": "data_engineering",
+            "family_name": "Data Engineering",
+            "similarity": 0.5104,
+            "best_matching_prototype": "Data Engineer"
+          }
+        ],
+        "true_family": "Software Engineering (Backend)",
+        "is_top1_correct": true,
+        "is_top3_correct": true
+      },
+      {
+        "raw_title": "Junior MarTech Solutions Consultant",
+        "cleaned_title": "MarTech Solutions Consultant",
+        "status": "LOW_CONFIDENCE_REVIEW",
+        "assigned_family": "Needs Review",
+        "top1_family": "Enterprise Applications (ERP / CRM)",
+        "top1_similarity": 0.5256,
+        "top1_prototype": "CRM Functional Consultant",
+        "top2_family": "IT Architecture & Strategy",
+        "top2_similarity": 0.3822,
+        "margin": 0.1434,
+        "decision_note": "Điểm tương đồng cao nhất (0.5256) dưới ngưỡng tin cậy (0.58). Có thể là chức danh mới chưa có trong từ điển chuẩn. Cần người rà soát.",
+        "top_candidates": [
+          {
+            "family_id": "enterprise_applications_erp_crm",
+            "family_name": "Enterprise Applications (ERP / CRM)",
+            "similarity": 0.5256,
+            "best_matching_prototype": "CRM Functional Consultant"
+          },
+          {
+            "family_id": "it_architecture_strategy",
+            "family_name": "IT Architecture & Strategy",
+            "similarity": 0.3822,
+            "best_matching_prototype": "Solution Architect"
+          },
+          {
+            "family_id": "it_operations_integration_services",
+            "family_name": "IT Operations & Integration Services",
+            "similarity": 0.3608,
+            "best_matching_prototype": "Data Services Consultant"
+          }
+        ],
+        "true_family": "Enterprise Applications (ERP / CRM)",
+        "is_top1_correct": true,
+        "is_top3_correct": true
+      },
+      {
+        "raw_title": "Junior/Middle/Senior IT Business Analyst (LOS, CRM System)",
+        "cleaned_title": "IT Business Analyst (LOS, CRM System)",
+        "status": "AMBIGUOUS_REVIEW",
+        "assigned_family": "Needs Review",
+        "top1_family": "Business Analysis",
+        "top1_similarity": 0.7229,
+        "top1_prototype": "IT Business Analyst",
+        "top2_family": "Enterprise Applications (ERP / CRM)",
+        "top2_similarity": 0.6847,
+        "margin": 0.0382,
+        "decision_note": "Điểm tương đồng cao (0.7229) nhưng cách biệt giữa Top 1 (Business Analysis) và Top 2 (Enterprise Applications (ERP / CRM)) quá hẹp (0.0382 < 0.04). Cần người rà soát chọn 1 trong 2.",
+        "top_candidates": [
+          {
+            "family_id": "business_analysis",
+            "family_name": "Business Analysis",
+            "similarity": 0.7229,
+            "best_matching_prototype": "IT Business Analyst"
+          },
+          {
+            "family_id": "enterprise_applications_erp_crm",
+            "family_name": "Enterprise Applications (ERP / CRM)",
+            "similarity": 0.6847,
+            "best_matching_prototype": "CRM Functional Consultant"
+          },
+          {
+            "family_id": "it_project_management",
+            "family_name": "IT Project Management / Product Management",
+            "similarity": 0.4187,
+            "best_matching_prototype": "IT Project Manager"
+          }
+        ],
+        "true_family": "Business Analysis",
+        "is_top1_correct": true,
+        "is_top3_correct": true
+      },
+      {
+        "raw_title": "Junior/Senior Software Backend (.NET, dotnet, netcore)",
+        "cleaned_title": "Software Backend (.NET, dotnet, netcore)",
+        "status": "LOW_CONFIDENCE_REVIEW",
+        "assigned_family": "Needs Review",
+        "top1_family": "Software Engineering (Backend)",
+        "top1_similarity": 0.5368,
+        "top1_prototype": "Backend Developer",
+        "top2_family": "Software Engineering (Fullstack / Web)",
+        "top2_similarity": 0.4109,
+        "margin": 0.1259,
+        "decision_note": "Điểm tương đồng cao nhất (0.5368) dưới ngưỡng tin cậy (0.58). Có thể là chức danh mới chưa có trong từ điển chuẩn. Cần người rà soát.",
+        "top_candidates": [
+          {
+            "family_id": "software_engineering_backend",
+            "family_name": "Software Engineering (Backend)",
+            "similarity": 0.5368,
+            "best_matching_prototype": "Backend Developer"
+          },
+          {
+            "family_id": "software_engineering_fullstack_web",
+            "family_name": "Software Engineering (Fullstack / Web)",
+            "similarity": 0.4109,
+            "best_matching_prototype": "Frontend & Backend Web Developer"
+          },
+          {
+            "family_id": "it_support_systems_operations",
+            "family_name": "IT Support & Systems Operations",
+            "similarity": 0.3528,
+            "best_matching_prototype": "Chuyên viên triển khai và bảo trì phần mềm"
+          }
+        ],
+        "true_family": "Software Engineering (Backend)",
+        "is_top1_correct": true,
+        "is_top3_correct": true
+      },
+      {
+        "raw_title": "KOREAN IT INTERPRETER",
+        "cleaned_title": "KOREAN IT INTERPRETER",
+        "status": "LOW_CONFIDENCE_REVIEW",
+        "assigned_family": "Needs Review",
+        "top1_family": "IT Support & Systems Operations",
+        "top1_similarity": 0.4465,
+        "top1_prototype": "Nhân viên hỗ trợ kỹ thuật IT",
+        "top2_family": "Business Analysis",
+        "top2_similarity": 0.3569,
+        "margin": 0.0896,
+        "decision_note": "Điểm tương đồng cao nhất (0.4465) dưới ngưỡng tin cậy (0.58). Có thể là chức danh mới chưa có trong từ điển chuẩn. Cần người rà soát.",
+        "top_candidates": [
+          {
+            "family_id": "it_support_systems_operations",
+            "family_name": "IT Support & Systems Operations",
+            "similarity": 0.4465,
+            "best_matching_prototype": "Nhân viên hỗ trợ kỹ thuật IT"
+          },
+          {
+            "family_id": "business_analysis",
+            "family_name": "Business Analysis",
+            "similarity": 0.3569,
+            "best_matching_prototype": "IT Business Analyst"
+          },
+          {
+            "family_id": "it_project_management",
+            "family_name": "IT Project Management / Product Management",
+            "similarity": 0.3095,
+            "best_matching_prototype": "IT Project Manager"
+          }
+        ],
+        "true_family": "IT Translation / Interpretation",
+        "is_top1_correct": false,
+        "is_top3_correct": false
+      },
+      {
+        "raw_title": "Kiến trúc sư giải pháp CNTT",
+        "cleaned_title": "Kiến trúc sư giải pháp CNTT",
+        "status": "AUTO_ASSIGNED",
+        "assigned_family": "IT Sales & Presales",
+        "top1_family": "IT Sales & Presales",
+        "top1_similarity": 0.6051,
+        "top1_prototype": "Chuyên viên tư vấn giải pháp Presale CNTT",
+        "top2_family": "IT Architecture & Strategy",
+        "top2_similarity": 0.5537,
+        "margin": 0.0514,
+        "decision_note": "Độ tin cậy cao (0.6051 >= 0.58) và cách biệt rõ ràng so với vị trí 2 (margin=0.0514 >= 0.04). Tự động gán.",
+        "top_candidates": [
+          {
+            "family_id": "it_sales_presales",
+            "family_name": "IT Sales & Presales",
+            "similarity": 0.6051,
+            "best_matching_prototype": "Chuyên viên tư vấn giải pháp Presale CNTT"
+          },
+          {
+            "family_id": "it_architecture_strategy",
+            "family_name": "IT Architecture & Strategy",
+            "similarity": 0.5537,
+            "best_matching_prototype": "Solution Architect"
+          },
+          {
+            "family_id": "cloud_systems_network_infrastructure",
+            "family_name": "Cloud, Systems & Network Infrastructure",
+            "similarity": 0.358,
+            "best_matching_prototype": "Kỹ sư hạ tầng Cloud và mạng"
+          }
+        ],
+        "true_family": "IT Architecture & Strategy",
+        "is_top1_correct": false,
+        "is_top3_correct": true
+      },
+      {
+        "raw_title": "Kỹ Sư Dữ Liệu (Data Engineer)",
+        "cleaned_title": "Kỹ Sư Dữ Liệu (Data Engineer)",
+        "status": "AUTO_ASSIGNED",
+        "assigned_family": "Data Engineering",
+        "top1_family": "Data Engineering",
+        "top1_similarity": 0.8712,
+        "top1_prototype": "Kỹ sư dữ liệu",
+        "top2_family": "IT Operations & Integration Services",
+        "top2_similarity": 0.6148,
+        "margin": 0.2564,
+        "decision_note": "Độ tin cậy cao (0.8712 >= 0.58) và cách biệt rõ ràng so với vị trí 2 (margin=0.2564 >= 0.04). Tự động gán.",
+        "top_candidates": [
+          {
+            "family_id": "data_engineering",
+            "family_name": "Data Engineering",
+            "similarity": 0.8712,
+            "best_matching_prototype": "Kỹ sư dữ liệu"
+          },
+          {
+            "family_id": "it_operations_integration_services",
+            "family_name": "IT Operations & Integration Services",
+            "similarity": 0.6148,
+            "best_matching_prototype": "Data Services Specialist"
+          },
+          {
+            "family_id": "database_administration",
+            "family_name": "Database Administration",
+            "similarity": 0.5565,
+            "best_matching_prototype": "Quản trị viên dữ liệu và cơ sở dữ liệu"
+          }
+        ],
+        "true_family": "Data Engineering",
+        "is_top1_correct": true,
+        "is_top3_correct": true
+      },
+      {
+        "raw_title": "Kỹ sư Presale giải pháp Công nghệ thông tin (khối Chính phủ)",
+        "cleaned_title": "Kỹ sư Presale giải pháp Công nghệ thông tin (khối Chính phủ)",
+        "status": "AUTO_ASSIGNED",
+        "assigned_family": "IT Sales & Presales",
+        "top1_family": "IT Sales & Presales",
+        "top1_similarity": 0.7782,
+        "top1_prototype": "IT Presales Engineer",
+        "top2_family": "Enterprise Applications (ERP / CRM)",
+        "top2_similarity": 0.4007,
+        "margin": 0.3775,
+        "decision_note": "Độ tin cậy cao (0.7782 >= 0.58) và cách biệt rõ ràng so với vị trí 2 (margin=0.3775 >= 0.04). Tự động gán.",
+        "top_candidates": [
+          {
+            "family_id": "it_sales_presales",
+            "family_name": "IT Sales & Presales",
+            "similarity": 0.7782,
+            "best_matching_prototype": "IT Presales Engineer"
+          },
+          {
+            "family_id": "enterprise_applications_erp_crm",
+            "family_name": "Enterprise Applications (ERP / CRM)",
+            "similarity": 0.4007,
+            "best_matching_prototype": "Chuyên viên tư vấn giải pháp ERP"
+          },
+          {
+            "family_id": "it_architecture_strategy",
+            "family_name": "IT Architecture & Strategy",
+            "similarity": 0.3557,
+            "best_matching_prototype": "Solution Architect"
+          }
+        ],
+        "true_family": "IT Sales & Presales",
+        "is_top1_correct": true,
+        "is_top3_correct": true
+      },
+      {
+        "raw_title": "Kỹ sư Quản lý Chất lượng Phần mềm",
+        "cleaned_title": "Kỹ sư Quản lý Chất lượng Phần mềm",
+        "status": "AUTO_ASSIGNED",
+        "assigned_family": "Software Testing / QA / QC",
+        "top1_family": "Software Testing / QA / QC",
+        "top1_similarity": 0.6673,
+        "top1_prototype": "Kỹ sư kiểm thử phần mềm",
+        "top2_family": "Business Analysis",
+        "top2_similarity": 0.5823,
+        "margin": 0.085,
+        "decision_note": "Độ tin cậy cao (0.6673 >= 0.58) và cách biệt rõ ràng so với vị trí 2 (margin=0.0850 >= 0.04). Tự động gán.",
+        "top_candidates": [
+          {
+            "family_id": "software_testing_qa_qc",
+            "family_name": "Software Testing / QA / QC",
+            "similarity": 0.6673,
+            "best_matching_prototype": "Kỹ sư kiểm thử phần mềm"
+          },
+          {
+            "family_id": "business_analysis",
+            "family_name": "Business Analysis",
+            "similarity": 0.5823,
+            "best_matching_prototype": "Chuyên viên phân tích nghiệp vụ phần mềm"
+          },
+          {
+            "family_id": "software_engineering_backend",
+            "family_name": "Software Engineering (Backend)",
+            "similarity": 0.5658,
+            "best_matching_prototype": "Kỹ sư phát triển hệ thống phần mềm"
+          }
+        ],
+        "true_family": "Software Testing / QA / QC",
+        "is_top1_correct": true,
+        "is_top3_correct": true
+      },
+      {
+        "raw_title": "Kỹ sư công nghệ thông tin - Quản trị viên phần mềm và dữ liệu (03)",
+        "cleaned_title": "Kỹ sư công nghệ thông tin - Quản trị viên phần mềm và dữ liệu (03)",
+        "status": "LOW_CONFIDENCE_REVIEW",
+        "assigned_family": "Needs Review",
+        "top1_family": "Database Administration",
+        "top1_similarity": 0.5711,
+        "top1_prototype": "Quản trị viên dữ liệu và cơ sở dữ liệu",
+        "top2_family": "IT Support & Systems Operations",
+        "top2_similarity": 0.5149,
+        "margin": 0.0562,
+        "decision_note": "Điểm tương đồng cao nhất (0.5711) dưới ngưỡng tin cậy (0.58). Có thể là chức danh mới chưa có trong từ điển chuẩn. Cần người rà soát.",
+        "top_candidates": [
+          {
+            "family_id": "database_administration",
+            "family_name": "Database Administration",
+            "similarity": 0.5711,
+            "best_matching_prototype": "Quản trị viên dữ liệu và cơ sở dữ liệu"
+          },
+          {
+            "family_id": "it_support_systems_operations",
+            "family_name": "IT Support & Systems Operations",
+            "similarity": 0.5149,
+            "best_matching_prototype": "Chuyên viên triển khai và bảo trì phần mềm"
+          },
+          {
+            "family_id": "software_engineering_backend",
+            "family_name": "Software Engineering (Backend)",
+            "similarity": 0.4987,
+            "best_matching_prototype": "Kỹ sư phát triển hệ thống phần mềm"
+          }
+        ],
+        "true_family": "Database Administration",
+        "is_top1_correct": true,
+        "is_top3_correct": true
+      },
+      {
+        "raw_title": "Kỹ sư dữ liệu (Data Engineer)",
+        "cleaned_title": "Kỹ sư dữ liệu (Data Engineer)",
+        "status": "AUTO_ASSIGNED",
+        "assigned_family": "Data Engineering",
+        "top1_family": "Data Engineering",
+        "top1_similarity": 0.9097,
+        "top1_prototype": "Kỹ sư dữ liệu",
+        "top2_family": "IT Operations & Integration Services",
+        "top2_similarity": 0.611,
+        "margin": 0.2987,
+        "decision_note": "Độ tin cậy cao (0.9097 >= 0.58) và cách biệt rõ ràng so với vị trí 2 (margin=0.2987 >= 0.04). Tự động gán.",
+        "top_candidates": [
+          {
+            "family_id": "data_engineering",
+            "family_name": "Data Engineering",
+            "similarity": 0.9097,
+            "best_matching_prototype": "Kỹ sư dữ liệu"
+          },
+          {
+            "family_id": "it_operations_integration_services",
+            "family_name": "IT Operations & Integration Services",
+            "similarity": 0.611,
+            "best_matching_prototype": "Data Services Specialist"
+          },
+          {
+            "family_id": "database_administration",
+            "family_name": "Database Administration",
+            "similarity": 0.5806,
+            "best_matching_prototype": "Quản trị viên dữ liệu và cơ sở dữ liệu"
+          }
+        ],
+        "true_family": "Data Engineering",
+        "is_top1_correct": true,
+        "is_top3_correct": true
+      },
+      {
+        "raw_title": "Kỹ sư lập trình Backend (Java)",
+        "cleaned_title": "Kỹ sư lập trình Backend (Java)",
+        "status": "AUTO_ASSIGNED",
+        "assigned_family": "Software Engineering (Backend)",
+        "top1_family": "Software Engineering (Backend)",
+        "top1_similarity": 0.7567,
+        "top1_prototype": "Backend Developer",
+        "top2_family": "Software Engineering (Fullstack / Web)",
+        "top2_similarity": 0.6279,
+        "margin": 0.1288,
+        "decision_note": "Độ tin cậy cao (0.7567 >= 0.58) và cách biệt rõ ràng so với vị trí 2 (margin=0.1288 >= 0.04). Tự động gán.",
+        "top_candidates": [
+          {
+            "family_id": "software_engineering_backend",
+            "family_name": "Software Engineering (Backend)",
+            "similarity": 0.7567,
+            "best_matching_prototype": "Backend Developer"
+          },
+          {
+            "family_id": "software_engineering_fullstack_web",
+            "family_name": "Software Engineering (Fullstack / Web)",
+            "similarity": 0.6279,
+            "best_matching_prototype": "Fullstack Engineer"
+          },
+          {
+            "family_id": "data_engineering",
+            "family_name": "Data Engineering",
+            "similarity": 0.5043,
+            "best_matching_prototype": "Data Engineer"
+          }
+        ],
+        "true_family": "Software Engineering (Backend)",
+        "is_top1_correct": true,
+        "is_top3_correct": true
+      },
+      {
+        "raw_title": "Lập trình viên (.NET Full-stack Developer)",
+        "cleaned_title": "Lập trình viên (.NET Full-stack Developer)",
+        "status": "AUTO_ASSIGNED",
+        "assigned_family": "Software Engineering (Fullstack / Web)",
+        "top1_family": "Software Engineering (Fullstack / Web)",
+        "top1_similarity": 0.695,
+        "top1_prototype": "Lập trình viên Full-stack",
+        "top2_family": "Enterprise Applications (ERP / CRM)",
+        "top2_similarity": 0.5298,
+        "margin": 0.1652,
+        "decision_note": "Độ tin cậy cao (0.6950 >= 0.58) và cách biệt rõ ràng so với vị trí 2 (margin=0.1652 >= 0.04). Tự động gán.",
+        "top_candidates": [
+          {
+            "family_id": "software_engineering_fullstack_web",
+            "family_name": "Software Engineering (Fullstack / Web)",
+            "similarity": 0.695,
+            "best_matching_prototype": "Lập trình viên Full-stack"
+          },
+          {
+            "family_id": "enterprise_applications_erp_crm",
+            "family_name": "Enterprise Applications (ERP / CRM)",
+            "similarity": 0.5298,
+            "best_matching_prototype": "ERP Application Developer"
+          },
+          {
+            "family_id": "software_engineering_backend",
+            "family_name": "Software Engineering (Backend)",
+            "similarity": 0.5039,
+            "best_matching_prototype": "Backend Developer"
+          }
+        ],
+        "true_family": "Software Engineering (Fullstack / Web)",
+        "is_top1_correct": true,
+        "is_top3_correct": true
+      },
+      {
+        "raw_title": "Mobile App Executive Officer",
+        "cleaned_title": "Mobile App Executive Officer",
+        "status": "LOW_CONFIDENCE_REVIEW",
+        "assigned_family": "Needs Review",
+        "top1_family": "IT Architecture & Strategy",
+        "top1_similarity": 0.2604,
+        "top1_prototype": "Chuyên gia chiến lược công nghệ",
+        "top2_family": "IT Operations & Integration Services",
+        "top2_similarity": 0.2458,
+        "margin": 0.0146,
+        "decision_note": "Điểm tương đồng cao nhất (0.2604) dưới ngưỡng tin cậy (0.58). Có thể là chức danh mới chưa có trong từ điển chuẩn. Cần người rà soát.",
+        "top_candidates": [
+          {
+            "family_id": "it_architecture_strategy",
+            "family_name": "IT Architecture & Strategy",
+            "similarity": 0.2604,
+            "best_matching_prototype": "Chuyên gia chiến lược công nghệ"
+          },
+          {
+            "family_id": "it_operations_integration_services",
+            "family_name": "IT Operations & Integration Services",
+            "similarity": 0.2458,
+            "best_matching_prototype": "Chuyên viên vận hành dịch vụ kỹ thuật số"
+          },
+          {
+            "family_id": "business_analysis",
+            "family_name": "Business Analysis",
+            "similarity": 0.2161,
+            "best_matching_prototype": "Chuyên viên phân tích nghiệp vụ phần mềm"
+          }
+        ],
+        "true_family": "IT Project Management / Product Management",
+        "is_top1_correct": false,
+        "is_top3_correct": false
+      },
+      {
+        "raw_title": "Mobile Game QA",
+        "cleaned_title": "Mobile Game QA",
+        "status": "LOW_CONFIDENCE_REVIEW",
+        "assigned_family": "Needs Review",
+        "top1_family": "Software Testing / QA / QC",
+        "top1_similarity": 0.5263,
+        "top1_prototype": "Quality Assurance (QA) Engineer",
+        "top2_family": "Information Security / Cybersecurity",
+        "top2_similarity": 0.3139,
+        "margin": 0.2124,
+        "decision_note": "Điểm tương đồng cao nhất (0.5263) dưới ngưỡng tin cậy (0.58). Có thể là chức danh mới chưa có trong từ điển chuẩn. Cần người rà soát.",
+        "top_candidates": [
+          {
+            "family_id": "software_testing_qa_qc",
+            "family_name": "Software Testing / QA / QC",
+            "similarity": 0.5263,
+            "best_matching_prototype": "Quality Assurance (QA) Engineer"
+          },
+          {
+            "family_id": "information_security_cybersecurity",
+            "family_name": "Information Security / Cybersecurity",
+            "similarity": 0.3139,
+            "best_matching_prototype": "Penetration Tester (Pentest)"
+          },
+          {
+            "family_id": "business_analysis",
+            "family_name": "Business Analysis",
+            "similarity": 0.2675,
+            "best_matching_prototype": "Chuyên viên phân tích nghiệp vụ phần mềm"
+          }
+        ],
+        "true_family": "Software Testing / QA / QC",
+        "is_top1_correct": true,
+        "is_top3_correct": true
+      },
+      {
+        "raw_title": "NHÂN VIÊN IT",
+        "cleaned_title": "IT",
+        "status": "AMBIGUOUS_REVIEW",
+        "assigned_family": "Needs Review",
+        "top1_family": "IT Support & Systems Operations",
+        "top1_similarity": 0.7231,
+        "top1_prototype": "IT Support / Helpdesk",
+        "top2_family": "Business Analysis",
+        "top2_similarity": 0.7154,
+        "margin": 0.0077,
+        "decision_note": "Điểm tương đồng cao (0.7231) nhưng cách biệt giữa Top 1 (IT Support & Systems Operations) và Top 2 (Business Analysis) quá hẹp (0.0077 < 0.04). Cần người rà soát chọn 1 trong 2.",
+        "top_candidates": [
+          {
+            "family_id": "it_support_systems_operations",
+            "family_name": "IT Support & Systems Operations",
+            "similarity": 0.7231,
+            "best_matching_prototype": "IT Support / Helpdesk"
+          },
+          {
+            "family_id": "business_analysis",
+            "family_name": "Business Analysis",
+            "similarity": 0.7154,
+            "best_matching_prototype": "IT Business Analyst"
+          },
+          {
+            "family_id": "it_project_management",
+            "family_name": "IT Project Management / Product Management",
+            "similarity": 0.6985,
+            "best_matching_prototype": "IT Project Manager"
+          }
+        ],
+        "true_family": "IT Support & Systems Operations",
+        "is_top1_correct": true,
+        "is_top3_correct": true
+      },
+      {
+        "raw_title": "NHÂN VIÊN TRIỂN KHAI BẢO TRÌ PHẦN MỀM",
+        "cleaned_title": "TRIỂN KHAI BẢO TRÌ PHẦN MỀM",
+        "status": "LOW_CONFIDENCE_REVIEW",
+        "assigned_family": "Needs Review",
+        "top1_family": "Business Analysis",
+        "top1_similarity": 0.3454,
+        "top1_prototype": "Business Analyst",
+        "top2_family": "Software Engineering (Fullstack / Web)",
+        "top2_similarity": 0.3185,
+        "margin": 0.0269,
+        "decision_note": "Điểm tương đồng cao nhất (0.3454) dưới ngưỡng tin cậy (0.58). Có thể là chức danh mới chưa có trong từ điển chuẩn. Cần người rà soát.",
+        "top_candidates": [
+          {
+            "family_id": "business_analysis",
+            "family_name": "Business Analysis",
+            "similarity": 0.3454,
+            "best_matching_prototype": "Business Analyst"
+          },
+          {
+            "family_id": "software_engineering_fullstack_web",
+            "family_name": "Software Engineering (Fullstack / Web)",
+            "similarity": 0.3185,
+            "best_matching_prototype": "Fullstack Engineer"
+          },
+          {
+            "family_id": "software_engineering_backend",
+            "family_name": "Software Engineering (Backend)",
+            "similarity": 0.308,
+            "best_matching_prototype": "Lập trình viên Backend"
+          }
+        ],
+        "true_family": "IT Support & Systems Operations",
+        "is_top1_correct": false,
+        "is_top3_correct": false
+      },
+      {
+        "raw_title": "Nhân Viên Hành Chính: Gán Nhãn Dữ Liệu Hình Anh AI - Không Yêu Cầu Kinh Nghiệm",
+        "cleaned_title": "Hành Chính: Gán Nhãn Dữ Liệu Hình Anh AI - Không Yêu Cầu Kinh Nghiệm",
+        "status": "AUTO_ASSIGNED",
+        "assigned_family": "Software Engineering (AI / ML)",
+        "top1_family": "Software Engineering (AI / ML)",
+        "top1_similarity": 0.5986,
+        "top1_prototype": "AI Engineer",
+        "top2_family": "Software Engineering (Fullstack / Web)",
+        "top2_similarity": 0.3529,
+        "margin": 0.2457,
+        "decision_note": "Độ tin cậy cao (0.5986 >= 0.58) và cách biệt rõ ràng so với vị trí 2 (margin=0.2457 >= 0.04). Tự động gán.",
+        "top_candidates": [
+          {
+            "family_id": "software_engineering_ai_ml",
+            "family_name": "Software Engineering (AI / ML)",
+            "similarity": 0.5986,
+            "best_matching_prototype": "AI Engineer"
+          },
+          {
+            "family_id": "software_engineering_fullstack_web",
+            "family_name": "Software Engineering (Fullstack / Web)",
+            "similarity": 0.3529,
+            "best_matching_prototype": "Fullstack Engineer"
+          },
+          {
+            "family_id": "software_engineering_backend",
+            "family_name": "Software Engineering (Backend)",
+            "similarity": 0.327,
+            "best_matching_prototype": "Lập trình viên Backend"
+          }
+        ],
+        "true_family": "Data Annotation",
+        "is_top1_correct": false,
+        "is_top3_correct": false
+      },
+      {
+        "raw_title": "Odoo Developer",
+        "cleaned_title": "Odoo Developer",
+        "status": "AUTO_ASSIGNED",
+        "assigned_family": "Enterprise Applications (ERP / CRM)",
+        "top1_family": "Enterprise Applications (ERP / CRM)",
+        "top1_similarity": 0.7934,
+        "top1_prototype": "Odoo ERP Developer",
+        "top2_family": "Software Engineering (Fullstack / Web)",
+        "top2_similarity": 0.4789,
+        "margin": 0.3145,
+        "decision_note": "Độ tin cậy cao (0.7934 >= 0.58) và cách biệt rõ ràng so với vị trí 2 (margin=0.3145 >= 0.04). Tự động gán.",
+        "top_candidates": [
+          {
+            "family_id": "enterprise_applications_erp_crm",
+            "family_name": "Enterprise Applications (ERP / CRM)",
+            "similarity": 0.7934,
+            "best_matching_prototype": "Odoo ERP Developer"
+          },
+          {
+            "family_id": "software_engineering_fullstack_web",
+            "family_name": "Software Engineering (Fullstack / Web)",
+            "similarity": 0.4789,
+            "best_matching_prototype": "Lập trình viên Full-stack"
+          },
+          {
+            "family_id": "software_engineering_backend",
+            "family_name": "Software Engineering (Backend)",
+            "similarity": 0.4584,
+            "best_matching_prototype": "Backend Developer"
+          }
+        ],
+        "true_family": "Enterprise Applications (ERP / CRM)",
+        "is_top1_correct": true,
+        "is_top3_correct": true
+      },
+      {
+        "raw_title": "PLM Systems Manager",
+        "cleaned_title": "PLM Systems Manager",
+        "status": "LOW_CONFIDENCE_REVIEW",
+        "assigned_family": "Needs Review",
+        "top1_family": "IT Project Management / Product Management",
+        "top1_similarity": 0.518,
+        "top1_prototype": "Software Project Manager",
+        "top2_family": "Software Engineering (Backend)",
+        "top2_similarity": 0.4447,
+        "margin": 0.0733,
+        "decision_note": "Điểm tương đồng cao nhất (0.5180) dưới ngưỡng tin cậy (0.58). Có thể là chức danh mới chưa có trong từ điển chuẩn. Cần người rà soát.",
+        "top_candidates": [
+          {
+            "family_id": "it_project_management",
+            "family_name": "IT Project Management / Product Management",
+            "similarity": 0.518,
+            "best_matching_prototype": "Software Project Manager"
+          },
+          {
+            "family_id": "software_engineering_backend",
+            "family_name": "Software Engineering (Backend)",
+            "similarity": 0.4447,
+            "best_matching_prototype": "Kỹ sư phát triển hệ thống phần mềm"
+          },
+          {
+            "family_id": "enterprise_applications_erp_crm",
+            "family_name": "Enterprise Applications (ERP / CRM)",
+            "similarity": 0.3909,
+            "best_matching_prototype": "ERP Application Developer"
+          }
+        ],
+        "true_family": "IT Project Management / Product Management",
+        "is_top1_correct": true,
+        "is_top3_correct": true
+      },
+      {
+        "raw_title": "Project Management Office (PMO) Specialist - Service Delivery & Operations",
+        "cleaned_title": "Project Management Office (PMO) Specialist - Service Delivery & Operations",
+        "status": "LOW_CONFIDENCE_REVIEW",
+        "assigned_family": "Needs Review",
+        "top1_family": "IT Project Management / Product Management",
+        "top1_similarity": 0.414,
+        "top1_prototype": "IT Project Manager",
+        "top2_family": "IT Operations & Integration Services",
+        "top2_similarity": 0.3768,
+        "margin": 0.0372,
+        "decision_note": "Điểm tương đồng cao nhất (0.4140) dưới ngưỡng tin cậy (0.58). Có thể là chức danh mới chưa có trong từ điển chuẩn. Cần người rà soát.",
+        "top_candidates": [
+          {
+            "family_id": "it_project_management",
+            "family_name": "IT Project Management / Product Management",
+            "similarity": 0.414,
+            "best_matching_prototype": "IT Project Manager"
+          },
+          {
+            "family_id": "it_operations_integration_services",
+            "family_name": "IT Operations & Integration Services",
+            "similarity": 0.3768,
+            "best_matching_prototype": "Service Integration Specialist"
+          },
+          {
+            "family_id": "cloud_systems_network_infrastructure",
+            "family_name": "Cloud, Systems & Network Infrastructure",
+            "similarity": 0.309,
+            "best_matching_prototype": "Chuyên viên quản trị và vận hành hệ thống"
+          }
+        ],
+        "true_family": "IT Project Management / Product Management",
+        "is_top1_correct": true,
+        "is_top3_correct": true
+      },
+      {
+        "raw_title": "Project Manager",
+        "cleaned_title": "Project Manager",
+        "status": "AUTO_ASSIGNED",
+        "assigned_family": "IT Project Management / Product Management",
+        "top1_family": "IT Project Management / Product Management",
+        "top1_similarity": 0.772,
+        "top1_prototype": "IT Project Manager",
+        "top2_family": "Business Analysis",
+        "top2_similarity": 0.4674,
+        "margin": 0.3046,
+        "decision_note": "Độ tin cậy cao (0.7720 >= 0.58) và cách biệt rõ ràng so với vị trí 2 (margin=0.3046 >= 0.04). Tự động gán.",
+        "top_candidates": [
+          {
+            "family_id": "it_project_management",
+            "family_name": "IT Project Management / Product Management",
+            "similarity": 0.772,
+            "best_matching_prototype": "IT Project Manager"
+          },
+          {
+            "family_id": "business_analysis",
+            "family_name": "Business Analysis",
+            "similarity": 0.4674,
+            "best_matching_prototype": "Business Analyst"
+          },
+          {
+            "family_id": "it_architecture_strategy",
+            "family_name": "IT Architecture & Strategy",
+            "similarity": 0.4443,
+            "best_matching_prototype": "Solution Architect"
+          }
+        ],
+        "true_family": "IT Project Management / Product Management",
+        "is_top1_correct": true,
+        "is_top3_correct": true
+      },
+      {
+        "raw_title": "Remote Data Engineer - AI Data Platform Japan (Python)",
+        "cleaned_title": "Remote Data Engineer - AI Data Platform Japan (Python)",
+        "status": "LOW_CONFIDENCE_REVIEW",
+        "assigned_family": "Needs Review",
+        "top1_family": "Software Engineering (AI / ML)",
+        "top1_similarity": 0.558,
+        "top1_prototype": "AI Platform Developer",
+        "top2_family": "Data Engineering",
+        "top2_similarity": 0.5353,
+        "margin": 0.0227,
+        "decision_note": "Điểm tương đồng cao nhất (0.5580) dưới ngưỡng tin cậy (0.58). Có thể là chức danh mới chưa có trong từ điển chuẩn. Cần người rà soát.",
+        "top_candidates": [
+          {
+            "family_id": "software_engineering_ai_ml",
+            "family_name": "Software Engineering (AI / ML)",
+            "similarity": 0.558,
+            "best_matching_prototype": "AI Platform Developer"
+          },
+          {
+            "family_id": "data_engineering",
+            "family_name": "Data Engineering",
+            "similarity": 0.5353,
+            "best_matching_prototype": "Data Engineer"
+          },
+          {
+            "family_id": "software_engineering_backend",
+            "family_name": "Software Engineering (Backend)",
+            "similarity": 0.3887,
+            "best_matching_prototype": "Software Engineer (Backend)"
+          }
+        ],
+        "true_family": "Data Engineering",
+        "is_top1_correct": false,
+        "is_top3_correct": true
+      },
+      {
+        "raw_title": "Senior Business Analyst (English)",
+        "cleaned_title": "Business Analyst (English)",
+        "status": "AUTO_ASSIGNED",
+        "assigned_family": "Business Analysis",
+        "top1_family": "Business Analysis",
+        "top1_similarity": 0.7356,
+        "top1_prototype": "IT Business Analyst",
+        "top2_family": "IT Project Management / Product Management",
+        "top2_similarity": 0.4179,
+        "margin": 0.3177,
+        "decision_note": "Độ tin cậy cao (0.7356 >= 0.58) và cách biệt rõ ràng so với vị trí 2 (margin=0.3177 >= 0.04). Tự động gán.",
+        "top_candidates": [
+          {
+            "family_id": "business_analysis",
+            "family_name": "Business Analysis",
+            "similarity": 0.7356,
+            "best_matching_prototype": "IT Business Analyst"
+          },
+          {
+            "family_id": "it_project_management",
+            "family_name": "IT Project Management / Product Management",
+            "similarity": 0.4179,
+            "best_matching_prototype": "Product Manager"
+          },
+          {
+            "family_id": "it_operations_integration_services",
+            "family_name": "IT Operations & Integration Services",
+            "similarity": 0.4064,
+            "best_matching_prototype": "Data Services Consultant"
+          }
+        ],
+        "true_family": "Business Analysis",
+        "is_top1_correct": true,
+        "is_top3_correct": true
+      },
+      {
+        "raw_title": "Senior Data Services Consultant",
+        "cleaned_title": "Data Services Consultant",
+        "status": "AUTO_ASSIGNED",
+        "assigned_family": "IT Operations & Integration Services",
+        "top1_family": "IT Operations & Integration Services",
+        "top1_similarity": 0.7867,
+        "top1_prototype": "Data Services Specialist",
+        "top2_family": "Database Administration",
+        "top2_similarity": 0.64,
+        "margin": 0.1467,
+        "decision_note": "Độ tin cậy cao (0.7867 >= 0.58) và cách biệt rõ ràng so với vị trí 2 (margin=0.1467 >= 0.04). Tự động gán.",
+        "top_candidates": [
+          {
+            "family_id": "it_operations_integration_services",
+            "family_name": "IT Operations & Integration Services",
+            "similarity": 0.7867,
+            "best_matching_prototype": "Data Services Specialist"
+          },
+          {
+            "family_id": "database_administration",
+            "family_name": "Database Administration",
+            "similarity": 0.64,
+            "best_matching_prototype": "Quản trị viên dữ liệu và cơ sở dữ liệu"
+          },
+          {
+            "family_id": "data_engineering",
+            "family_name": "Data Engineering",
+            "similarity": 0.6125,
+            "best_matching_prototype": "Kỹ sư dữ liệu"
+          }
+        ],
+        "true_family": "IT Operations & Integration Services",
+        "is_top1_correct": true,
+        "is_top3_correct": true
+      },
+      {
+        "raw_title": "Senior Verification Engineer/Verification Engineer",
+        "cleaned_title": "Verification Engineer/Verification Engineer",
+        "status": "AUTO_ASSIGNED",
+        "assigned_family": "Software Testing / QA / QC",
+        "top1_family": "Software Testing / QA / QC",
+        "top1_similarity": 0.5862,
+        "top1_prototype": "Kỹ sư kiểm thử phần mềm",
+        "top2_family": "Software Engineering (Backend)",
+        "top2_similarity": 0.4101,
+        "margin": 0.1761,
+        "decision_note": "Độ tin cậy cao (0.5862 >= 0.58) và cách biệt rõ ràng so với vị trí 2 (margin=0.1761 >= 0.04). Tự động gán.",
+        "top_candidates": [
+          {
+            "family_id": "software_testing_qa_qc",
+            "family_name": "Software Testing / QA / QC",
+            "similarity": 0.5862,
+            "best_matching_prototype": "Kỹ sư kiểm thử phần mềm"
+          },
+          {
+            "family_id": "software_engineering_backend",
+            "family_name": "Software Engineering (Backend)",
+            "similarity": 0.4101,
+            "best_matching_prototype": "Kỹ sư phát triển hệ thống phần mềm"
+          },
+          {
+            "family_id": "information_security_cybersecurity",
+            "family_name": "Information Security / Cybersecurity",
+            "similarity": 0.3523,
+            "best_matching_prototype": "Penetration Tester (Pentest)"
+          }
+        ],
+        "true_family": "Hardware / Verification Engineering",
+        "is_top1_correct": false,
+        "is_top3_correct": false
+      },
+      {
+        "raw_title": "Software Development Manager",
+        "cleaned_title": "Software Development Manager",
+        "status": "AUTO_ASSIGNED",
+        "assigned_family": "IT Project Management / Product Management",
+        "top1_family": "IT Project Management / Product Management",
+        "top1_similarity": 0.6428,
+        "top1_prototype": "Software Project Manager",
+        "top2_family": "Software Engineering (Fullstack / Web)",
+        "top2_similarity": 0.512,
+        "margin": 0.1308,
+        "decision_note": "Độ tin cậy cao (0.6428 >= 0.58) và cách biệt rõ ràng so với vị trí 2 (margin=0.1308 >= 0.04). Tự động gán.",
+        "top_candidates": [
+          {
+            "family_id": "it_project_management",
+            "family_name": "IT Project Management / Product Management",
+            "similarity": 0.6428,
+            "best_matching_prototype": "Software Project Manager"
+          },
+          {
+            "family_id": "software_engineering_fullstack_web",
+            "family_name": "Software Engineering (Fullstack / Web)",
+            "similarity": 0.512,
+            "best_matching_prototype": "Lập trình viên Full-stack"
+          },
+          {
+            "family_id": "it_architecture_strategy",
+            "family_name": "IT Architecture & Strategy",
+            "similarity": 0.4793,
+            "best_matching_prototype": "Solution Architect"
+          }
+        ],
+        "true_family": "IT Project Management / Product Management",
+        "is_top1_correct": true,
+        "is_top3_correct": true
+      },
+      {
+        "raw_title": "Solution Consulting Manager (FC Manager)",
+        "cleaned_title": "Solution Consulting Manager (FC Manager)",
+        "status": "LOW_CONFIDENCE_REVIEW",
+        "assigned_family": "Needs Review",
+        "top1_family": "Enterprise Applications (ERP / CRM)",
+        "top1_similarity": 0.4874,
+        "top1_prototype": "Chuyên viên tư vấn giải pháp ERP",
+        "top2_family": "IT Sales & Presales",
+        "top2_similarity": 0.3675,
+        "margin": 0.1199,
+        "decision_note": "Điểm tương đồng cao nhất (0.4874) dưới ngưỡng tin cậy (0.58). Có thể là chức danh mới chưa có trong từ điển chuẩn. Cần người rà soát.",
+        "top_candidates": [
+          {
+            "family_id": "enterprise_applications_erp_crm",
+            "family_name": "Enterprise Applications (ERP / CRM)",
+            "similarity": 0.4874,
+            "best_matching_prototype": "Chuyên viên tư vấn giải pháp ERP"
+          },
+          {
+            "family_id": "it_sales_presales",
+            "family_name": "IT Sales & Presales",
+            "similarity": 0.3675,
+            "best_matching_prototype": "Chuyên viên tư vấn giải pháp Presale CNTT"
+          },
+          {
+            "family_id": "it_architecture_strategy",
+            "family_name": "IT Architecture & Strategy",
+            "similarity": 0.3161,
+            "best_matching_prototype": "Solution Architect"
+          }
+        ],
+        "true_family": "IT Project Management / Product Management",
+        "is_top1_correct": false,
+        "is_top3_correct": false
+      },
+      {
+        "raw_title": "Technical Leader (Domain ITSM)",
+        "cleaned_title": "Technical Leader (Domain ITSM)",
+        "status": "LOW_CONFIDENCE_REVIEW",
+        "assigned_family": "Needs Review",
+        "top1_family": "IT Architecture & Strategy",
+        "top1_similarity": 0.4232,
+        "top1_prototype": "Kiến trúc sư giải pháp CNTT",
+        "top2_family": "Database Administration",
+        "top2_similarity": 0.4001,
+        "margin": 0.0231,
+        "decision_note": "Điểm tương đồng cao nhất (0.4232) dưới ngưỡng tin cậy (0.58). Có thể là chức danh mới chưa có trong từ điển chuẩn. Cần người rà soát.",
+        "top_candidates": [
+          {
+            "family_id": "it_architecture_strategy",
+            "family_name": "IT Architecture & Strategy",
+            "similarity": 0.4232,
+            "best_matching_prototype": "Kiến trúc sư giải pháp CNTT"
+          },
+          {
+            "family_id": "database_administration",
+            "family_name": "Database Administration",
+            "similarity": 0.4001,
+            "best_matching_prototype": "Quản trị cơ sở dữ liệu DBA"
+          },
+          {
+            "family_id": "cloud_systems_network_infrastructure",
+            "family_name": "Cloud, Systems & Network Infrastructure",
+            "similarity": 0.3909,
+            "best_matching_prototype": "Kỹ sư hạ tầng Cloud và mạng"
+          }
+        ],
+        "true_family": "Software Engineering (Backend)",
+        "is_top1_correct": false,
+        "is_top3_correct": false
+      },
+      {
+        "raw_title": "Tester",
+        "cleaned_title": "Tester",
+        "status": "AUTO_ASSIGNED",
+        "assigned_family": "Software Testing / QA / QC",
+        "top1_family": "Software Testing / QA / QC",
+        "top1_similarity": 0.8019,
+        "top1_prototype": "Software Tester",
+        "top2_family": "Information Security / Cybersecurity",
+        "top2_similarity": 0.4086,
+        "margin": 0.3933,
+        "decision_note": "Độ tin cậy cao (0.8019 >= 0.58) và cách biệt rõ ràng so với vị trí 2 (margin=0.3933 >= 0.04). Tự động gán.",
+        "top_candidates": [
+          {
+            "family_id": "software_testing_qa_qc",
+            "family_name": "Software Testing / QA / QC",
+            "similarity": 0.8019,
+            "best_matching_prototype": "Software Tester"
+          },
+          {
+            "family_id": "information_security_cybersecurity",
+            "family_name": "Information Security / Cybersecurity",
+            "similarity": 0.4086,
+            "best_matching_prototype": "Penetration Tester (Pentest)"
+          },
+          {
+            "family_id": "business_analysis",
+            "family_name": "Business Analysis",
+            "similarity": 0.3373,
+            "best_matching_prototype": "Business Analyst"
+          }
+        ],
+        "true_family": "Software Testing / QA / QC",
+        "is_top1_correct": true,
+        "is_top3_correct": true
+      },
+      {
+        "raw_title": "Web Developer (Backend/Fullstack)",
+        "cleaned_title": "Web Developer (Backend/Fullstack)",
+        "status": "AUTO_ASSIGNED",
+        "assigned_family": "Software Engineering (Fullstack / Web)",
+        "top1_family": "Software Engineering (Fullstack / Web)",
+        "top1_similarity": 0.9167,
+        "top1_prototype": "Web Developer (Fullstack)",
+        "top2_family": "Software Engineering (Backend)",
+        "top2_similarity": 0.6936,
+        "margin": 0.2231,
+        "decision_note": "Độ tin cậy cao (0.9167 >= 0.58) và cách biệt rõ ràng so với vị trí 2 (margin=0.2231 >= 0.04). Tự động gán.",
+        "top_candidates": [
+          {
+            "family_id": "software_engineering_fullstack_web",
+            "family_name": "Software Engineering (Fullstack / Web)",
+            "similarity": 0.9167,
+            "best_matching_prototype": "Web Developer (Fullstack)"
+          },
+          {
+            "family_id": "software_engineering_backend",
+            "family_name": "Software Engineering (Backend)",
+            "similarity": 0.6936,
+            "best_matching_prototype": "Backend Developer"
+          },
+          {
+            "family_id": "it_support_systems_operations",
+            "family_name": "IT Support & Systems Operations",
+            "similarity": 0.4699,
+            "best_matching_prototype": "Chuyên viên triển khai và bảo trì phần mềm"
+          }
+        ],
+        "true_family": "Software Engineering (Fullstack / Web)",
+        "is_top1_correct": true,
+        "is_top3_correct": true
+      },
+      {
+        "raw_title": "[HN] CHUYÊN VIÊN QUẢN TRỊ CƠ SỞ DỮ LIỆU DBA",
+        "cleaned_title": "QUẢN TRỊ CƠ SỞ DỮ LIỆU DBA",
+        "status": "AUTO_ASSIGNED",
+        "assigned_family": "Database Administration",
+        "top1_family": "Database Administration",
+        "top1_similarity": 0.8035,
+        "top1_prototype": "Database Administrator (DBA)",
+        "top2_family": "IT Operations & Integration Services",
+        "top2_similarity": 0.4648,
+        "margin": 0.3387,
+        "decision_note": "Độ tin cậy cao (0.8035 >= 0.58) và cách biệt rõ ràng so với vị trí 2 (margin=0.3387 >= 0.04). Tự động gán.",
+        "top_candidates": [
+          {
+            "family_id": "database_administration",
+            "family_name": "Database Administration",
+            "similarity": 0.8035,
+            "best_matching_prototype": "Database Administrator (DBA)"
+          },
+          {
+            "family_id": "it_operations_integration_services",
+            "family_name": "IT Operations & Integration Services",
+            "similarity": 0.4648,
+            "best_matching_prototype": "Data Services Consultant"
+          },
+          {
+            "family_id": "data_engineering",
+            "family_name": "Data Engineering",
+            "similarity": 0.4616,
+            "best_matching_prototype": "Kỹ sư dữ liệu"
+          }
+        ],
+        "true_family": "Database Administration",
+        "is_top1_correct": true,
+        "is_top3_correct": true
+      },
+      {
+        "raw_title": "[HN] CHUYÊN VIÊN QUẢN TRỊ CƠ SỞ DỮ LIỆU DBA (Senior)",
+        "cleaned_title": "QUẢN TRỊ CƠ SỞ DỮ LIỆU DBA",
+        "status": "AUTO_ASSIGNED",
+        "assigned_family": "Database Administration",
+        "top1_family": "Database Administration",
+        "top1_similarity": 0.8035,
+        "top1_prototype": "Database Administrator (DBA)",
+        "top2_family": "IT Operations & Integration Services",
+        "top2_similarity": 0.4648,
+        "margin": 0.3387,
+        "decision_note": "Độ tin cậy cao (0.8035 >= 0.58) và cách biệt rõ ràng so với vị trí 2 (margin=0.3387 >= 0.04). Tự động gán.",
+        "top_candidates": [
+          {
+            "family_id": "database_administration",
+            "family_name": "Database Administration",
+            "similarity": 0.8035,
+            "best_matching_prototype": "Database Administrator (DBA)"
+          },
+          {
+            "family_id": "it_operations_integration_services",
+            "family_name": "IT Operations & Integration Services",
+            "similarity": 0.4648,
+            "best_matching_prototype": "Data Services Consultant"
+          },
+          {
+            "family_id": "data_engineering",
+            "family_name": "Data Engineering",
+            "similarity": 0.4616,
+            "best_matching_prototype": "Kỹ sư dữ liệu"
+          }
+        ],
+        "true_family": "Database Administration",
+        "is_top1_correct": true,
+        "is_top3_correct": true
+      },
+      {
+        "raw_title": "[IT 운영 PM 채용 - POSCO DX 베트남법인]",
+        "cleaned_title": "[IT 운영 PM 채용 - POSCO DX 베트남법인]",
+        "status": "AUTO_ASSIGNED",
+        "assigned_family": "IT Project Management / Product Management",
+        "top1_family": "IT Project Management / Product Management",
+        "top1_similarity": 0.5858,
+        "top1_prototype": "IT Project Manager",
+        "top2_family": "Business Analysis",
+        "top2_similarity": 0.473,
+        "margin": 0.1128,
+        "decision_note": "Độ tin cậy cao (0.5858 >= 0.58) và cách biệt rõ ràng so với vị trí 2 (margin=0.1128 >= 0.04). Tự động gán.",
+        "top_candidates": [
+          {
+            "family_id": "it_project_management",
+            "family_name": "IT Project Management / Product Management",
+            "similarity": 0.5858,
+            "best_matching_prototype": "IT Project Manager"
+          },
+          {
+            "family_id": "business_analysis",
+            "family_name": "Business Analysis",
+            "similarity": 0.473,
+            "best_matching_prototype": "IT Business Analyst"
+          },
+          {
+            "family_id": "it_support_systems_operations",
+            "family_name": "IT Support & Systems Operations",
+            "similarity": 0.4582,
+            "best_matching_prototype": "IT Support / Helpdesk"
+          }
+        ],
+        "true_family": "IT Project Management / Product Management",
+        "is_top1_correct": true,
+        "is_top3_correct": true
+      },
+      {
+        "raw_title": "[URGENT] Business Analyst - Manufacturing (SAP/ERP) - HCM",
+        "cleaned_title": "Business Analyst - Manufacturing (SAP/ERP)",
+        "status": "LOW_CONFIDENCE_REVIEW",
+        "assigned_family": "Needs Review",
+        "top1_family": "Business Analysis",
+        "top1_similarity": 0.539,
+        "top1_prototype": "IT Business Analyst",
+        "top2_family": "Enterprise Applications (ERP / CRM)",
+        "top2_similarity": 0.5254,
+        "margin": 0.0136,
+        "decision_note": "Điểm tương đồng cao nhất (0.5390) dưới ngưỡng tin cậy (0.58). Có thể là chức danh mới chưa có trong từ điển chuẩn. Cần người rà soát.",
+        "top_candidates": [
+          {
+            "family_id": "business_analysis",
+            "family_name": "Business Analysis",
+            "similarity": 0.539,
+            "best_matching_prototype": "IT Business Analyst"
+          },
+          {
+            "family_id": "enterprise_applications_erp_crm",
+            "family_name": "Enterprise Applications (ERP / CRM)",
+            "similarity": 0.5254,
+            "best_matching_prototype": "Chuyên viên tư vấn giải pháp ERP"
+          },
+          {
+            "family_id": "it_project_management",
+            "family_name": "IT Project Management / Product Management",
+            "similarity": 0.2893,
+            "best_matching_prototype": "IT Project Manager"
+          }
+        ],
+        "true_family": "Business Analysis",
+        "is_top1_correct": true,
+        "is_top3_correct": true
+      },
+      {
+        "raw_title": "[Vũng Tàu] AI Full Stack Engineer (Agentic AI Platform)",
+        "cleaned_title": "AI Full Stack Engineer (Agentic AI Platform)",
+        "status": "AUTO_ASSIGNED",
+        "assigned_family": "Software Engineering (AI / ML)",
+        "top1_family": "Software Engineering (AI / ML)",
+        "top1_similarity": 0.8166,
+        "top1_prototype": "AI Engineer",
+        "top2_family": "Software Engineering (Fullstack / Web)",
+        "top2_similarity": 0.5048,
+        "margin": 0.3118,
+        "decision_note": "Độ tin cậy cao (0.8166 >= 0.58) và cách biệt rõ ràng so với vị trí 2 (margin=0.3118 >= 0.04). Tự động gán.",
+        "top_candidates": [
+          {
+            "family_id": "software_engineering_ai_ml",
+            "family_name": "Software Engineering (AI / ML)",
+            "similarity": 0.8166,
+            "best_matching_prototype": "AI Engineer"
+          },
+          {
+            "family_id": "software_engineering_fullstack_web",
+            "family_name": "Software Engineering (Fullstack / Web)",
+            "similarity": 0.5048,
+            "best_matching_prototype": "Fullstack Engineer"
+          },
+          {
+            "family_id": "software_engineering_backend",
+            "family_name": "Software Engineering (Backend)",
+            "similarity": 0.448,
+            "best_matching_prototype": "Software Engineer (Backend)"
+          }
+        ],
+        "true_family": "Software Engineering (Fullstack / Web)",
+        "is_top1_correct": false,
+        "is_top3_correct": true
+      }
+    ]
+  },
+  "novel_title_mappings": [
+    {
+      "raw_title": "Senior Golang Backend Microservices Developer",
+      "cleaned_title": "Golang Backend Microservices Developer",
+      "status": "LOW_CONFIDENCE_REVIEW",
+      "assigned_family": "Needs Review",
+      "top1_family": "Software Engineering (Backend)",
+      "top1_similarity": 0.5436,
+      "top1_prototype": "Backend Developer",
+      "top2_family": "DevOps & DevSecOps",
+      "top2_similarity": 0.4428,
+      "margin": 0.1008,
+      "decision_note": "Điểm tương đồng cao nhất (0.5436) dưới ngưỡng tin cậy (0.58). Có thể là chức danh mới chưa có trong từ điển chuẩn. Cần người rà soát.",
+      "top_candidates": [
+        {
+          "family_id": "software_engineering_backend",
+          "family_name": "Software Engineering (Backend)",
+          "similarity": 0.5436,
+          "best_matching_prototype": "Backend Developer"
+        },
+        {
+          "family_id": "devops_devsecops",
+          "family_name": "DevOps & DevSecOps",
+          "similarity": 0.4428,
+          "best_matching_prototype": "DevOps Engineer"
+        },
+        {
+          "family_id": "software_engineering_fullstack_web",
+          "family_name": "Software Engineering (Fullstack / Web)",
+          "similarity": 0.4029,
+          "best_matching_prototype": "Frontend & Backend Web Developer"
+        }
+      ]
+    },
+    {
+      "raw_title": "Lead Big Data Engineer (Spark, Kafka, Lakehouse)",
+      "cleaned_title": "Lead Big Data Engineer (Spark, Kafka, Lakehouse)",
+      "status": "AUTO_ASSIGNED",
+      "assigned_family": "Data Engineering",
+      "top1_family": "Data Engineering",
+      "top1_similarity": 0.6895,
+      "top1_prototype": "Big Data Engineer",
+      "top2_family": "Software Engineering (Backend)",
+      "top2_similarity": 0.3417,
+      "margin": 0.3478,
+      "decision_note": "Độ tin cậy cao (0.6895 >= 0.58) và cách biệt rõ ràng so với vị trí 2 (margin=0.3478 >= 0.04). Tự động gán.",
+      "top_candidates": [
+        {
+          "family_id": "data_engineering",
+          "family_name": "Data Engineering",
+          "similarity": 0.6895,
+          "best_matching_prototype": "Big Data Engineer"
+        },
+        {
+          "family_id": "software_engineering_backend",
+          "family_name": "Software Engineering (Backend)",
+          "similarity": 0.3417,
+          "best_matching_prototype": "Software Engineer (Backend)"
+        },
+        {
+          "family_id": "software_engineering_ai_ml",
+          "family_name": "Software Engineering (AI / ML)",
+          "similarity": 0.3413,
+          "best_matching_prototype": "AI Platform Developer"
+        }
+      ]
+    },
+    {
+      "raw_title": "Chuyên viên Phân tích Dữ liệu và Báo cáo BI (Data Analyst)",
+      "cleaned_title": "Phân tích Dữ liệu và Báo cáo BI (Data Analyst)",
+      "status": "AMBIGUOUS_REVIEW",
+      "assigned_family": "Needs Review",
+      "top1_family": "Data Engineering",
+      "top1_similarity": 0.5848,
+      "top1_prototype": "Kỹ sư dữ liệu",
+      "top2_family": "Database Administration",
+      "top2_similarity": 0.5787,
+      "margin": 0.0061,
+      "decision_note": "Điểm tương đồng cao (0.5848) nhưng cách biệt giữa Top 1 (Data Engineering) và Top 2 (Database Administration) quá hẹp (0.0061 < 0.04). Cần người rà soát chọn 1 trong 2.",
+      "top_candidates": [
+        {
+          "family_id": "data_engineering",
+          "family_name": "Data Engineering",
+          "similarity": 0.5848,
+          "best_matching_prototype": "Kỹ sư dữ liệu"
+        },
+        {
+          "family_id": "database_administration",
+          "family_name": "Database Administration",
+          "similarity": 0.5787,
+          "best_matching_prototype": "Quản trị viên dữ liệu và cơ sở dữ liệu"
+        },
+        {
+          "family_id": "business_analysis",
+          "family_name": "Business Analysis",
+          "similarity": 0.5518,
+          "best_matching_prototype": "Business Analyst"
+        }
+      ]
+    },
+    {
+      "raw_title": "Chuyên Viên Pentest & Đánh Giá Lỗ Hổng Bảo Mật Ứng Dụng",
+      "cleaned_title": "Pentest & Đánh Giá Lỗ Hổng Bảo Mật Ứng Dụng",
+      "status": "AUTO_ASSIGNED",
+      "assigned_family": "Information Security / Cybersecurity",
+      "top1_family": "Information Security / Cybersecurity",
+      "top1_similarity": 0.7691,
+      "top1_prototype": "Penetration Tester (Pentest)",
+      "top2_family": "Business Analysis",
+      "top2_similarity": 0.3747,
+      "margin": 0.3944,
+      "decision_note": "Độ tin cậy cao (0.7691 >= 0.58) và cách biệt rõ ràng so với vị trí 2 (margin=0.3944 >= 0.04). Tự động gán.",
+      "top_candidates": [
+        {
+          "family_id": "information_security_cybersecurity",
+          "family_name": "Information Security / Cybersecurity",
+          "similarity": 0.7691,
+          "best_matching_prototype": "Penetration Tester (Pentest)"
+        },
+        {
+          "family_id": "business_analysis",
+          "family_name": "Business Analysis",
+          "similarity": 0.3747,
+          "best_matching_prototype": "Chuyên viên phân tích nghiệp vụ phần mềm"
+        },
+        {
+          "family_id": "devops_devsecops",
+          "family_name": "DevOps & DevSecOps",
+          "similarity": 0.3738,
+          "best_matching_prototype": "DevSecOps Engineer"
+        }
+      ]
+    },
+    {
+      "raw_title": "Site Reliability Engineer (SRE / Platform Operations)",
+      "cleaned_title": "Site Reliability Engineer (SRE / Platform Operations)",
+      "status": "LOW_CONFIDENCE_REVIEW",
+      "assigned_family": "Needs Review",
+      "top1_family": "DevOps & DevSecOps",
+      "top1_similarity": 0.5598,
+      "top1_prototype": "DevOps Engineer",
+      "top2_family": "Cloud, Systems & Network Infrastructure",
+      "top2_similarity": 0.477,
+      "margin": 0.0828,
+      "decision_note": "Điểm tương đồng cao nhất (0.5598) dưới ngưỡng tin cậy (0.58). Có thể là chức danh mới chưa có trong từ điển chuẩn. Cần người rà soát.",
+      "top_candidates": [
+        {
+          "family_id": "devops_devsecops",
+          "family_name": "DevOps & DevSecOps",
+          "similarity": 0.5598,
+          "best_matching_prototype": "DevOps Engineer"
+        },
+        {
+          "family_id": "cloud_systems_network_infrastructure",
+          "family_name": "Cloud, Systems & Network Infrastructure",
+          "similarity": 0.477,
+          "best_matching_prototype": "Cloud Infrastructure Engineer"
+        },
+        {
+          "family_id": "software_engineering_backend",
+          "family_name": "Software Engineering (Backend)",
+          "similarity": 0.3777,
+          "best_matching_prototype": "Software Engineer (Backend)"
+        }
+      ]
+    },
+    {
+      "raw_title": "SAP ABAP Consultant - Functional ERP Suite",
+      "cleaned_title": "SAP ABAP Consultant - Functional ERP Suite",
+      "status": "LOW_CONFIDENCE_REVIEW",
+      "assigned_family": "Needs Review",
+      "top1_family": "Enterprise Applications (ERP / CRM)",
+      "top1_similarity": 0.4764,
+      "top1_prototype": "ERP Application Developer",
+      "top2_family": "Business Analysis",
+      "top2_similarity": 0.3696,
+      "margin": 0.1068,
+      "decision_note": "Điểm tương đồng cao nhất (0.4764) dưới ngưỡng tin cậy (0.58). Có thể là chức danh mới chưa có trong từ điển chuẩn. Cần người rà soát.",
+      "top_candidates": [
+        {
+          "family_id": "enterprise_applications_erp_crm",
+          "family_name": "Enterprise Applications (ERP / CRM)",
+          "similarity": 0.4764,
+          "best_matching_prototype": "ERP Application Developer"
+        },
+        {
+          "family_id": "business_analysis",
+          "family_name": "Business Analysis",
+          "similarity": 0.3696,
+          "best_matching_prototype": "Chuyên viên BA"
+        },
+        {
+          "family_id": "it_project_management",
+          "family_name": "IT Project Management / Product Management",
+          "similarity": 0.2279,
+          "best_matching_prototype": "Software Project Manager"
+        }
+      ]
+    },
+    {
+      "raw_title": "Scrum Master / Agile IT Project Coordinator",
+      "cleaned_title": "Scrum Master / Agile IT Project Coordinator",
+      "status": "AUTO_ASSIGNED",
+      "assigned_family": "IT Project Management / Product Management",
+      "top1_family": "IT Project Management / Product Management",
+      "top1_similarity": 0.6632,
+      "top1_prototype": "IT Project Manager",
+      "top2_family": "Business Analysis",
+      "top2_similarity": 0.4003,
+      "margin": 0.2629,
+      "decision_note": "Độ tin cậy cao (0.6632 >= 0.58) và cách biệt rõ ràng so với vị trí 2 (margin=0.2629 >= 0.04). Tự động gán.",
+      "top_candidates": [
+        {
+          "family_id": "it_project_management",
+          "family_name": "IT Project Management / Product Management",
+          "similarity": 0.6632,
+          "best_matching_prototype": "IT Project Manager"
+        },
+        {
+          "family_id": "business_analysis",
+          "family_name": "Business Analysis",
+          "similarity": 0.4003,
+          "best_matching_prototype": "IT Business Analyst"
+        },
+        {
+          "family_id": "it_support_systems_operations",
+          "family_name": "IT Support & Systems Operations",
+          "similarity": 0.3491,
+          "best_matching_prototype": "Chuyên viên triển khai và bảo trì phần mềm"
+        }
+      ]
+    },
+    {
+      "raw_title": "Kỹ sư Triển khai Hạ tầng Mạng và Hệ thống Cisco",
+      "cleaned_title": "Kỹ sư Triển khai Hạ tầng Mạng và Hệ thống Cisco",
+      "status": "LOW_CONFIDENCE_REVIEW",
+      "assigned_family": "Needs Review",
+      "top1_family": "Cloud, Systems & Network Infrastructure",
+      "top1_similarity": 0.5307,
+      "top1_prototype": "Kỹ sư hạ tầng Cloud và mạng",
+      "top2_family": "IT Sales & Presales",
+      "top2_similarity": 0.4032,
+      "margin": 0.1275,
+      "decision_note": "Điểm tương đồng cao nhất (0.5307) dưới ngưỡng tin cậy (0.58). Có thể là chức danh mới chưa có trong từ điển chuẩn. Cần người rà soát.",
+      "top_candidates": [
+        {
+          "family_id": "cloud_systems_network_infrastructure",
+          "family_name": "Cloud, Systems & Network Infrastructure",
+          "similarity": 0.5307,
+          "best_matching_prototype": "Kỹ sư hạ tầng Cloud và mạng"
+        },
+        {
+          "family_id": "it_sales_presales",
+          "family_name": "IT Sales & Presales",
+          "similarity": 0.4032,
+          "best_matching_prototype": "Chuyên viên tư vấn giải pháp Presale CNTT"
+        },
+        {
+          "family_id": "devops_devsecops",
+          "family_name": "DevOps & DevSecOps",
+          "similarity": 0.3799,
+          "best_matching_prototype": "Kỹ sư DevOps hệ thống"
+        }
+      ]
+    },
+    {
+      "raw_title": "Frontend ReactJS / Next.js Web Developer",
+      "cleaned_title": "Frontend ReactJS / Next.js Web Developer",
+      "status": "AUTO_ASSIGNED",
+      "assigned_family": "Software Engineering (Fullstack / Web)",
+      "top1_family": "Software Engineering (Fullstack / Web)",
+      "top1_similarity": 0.7496,
+      "top1_prototype": "Frontend & Backend Web Developer",
+      "top2_family": "Software Engineering (Backend)",
+      "top2_similarity": 0.5113,
+      "margin": 0.2383,
+      "decision_note": "Độ tin cậy cao (0.7496 >= 0.58) và cách biệt rõ ràng so với vị trí 2 (margin=0.2383 >= 0.04). Tự động gán.",
+      "top_candidates": [
+        {
+          "family_id": "software_engineering_fullstack_web",
+          "family_name": "Software Engineering (Fullstack / Web)",
+          "similarity": 0.7496,
+          "best_matching_prototype": "Frontend & Backend Web Developer"
+        },
+        {
+          "family_id": "software_engineering_backend",
+          "family_name": "Software Engineering (Backend)",
+          "similarity": 0.5113,
+          "best_matching_prototype": "Backend Developer"
+        },
+        {
+          "family_id": "devops_devsecops",
+          "family_name": "DevOps & DevSecOps",
+          "similarity": 0.3452,
+          "best_matching_prototype": "DevOps Engineer"
+        }
+      ]
+    },
+    {
+      "raw_title": "Nhân viên IT Helpdesk & Hỗ Trợ Kỹ Thuật Onsite",
+      "cleaned_title": "IT Helpdesk & Hỗ Trợ Kỹ Thuật Onsite",
+      "status": "AUTO_ASSIGNED",
+      "assigned_family": "IT Support & Systems Operations",
+      "top1_family": "IT Support & Systems Operations",
+      "top1_similarity": 0.9233,
+      "top1_prototype": "IT Support / Helpdesk",
+      "top2_family": "Cloud, Systems & Network Infrastructure",
+      "top2_similarity": 0.5522,
+      "margin": 0.3711,
+      "decision_note": "Độ tin cậy cao (0.9233 >= 0.58) và cách biệt rõ ràng so với vị trí 2 (margin=0.3711 >= 0.04). Tự động gán.",
+      "top_candidates": [
+        {
+          "family_id": "it_support_systems_operations",
+          "family_name": "IT Support & Systems Operations",
+          "similarity": 0.9233,
+          "best_matching_prototype": "IT Support / Helpdesk"
+        },
+        {
+          "family_id": "cloud_systems_network_infrastructure",
+          "family_name": "Cloud, Systems & Network Infrastructure",
+          "similarity": 0.5522,
+          "best_matching_prototype": "Systems Administrator"
+        },
+        {
+          "family_id": "business_analysis",
+          "family_name": "Business Analysis",
+          "similarity": 0.5328,
+          "best_matching_prototype": "IT Business Analyst"
+        }
+      ]
+    }
+  ]
+}

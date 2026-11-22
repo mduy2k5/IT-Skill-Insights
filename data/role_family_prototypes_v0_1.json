@@ -1,0 +1,168 @@
+{
+  "version": "role-family-prototypes-v0.1",
+  "description": "Multilingual prototype anchors for JobBERT V3 IT job title normalization and semantic ranking.",
+  "confidence_threshold": 0.58,
+  "margin_threshold": 0.04,
+  "role_families": [
+    {
+      "id": "data_engineering",
+      "canonical_name": "Data Engineering",
+      "prototypes": [
+        "Data Engineer",
+        "Big Data Engineer",
+        "Kỹ sư dữ liệu",
+        "Data Lakehouse Pipeline Engineer"
+      ]
+    },
+    {
+      "id": "business_analysis",
+      "canonical_name": "Business Analysis",
+      "prototypes": [
+        "Business Analyst",
+        "IT Business Analyst",
+        "Chuyên viên phân tích nghiệp vụ phần mềm",
+        "Chuyên viên BA"
+      ]
+    },
+    {
+      "id": "software_engineering_backend",
+      "canonical_name": "Software Engineering (Backend)",
+      "prototypes": [
+        "Backend Developer",
+        "Software Engineer (Backend)",
+        "Lập trình viên Backend",
+        "Kỹ sư phát triển hệ thống phần mềm"
+      ]
+    },
+    {
+      "id": "software_engineering_fullstack_web",
+      "canonical_name": "Software Engineering (Fullstack / Web)",
+      "prototypes": [
+        "Fullstack Engineer",
+        "Web Developer (Fullstack)",
+        "Lập trình viên Full-stack",
+        "Frontend & Backend Web Developer"
+      ]
+    },
+    {
+      "id": "software_testing_qa_qc",
+      "canonical_name": "Software Testing / QA / QC",
+      "prototypes": [
+        "Software Tester",
+        "Quality Assurance (QA) Engineer",
+        "Kỹ sư kiểm thử phần mềm",
+        "Chuyên viên đảm bảo chất lượng QA QC"
+      ]
+    },
+    {
+      "id": "devops_devsecops",
+      "canonical_name": "DevOps & DevSecOps",
+      "prototypes": [
+        "DevOps Engineer",
+        "Cloud & DevOps Engineer",
+        "DevSecOps Engineer",
+        "Kỹ sư DevOps hệ thống"
+      ]
+    },
+    {
+      "id": "database_administration",
+      "canonical_name": "Database Administration",
+      "prototypes": [
+        "Database Administrator (DBA)",
+        "Quản trị cơ sở dữ liệu DBA",
+        "Database Administrator",
+        "Quản trị viên dữ liệu và cơ sở dữ liệu"
+      ]
+    },
+    {
+      "id": "cloud_systems_network_infrastructure",
+      "canonical_name": "Cloud, Systems & Network Infrastructure",
+      "prototypes": [
+        "Systems Administrator",
+        "Cloud Infrastructure Engineer",
+        "Chuyên viên quản trị và vận hành hệ thống",
+        "Kỹ sư hạ tầng Cloud và mạng"
+      ]
+    },
+    {
+      "id": "information_security_cybersecurity",
+      "canonical_name": "Information Security / Cybersecurity",
+      "prototypes": [
+        "Cybersecurity Specialist",
+        "Penetration Tester (Pentest)",
+        "Chuyên viên an toàn an ninh mạng",
+        "Kỹ sư bảo mật thông tin"
+      ]
+    },
+    {
+      "id": "it_project_management",
+      "canonical_name": "IT Project Management / Product Management",
+      "prototypes": [
+        "IT Project Manager",
+        "Software Project Manager",
+        "Product Manager",
+        "Chuyên viên quản lý dự án phần mềm"
+      ]
+    },
+    {
+      "id": "it_architecture_strategy",
+      "canonical_name": "IT Architecture & Strategy",
+      "prototypes": [
+        "Solution Architect",
+        "Enterprise Architect (EA)",
+        "Kiến trúc sư giải pháp CNTT",
+        "Chuyên gia chiến lược công nghệ"
+      ]
+    },
+    {
+      "id": "enterprise_applications_erp_crm",
+      "canonical_name": "Enterprise Applications (ERP / CRM)",
+      "prototypes": [
+        "ERP Application Developer",
+        "CRM Functional Consultant",
+        "Odoo ERP Developer",
+        "Chuyên viên tư vấn giải pháp ERP"
+      ]
+    },
+    {
+      "id": "it_support_systems_operations",
+      "canonical_name": "IT Support & Systems Operations",
+      "prototypes": [
+        "IT Support / Helpdesk",
+        "Customer Support Engineer",
+        "Nhân viên hỗ trợ kỹ thuật IT",
+        "Chuyên viên triển khai và bảo trì phần mềm"
+      ]
+    },
+    {
+      "id": "it_operations_integration_services",
+      "canonical_name": "IT Operations & Integration Services",
+      "prototypes": [
+        "Data Services Specialist",
+        "Service Integration Specialist",
+        "Chuyên viên vận hành dịch vụ kỹ thuật số",
+        "Data Services Consultant"
+      ]
+    },
+    {
+      "id": "software_engineering_ai_ml",
+      "canonical_name": "Software Engineering (AI / ML)",
+      "prototypes": [
+        "AI Engineer",
+        "Machine Learning Engineer",
+        "Kỹ sư trí tuệ nhân tạo AI",
+        "AI Platform Developer"
+      ]
+    },
+    {
+      "id": "it_sales_presales",
+      "canonical_name": "IT Sales & Presales",
+      "prototypes": [
+        "IT Presales Engineer",
+        "Chuyên viên tư vấn giải pháp Presale CNTT",
+        "Technical Sales Specialist",
+        "Chuyên viên kinh doanh giải pháp Cloud và An ninh mạng"
+      ]
+    }
+  ]
+}

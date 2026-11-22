@@ -1,0 +1,1681 @@
+{
+  "benchmark_name": "it_job_title_benchmark",
+  "version": "v0.1",
+  "description": "Benchmark dataset for evaluating JobBERT V3 IT job title normalization, semantic clustering, and role-family classification. Role families and level cues are strictly separated.",
+  "created_at_utc": "2026-11-20T05:24:55.594560+00:00",
+  "total_unique_titles": 87,
+  "total_represented_jobs": 89,
+  "status_summary": {
+    "verified": 87,
+    "needs_review": 0
+  },
+  "language_distribution": {
+    "en": 41,
+    "vi-en": 26,
+    "vi": 19,
+    "ko": 1
+  },
+  "role_family_distribution": {
+    "Software Engineering (Backend)": 11,
+    "Business Analysis": 9,
+    "IT Project Management / Product Management": 9,
+    "Software Testing / QA / QC": 8,
+    "IT Support & Systems Operations": 6,
+    "Data Engineering": 6,
+    "IT Operations & Integration Services": 4,
+    "IT Architecture & Strategy": 4,
+    "Cloud, Systems & Network Infrastructure": 4,
+    "DevOps & DevSecOps": 4,
+    "Enterprise Applications (ERP / CRM)": 4,
+    "Software Engineering (Fullstack / Web)": 4,
+    "Information Security / Cybersecurity": 3,
+    "IT Sales & Presales": 3,
+    "Database Administration": 3,
+    "Software Engineering (AI / ML)": 1,
+    "AI / Quantitative Research": 1,
+    "IT Translation / Interpretation": 1,
+    "Data Annotation": 1,
+    "Hardware / Verification Engineering": 1
+  },
+  "level_cue_distribution": {
+    "Unspecified": 33,
+    "Chuyên viên": 17,
+    "Manager / Lead": 8,
+    "Chuyên viên cao cấp": 7,
+    "Senior": 6,
+    "Chuyên gia": 4,
+    "Nhân viên": 3,
+    "Intern": 1,
+    "Associate": 1,
+    "All Levels": 1,
+    "Middle/Senior": 1,
+    "Expert/Senior/Middle": 1,
+    "Fresher/Junior": 1,
+    "Junior": 1,
+    "Junior/Middle/Senior": 1,
+    "Junior/Senior": 1
+  },
+  "core_it_distribution": {
+    "core_it_roles": 82,
+    "peripheral_adjacent_roles": 5
+  },
+  "items": [
+    {
+      "id": "TITLE-001",
+      "raw_title": "AI Engineer",
+      "cleaned_title": "AI Engineer",
+      "role_family": "Software Engineering (AI / ML)",
+      "level_cue": "Unspecified",
+      "language": "en",
+      "tech_stack_cues": [
+        "AI"
+      ],
+      "is_it_core": true,
+      "status": "verified",
+      "job_count": 1,
+      "source_job_keys": [
+        "2146166"
+      ],
+      "notes": "Core AI/ML engineering role; no explicit seniority in title."
+    },
+    {
+      "id": "TITLE-002",
+      "raw_title": "AI QUANTITATIVE RESEARCHER INTERN (On-site)",
+      "cleaned_title": "AI Quantitative Researcher",
+      "role_family": "AI / Quantitative Research",
+      "level_cue": "Intern",
+      "language": "en",
+      "tech_stack_cues": [
+        "AI",
+        "Quantitative"
+      ],
+      "is_it_core": true,
+      "status": "verified",
+      "job_count": 1,
+      "source_job_keys": [
+        "2144686"
+      ],
+      "notes": "Research role combining AI and quantitative finance; level cue is Intern."
+    },
+    {
+      "id": "TITLE-003",
+      "raw_title": "Associate Quality Engineer (Automation)",
+      "cleaned_title": "Quality Engineer (Automation)",
+      "role_family": "Software Testing / QA / QC",
+      "level_cue": "Associate",
+      "language": "en",
+      "tech_stack_cues": [
+        "Automation Test"
+      ],
+      "is_it_core": true,
+      "status": "verified",
+      "job_count": 1,
+      "source_job_keys": [
+        "2147524"
+      ],
+      "notes": "QA Automation; Associate is a level cue."
+    },
+    {
+      "id": "TITLE-004",
+      "raw_title": "Business Analyst",
+      "cleaned_title": "Business Analyst",
+      "role_family": "Business Analysis",
+      "level_cue": "Unspecified",
+      "language": "en",
+      "tech_stack_cues": [],
+      "is_it_core": true,
+      "status": "verified",
+      "job_count": 2,
+      "source_job_keys": [
+        "2142428",
+        "2146560"
+      ],
+      "notes": "IT BA role; no level cue."
+    },
+    {
+      "id": "TITLE-005",
+      "raw_title": "C/C++ Software Developer – Telecom (All Levels)",
+      "cleaned_title": "C/C++ Software Developer – Telecom",
+      "role_family": "Software Engineering (Backend)",
+      "level_cue": "All Levels",
+      "language": "en",
+      "tech_stack_cues": [
+        "C",
+        "C++",
+        "Telecom"
+      ],
+      "is_it_core": true,
+      "status": "verified",
+      "job_count": 1,
+      "source_job_keys": [
+        "2138248"
+      ],
+      "notes": "Software dev in Telecom domain; All Levels indicates multi-level hiring."
+    },
+    {
+      "id": "TITLE-006",
+      "raw_title": "Chuyên Gia Kiểm Thử & Đánh Giá An Ninh (Pentest) - Hà Nội",
+      "cleaned_title": "Kiểm Thử & Đánh Giá An Ninh (Pentest)",
+      "role_family": "Information Security / Cybersecurity",
+      "level_cue": "Chuyên gia",
+      "language": "vi-en",
+      "tech_stack_cues": [
+        "Pentest"
+      ],
+      "is_it_core": true,
+      "status": "verified",
+      "job_count": 1,
+      "source_job_keys": [
+        "2137011"
+      ],
+      "notes": "Penetration testing / Security evaluation; Chuyên gia is level cue, Pentest is English term."
+    },
+    {
+      "id": "TITLE-007",
+      "raw_title": "Chuyên Gia Vận Hành Thẻ",
+      "cleaned_title": "Vận Hành Thẻ",
+      "role_family": "IT Operations & Integration Services",
+      "level_cue": "Chuyên gia",
+      "language": "vi",
+      "tech_stack_cues": [
+        "Card Banking Operations"
+      ],
+      "is_it_core": true,
+      "status": "verified",
+      "job_count": 1,
+      "source_job_keys": [
+        "2145266"
+      ],
+      "notes": "Banking card payment system operations; Chuyên gia is level cue."
+    },
+    {
+      "id": "TITLE-008",
+      "raw_title": "Chuyên Viên Cao Cấp Vận Hành An Toàn An Ninh Thông Tin - Hà Nội",
+      "cleaned_title": "Vận Hành An Toàn An Ninh Thông Tin",
+      "role_family": "Information Security / Cybersecurity",
+      "level_cue": "Chuyên viên cao cấp",
+      "language": "vi",
+      "tech_stack_cues": [
+        "SOC",
+        "Infosec"
+      ],
+      "is_it_core": true,
+      "status": "verified",
+      "job_count": 1,
+      "source_job_keys": [
+        "2137009"
+      ],
+      "notes": "SecOps / Infosec operations; Chuyên viên cao cấp is level cue."
+    },
+    {
+      "id": "TITLE-009",
+      "raw_title": "Chuyên gia Chiến lược công nghệ",
+      "cleaned_title": "Chiến lược công nghệ",
+      "role_family": "IT Architecture & Strategy",
+      "level_cue": "Chuyên gia",
+      "language": "vi",
+      "tech_stack_cues": [
+        "Tech Strategy"
+      ],
+      "is_it_core": true,
+      "status": "verified",
+      "job_count": 1,
+      "source_job_keys": [
+        "2147264"
+      ],
+      "notes": "Technology strategy and roadmap planning; Chuyên gia is level cue."
+    },
+    {
+      "id": "TITLE-010",
+      "raw_title": "Chuyên gia Kiến trúc doanh nghiệp (EA)",
+      "cleaned_title": "Kiến trúc doanh nghiệp (EA)",
+      "role_family": "IT Architecture & Strategy",
+      "level_cue": "Chuyên gia",
+      "language": "vi-en",
+      "tech_stack_cues": [
+        "Enterprise Architecture",
+        "EA"
+      ],
+      "is_it_core": true,
+      "status": "verified",
+      "job_count": 1,
+      "source_job_keys": [
+        "2147263"
+      ],
+      "notes": "Enterprise Architecture; Chuyên gia is level cue, EA is English abbreviation."
+    },
+    {
+      "id": "TITLE-011",
+      "raw_title": "Chuyên viên Cao cấp QA",
+      "cleaned_title": "QA",
+      "role_family": "Software Testing / QA / QC",
+      "level_cue": "Chuyên viên cao cấp",
+      "language": "vi-en",
+      "tech_stack_cues": [
+        "QA"
+      ],
+      "is_it_core": true,
+      "status": "verified",
+      "job_count": 1,
+      "source_job_keys": [
+        "2144821"
+      ],
+      "notes": "Senior QA role; Chuyên viên cao cấp is level cue."
+    },
+    {
+      "id": "TITLE-012",
+      "raw_title": "Chuyên viên Công nghệ & phát triển sản phẩm Cloud, Data Center và ANM",
+      "cleaned_title": "Công nghệ & phát triển sản phẩm Cloud, Data Center và ANM",
+      "role_family": "Cloud, Systems & Network Infrastructure",
+      "level_cue": "Chuyên viên",
+      "language": "vi-en",
+      "tech_stack_cues": [
+        "Cloud",
+        "Data Center",
+        "ANM"
+      ],
+      "is_it_core": true,
+      "status": "verified",
+      "job_count": 1,
+      "source_job_keys": [
+        "2144325"
+      ],
+      "notes": "Cloud & network security product engineering; Chuyên viên is level cue."
+    },
+    {
+      "id": "TITLE-013",
+      "raw_title": "Chuyên viên Hỗ trợ Tích hợp Dịch vụ - Khối Ngân hàng Số (2026TD457689)",
+      "cleaned_title": "Hỗ trợ Tích hợp Dịch vụ - Khối Ngân hàng Số",
+      "role_family": "IT Operations & Integration Services",
+      "level_cue": "Chuyên viên",
+      "language": "vi",
+      "tech_stack_cues": [
+        "API Integration",
+        "Digital Banking"
+      ],
+      "is_it_core": true,
+      "status": "verified",
+      "job_count": 1,
+      "source_job_keys": [
+        "2139603"
+      ],
+      "notes": "Digital banking service integration support; Chuyên viên is level cue."
+    },
+    {
+      "id": "TITLE-014",
+      "raw_title": "Chuyên viên Hỗ trợ bán hàng (Kỹ thuật)",
+      "cleaned_title": "Hỗ trợ bán hàng (Kỹ thuật)",
+      "role_family": "IT Sales & Presales",
+      "level_cue": "Chuyên viên",
+      "language": "vi",
+      "tech_stack_cues": [
+        "Sales Engineering"
+      ],
+      "is_it_core": false,
+      "status": "verified",
+      "job_count": 1,
+      "source_job_keys": [
+        "2144328"
+      ],
+      "notes": "Technical sales support / Presales; peripheral tech role."
+    },
+    {
+      "id": "TITLE-015",
+      "raw_title": "Chuyên viên Kinh doanh Cloud, An ninh mạng",
+      "cleaned_title": "Kinh doanh Cloud, An ninh mạng",
+      "role_family": "IT Sales & Presales",
+      "level_cue": "Chuyên viên",
+      "language": "vi-en",
+      "tech_stack_cues": [
+        "Cloud",
+        "Cybersecurity"
+      ],
+      "is_it_core": false,
+      "status": "verified",
+      "job_count": 1,
+      "source_job_keys": [
+        "2144327"
+      ],
+      "notes": "Cloud & Security solution sales; IT-adjacent sales role."
+    },
+    {
+      "id": "TITLE-016",
+      "raw_title": "Chuyên viên Kiến trúc doanh nghiệp (EA)",
+      "cleaned_title": "Kiến trúc doanh nghiệp (EA)",
+      "role_family": "IT Architecture & Strategy",
+      "level_cue": "Chuyên viên",
+      "language": "vi-en",
+      "tech_stack_cues": [
+        "Enterprise Architecture",
+        "EA"
+      ],
+      "is_it_core": true,
+      "status": "verified",
+      "job_count": 1,
+      "source_job_keys": [
+        "2147265"
+      ],
+      "notes": "Enterprise Architecture specialist."
+    },
+    {
+      "id": "TITLE-017",
+      "raw_title": "Chuyên viên Kiểm thử - Tester - Khối Công nghệ thông tin (2026TD456989)",
+      "cleaned_title": "Kiểm thử - Tester",
+      "role_family": "Software Testing / QA / QC",
+      "level_cue": "Chuyên viên",
+      "language": "vi-en",
+      "tech_stack_cues": [
+        "Testing"
+      ],
+      "is_it_core": true,
+      "status": "verified",
+      "job_count": 1,
+      "source_job_keys": [
+        "2145660"
+      ],
+      "notes": "Manual/Automation software tester; mixed Vietnamese Kiểm thử and English Tester."
+    },
+    {
+      "id": "TITLE-018",
+      "raw_title": "Chuyên viên Phát triển Hệ thống",
+      "cleaned_title": "Phát triển Hệ thống",
+      "role_family": "Software Engineering (Backend)",
+      "level_cue": "Chuyên viên",
+      "language": "vi",
+      "tech_stack_cues": [
+        "Systems Development"
+      ],
+      "is_it_core": true,
+      "status": "verified",
+      "job_count": 1,
+      "source_job_keys": [
+        "2145274"
+      ],
+      "notes": "Systems / backend software developer."
+    },
+    {
+      "id": "TITLE-019",
+      "raw_title": "Chuyên viên Phân tích nghiệp vụ",
+      "cleaned_title": "Phân tích nghiệp vụ",
+      "role_family": "Business Analysis",
+      "level_cue": "Chuyên viên",
+      "language": "vi",
+      "tech_stack_cues": [
+        "BA"
+      ],
+      "is_it_core": true,
+      "status": "verified",
+      "job_count": 1,
+      "source_job_keys": [
+        "2144329"
+      ],
+      "notes": "Vietnamese title for Business Analyst."
+    },
+    {
+      "id": "TITLE-020",
+      "raw_title": "Chuyên viên Phân tích nghiệp vụ (BA)",
+      "cleaned_title": "Phân tích nghiệp vụ (BA)",
+      "role_family": "Business Analysis",
+      "level_cue": "Chuyên viên",
+      "language": "vi-en",
+      "tech_stack_cues": [
+        "BA"
+      ],
+      "is_it_core": true,
+      "status": "verified",
+      "job_count": 1,
+      "source_job_keys": [
+        "2147019"
+      ],
+      "notes": "Vietnamese title with English acronym BA."
+    },
+    {
+      "id": "TITLE-021",
+      "raw_title": "Chuyên viên cao cấp Kiểm thử",
+      "cleaned_title": "Kiểm thử",
+      "role_family": "Software Testing / QA / QC",
+      "level_cue": "Chuyên viên cao cấp",
+      "language": "vi",
+      "tech_stack_cues": [
+        "Testing"
+      ],
+      "is_it_core": true,
+      "status": "verified",
+      "job_count": 1,
+      "source_job_keys": [
+        "2145664"
+      ],
+      "notes": "Senior QA/Tester; Chuyên viên cao cấp is level cue."
+    },
+    {
+      "id": "TITLE-022",
+      "raw_title": "Chuyên viên cao cấp Phát triển Hệ thống",
+      "cleaned_title": "Phát triển Hệ thống",
+      "role_family": "Software Engineering (Backend)",
+      "level_cue": "Chuyên viên cao cấp",
+      "language": "vi",
+      "tech_stack_cues": [
+        "Systems Development"
+      ],
+      "is_it_core": true,
+      "status": "verified",
+      "job_count": 1,
+      "source_job_keys": [
+        "2145269"
+      ],
+      "notes": "Senior systems / backend engineer."
+    },
+    {
+      "id": "TITLE-023",
+      "raw_title": "Chuyên viên cao cấp Vận hành hệ thống",
+      "cleaned_title": "Vận hành hệ thống",
+      "role_family": "Cloud, Systems & Network Infrastructure",
+      "level_cue": "Chuyên viên cao cấp",
+      "language": "vi",
+      "tech_stack_cues": [
+        "System Operations"
+      ],
+      "is_it_core": true,
+      "status": "verified",
+      "job_count": 1,
+      "source_job_keys": [
+        "2145265"
+      ],
+      "notes": "Senior system operations / sysadmin."
+    },
+    {
+      "id": "TITLE-024",
+      "raw_title": "Chuyên viên cao cấp an ninh mạng",
+      "cleaned_title": "An ninh mạng",
+      "role_family": "Information Security / Cybersecurity",
+      "level_cue": "Chuyên viên cao cấp",
+      "language": "vi",
+      "tech_stack_cues": [
+        "Cybersecurity"
+      ],
+      "is_it_core": true,
+      "status": "verified",
+      "job_count": 1,
+      "source_job_keys": [
+        "2144323"
+      ],
+      "notes": "Senior cybersecurity specialist."
+    },
+    {
+      "id": "TITLE-025",
+      "raw_title": "Chuyên viên cao cấp phát triển sản phẩm/giải pháp CNTT",
+      "cleaned_title": "Phát triển sản phẩm/giải pháp CNTT",
+      "role_family": "IT Project Management / Product Management",
+      "level_cue": "Chuyên viên cao cấp",
+      "language": "vi",
+      "tech_stack_cues": [
+        "Product Management"
+      ],
+      "is_it_core": true,
+      "status": "verified",
+      "job_count": 1,
+      "source_job_keys": [
+        "2144321"
+      ],
+      "notes": "Senior IT product/solution development specialist."
+    },
+    {
+      "id": "TITLE-026",
+      "raw_title": "Chuyên viên lập trình Back-end (Java)",
+      "cleaned_title": "Lập trình Back-end (Java)",
+      "role_family": "Software Engineering (Backend)",
+      "level_cue": "Chuyên viên",
+      "language": "vi-en",
+      "tech_stack_cues": [
+        "Java",
+        "Backend"
+      ],
+      "is_it_core": true,
+      "status": "verified",
+      "job_count": 1,
+      "source_job_keys": [
+        "2144332"
+      ],
+      "notes": "Java Backend developer."
+    },
+    {
+      "id": "TITLE-027",
+      "raw_title": "Chuyên viên phân tích nghiệp vụ phần mềm",
+      "cleaned_title": "Phân tích nghiệp vụ phần mềm",
+      "role_family": "Business Analysis",
+      "level_cue": "Chuyên viên",
+      "language": "vi",
+      "tech_stack_cues": [
+        "Software BA"
+      ],
+      "is_it_core": true,
+      "status": "verified",
+      "job_count": 1,
+      "source_job_keys": [
+        "2143576"
+      ],
+      "notes": "Software Business Analyst in Vietnamese."
+    },
+    {
+      "id": "TITLE-028",
+      "raw_title": "Chuyên viên quản lý dự án phần mềm",
+      "cleaned_title": "Quản lý dự án phần mềm",
+      "role_family": "IT Project Management / Product Management",
+      "level_cue": "Chuyên viên",
+      "language": "vi",
+      "tech_stack_cues": [
+        "Software PM"
+      ],
+      "is_it_core": true,
+      "status": "verified",
+      "job_count": 1,
+      "source_job_keys": [
+        "2144330"
+      ],
+      "notes": "Software Project Manager in Vietnamese."
+    },
+    {
+      "id": "TITLE-029",
+      "raw_title": "Chuyên viên triển khai dự án",
+      "cleaned_title": "Triển khai dự án",
+      "role_family": "IT Support & Systems Operations",
+      "level_cue": "Chuyên viên",
+      "language": "vi",
+      "tech_stack_cues": [
+        "Project Deployment"
+      ],
+      "is_it_core": true,
+      "status": "verified",
+      "job_count": 1,
+      "source_job_keys": [
+        "2144326"
+      ],
+      "notes": "IT software/solution deployment specialist."
+    },
+    {
+      "id": "TITLE-030",
+      "raw_title": "Chuyên viên đảm bảo chất lượng (QA/QC)",
+      "cleaned_title": "Đảm bảo chất lượng (QA/QC)",
+      "role_family": "Software Testing / QA / QC",
+      "level_cue": "Chuyên viên",
+      "language": "vi-en",
+      "tech_stack_cues": [
+        "QA",
+        "QC"
+      ],
+      "is_it_core": true,
+      "status": "verified",
+      "job_count": 1,
+      "source_job_keys": [
+        "2137774"
+      ],
+      "notes": "Quality assurance / quality control specialist."
+    },
+    {
+      "id": "TITLE-031",
+      "raw_title": "Chuyên viên Ứng dụng Microsoft 365 & Copilot",
+      "cleaned_title": "Ứng dụng Microsoft 365 & Copilot",
+      "role_family": "Cloud, Systems & Network Infrastructure",
+      "level_cue": "Chuyên viên",
+      "language": "vi-en",
+      "tech_stack_cues": [
+        "Microsoft 365",
+        "Copilot"
+      ],
+      "is_it_core": true,
+      "status": "verified",
+      "job_count": 1,
+      "source_job_keys": [
+        "2138855"
+      ],
+      "notes": "Workplace digital tools / M365 admin and Copilot specialist."
+    },
+    {
+      "id": "TITLE-032",
+      "raw_title": "Cloud & DevOps Engineer (Azure, AWS)",
+      "cleaned_title": "Cloud & DevOps Engineer",
+      "role_family": "DevOps & DevSecOps",
+      "level_cue": "Unspecified",
+      "language": "en",
+      "tech_stack_cues": [
+        "Cloud",
+        "DevOps",
+        "AWS",
+        "Azure"
+      ],
+      "is_it_core": true,
+      "status": "verified",
+      "job_count": 1,
+      "source_job_keys": [
+        "2143264"
+      ],
+      "notes": "Cloud DevOps role spanning AWS and Azure."
+    },
+    {
+      "id": "TITLE-033",
+      "raw_title": "Cobol Developer (English speaking)",
+      "cleaned_title": "Cobol Developer",
+      "role_family": "Software Engineering (Backend)",
+      "level_cue": "Unspecified",
+      "language": "en",
+      "tech_stack_cues": [
+        "COBOL",
+        "Legacy Banking Systems"
+      ],
+      "is_it_core": true,
+      "status": "verified",
+      "job_count": 1,
+      "source_job_keys": [
+        "2147525"
+      ],
+      "notes": "Cobol software developer."
+    },
+    {
+      "id": "TITLE-034",
+      "raw_title": "Customer Support Engineer",
+      "cleaned_title": "Customer Support Engineer",
+      "role_family": "IT Support & Systems Operations",
+      "level_cue": "Unspecified",
+      "language": "en",
+      "tech_stack_cues": [
+        "Technical Support"
+      ],
+      "is_it_core": true,
+      "status": "verified",
+      "job_count": 1,
+      "source_job_keys": [
+        "2137776"
+      ],
+      "notes": "Technical customer support engineer."
+    },
+    {
+      "id": "TITLE-035",
+      "raw_title": "Data Engineer (Big Data / Lakehouse)",
+      "cleaned_title": "Data Engineer (Big Data / Lakehouse)",
+      "role_family": "Data Engineering",
+      "level_cue": "Unspecified",
+      "language": "en",
+      "tech_stack_cues": [
+        "Big Data",
+        "Lakehouse"
+      ],
+      "is_it_core": true,
+      "status": "verified",
+      "job_count": 1,
+      "source_job_keys": [
+        "2144836"
+      ],
+      "notes": "Data engineering with modern data lakehouse stack."
+    },
+    {
+      "id": "TITLE-036",
+      "raw_title": "Data Engineer at DATATYK CO., LTD",
+      "cleaned_title": "Data Engineer",
+      "role_family": "Data Engineering",
+      "level_cue": "Unspecified",
+      "language": "en",
+      "tech_stack_cues": [
+        "Data Engineering"
+      ],
+      "is_it_core": true,
+      "status": "verified",
+      "job_count": 1,
+      "source_job_keys": [
+        "2142369"
+      ],
+      "notes": "Company name in title stripped in cleaned_title."
+    },
+    {
+      "id": "TITLE-037",
+      "raw_title": "Data Engineer/ Senior Data Engineer",
+      "cleaned_title": "Data Engineer",
+      "role_family": "Data Engineering",
+      "level_cue": "Senior",
+      "language": "en",
+      "tech_stack_cues": [
+        "Data Engineering"
+      ],
+      "is_it_core": true,
+      "status": "verified",
+      "job_count": 1,
+      "source_job_keys": [
+        "2144784"
+      ],
+      "notes": "Dual title; Senior is explicit level cue."
+    },
+    {
+      "id": "TITLE-038",
+      "raw_title": "Data Services Specialist",
+      "cleaned_title": "Data Services Specialist",
+      "role_family": "IT Operations & Integration Services",
+      "level_cue": "Unspecified",
+      "language": "en",
+      "tech_stack_cues": [
+        "Data Services",
+        "APIs"
+      ],
+      "is_it_core": true,
+      "status": "verified",
+      "job_count": 1,
+      "source_job_keys": [
+        "2143923"
+      ],
+      "notes": "Data services and integration specialist."
+    },
+    {
+      "id": "TITLE-039",
+      "raw_title": "DevOps Engineer (Middle/Senior)",
+      "cleaned_title": "DevOps Engineer",
+      "role_family": "DevOps & DevSecOps",
+      "level_cue": "Middle/Senior",
+      "language": "en",
+      "tech_stack_cues": [
+        "DevOps"
+      ],
+      "is_it_core": true,
+      "status": "verified",
+      "job_count": 1,
+      "source_job_keys": [
+        "2146167"
+      ],
+      "notes": "DevOps role with multi-level cue Middle/Senior."
+    },
+    {
+      "id": "TITLE-040",
+      "raw_title": "DevOps Engineer - Khối Công nghệ thông tin (2025TD945)",
+      "cleaned_title": "DevOps Engineer",
+      "role_family": "DevOps & DevSecOps",
+      "level_cue": "Unspecified",
+      "language": "vi-en",
+      "tech_stack_cues": [
+        "DevOps"
+      ],
+      "is_it_core": true,
+      "status": "verified",
+      "job_count": 1,
+      "source_job_keys": [
+        "2144912"
+      ],
+      "notes": "English title with Vietnamese department suffix and job requisition code."
+    },
+    {
+      "id": "TITLE-041",
+      "raw_title": "DevSecOps Engineer - Khối Công nghệ thông tin (2025TD946)",
+      "cleaned_title": "DevSecOps Engineer",
+      "role_family": "DevOps & DevSecOps",
+      "level_cue": "Unspecified",
+      "language": "vi-en",
+      "tech_stack_cues": [
+        "DevSecOps",
+        "Security"
+      ],
+      "is_it_core": true,
+      "status": "verified",
+      "job_count": 1,
+      "source_job_keys": [
+        "2144919"
+      ],
+      "notes": "DevSecOps engineering role."
+    },
+    {
+      "id": "TITLE-042",
+      "raw_title": "ERP Application Developer",
+      "cleaned_title": "ERP Application Developer",
+      "role_family": "Enterprise Applications (ERP / CRM)",
+      "level_cue": "Unspecified",
+      "language": "en",
+      "tech_stack_cues": [
+        "ERP"
+      ],
+      "is_it_core": true,
+      "status": "verified",
+      "job_count": 1,
+      "source_job_keys": [
+        "2147004"
+      ],
+      "notes": "ERP developer role."
+    },
+    {
+      "id": "TITLE-043",
+      "raw_title": "Expert/Senior/Middle Software Engineer (Java, Spring boot, PostgreSQL)",
+      "cleaned_title": "Software Engineer (Java, Spring boot, PostgreSQL)",
+      "role_family": "Software Engineering (Backend)",
+      "level_cue": "Expert/Senior/Middle",
+      "language": "en",
+      "tech_stack_cues": [
+        "Java",
+        "Spring boot",
+        "PostgreSQL"
+      ],
+      "is_it_core": true,
+      "status": "verified",
+      "job_count": 1,
+      "source_job_keys": [
+        "2141521"
+      ],
+      "notes": "Backend engineering role; Expert/Senior/Middle is explicit multi-level cue."
+    },
+    {
+      "id": "TITLE-044",
+      "raw_title": "Fresher/Junior PHP Developer",
+      "cleaned_title": "PHP Developer",
+      "role_family": "Software Engineering (Backend)",
+      "level_cue": "Fresher/Junior",
+      "language": "en",
+      "tech_stack_cues": [
+        "PHP"
+      ],
+      "is_it_core": true,
+      "status": "verified",
+      "job_count": 1,
+      "source_job_keys": [
+        "2142772"
+      ],
+      "notes": "PHP developer; Fresher/Junior is level cue."
+    },
+    {
+      "id": "TITLE-045",
+      "raw_title": "Fullstack Engineer (AI Product Builder)",
+      "cleaned_title": "Fullstack Engineer (AI Product Builder)",
+      "role_family": "Software Engineering (Fullstack / Web)",
+      "level_cue": "Unspecified",
+      "language": "en",
+      "tech_stack_cues": [
+        "Fullstack",
+        "AI Product"
+      ],
+      "is_it_core": true,
+      "status": "verified",
+      "job_count": 1,
+      "source_job_keys": [
+        "2141079"
+      ],
+      "notes": "Fullstack developer working on AI applications."
+    },
+    {
+      "id": "TITLE-046",
+      "raw_title": "Functional Consultant – ORIS Business Suite",
+      "cleaned_title": "Functional Consultant – ORIS Business Suite",
+      "role_family": "Enterprise Applications (ERP / CRM)",
+      "level_cue": "Unspecified",
+      "language": "en",
+      "tech_stack_cues": [
+        "ORIS Business Suite",
+        "Functional Consultant"
+      ],
+      "is_it_core": true,
+      "status": "verified",
+      "job_count": 1,
+      "source_job_keys": [
+        "2139659"
+      ],
+      "notes": "ERP/enterprise suite functional consulting."
+    },
+    {
+      "id": "TITLE-047",
+      "raw_title": "IT Business Analyst - Chuyên viên phân tích nghiệp vụ",
+      "cleaned_title": "IT Business Analyst",
+      "role_family": "Business Analysis",
+      "level_cue": "Chuyên viên",
+      "language": "vi-en",
+      "tech_stack_cues": [
+        "BA"
+      ],
+      "is_it_core": true,
+      "status": "verified",
+      "job_count": 1,
+      "source_job_keys": [
+        "2144272"
+      ],
+      "notes": "Bilingual title mapping directly to Business Analysis; Chuyên viên is level cue."
+    },
+    {
+      "id": "TITLE-048",
+      "raw_title": "IT Business Analyst / QA Specialist (Biết tiếng Hàn)",
+      "cleaned_title": "IT Business Analyst / QA Specialist",
+      "role_family": "Business Analysis",
+      "level_cue": "Unspecified",
+      "language": "vi-en",
+      "tech_stack_cues": [
+        "BA",
+        "QA"
+      ],
+      "is_it_core": true,
+      "status": "verified",
+      "job_count": 1,
+      "source_job_keys": [
+        "2141050"
+      ],
+      "notes": "Hybrid BA/QA role; language requirement note attached in Vietnamese."
+    },
+    {
+      "id": "TITLE-049",
+      "raw_title": "IT Senior Staff",
+      "cleaned_title": "IT Staff",
+      "role_family": "IT Support & Systems Operations",
+      "level_cue": "Senior",
+      "language": "en",
+      "tech_stack_cues": [
+        "IT Operations"
+      ],
+      "is_it_core": true,
+      "status": "verified",
+      "job_count": 1,
+      "source_job_keys": [
+        "2145659"
+      ],
+      "notes": "General internal IT support/operations staff; Senior is level cue."
+    },
+    {
+      "id": "TITLE-050",
+      "raw_title": "IT Supervisor/ Giám sát IT – Resort/Khách sạn",
+      "cleaned_title": "IT Supervisor",
+      "role_family": "IT Support & Systems Operations",
+      "level_cue": "Manager / Lead",
+      "language": "vi-en",
+      "tech_stack_cues": [
+        "Hospitality IT"
+      ],
+      "is_it_core": true,
+      "status": "verified",
+      "job_count": 1,
+      "source_job_keys": [
+        "2145037"
+      ],
+      "notes": "Hospitality IT infrastructure supervisor; Supervisor/Giám sát is level cue."
+    },
+    {
+      "id": "TITLE-051",
+      "raw_title": "IT Systems Administrator",
+      "cleaned_title": "IT Systems Administrator",
+      "role_family": "Cloud, Systems & Network Infrastructure",
+      "level_cue": "Unspecified",
+      "language": "en",
+      "tech_stack_cues": [
+        "Sysadmin"
+      ],
+      "is_it_core": true,
+      "status": "verified",
+      "job_count": 1,
+      "source_job_keys": [
+        "2142422"
+      ],
+      "notes": "System administrator role."
+    },
+    {
+      "id": "TITLE-052",
+      "raw_title": "Java Backend Developer",
+      "cleaned_title": "Java Backend Developer",
+      "role_family": "Software Engineering (Backend)",
+      "level_cue": "Unspecified",
+      "language": "en",
+      "tech_stack_cues": [
+        "Java",
+        "Backend"
+      ],
+      "is_it_core": true,
+      "status": "verified",
+      "job_count": 1,
+      "source_job_keys": [
+        "2142427"
+      ],
+      "notes": "Backend engineering focusing on Java."
+    },
+    {
+      "id": "TITLE-053",
+      "raw_title": "Junior MarTech Solutions Consultant",
+      "cleaned_title": "MarTech Solutions Consultant",
+      "role_family": "Enterprise Applications (ERP / CRM)",
+      "level_cue": "Junior",
+      "language": "en",
+      "tech_stack_cues": [
+        "MarTech",
+        "Marketing Automation"
+      ],
+      "is_it_core": true,
+      "status": "verified",
+      "job_count": 1,
+      "source_job_keys": [
+        "2143922"
+      ],
+      "notes": "Marketing technology solutions consulting; Junior is level cue."
+    },
+    {
+      "id": "TITLE-054",
+      "raw_title": "Junior/Middle/Senior IT Business Analyst (LOS, CRM System)",
+      "cleaned_title": "IT Business Analyst (LOS, CRM System)",
+      "role_family": "Business Analysis",
+      "level_cue": "Junior/Middle/Senior",
+      "language": "en",
+      "tech_stack_cues": [
+        "LOS",
+        "CRM"
+      ],
+      "is_it_core": true,
+      "status": "verified",
+      "job_count": 1,
+      "source_job_keys": [
+        "2140203"
+      ],
+      "notes": "BA role for lending / CRM systems; multi-level cue Junior/Middle/Senior."
+    },
+    {
+      "id": "TITLE-055",
+      "raw_title": "Junior/Senior Software Backend (.NET, dotnet, netcore)",
+      "cleaned_title": "Software Backend (.NET, dotnet, netcore)",
+      "role_family": "Software Engineering (Backend)",
+      "level_cue": "Junior/Senior",
+      "language": "en",
+      "tech_stack_cues": [
+        ".NET",
+        "dotnet",
+        "netcore"
+      ],
+      "is_it_core": true,
+      "status": "verified",
+      "job_count": 1,
+      "source_job_keys": [
+        "2147000"
+      ],
+      "notes": "Backend .NET development; Junior/Senior is level cue."
+    },
+    {
+      "id": "TITLE-056",
+      "raw_title": "KOREAN IT INTERPRETER",
+      "cleaned_title": "IT Interpreter (Korean)",
+      "role_family": "IT Translation / Interpretation",
+      "level_cue": "Unspecified",
+      "language": "en",
+      "tech_stack_cues": [
+        "Korean Translation"
+      ],
+      "is_it_core": false,
+      "status": "verified",
+      "job_count": 1,
+      "source_job_keys": [
+        "2140638"
+      ],
+      "notes": "Bridge/Comtor/Interpreter role; IT-adjacent non-engineering."
+    },
+    {
+      "id": "TITLE-057",
+      "raw_title": "Kiến trúc sư giải pháp CNTT",
+      "cleaned_title": "Kiến trúc sư giải pháp CNTT",
+      "role_family": "IT Architecture & Strategy",
+      "level_cue": "Unspecified",
+      "language": "vi",
+      "tech_stack_cues": [
+        "Solution Architecture"
+      ],
+      "is_it_core": true,
+      "status": "verified",
+      "job_count": 1,
+      "source_job_keys": [
+        "2144320"
+      ],
+      "notes": "IT Solution Architect in Vietnamese."
+    },
+    {
+      "id": "TITLE-058",
+      "raw_title": "Kỹ Sư Dữ Liệu (Data Engineer)",
+      "cleaned_title": "Data Engineer",
+      "role_family": "Data Engineering",
+      "level_cue": "Unspecified",
+      "language": "vi-en",
+      "tech_stack_cues": [
+        "Data Engineering"
+      ],
+      "is_it_core": true,
+      "status": "verified",
+      "job_count": 2,
+      "source_job_keys": [
+        "2138202",
+        "2146486"
+      ],
+      "notes": "Bilingual Vietnamese/English Data Engineer title."
+    },
+    {
+      "id": "TITLE-059",
+      "raw_title": "Kỹ sư Presale giải pháp Công nghệ thông tin (khối Chính phủ)",
+      "cleaned_title": "Presale giải pháp Công nghệ thông tin (khối Chính phủ)",
+      "role_family": "IT Sales & Presales",
+      "level_cue": "Unspecified",
+      "language": "vi-en",
+      "tech_stack_cues": [
+        "Presales",
+        "Government IT"
+      ],
+      "is_it_core": false,
+      "status": "verified",
+      "job_count": 1,
+      "source_job_keys": [
+        "2144324"
+      ],
+      "notes": "IT Presales solutions role in public sector; sales adjacent."
+    },
+    {
+      "id": "TITLE-060",
+      "raw_title": "Kỹ sư Quản lý Chất lượng Phần mềm",
+      "cleaned_title": "Quản lý Chất lượng Phần mềm",
+      "role_family": "Software Testing / QA / QC",
+      "level_cue": "Unspecified",
+      "language": "vi",
+      "tech_stack_cues": [
+        "Software QA"
+      ],
+      "is_it_core": true,
+      "status": "verified",
+      "job_count": 1,
+      "source_job_keys": [
+        "2139756"
+      ],
+      "notes": "Software QA Engineer in Vietnamese."
+    },
+    {
+      "id": "TITLE-061",
+      "raw_title": "Kỹ sư công nghệ thông tin - Quản trị viên phần mềm và dữ liệu (03)",
+      "cleaned_title": "Quản trị viên phần mềm và dữ liệu",
+      "role_family": "Database Administration",
+      "level_cue": "Unspecified",
+      "language": "vi",
+      "tech_stack_cues": [
+        "Software & Data Administration"
+      ],
+      "is_it_core": true,
+      "status": "verified",
+      "job_count": 1,
+      "source_job_keys": [
+        "2147516"
+      ],
+      "notes": "Software and database administrator."
+    },
+    {
+      "id": "TITLE-062",
+      "raw_title": "Kỹ sư dữ liệu (Data Engineer)",
+      "cleaned_title": "Data Engineer",
+      "role_family": "Data Engineering",
+      "level_cue": "Unspecified",
+      "language": "vi-en",
+      "tech_stack_cues": [
+        "Data Engineering"
+      ],
+      "is_it_core": true,
+      "status": "verified",
+      "job_count": 1,
+      "source_job_keys": [
+        "2143574"
+      ],
+      "notes": "Standard bilingual title for Data Engineer."
+    },
+    {
+      "id": "TITLE-063",
+      "raw_title": "Kỹ sư lập trình Backend (Java)",
+      "cleaned_title": "Lập trình Backend (Java)",
+      "role_family": "Software Engineering (Backend)",
+      "level_cue": "Unspecified",
+      "language": "vi-en",
+      "tech_stack_cues": [
+        "Java",
+        "Backend"
+      ],
+      "is_it_core": true,
+      "status": "verified",
+      "job_count": 1,
+      "source_job_keys": [
+        "2143575"
+      ],
+      "notes": "Java Backend developer in mixed Vietnamese/English."
+    },
+    {
+      "id": "TITLE-064",
+      "raw_title": "Lập trình viên (.NET Full-stack Developer)",
+      "cleaned_title": ".NET Full-stack Developer",
+      "role_family": "Software Engineering (Fullstack / Web)",
+      "level_cue": "Unspecified",
+      "language": "vi-en",
+      "tech_stack_cues": [
+        ".NET",
+        "Fullstack"
+      ],
+      "is_it_core": true,
+      "status": "verified",
+      "job_count": 1,
+      "source_job_keys": [
+        "2147003"
+      ],
+      "notes": ".NET Full-stack developer with Vietnamese job descriptor."
+    },
+    {
+      "id": "TITLE-065",
+      "raw_title": "Mobile App Executive Officer",
+      "cleaned_title": "Mobile App Executive Officer",
+      "role_family": "IT Project Management / Product Management",
+      "level_cue": "Manager / Lead",
+      "language": "en",
+      "tech_stack_cues": [
+        "Mobile App"
+      ],
+      "is_it_core": true,
+      "status": "verified",
+      "job_count": 1,
+      "source_job_keys": [
+        "2143050"
+      ],
+      "notes": "Product operations / executive role for mobile apps."
+    },
+    {
+      "id": "TITLE-066",
+      "raw_title": "Mobile Game QA",
+      "cleaned_title": "Mobile Game QA",
+      "role_family": "Software Testing / QA / QC",
+      "level_cue": "Unspecified",
+      "language": "en",
+      "tech_stack_cues": [
+        "Mobile Game",
+        "QA"
+      ],
+      "is_it_core": true,
+      "status": "verified",
+      "job_count": 1,
+      "source_job_keys": [
+        "2144844"
+      ],
+      "notes": "Mobile gaming software quality assurance."
+    },
+    {
+      "id": "TITLE-067",
+      "raw_title": "NHÂN VIÊN IT",
+      "cleaned_title": "Nhân viên IT",
+      "role_family": "IT Support & Systems Operations",
+      "level_cue": "Nhân viên",
+      "language": "vi-en",
+      "tech_stack_cues": [
+        "IT Helpdesk"
+      ],
+      "is_it_core": true,
+      "status": "verified",
+      "job_count": 1,
+      "source_job_keys": [
+        "2137775"
+      ],
+      "notes": "General internal IT support / helpdesk staff; Nhân viên is level cue."
+    },
+    {
+      "id": "TITLE-068",
+      "raw_title": "NHÂN VIÊN TRIỂN KHAI BẢO TRÌ PHẦN MỀM",
+      "cleaned_title": "Triển khai bảo trì phần mềm",
+      "role_family": "IT Support & Systems Operations",
+      "level_cue": "Nhân viên",
+      "language": "vi",
+      "tech_stack_cues": [
+        "Deployment",
+        "Maintenance"
+      ],
+      "is_it_core": true,
+      "status": "verified",
+      "job_count": 1,
+      "source_job_keys": [
+        "2143438"
+      ],
+      "notes": "Software deployment and maintenance technician; Nhân viên is level cue."
+    },
+    {
+      "id": "TITLE-069",
+      "raw_title": "Nhân Viên Hành Chính: Gán Nhãn Dữ Liệu Hình Anh AI - Không Yêu Cầu Kinh Nghiệm",
+      "cleaned_title": "Gán Nhãn Dữ Liệu Hình Ảnh AI",
+      "role_family": "Data Annotation",
+      "level_cue": "Nhân viên",
+      "language": "vi-en",
+      "tech_stack_cues": [
+        "AI Data Labeling",
+        "Image Annotation"
+      ],
+      "is_it_core": false,
+      "status": "verified",
+      "job_count": 1,
+      "source_job_keys": [
+        "2145276"
+      ],
+      "notes": "Administrative AI data annotation role; peripheral non-engineering."
+    },
+    {
+      "id": "TITLE-070",
+      "raw_title": "Odoo Developer",
+      "cleaned_title": "Odoo Developer",
+      "role_family": "Enterprise Applications (ERP / CRM)",
+      "level_cue": "Unspecified",
+      "language": "en",
+      "tech_stack_cues": [
+        "Odoo",
+        "Python ERP"
+      ],
+      "is_it_core": true,
+      "status": "verified",
+      "job_count": 1,
+      "source_job_keys": [
+        "2147511"
+      ],
+      "notes": "Odoo ERP open source developer."
+    },
+    {
+      "id": "TITLE-071",
+      "raw_title": "PLM Systems Manager",
+      "cleaned_title": "PLM Systems Manager",
+      "role_family": "IT Project Management / Product Management",
+      "level_cue": "Manager / Lead",
+      "language": "en",
+      "tech_stack_cues": [
+        "PLM Systems"
+      ],
+      "is_it_core": true,
+      "status": "verified",
+      "job_count": 1,
+      "source_job_keys": [
+        "2139755"
+      ],
+      "notes": "Product Lifecycle Management systems manager; Manager is level cue."
+    },
+    {
+      "id": "TITLE-072",
+      "raw_title": "Project Management Office (PMO) Specialist - Service Delivery & Operations",
+      "cleaned_title": "PMO Specialist - Service Delivery & Operations",
+      "role_family": "IT Project Management / Product Management",
+      "level_cue": "Unspecified",
+      "language": "en",
+      "tech_stack_cues": [
+        "PMO",
+        "IT Operations"
+      ],
+      "is_it_core": true,
+      "status": "verified",
+      "job_count": 1,
+      "source_job_keys": [
+        "2143924"
+      ],
+      "notes": "IT PMO specialist overseeing service delivery."
+    },
+    {
+      "id": "TITLE-073",
+      "raw_title": "Project Manager",
+      "cleaned_title": "Project Manager",
+      "role_family": "IT Project Management / Product Management",
+      "level_cue": "Manager / Lead",
+      "language": "en",
+      "tech_stack_cues": [
+        "Project Management"
+      ],
+      "is_it_core": true,
+      "status": "verified",
+      "job_count": 1,
+      "source_job_keys": [
+        "2143244"
+      ],
+      "notes": "IT Project Manager; Manager is level cue."
+    },
+    {
+      "id": "TITLE-074",
+      "raw_title": "Remote Data Engineer - AI Data Platform Japan (Python)",
+      "cleaned_title": "Data Engineer - AI Data Platform (Python)",
+      "role_family": "Data Engineering",
+      "level_cue": "Unspecified",
+      "language": "en",
+      "tech_stack_cues": [
+        "Python",
+        "AI Data Platform",
+        "Remote"
+      ],
+      "is_it_core": true,
+      "status": "verified",
+      "job_count": 1,
+      "source_job_keys": [
+        "2141955"
+      ],
+      "notes": "Data engineer for AI data platform."
+    },
+    {
+      "id": "TITLE-075",
+      "raw_title": "Senior Business Analyst (English)",
+      "cleaned_title": "Business Analyst",
+      "role_family": "Business Analysis",
+      "level_cue": "Senior",
+      "language": "en",
+      "tech_stack_cues": [
+        "BA"
+      ],
+      "is_it_core": true,
+      "status": "verified",
+      "job_count": 1,
+      "source_job_keys": [
+        "2147523"
+      ],
+      "notes": "Senior IT Business Analyst; Senior is explicit level cue."
+    },
+    {
+      "id": "TITLE-076",
+      "raw_title": "Senior Data Services Consultant",
+      "cleaned_title": "Data Services Consultant",
+      "role_family": "IT Operations & Integration Services",
+      "level_cue": "Senior",
+      "language": "en",
+      "tech_stack_cues": [
+        "Data Services"
+      ],
+      "is_it_core": true,
+      "status": "verified",
+      "job_count": 1,
+      "source_job_keys": [
+        "2143927"
+      ],
+      "notes": "Senior consulting role for data services; Senior is level cue."
+    },
+    {
+      "id": "TITLE-077",
+      "raw_title": "Senior Verification Engineer/Verification Engineer",
+      "cleaned_title": "Verification Engineer",
+      "role_family": "Hardware / Verification Engineering",
+      "level_cue": "Senior",
+      "language": "en",
+      "tech_stack_cues": [
+        "Hardware Verification",
+        "IC / Chip"
+      ],
+      "is_it_core": true,
+      "status": "verified",
+      "job_count": 1,
+      "source_job_keys": [
+        "2143258"
+      ],
+      "notes": "IC/Semiconductor verification engineer; Senior is level cue."
+    },
+    {
+      "id": "TITLE-078",
+      "raw_title": "Software Development Manager",
+      "cleaned_title": "Software Development Manager",
+      "role_family": "IT Project Management / Product Management",
+      "level_cue": "Manager / Lead",
+      "language": "en",
+      "tech_stack_cues": [
+        "Engineering Management"
+      ],
+      "is_it_core": true,
+      "status": "verified",
+      "job_count": 1,
+      "source_job_keys": [
+        "2141962"
+      ],
+      "notes": "Engineering manager leading software dev teams; Manager is level cue."
+    },
+    {
+      "id": "TITLE-079",
+      "raw_title": "Solution Consulting Manager (FC Manager)",
+      "cleaned_title": "Solution Consulting Manager",
+      "role_family": "IT Project Management / Product Management",
+      "level_cue": "Manager / Lead",
+      "language": "en",
+      "tech_stack_cues": [
+        "Solution Consulting"
+      ],
+      "is_it_core": true,
+      "status": "verified",
+      "job_count": 1,
+      "source_job_keys": [
+        "2139658"
+      ],
+      "notes": "Manager of functional/solution consulting team; Manager is level cue."
+    },
+    {
+      "id": "TITLE-080",
+      "raw_title": "Technical Leader (Domain ITSM)",
+      "cleaned_title": "Technical Leader (Domain ITSM)",
+      "role_family": "Software Engineering (Backend)",
+      "level_cue": "Manager / Lead",
+      "language": "en",
+      "tech_stack_cues": [
+        "ITSM",
+        "Tech Lead"
+      ],
+      "is_it_core": true,
+      "status": "verified",
+      "job_count": 1,
+      "source_job_keys": [
+        "2141566"
+      ],
+      "notes": "Technical lead in IT Service Management domain; Leader is level cue."
+    },
+    {
+      "id": "TITLE-081",
+      "raw_title": "Tester",
+      "cleaned_title": "Tester",
+      "role_family": "Software Testing / QA / QC",
+      "level_cue": "Unspecified",
+      "language": "en",
+      "tech_stack_cues": [
+        "Testing"
+      ],
+      "is_it_core": true,
+      "status": "verified",
+      "job_count": 1,
+      "source_job_keys": [
+        "2139159"
+      ],
+      "notes": "General software tester."
+    },
+    {
+      "id": "TITLE-082",
+      "raw_title": "Web Developer (Backend/Fullstack)",
+      "cleaned_title": "Web Developer (Backend/Fullstack)",
+      "role_family": "Software Engineering (Fullstack / Web)",
+      "level_cue": "Unspecified",
+      "language": "en",
+      "tech_stack_cues": [
+        "Web",
+        "Backend",
+        "Fullstack"
+      ],
+      "is_it_core": true,
+      "status": "verified",
+      "job_count": 1,
+      "source_job_keys": [
+        "2143243"
+      ],
+      "notes": "Web developer covering backend and fullstack."
+    },
+    {
+      "id": "TITLE-083",
+      "raw_title": "[HN] CHUYÊN VIÊN QUẢN TRỊ CƠ SỞ DỮ LIỆU DBA",
+      "cleaned_title": "Quản trị cơ sở dữ liệu DBA",
+      "role_family": "Database Administration",
+      "level_cue": "Chuyên viên",
+      "language": "vi-en",
+      "tech_stack_cues": [
+        "DBA",
+        "Database"
+      ],
+      "is_it_core": true,
+      "status": "verified",
+      "job_count": 1,
+      "source_job_keys": [
+        "2139328"
+      ],
+      "notes": "Database administrator; Chuyên viên is level cue, [HN] is location noise."
+    },
+    {
+      "id": "TITLE-084",
+      "raw_title": "[HN] CHUYÊN VIÊN QUẢN TRỊ CƠ SỞ DỮ LIỆU DBA (Senior)",
+      "cleaned_title": "Quản trị cơ sở dữ liệu DBA",
+      "role_family": "Database Administration",
+      "level_cue": "Senior",
+      "language": "vi-en",
+      "tech_stack_cues": [
+        "DBA",
+        "Database"
+      ],
+      "is_it_core": true,
+      "status": "verified",
+      "job_count": 1,
+      "source_job_keys": [
+        "2138374"
+      ],
+      "notes": "Senior database administrator; Senior is explicit level cue overriding Chuyên viên."
+    },
+    {
+      "id": "TITLE-085",
+      "raw_title": "[IT 운영 PM 채용 - POSCO DX 베트남법인]",
+      "cleaned_title": "IT Operations Project Manager",
+      "role_family": "IT Project Management / Product Management",
+      "level_cue": "Manager / Lead",
+      "language": "ko",
+      "tech_stack_cues": [
+        "IT Operations",
+        "PM"
+      ],
+      "is_it_core": true,
+      "status": "verified",
+      "job_count": 1,
+      "source_job_keys": [
+        "2139753"
+      ],
+      "notes": "Korean title for IT Operations PM at POSCO DX Vietnam."
+    },
+    {
+      "id": "TITLE-086",
+      "raw_title": "[URGENT] Business Analyst - Manufacturing (SAP/ERP) - HCM",
+      "cleaned_title": "Business Analyst - Manufacturing (SAP/ERP)",
+      "role_family": "Business Analysis",
+      "level_cue": "Unspecified",
+      "language": "en",
+      "tech_stack_cues": [
+        "SAP",
+        "ERP",
+        "Manufacturing"
+      ],
+      "is_it_core": true,
+      "status": "verified",
+      "job_count": 1,
+      "source_job_keys": [
+        "2145918"
+      ],
+      "notes": "Business analyst for SAP manufacturing; [URGENT] and location stripped."
+    },
+    {
+      "id": "TITLE-087",
+      "raw_title": "[Vũng Tàu] AI Full Stack Engineer (Agentic AI Platform)",
+      "cleaned_title": "AI Full Stack Engineer (Agentic AI Platform)",
+      "role_family": "Software Engineering (Fullstack / Web)",
+      "level_cue": "Unspecified",
+      "language": "vi-en",
+      "tech_stack_cues": [
+        "AI",
+        "Full Stack",
+        "Agentic AI"
+      ],
+      "is_it_core": true,
+      "status": "verified",
+      "job_count": 1,
+      "source_job_keys": [
+        "2140149"
+      ],
+      "notes": "Fullstack engineer building agentic AI platform; [Vũng Tàu] is location prefix."
+    }
+  ]
+}

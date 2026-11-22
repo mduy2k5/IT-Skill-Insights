@@ -83,7 +83,7 @@ def label_rows(record: dict[str, Any], definitions: tuple[tuple[str, str, bool],
 JOB_LABEL_FIELDS = (
     ("skills_arr", "skill", True),
     ("extra_skills", "skill", True),
-    ("level", "seniority", False),
+    ("level", "listing_tier", False),
     ("job_levels_arr", "seniority", True),
     ("contract_types_str", "employment_type", False),
     ("experiences_str", "experience", False),

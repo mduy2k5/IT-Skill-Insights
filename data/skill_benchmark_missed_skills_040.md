@@ -1,0 +1,208 @@
+# Skill GLiNER bỏ sót ở ngưỡng 0,40
+
+> Danh sách gồm 204 skill tên riêng trong tập 305 đã giữ lại; xuất hiện 258 lần trong gold theo từng job. Số lần là số job-label bị bỏ sót, không phải số lần xuất hiện nguyên văn trong mô tả. Mỗi skill một dòng.
+
+- advanced SQL — 1 job
+- AI data requirements — 1 job
+- Airbyte — 1 job
+- Airflow DAG orchestration — 1 job
+- alerting — 1 job
+- analytics — 1 job
+- Android — 1 job
+- anomaly detection — 1 job
+- Apache NiFi — 1 job
+- API Banking — 1 job
+- API integration — 1 job
+- API integrations — 1 job
+- API security — 1 job
+- API testing — 1 job
+- asynchronous processing — 1 job
+- automated testing — 1 job
+- AWS Lambda — 1 job
+- AWS S3 — 1 job
+- BaaS — 1 job
+- backtesting — 1 job
+- backup and recovery — 2 jobs
+- batch processing — 3 jobs
+- BI reporting — 1 job
+- BI visualization — 1 job
+- Big Data — 1 job
+- capacity planning — 1 job
+- CDP — 1 job
+- change control — 1 job
+- CI/CD — 1 job
+- classification — 1 job
+- Claude Code — 1 job
+- cloud architecture — 1 job
+- cloud deployment — 1 job
+- cloud resource management — 1 job
+- cloud service provisioning — 1 job
+- Compute — 1 job
+- computer networking — 1 job
+- containers — 1 job
+- Core Banking — 1 job
+- CRM — 2 jobs
+- CSS — 1 job
+- Customer 360 — 1 job
+- customer identity — 1 job
+- cybersecurity — 1 job
+- data analysis — 2 jobs
+- data architecture — 1 job
+- Data Center — 1 job
+- data center infrastructure — 1 job
+- data cleaning — 1 job
+- data consistency — 1 job
+- data enrichment — 1 job
+- data freshness — 1 job
+- data governance — 1 job
+- data integration — 2 jobs
+- data mapping — 2 jobs
+- Data Mart — 1 job
+- data migration — 1 job
+- data modeling — 4 jobs
+- data pipelines — 1 job
+- data quality — 3 jobs
+- data quality checks — 1 job
+- data quality controls — 1 job
+- data quality frameworks — 1 job
+- data quality management — 1 job
+- data quality monitoring — 1 job
+- data reconciliation — 2 jobs
+- data standardization — 1 job
+- data transformation — 3 jobs
+- data transformations — 1 job
+- data validation — 3 jobs
+- Data Warehouse — 1 job
+- database architecture — 1 job
+- database capacity planning — 1 job
+- database performance assessment — 1 job
+- database security — 2 jobs
+- dbt — 1 job
+- deduplication — 1 job
+- deep learning — 1 job
+- deep learning pipelines — 1 job
+- Delta Lake — 1 job
+- dependency management — 1 job
+- dimensional modeling — 1 job
+- disaster recovery — 1 job
+- distributed data processing — 1 job
+- distributed data storage — 1 job
+- DRP — 1 job
+- ELT — 3 jobs
+- entity resolution — 1 job
+- ERP — 2 jobs
+- error handling — 1 job
+- ETL — 3 jobs
+- ETL tools — 1 job
+- event-driven integration — 1 job
+- execution plans — 1 job
+- failure recovery — 1 job
+- fault-tolerant pipelines — 1 job
+- feature engineering — 1 job
+- GCP — 1 job
+- Git — 1 job
+- GitHub Actions — 1 job
+- graph databases — 1 job
+- high availability — 1 job
+- hyperparameter tuning — 1 job
+- IBM Big Data — 1 job
+- idempotency — 1 job
+- identity resolution — 1 job
+- integration architecture — 1 job
+- iOS — 1 job
+- KPI logic — 1 job
+- KPI metrics — 1 job
+- large-scale data processing — 1 job
+- large-scale databases — 1 job
+- Linux — 1 job
+- LMS — 1 job
+- load testing — 1 job
+- logging — 1 job
+- Looker Studio — 1 job
+- LOS — 1 job
+- machine learning — 1 job
+- manual testing — 1 job
+- Marketing Automation — 2 jobs
+- master data — 1 job
+- mobile app development — 1 job
+- model performance optimization — 1 job
+- monitoring — 3 jobs
+- monitoring and alerting — 1 job
+- MWAA — 1 job
+- MySQL — 2 jobs
+- near-real-time processing — 1 job
+- Networking — 1 job
+- NoSQL — 1 job
+- observability — 2 jobs
+- Open Banking — 1 job
+- Oracle — 5 jobs
+- Oracle Data Guard — 1 job
+- Oracle Database Vault — 1 job
+- payment services — 1 job
+- performance optimization — 3 jobs
+- performance tuning — 1 job
+- POS — 2 jobs
+- PostgreSQL — 3 jobs
+- predictive modeling — 1 job
+- Presto — 1 job
+- production data pipelines — 1 job
+- production deployment — 2 jobs
+- PySpark — 1 job
+- QA testing — 1 job
+- query optimization — 4 jobs
+- query tuning — 1 job
+- RAG pipelines — 1 job
+- RDBMS — 4 jobs
+- real-time data pipelines — 1 job
+- real-time pipelines — 1 job
+- relational databases — 1 job
+- reporting tools — 1 job
+- retries — 1 job
+- risk management — 1 job
+- scheduled integration — 1 job
+- scheduled jobs — 1 job
+- schema changes — 1 job
+- schema validation — 1 job
+- Scrapy — 1 job
+- security architecture — 1 job
+- security compliance — 1 job
+- security controls — 1 job
+- segmentation — 1 job
+- source-to-target mappings — 1 job
+- Spark — 2 jobs
+- SQL — 1 job
+- SQL scripts — 1 job
+- SQL Server — 1 job
+- SQL troubleshooting — 2 jobs
+- SQL window functions — 1 job
+- StarRocks — 1 job
+- Storage — 1 job
+- stream processing — 3 jobs
+- streaming — 1 job
+- stress testing — 1 job
+- system integration — 3 jobs
+- system integration flow — 1 job
+- table design — 1 job
+- TDE — 1 job
+- technical analysis — 1 job
+- technical indicators — 1 job
+- Terraform — 1 job
+- test case design — 1 job
+- test result analysis — 1 job
+- test specification design — 1 job
+- test strategy development — 1 job
+- testing — 1 job
+- time series data — 1 job
+- time series modeling — 1 job
+- time series preprocessing — 1 job
+- timeout handling — 1 job
+- trading strategies — 1 job
+- Trino — 1 job
+- troubleshooting — 2 jobs
+- vector databases — 1 job
+- virtualization — 1 job
+- web scraping — 1 job
+- Windows — 1 job
+- workflow automation — 2 jobs
+- workflow orchestration — 2 jobs
+- workflow scheduling — 2 jobs

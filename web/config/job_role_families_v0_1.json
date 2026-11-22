@@ -1,0 +1,39 @@
+{
+  "version": "job-role-family-v0.1",
+  "review_group": {
+    "id": "needs_review",
+    "label": "Cần rà title"
+  },
+  "families": [
+    {
+      "id": "data_engineering",
+      "label": "Data Engineering",
+      "match_any": ["data engineer", "kỹ sư dữ liệu"]
+    },
+    {
+      "id": "data_services_integration",
+      "label": "Data Services & Integration",
+      "match_any": ["data services", "service integration", "tích hợp dịch vụ"]
+    },
+    {
+      "id": "database_administration",
+      "label": "Database Administration",
+      "match_any": ["dba", "quản trị cơ sở dữ liệu"]
+    },
+    {
+      "id": "software_testing_qa",
+      "label": "Software Testing / QA",
+      "match_any": ["tester", "testing", "test engineer", "quality assurance", "qa"]
+    },
+    {
+      "id": "cloud_data_center_network",
+      "label": "Cloud, Data Center & Network",
+      "match_any": ["cloud", "data center", "data centre", "anm"]
+    },
+    {
+      "id": "ai_quantitative_research",
+      "label": "AI Quantitative Research",
+      "match_any": ["quantitative", "quant researcher", "định lượng"]
+    }
+  ]
+}

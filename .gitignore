@@ -15,8 +15,22 @@ env/
 
 *.csv
 *.json
+!web/static/data/skill_benchmark_v0.json
+!web/static/data/skill_benchmark_v0_1.json
+!web/config/*.json
+!data/role_family_prototypes_v0_1.json
+!data/title_benchmark_v0_1.json
+!data/jobbert_pairwise_metrics.json
+!data/shadow_gate_evaluation_report.json
+!data/title_mapping_results_v0_1.json
+!data/job_title_clusters_v0_1.json
+!data/skillspan_external/validation_tech.json
+!data/skillspan_external/holdout_tech.json
+!data/skillspan_external/gliner_baseline_040.json
 *.jl
 *.xml
+/.tmp/gliner_finetune_pilot/
+/.tmp/skillspan_source/
 
 output_data/
 scraping_logs/

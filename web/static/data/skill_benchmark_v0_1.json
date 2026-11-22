@@ -1,0 +1,5493 @@
+{
+  "schema_version": "1.0.0",
+  "title": "GLiNER Skill Extraction Benchmark v0.1",
+  "source": {
+    "code": "saramin",
+    "file": "data/staging/saramin/embedded_jobs_2026-11-09.json",
+    "jobs": 14,
+    "description_characters_read": 44707
+  },
+  "model": {
+    "id": "urchade/gliner_multi-v2.1",
+    "inference_threshold": 0.4,
+    "evaluation_threshold": 0.4,
+    "labels": [
+      "programming language",
+      "software framework or library",
+      "database or query technology",
+      "cloud or data platform",
+      "software development or testing tool",
+      "technical method, protocol, or architecture"
+    ],
+    "runtime": "CPU"
+  },
+  "processing": {
+    "chunk_size_characters": 850,
+    "overlap_characters": 140,
+    "deduplicate": "Unique skill concepts per job across both sections; preserve original model sections for matched candidates."
+  },
+  "gold_annotation": {
+    "status": "draft_single_annotator",
+    "annotator": "Codex first-pass manual annotation",
+    "scope": "Technical technologies, tools, methods, protocols, platforms, and explicitly required spoken-language proficiency. Excludes soft skills, education, age, years of experience, job titles, generic duties, and nontechnical employer context.",
+    "matching": "Unique skill concepts per job across requirements and responsibilities. Case, punctuation, obvious spelling variants, and direct aliases are normalized for evaluation.",
+    "limitation": "Gold annotations require human review; broad or ambiguous concepts may change counts."
+  },
+  "aggregate": {
+    "jobs": 14,
+    "gold_skills": 509,
+    "predicted_skills": 231,
+    "true_positives": 209,
+    "false_positives": 22,
+    "false_negatives": 300,
+    "micro_precision": 0.904762,
+    "micro_recall": 0.410609,
+    "micro_f1": 0.564865,
+    "macro_recall": 0.395001
+  },
+  "rows": [
+    {
+      "job_id": "2142369",
+      "title": "Data Engineer at DATATYK CO., LTD",
+      "source_level": "Nhân viên",
+      "experience_label": "1 năm, 2 năm",
+      "source_skills_arr": [
+        "SQL",
+        "Python",
+        "Data Engineer"
+      ],
+      "metrics": {
+        "gold": 26,
+        "predicted": 13,
+        "tp": 13,
+        "fp": 0,
+        "fn": 13,
+        "precision": 1.0,
+        "recall": 0.5,
+        "f1": 0.666667
+      },
+      "found": [
+        {
+          "skill": "Airflow",
+          "gold_variants": [
+            "Airflow"
+          ],
+          "model_surface": "Airflow",
+          "confidence": 0.7976,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "cloud or data platform"
+          ]
+        },
+        {
+          "skill": "AWS",
+          "gold_variants": [
+            "AWS"
+          ],
+          "model_surface": "AWS",
+          "confidence": 0.9394,
+          "sections": [
+            "requirements",
+            "responsibilities"
+          ],
+          "labels": [
+            "cloud or data platform"
+          ]
+        },
+        {
+          "skill": "Azure",
+          "gold_variants": [
+            "Azure"
+          ],
+          "model_surface": "Azure",
+          "confidence": 0.9719,
+          "sections": [
+            "requirements",
+            "responsibilities"
+          ],
+          "labels": [
+            "cloud or data platform"
+          ]
+        },
+        {
+          "skill": "cloud platforms",
+          "gold_variants": [
+            "cloud platforms"
+          ],
+          "model_surface": "Cloud platforms",
+          "confidence": 0.4243,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "cloud or data platform"
+          ]
+        },
+        {
+          "skill": "data lake",
+          "gold_variants": [
+            "data lake"
+          ],
+          "model_surface": "data lakes",
+          "confidence": 0.4714,
+          "sections": [
+            "responsibilities"
+          ],
+          "labels": [
+            "cloud or data platform"
+          ]
+        },
+        {
+          "skill": "data pipelines",
+          "gold_variants": [
+            "data pipelines"
+          ],
+          "model_surface": "data pipelines",
+          "confidence": 0.5186,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "database or query technology"
+          ]
+        },
+        {
+          "skill": "data warehouse",
+          "gold_variants": [
+            "data warehouse"
+          ],
+          "model_surface": "Data warehouses",
+          "confidence": 0.6162,
+          "sections": [
+            "responsibilities"
+          ],
+          "labels": [
+            "cloud or data platform"
+          ]
+        },
+        {
+          "skill": "dbt",
+          "gold_variants": [
+            "dbt"
+          ],
+          "model_surface": "dbt",
+          "confidence": 0.5944,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "programming language"
+          ]
+        },
+        {
+          "skill": "ETL",
+          "gold_variants": [
+            "ETL"
+          ],
+          "model_surface": "ETL",
+          "confidence": 0.4538,
+          "sections": [
+            "responsibilities"
+          ],
+          "labels": [
+            "technical method, protocol, or architecture"
+          ]
+        },
+        {
+          "skill": "Python",
+          "gold_variants": [
+            "Python"
+          ],
+          "model_surface": "Python",
+          "confidence": 0.8543,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "programming language"
+          ]
+        },
+        {
+          "skill": "relational databases",
+          "gold_variants": [
+            "relational databases"
+          ],
+          "model_surface": "Relational databases",
+          "confidence": 0.8368,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "database or query technology"
+          ]
+        },
+        {
+          "skill": "Spark",
+          "gold_variants": [
+            "Spark"
+          ],
+          "model_surface": "Spark",
+          "confidence": 0.7667,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "cloud or data platform"
+          ]
+        },
+        {
+          "skill": "SQL",
+          "gold_variants": [
+            "SQL"
+          ],
+          "model_surface": "SQL",
+          "confidence": 0.6528,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "database or query technology"
+          ]
+        }
+      ],
+      "missed": [
+        {
+          "skill": "AI data requirements",
+          "gold_variants": [
+            "AI data requirements"
+          ]
+        },
+        {
+          "skill": "analytics",
+          "gold_variants": [
+            "analytics"
+          ]
+        },
+        {
+          "skill": "CI/CD",
+          "gold_variants": [
+            "CI/CD"
+          ]
+        },
+        {
+          "skill": "dashboards/reporting",
+          "gold_variants": [
+            "dashboards/reporting"
+          ]
+        },
+        {
+          "skill": "data consistency",
+          "gold_variants": [
+            "data consistency"
+          ]
+        },
+        {
+          "skill": "data quality",
+          "gold_variants": [
+            "data quality"
+          ]
+        },
+        {
+          "skill": "ELT",
+          "gold_variants": [
+            "ELT"
+          ]
+        },
+        {
+          "skill": "performance optimization",
+          "gold_variants": [
+            "performance optimization"
+          ]
+        },
+        {
+          "skill": "query optimization",
+          "gold_variants": [
+            "query optimization"
+          ]
+        },
+        {
+          "skill": "schema changes",
+          "gold_variants": [
+            "schema changes"
+          ]
+        },
+        {
+          "skill": "table design",
+          "gold_variants": [
+            "table design"
+          ]
+        },
+        {
+          "skill": "workflow automation",
+          "gold_variants": [
+            "workflow automation"
+          ]
+        },
+        {
+          "skill": "workflow scheduling",
+          "gold_variants": [
+            "workflow scheduling"
+          ]
+        }
+      ],
+      "extras": []
+    },
+    {
+      "job_id": "2139159",
+      "title": "Tester",
+      "source_level": "Chuyên viên cấp cao",
+      "experience_label": "3 năm, 5 năm",
+      "source_skills_arr": [
+        "Python",
+        "Selenium",
+        "Test Engineer"
+      ],
+      "metrics": {
+        "gold": 17,
+        "predicted": 10,
+        "tp": 10,
+        "fp": 0,
+        "fn": 7,
+        "precision": 1.0,
+        "recall": 0.588235,
+        "f1": 0.740741
+      },
+      "found": [
+        {
+          "skill": "Cucumber",
+          "gold_variants": [
+            "Cucumber"
+          ],
+          "model_surface": "Cucumber",
+          "confidence": 0.6151,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "software framework or library"
+          ]
+        },
+        {
+          "skill": "Cypress",
+          "gold_variants": [
+            "Cypress"
+          ],
+          "model_surface": "Cypress",
+          "confidence": 0.5461,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "software framework or library"
+          ]
+        },
+        {
+          "skill": "Functional Testing",
+          "gold_variants": [
+            "Functional Testing"
+          ],
+          "model_surface": "Functional Testing",
+          "confidence": 0.6549,
+          "sections": [
+            "responsibilities"
+          ],
+          "labels": [
+            "technical method, protocol, or architecture"
+          ]
+        },
+        {
+          "skill": "JMeter",
+          "gold_variants": [
+            "JMeter"
+          ],
+          "model_surface": "JMeter",
+          "confidence": 0.6382,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "software framework or library"
+          ]
+        },
+        {
+          "skill": "Performance Testing",
+          "gold_variants": [
+            "Performance Testing"
+          ],
+          "model_surface": "Performance Testing",
+          "confidence": 0.6569,
+          "sections": [
+            "responsibilities"
+          ],
+          "labels": [
+            "technical method, protocol, or architecture"
+          ]
+        },
+        {
+          "skill": "Postman",
+          "gold_variants": [
+            "Postman"
+          ],
+          "model_surface": "Postman",
+          "confidence": 0.4442,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "software framework or library"
+          ]
+        },
+        {
+          "skill": "Python",
+          "gold_variants": [
+            "Python"
+          ],
+          "model_surface": "Python",
+          "confidence": 0.9079,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "programming language"
+          ]
+        },
+        {
+          "skill": "Robot Framework",
+          "gold_variants": [
+            "Robot Framework"
+          ],
+          "model_surface": "Robot Framework",
+          "confidence": 0.795,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "software framework or library"
+          ]
+        },
+        {
+          "skill": "Selenium",
+          "gold_variants": [
+            "Selenium"
+          ],
+          "model_surface": "Selenium",
+          "confidence": 0.7503,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "software framework or library"
+          ]
+        },
+        {
+          "skill": "System Integration Testing",
+          "gold_variants": [
+            "System Integration Testing"
+          ],
+          "model_surface": "System Integration Testing",
+          "confidence": 0.5399,
+          "sections": [
+            "responsibilities"
+          ],
+          "labels": [
+            "technical method, protocol, or architecture"
+          ]
+        }
+      ],
+      "missed": [
+        {
+          "skill": "automated testing",
+          "gold_variants": [
+            "automated testing"
+          ]
+        },
+        {
+          "skill": "load testing",
+          "gold_variants": [
+            "load testing"
+          ]
+        },
+        {
+          "skill": "manual testing",
+          "gold_variants": [
+            "manual testing"
+          ]
+        },
+        {
+          "skill": "stress testing",
+          "gold_variants": [
+            "stress testing"
+          ]
+        },
+        {
+          "skill": "test case design",
+          "gold_variants": [
+            "test case design"
+          ]
+        },
+        {
+          "skill": "test specification design",
+          "gold_variants": [
+            "test specification design"
+          ]
+        },
+        {
+          "skill": "test strategy development",
+          "gold_variants": [
+            "test strategy development"
+          ]
+        }
+      ],
+      "extras": []
+    },
+    {
+      "job_id": "2138202",
+      "title": "Kỹ Sư Dữ Liệu (Data Engineer)",
+      "source_level": "Chuyên viên",
+      "experience_label": "2 năm",
+      "source_skills_arr": [
+        "Java",
+        "Python",
+        "NoSQL",
+        "Scala",
+        "Big Data",
+        "Database",
+        "Data Engineer"
+      ],
+      "metrics": {
+        "gold": 23,
+        "predicted": 15,
+        "tp": 14,
+        "fp": 1,
+        "fn": 9,
+        "precision": 0.933333,
+        "recall": 0.608696,
+        "f1": 0.736842
+      },
+      "found": [
+        {
+          "skill": "Big Data",
+          "gold_variants": [
+            "Big Data"
+          ],
+          "model_surface": "Big Data",
+          "confidence": 0.6666,
+          "sections": [
+            "responsibilities"
+          ],
+          "labels": [
+            "database or query technology"
+          ]
+        },
+        {
+          "skill": "Hadoop",
+          "gold_variants": [
+            "Hadoop"
+          ],
+          "model_surface": "Hadoop",
+          "confidence": 0.7757,
+          "sections": [
+            "requirements",
+            "responsibilities"
+          ],
+          "labels": [
+            "cloud or data platform"
+          ]
+        },
+        {
+          "skill": "HBase",
+          "gold_variants": [
+            "HBase"
+          ],
+          "model_surface": "HBase",
+          "confidence": 0.6137,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "database or query technology"
+          ]
+        },
+        {
+          "skill": "HDFS",
+          "gold_variants": [
+            "HDFS"
+          ],
+          "model_surface": "HDFS",
+          "confidence": 0.6451,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "database or query technology"
+          ]
+        },
+        {
+          "skill": "Hive",
+          "gold_variants": [
+            "Hive"
+          ],
+          "model_surface": "Hive",
+          "confidence": 0.6084,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "database or query technology"
+          ]
+        },
+        {
+          "skill": "Java",
+          "gold_variants": [
+            "Java"
+          ],
+          "model_surface": "Java",
+          "confidence": 0.9301,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "programming language"
+          ]
+        },
+        {
+          "skill": "Kafka",
+          "gold_variants": [
+            "Kafka"
+          ],
+          "model_surface": "Kafka",
+          "confidence": 0.4488,
+          "sections": [
+            "responsibilities"
+          ],
+          "labels": [
+            "cloud or data platform"
+          ]
+        },
+        {
+          "skill": "MapReduce",
+          "gold_variants": [
+            "MapReduce"
+          ],
+          "model_surface": "MapReduce",
+          "confidence": 0.8468,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "database or query technology"
+          ]
+        },
+        {
+          "skill": "Pig",
+          "gold_variants": [
+            "Pig"
+          ],
+          "model_surface": "Pig",
+          "confidence": 0.6682,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "database or query technology"
+          ]
+        },
+        {
+          "skill": "Python",
+          "gold_variants": [
+            "Python"
+          ],
+          "model_surface": "Python",
+          "confidence": 0.9535,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "programming language"
+          ]
+        },
+        {
+          "skill": "Scala",
+          "gold_variants": [
+            "Scala"
+          ],
+          "model_surface": "Scala",
+          "confidence": 0.8746,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "programming language"
+          ]
+        },
+        {
+          "skill": "Spark",
+          "gold_variants": [
+            "Spark"
+          ],
+          "model_surface": "Spark",
+          "confidence": 0.5834,
+          "sections": [
+            "responsibilities"
+          ],
+          "labels": [
+            "cloud or data platform"
+          ]
+        },
+        {
+          "skill": "YARN",
+          "gold_variants": [
+            "YARN"
+          ],
+          "model_surface": "YARN",
+          "confidence": 0.7803,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "database or query technology"
+          ]
+        },
+        {
+          "skill": "Zookeeper",
+          "gold_variants": [
+            "Zookeeper"
+          ],
+          "model_surface": "Zookeeper",
+          "confidence": 0.6108,
+          "sections": [
+            "requirements",
+            "responsibilities"
+          ],
+          "labels": [
+            "database or query technology",
+            "software framework or library"
+          ]
+        }
+      ],
+      "missed": [
+        {
+          "skill": "batch processing",
+          "gold_variants": [
+            "batch processing"
+          ]
+        },
+        {
+          "skill": "distributed data processing",
+          "gold_variants": [
+            "distributed data processing"
+          ]
+        },
+        {
+          "skill": "distributed data storage",
+          "gold_variants": [
+            "distributed data storage"
+          ]
+        },
+        {
+          "skill": "English reading ability",
+          "gold_variants": [
+            "English reading ability"
+          ]
+        },
+        {
+          "skill": "graph databases",
+          "gold_variants": [
+            "graph databases"
+          ]
+        },
+        {
+          "skill": "IBM Big Data",
+          "gold_variants": [
+            "IBM Big Data"
+          ]
+        },
+        {
+          "skill": "NoSQL",
+          "gold_variants": [
+            "NoSQL"
+          ]
+        },
+        {
+          "skill": "RDBMS",
+          "gold_variants": [
+            "RDBMS"
+          ]
+        },
+        {
+          "skill": "stream processing",
+          "gold_variants": [
+            "stream processing"
+          ]
+        }
+      ],
+      "extras": [
+        {
+          "skill": "NoSQL Products",
+          "surface_forms": [
+            "NoSQL Products"
+          ],
+          "confidence": 0.4148,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "cloud or data platform"
+          ]
+        }
+      ]
+    },
+    {
+      "job_id": "2144836",
+      "title": "Data Engineer (Big Data / Lakehouse)",
+      "source_level": "Nhân viên",
+      "experience_label": "2 năm, 4 năm",
+      "source_skills_arr": [
+        "SQL",
+        "Python",
+        "PySpark"
+      ],
+      "metrics": {
+        "gold": 33,
+        "predicted": 16,
+        "tp": 14,
+        "fp": 2,
+        "fn": 19,
+        "precision": 0.875,
+        "recall": 0.424242,
+        "f1": 0.571429
+      },
+      "found": [
+        {
+          "skill": "Airflow",
+          "gold_variants": [
+            "Airflow"
+          ],
+          "model_surface": "Airflow",
+          "confidence": 0.4151,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "software framework or library"
+          ]
+        },
+        {
+          "skill": "BI",
+          "gold_variants": [
+            "BI"
+          ],
+          "model_surface": "BI",
+          "confidence": 0.524,
+          "sections": [
+            "responsibilities"
+          ],
+          "labels": [
+            "software development or testing tool"
+          ]
+        },
+        {
+          "skill": "Cloud",
+          "gold_variants": [
+            "Cloud"
+          ],
+          "model_surface": "Cloud",
+          "confidence": 0.8939,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "cloud or data platform"
+          ]
+        },
+        {
+          "skill": "dbt",
+          "gold_variants": [
+            "dbt"
+          ],
+          "model_surface": "dbt",
+          "confidence": 0.4009,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "software framework or library"
+          ]
+        },
+        {
+          "skill": "Delta",
+          "gold_variants": [
+            "Delta"
+          ],
+          "model_surface": "Delta",
+          "confidence": 0.4013,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "database or query technology"
+          ]
+        },
+        {
+          "skill": "ELT",
+          "gold_variants": [
+            "ELT"
+          ],
+          "model_surface": "ELT",
+          "confidence": 0.6114,
+          "sections": [
+            "responsibilities"
+          ],
+          "labels": [
+            "technical method, protocol, or architecture"
+          ]
+        },
+        {
+          "skill": "ETL",
+          "gold_variants": [
+            "ETL"
+          ],
+          "model_surface": "ETL",
+          "confidence": 0.6618,
+          "sections": [
+            "responsibilities"
+          ],
+          "labels": [
+            "database or query technology"
+          ]
+        },
+        {
+          "skill": "Fact/Dimension",
+          "gold_variants": [
+            "Fact/Dimension"
+          ],
+          "model_surface": "Fact/Dimension",
+          "confidence": 0.4089,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "database or query technology"
+          ]
+        },
+        {
+          "skill": "Iceberg",
+          "gold_variants": [
+            "Iceberg"
+          ],
+          "model_surface": "Iceberg",
+          "confidence": 0.4321,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "database or query technology"
+          ]
+        },
+        {
+          "skill": "Kafka",
+          "gold_variants": [
+            "Kafka"
+          ],
+          "model_surface": "Kafka",
+          "confidence": 0.4707,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "software framework or library"
+          ]
+        },
+        {
+          "skill": "Parquet",
+          "gold_variants": [
+            "Parquet"
+          ],
+          "model_surface": "Parquet",
+          "confidence": 0.5089,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "database or query technology"
+          ]
+        },
+        {
+          "skill": "Python",
+          "gold_variants": [
+            "Python"
+          ],
+          "model_surface": "Python",
+          "confidence": 0.7849,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "programming language"
+          ]
+        },
+        {
+          "skill": "SQL",
+          "gold_variants": [
+            "SQL"
+          ],
+          "model_surface": "SQL",
+          "confidence": 0.6394,
+          "sections": [
+            "responsibilities"
+          ],
+          "labels": [
+            "database or query technology"
+          ]
+        },
+        {
+          "skill": "Star Schema",
+          "gold_variants": [
+            "Star Schema"
+          ],
+          "model_surface": "Star Schema",
+          "confidence": 0.5915,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "database or query technology"
+          ]
+        }
+      ],
+      "missed": [
+        {
+          "skill": "batch processing",
+          "gold_variants": [
+            "batch processing"
+          ]
+        },
+        {
+          "skill": "Data Mart",
+          "gold_variants": [
+            "Data Mart"
+          ]
+        },
+        {
+          "skill": "data modeling",
+          "gold_variants": [
+            "data modeling"
+          ]
+        },
+        {
+          "skill": "data quality monitoring",
+          "gold_variants": [
+            "data quality monitoring"
+          ]
+        },
+        {
+          "skill": "Data Warehouse",
+          "gold_variants": [
+            "Data Warehouse"
+          ]
+        },
+        {
+          "skill": "execution plans",
+          "gold_variants": [
+            "execution plans"
+          ]
+        },
+        {
+          "skill": "Git",
+          "gold_variants": [
+            "Git"
+          ]
+        },
+        {
+          "skill": "MySQL",
+          "gold_variants": [
+            "MySQL"
+          ]
+        },
+        {
+          "skill": "near-real-time processing",
+          "gold_variants": [
+            "near-real-time processing"
+          ]
+        },
+        {
+          "skill": "Oracle",
+          "gold_variants": [
+            "Oracle"
+          ]
+        },
+        {
+          "skill": "PostgreSQL",
+          "gold_variants": [
+            "PostgreSQL"
+          ]
+        },
+        {
+          "skill": "Presto",
+          "gold_variants": [
+            "Presto"
+          ]
+        },
+        {
+          "skill": "PySpark",
+          "gold_variants": [
+            "PySpark"
+          ]
+        },
+        {
+          "skill": "query optimization",
+          "gold_variants": [
+            "query optimization"
+          ]
+        },
+        {
+          "skill": "RDBMS",
+          "gold_variants": [
+            "RDBMS"
+          ]
+        },
+        {
+          "skill": "Spark",
+          "gold_variants": [
+            "Spark"
+          ]
+        },
+        {
+          "skill": "SQL Server",
+          "gold_variants": [
+            "SQL Server"
+          ]
+        },
+        {
+          "skill": "stream processing",
+          "gold_variants": [
+            "stream processing"
+          ]
+        },
+        {
+          "skill": "Trino",
+          "gold_variants": [
+            "Trino"
+          ]
+        }
+      ],
+      "extras": [
+        {
+          "skill": "Backend",
+          "surface_forms": [
+            "Backend"
+          ],
+          "confidence": 0.497,
+          "sections": [
+            "responsibilities"
+          ],
+          "labels": [
+            "software development or testing tool"
+          ]
+        },
+        {
+          "skill": "Data Analyst",
+          "surface_forms": [
+            "Data Analyst"
+          ],
+          "confidence": 0.4528,
+          "sections": [
+            "responsibilities"
+          ],
+          "labels": [
+            "software development or testing tool"
+          ]
+        }
+      ]
+    },
+    {
+      "job_id": "2141955",
+      "title": "Remote Data Engineer - AI Data Platform Japan (Python)",
+      "source_level": "Chuyên viên cấp cao, Chuyên viên",
+      "experience_label": "2 năm",
+      "source_skills_arr": [
+        "SQL",
+        "Python",
+        "Scala"
+      ],
+      "metrics": {
+        "gold": 59,
+        "predicted": 34,
+        "tp": 31,
+        "fp": 3,
+        "fn": 28,
+        "precision": 0.911765,
+        "recall": 0.525424,
+        "f1": 0.666667
+      },
+      "found": [
+        {
+          "skill": "AI/ML",
+          "gold_variants": [
+            "AI/ML",
+            "AI/ML"
+          ],
+          "model_surface": "AI",
+          "confidence": 0.6733,
+          "sections": [
+            "requirements",
+            "responsibilities"
+          ],
+          "labels": [
+            "database or query technology"
+          ]
+        },
+        {
+          "skill": "Airflow",
+          "gold_variants": [
+            "Airflow"
+          ],
+          "model_surface": "Airflow",
+          "confidence": 0.4901,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "software framework or library",
+            "software development or testing tool"
+          ]
+        },
+        {
+          "skill": "Amazon Bedrock",
+          "gold_variants": [
+            "Amazon Bedrock"
+          ],
+          "model_surface": "Amazon Bedrock",
+          "confidence": 0.6014,
+          "sections": [
+            "responsibilities"
+          ],
+          "labels": [
+            "software framework or library"
+          ]
+        },
+        {
+          "skill": "AWS",
+          "gold_variants": [
+            "AWS"
+          ],
+          "model_surface": "AWS",
+          "confidence": 0.9832,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "cloud or data platform"
+          ]
+        },
+        {
+          "skill": "Claude",
+          "gold_variants": [
+            "Claude"
+          ],
+          "model_surface": "Claude",
+          "confidence": 0.717,
+          "sections": [
+            "requirements",
+            "responsibilities"
+          ],
+          "labels": [
+            "software development or testing tool"
+          ]
+        },
+        {
+          "skill": "CodeRabbit",
+          "gold_variants": [
+            "CodeRabbit"
+          ],
+          "model_surface": "CodeRabbit",
+          "confidence": 0.5417,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "software development or testing tool"
+          ]
+        },
+        {
+          "skill": "Codex",
+          "gold_variants": [
+            "Codex"
+          ],
+          "model_surface": "Codex",
+          "confidence": 0.6001,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "software development or testing tool"
+          ]
+        },
+        {
+          "skill": "Cursor",
+          "gold_variants": [
+            "Cursor"
+          ],
+          "model_surface": "Cursor",
+          "confidence": 0.5423,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "software development or testing tool"
+          ]
+        },
+        {
+          "skill": "Dagster",
+          "gold_variants": [
+            "Dagster"
+          ],
+          "model_surface": "Dagster",
+          "confidence": 0.6432,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "software development or testing tool"
+          ]
+        },
+        {
+          "skill": "Databricks",
+          "gold_variants": [
+            "Databricks"
+          ],
+          "model_surface": "Databricks",
+          "confidence": 0.4063,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "software framework or library"
+          ]
+        },
+        {
+          "skill": "ECS",
+          "gold_variants": [
+            "ECS"
+          ],
+          "model_surface": "ECS",
+          "confidence": 0.4988,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "cloud or data platform"
+          ]
+        },
+        {
+          "skill": "Elasticsearch",
+          "gold_variants": [
+            "Elasticsearch"
+          ],
+          "model_surface": "Elasticsearch",
+          "confidence": 0.7253,
+          "sections": [
+            "requirements",
+            "responsibilities"
+          ],
+          "labels": [
+            "programming language",
+            "database or query technology"
+          ]
+        },
+        {
+          "skill": "English",
+          "gold_variants": [
+            "English"
+          ],
+          "model_surface": "Tiếng Anh",
+          "confidence": 0.8127,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "programming language"
+          ]
+        },
+        {
+          "skill": "FastAPI",
+          "gold_variants": [
+            "FastAPI"
+          ],
+          "model_surface": "FastAPI",
+          "confidence": 0.4191,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "programming language"
+          ]
+        },
+        {
+          "skill": "Gemini",
+          "gold_variants": [
+            "Gemini"
+          ],
+          "model_surface": "Gemini",
+          "confidence": 0.4506,
+          "sections": [
+            "responsibilities"
+          ],
+          "labels": [
+            "software development or testing tool",
+            "software framework or library"
+          ]
+        },
+        {
+          "skill": "GitHub",
+          "gold_variants": [
+            "GitHub"
+          ],
+          "model_surface": "GitHub",
+          "confidence": 0.8336,
+          "sections": [
+            "requirements",
+            "responsibilities"
+          ],
+          "labels": [
+            "cloud or data platform"
+          ]
+        },
+        {
+          "skill": "GitHub Copilot",
+          "gold_variants": [
+            "GitHub Copilot"
+          ],
+          "model_surface": "GitHub Copilot",
+          "confidence": 0.517,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "software development or testing tool"
+          ]
+        },
+        {
+          "skill": "Japanese",
+          "gold_variants": [
+            "Japanese"
+          ],
+          "model_surface": "Tiếng Nhật",
+          "confidence": 0.8423,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "programming language"
+          ]
+        },
+        {
+          "skill": "MCP",
+          "gold_variants": [
+            "MCP"
+          ],
+          "model_surface": "SalesNow MCP",
+          "confidence": 0.6787,
+          "sections": [
+            "responsibilities"
+          ],
+          "labels": [
+            "software development or testing tool",
+            "software framework or library"
+          ]
+        },
+        {
+          "skill": "MySQL",
+          "gold_variants": [
+            "MySQL"
+          ],
+          "model_surface": "MySQL",
+          "confidence": 0.5,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "database or query technology"
+          ]
+        },
+        {
+          "skill": "Notion",
+          "gold_variants": [
+            "Notion"
+          ],
+          "model_surface": "Notion",
+          "confidence": 0.6693,
+          "sections": [
+            "requirements",
+            "responsibilities"
+          ],
+          "labels": [
+            "software development or testing tool",
+            "cloud or data platform"
+          ]
+        },
+        {
+          "skill": "OpenSearch",
+          "gold_variants": [
+            "OpenSearch"
+          ],
+          "model_surface": "OpenSearch",
+          "confidence": 0.4428,
+          "sections": [
+            "requirements",
+            "responsibilities"
+          ],
+          "labels": [
+            "software framework or library"
+          ]
+        },
+        {
+          "skill": "PostgreSQL",
+          "gold_variants": [
+            "PostgreSQL"
+          ],
+          "model_surface": "PostgreSQL",
+          "confidence": 0.9178,
+          "sections": [
+            "requirements",
+            "responsibilities"
+          ],
+          "labels": [
+            "programming language",
+            "database or query technology"
+          ]
+        },
+        {
+          "skill": "Prefect",
+          "gold_variants": [
+            "Prefect"
+          ],
+          "model_surface": "Prefect",
+          "confidence": 0.4455,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "software development or testing tool"
+          ]
+        },
+        {
+          "skill": "Python",
+          "gold_variants": [
+            "Python"
+          ],
+          "model_surface": "Python",
+          "confidence": 0.9556,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "programming language"
+          ]
+        },
+        {
+          "skill": "RDS",
+          "gold_variants": [
+            "RDS"
+          ],
+          "model_surface": "RDS",
+          "confidence": 0.6198,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "cloud or data platform"
+          ]
+        },
+        {
+          "skill": "SalesNow",
+          "gold_variants": [
+            "SalesNow"
+          ],
+          "model_surface": "SalesNow",
+          "confidence": 0.546,
+          "sections": [
+            "responsibilities"
+          ],
+          "labels": [
+            "cloud or data platform"
+          ]
+        },
+        {
+          "skill": "Scala",
+          "gold_variants": [
+            "Scala"
+          ],
+          "model_surface": "Scala",
+          "confidence": 0.8838,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "programming language"
+          ]
+        },
+        {
+          "skill": "Slack",
+          "gold_variants": [
+            "Slack"
+          ],
+          "model_surface": "Slack",
+          "confidence": 0.8074,
+          "sections": [
+            "requirements",
+            "responsibilities"
+          ],
+          "labels": [
+            "software development or testing tool",
+            "cloud or data platform"
+          ]
+        },
+        {
+          "skill": "SQL",
+          "gold_variants": [
+            "SQL"
+          ],
+          "model_surface": "SQL",
+          "confidence": 0.9288,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "programming language"
+          ]
+        },
+        {
+          "skill": "Vercel",
+          "gold_variants": [
+            "Vercel"
+          ],
+          "model_surface": "Vercel",
+          "confidence": 0.428,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "software framework or library"
+          ]
+        }
+      ],
+      "missed": [
+        {
+          "skill": "Airflow DAG orchestration",
+          "gold_variants": [
+            "Airflow DAG orchestration"
+          ]
+        },
+        {
+          "skill": "anomaly detection",
+          "gold_variants": [
+            "anomaly detection"
+          ]
+        },
+        {
+          "skill": "API integrations",
+          "gold_variants": [
+            "API integrations"
+          ]
+        },
+        {
+          "skill": "AWS Lambda",
+          "gold_variants": [
+            "AWS Lambda"
+          ]
+        },
+        {
+          "skill": "AWS S3",
+          "gold_variants": [
+            "AWS S3"
+          ]
+        },
+        {
+          "skill": "Claude Code",
+          "gold_variants": [
+            "Claude Code"
+          ]
+        },
+        {
+          "skill": "data quality frameworks",
+          "gold_variants": [
+            "data quality frameworks"
+          ]
+        },
+        {
+          "skill": "data transformations",
+          "gold_variants": [
+            "data transformations"
+          ]
+        },
+        {
+          "skill": "dbt",
+          "gold_variants": [
+            "dbt"
+          ]
+        },
+        {
+          "skill": "deduplication",
+          "gold_variants": [
+            "deduplication"
+          ]
+        },
+        {
+          "skill": "Delta Lake",
+          "gold_variants": [
+            "Delta Lake"
+          ]
+        },
+        {
+          "skill": "entity resolution",
+          "gold_variants": [
+            "entity resolution"
+          ]
+        },
+        {
+          "skill": "fault-tolerant pipelines",
+          "gold_variants": [
+            "fault-tolerant pipelines"
+          ]
+        },
+        {
+          "skill": "GitHub Actions",
+          "gold_variants": [
+            "GitHub Actions"
+          ]
+        },
+        {
+          "skill": "large-scale data processing",
+          "gold_variants": [
+            "large-scale data processing"
+          ]
+        },
+        {
+          "skill": "MWAA",
+          "gold_variants": [
+            "MWAA"
+          ]
+        },
+        {
+          "skill": "observability",
+          "gold_variants": [
+            "observability"
+          ]
+        },
+        {
+          "skill": "query optimization",
+          "gold_variants": [
+            "query optimization"
+          ]
+        },
+        {
+          "skill": "RAG pipelines",
+          "gold_variants": [
+            "RAG pipelines"
+          ]
+        },
+        {
+          "skill": "real-time data pipelines",
+          "gold_variants": [
+            "real-time data pipelines"
+          ]
+        },
+        {
+          "skill": "relational databases",
+          "gold_variants": [
+            "relational databases"
+          ]
+        },
+        {
+          "skill": "schema validation",
+          "gold_variants": [
+            "schema validation"
+          ]
+        },
+        {
+          "skill": "Scrapy",
+          "gold_variants": [
+            "Scrapy"
+          ]
+        },
+        {
+          "skill": "Spark",
+          "gold_variants": [
+            "Spark"
+          ]
+        },
+        {
+          "skill": "SQL window functions",
+          "gold_variants": [
+            "SQL window functions"
+          ]
+        },
+        {
+          "skill": "Terraform",
+          "gold_variants": [
+            "Terraform"
+          ]
+        },
+        {
+          "skill": "vector databases",
+          "gold_variants": [
+            "vector databases"
+          ]
+        },
+        {
+          "skill": "web scraping",
+          "gold_variants": [
+            "web scraping"
+          ]
+        }
+      ],
+      "extras": [
+        {
+          "skill": "Amazon",
+          "surface_forms": [
+            "Amazon"
+          ],
+          "confidence": 0.9245,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "cloud or data platform"
+          ]
+        },
+        {
+          "skill": "ngôn ngữ khác",
+          "surface_forms": [
+            "ngôn ngữ khác"
+          ],
+          "confidence": 0.7198,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "programming language"
+          ]
+        },
+        {
+          "skill": "PRD",
+          "surface_forms": [
+            "PRD"
+          ],
+          "confidence": 0.5674,
+          "sections": [
+            "responsibilities"
+          ],
+          "labels": [
+            "cloud or data platform"
+          ]
+        }
+      ]
+    },
+    {
+      "job_id": "2139328",
+      "title": "[HN] CHUYÊN VIÊN QUẢN TRỊ CƠ SỞ DỮ LIỆU DBA",
+      "source_level": "Chuyên viên",
+      "experience_label": "1 năm, 3 năm",
+      "source_skills_arr": [
+        "Oracle",
+        "SQL",
+        "MySQL"
+      ],
+      "metrics": {
+        "gold": 18,
+        "predicted": 3,
+        "tp": 3,
+        "fp": 0,
+        "fn": 15,
+        "precision": 1.0,
+        "recall": 0.166667,
+        "f1": 0.285714
+      },
+      "found": [
+        {
+          "skill": "database system",
+          "gold_variants": [
+            "database system"
+          ],
+          "model_surface": "CSDL",
+          "confidence": 0.7664,
+          "sections": [
+            "responsibilities"
+          ],
+          "labels": [
+            "database or query technology"
+          ]
+        },
+        {
+          "skill": "MySQL",
+          "gold_variants": [
+            "MySQL"
+          ],
+          "model_surface": "Mysql",
+          "confidence": 0.8407,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "database or query technology"
+          ]
+        },
+        {
+          "skill": "SQL",
+          "gold_variants": [
+            "SQL"
+          ],
+          "model_surface": "SQL",
+          "confidence": 0.8725,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "database or query technology"
+          ]
+        }
+      ],
+      "missed": [
+        {
+          "skill": "backup and recovery",
+          "gold_variants": [
+            "backup and recovery"
+          ]
+        },
+        {
+          "skill": "data center infrastructure",
+          "gold_variants": [
+            "data center infrastructure"
+          ]
+        },
+        {
+          "skill": "data migration",
+          "gold_variants": [
+            "data migration"
+          ]
+        },
+        {
+          "skill": "database administration",
+          "gold_variants": [
+            "database administration"
+          ]
+        },
+        {
+          "skill": "database capacity planning",
+          "gold_variants": [
+            "database capacity planning"
+          ]
+        },
+        {
+          "skill": "database maintenance",
+          "gold_variants": [
+            "database maintenance"
+          ]
+        },
+        {
+          "skill": "database operations",
+          "gold_variants": [
+            "database operations"
+          ]
+        },
+        {
+          "skill": "database performance assessment",
+          "gold_variants": [
+            "database performance assessment"
+          ]
+        },
+        {
+          "skill": "database security",
+          "gold_variants": [
+            "database security"
+          ]
+        },
+        {
+          "skill": "disaster recovery",
+          "gold_variants": [
+            "disaster recovery"
+          ]
+        },
+        {
+          "skill": "IT operations",
+          "gold_variants": [
+            "IT operations"
+          ]
+        },
+        {
+          "skill": "operating system upgrades",
+          "gold_variants": [
+            "operating system upgrades"
+          ]
+        },
+        {
+          "skill": "Oracle",
+          "gold_variants": [
+            "Oracle"
+          ]
+        },
+        {
+          "skill": "patching",
+          "gold_variants": [
+            "patching"
+          ]
+        },
+        {
+          "skill": "PostgreSQL",
+          "gold_variants": [
+            "PostgreSQL"
+          ]
+        }
+      ],
+      "extras": []
+    },
+    {
+      "job_id": "2138374",
+      "title": "[HN] CHUYÊN VIÊN QUẢN TRỊ CƠ SỞ DỮ LIỆU DBA (Senior)",
+      "source_level": "Chuyên viên cấp cao, Chuyên viên",
+      "experience_label": "3 năm",
+      "source_skills_arr": [
+        "Oracle",
+        "SQL",
+        "MySQL"
+      ],
+      "metrics": {
+        "gold": 28,
+        "predicted": 6,
+        "tp": 6,
+        "fp": 0,
+        "fn": 22,
+        "precision": 1.0,
+        "recall": 0.214286,
+        "f1": 0.352941
+      },
+      "found": [
+        {
+          "skill": "Active Data Guard",
+          "gold_variants": [
+            "Active Data Guard"
+          ],
+          "model_surface": "Active Data Guard",
+          "confidence": 0.547,
+          "sections": [
+            "responsibilities"
+          ],
+          "labels": [
+            "database or query technology"
+          ]
+        },
+        {
+          "skill": "Data Pump",
+          "gold_variants": [
+            "Data Pump"
+          ],
+          "model_surface": "Data Pump",
+          "confidence": 0.4776,
+          "sections": [
+            "responsibilities"
+          ],
+          "labels": [
+            "database or query technology"
+          ]
+        },
+        {
+          "skill": "MySQL",
+          "gold_variants": [
+            "MySQL"
+          ],
+          "model_surface": "Mysql",
+          "confidence": 0.8454,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "database or query technology"
+          ]
+        },
+        {
+          "skill": "Oracle Real Application Clusters",
+          "gold_variants": [
+            "Oracle Real Application Clusters"
+          ],
+          "model_surface": "Oracle Real Application Clusters",
+          "confidence": 0.5563,
+          "sections": [
+            "responsibilities"
+          ],
+          "labels": [
+            "cloud or data platform"
+          ]
+        },
+        {
+          "skill": "Oracle RMAN",
+          "gold_variants": [
+            "Oracle RMAN"
+          ],
+          "model_surface": "Oracle RMAN",
+          "confidence": 0.5378,
+          "sections": [
+            "responsibilities"
+          ],
+          "labels": [
+            "software framework or library"
+          ]
+        },
+        {
+          "skill": "SQL",
+          "gold_variants": [
+            "SQL"
+          ],
+          "model_surface": "SQL",
+          "confidence": 0.8758,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "database or query technology"
+          ]
+        }
+      ],
+      "missed": [
+        {
+          "skill": "ASM",
+          "gold_variants": [
+            "ASM"
+          ]
+        },
+        {
+          "skill": "Auditing",
+          "gold_variants": [
+            "Auditing"
+          ]
+        },
+        {
+          "skill": "backup and recovery",
+          "gold_variants": [
+            "backup and recovery"
+          ]
+        },
+        {
+          "skill": "BCP",
+          "gold_variants": [
+            "BCP"
+          ]
+        },
+        {
+          "skill": "capacity planning",
+          "gold_variants": [
+            "capacity planning"
+          ]
+        },
+        {
+          "skill": "database architecture",
+          "gold_variants": [
+            "database architecture"
+          ]
+        },
+        {
+          "skill": "database security",
+          "gold_variants": [
+            "database security"
+          ]
+        },
+        {
+          "skill": "database upgrades",
+          "gold_variants": [
+            "database upgrades"
+          ]
+        },
+        {
+          "skill": "DRP",
+          "gold_variants": [
+            "DRP"
+          ]
+        },
+        {
+          "skill": "high availability",
+          "gold_variants": [
+            "high availability"
+          ]
+        },
+        {
+          "skill": "migration",
+          "gold_variants": [
+            "migration"
+          ]
+        },
+        {
+          "skill": "monitoring and alerting",
+          "gold_variants": [
+            "monitoring and alerting"
+          ]
+        },
+        {
+          "skill": "Oracle",
+          "gold_variants": [
+            "Oracle"
+          ]
+        },
+        {
+          "skill": "Oracle Data Guard",
+          "gold_variants": [
+            "Oracle Data Guard"
+          ]
+        },
+        {
+          "skill": "Oracle Database Vault",
+          "gold_variants": [
+            "Oracle Database Vault"
+          ]
+        },
+        {
+          "skill": "patching",
+          "gold_variants": [
+            "patching"
+          ]
+        },
+        {
+          "skill": "performance tuning",
+          "gold_variants": [
+            "performance tuning"
+          ]
+        },
+        {
+          "skill": "PostgreSQL",
+          "gold_variants": [
+            "PostgreSQL"
+          ]
+        },
+        {
+          "skill": "query tuning",
+          "gold_variants": [
+            "query tuning"
+          ]
+        },
+        {
+          "skill": "SOP",
+          "gold_variants": [
+            "SOP"
+          ]
+        },
+        {
+          "skill": "TDE",
+          "gold_variants": [
+            "TDE"
+          ]
+        },
+        {
+          "skill": "troubleshooting",
+          "gold_variants": [
+            "troubleshooting"
+          ]
+        }
+      ],
+      "extras": []
+    },
+    {
+      "job_id": "2143923",
+      "title": "Data Services Specialist",
+      "source_level": "Nhân viên",
+      "experience_label": "1 năm",
+      "source_skills_arr": [
+        "SQL",
+        "REST API",
+        "Data Analytics"
+      ],
+      "metrics": {
+        "gold": 51,
+        "predicted": 28,
+        "tp": 28,
+        "fp": 0,
+        "fn": 23,
+        "precision": 1.0,
+        "recall": 0.54902,
+        "f1": 0.708861
+      },
+      "found": [
+        {
+          "skill": "Airbyte",
+          "gold_variants": [
+            "Airbyte"
+          ],
+          "model_surface": "Airbyte",
+          "confidence": 0.4237,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "software framework or library"
+          ]
+        },
+        {
+          "skill": "Apache Airflow",
+          "gold_variants": [
+            "Apache Airflow"
+          ],
+          "model_surface": "Apache Airflow",
+          "confidence": 0.6255,
+          "sections": [
+            "requirements",
+            "responsibilities"
+          ],
+          "labels": [
+            "software framework or library"
+          ]
+        },
+        {
+          "skill": "Apache NiFi",
+          "gold_variants": [
+            "Apache NiFi"
+          ],
+          "model_surface": "NiFi",
+          "confidence": 0.4682,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "database or query technology"
+          ]
+        },
+        {
+          "skill": "AWS",
+          "gold_variants": [
+            "AWS"
+          ],
+          "model_surface": "AWS",
+          "confidence": 0.9844,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "cloud or data platform"
+          ]
+        },
+        {
+          "skill": "Azure",
+          "gold_variants": [
+            "Azure"
+          ],
+          "model_surface": "Azure",
+          "confidence": 0.9771,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "cloud or data platform"
+          ]
+        },
+        {
+          "skill": "batch files",
+          "gold_variants": [
+            "batch files"
+          ],
+          "model_surface": "batch files",
+          "confidence": 0.5725,
+          "sections": [
+            "responsibilities"
+          ],
+          "labels": [
+            "database or query technology"
+          ]
+        },
+        {
+          "skill": "BigQuery",
+          "gold_variants": [
+            "BigQuery"
+          ],
+          "model_surface": "BigQuery",
+          "confidence": 0.8353,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "database or query technology"
+          ]
+        },
+        {
+          "skill": "cloud storage",
+          "gold_variants": [
+            "cloud storage"
+          ],
+          "model_surface": "cloud storage",
+          "confidence": 0.8615,
+          "sections": [
+            "responsibilities"
+          ],
+          "labels": [
+            "cloud or data platform"
+          ]
+        },
+        {
+          "skill": "data pipelines",
+          "gold_variants": [
+            "data pipelines"
+          ],
+          "model_surface": "pipelines",
+          "confidence": 0.5303,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "database or query technology"
+          ]
+        },
+        {
+          "skill": "dbt",
+          "gold_variants": [
+            "dbt"
+          ],
+          "model_surface": "dbt",
+          "confidence": 0.7342,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "database or query technology"
+          ]
+        },
+        {
+          "skill": "Fivetran",
+          "gold_variants": [
+            "Fivetran"
+          ],
+          "model_surface": "Fivetran",
+          "confidence": 0.5391,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "database or query technology"
+          ]
+        },
+        {
+          "skill": "JSON",
+          "gold_variants": [
+            "JSON"
+          ],
+          "model_surface": "JSON",
+          "confidence": 0.7467,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "programming language"
+          ]
+        },
+        {
+          "skill": "Kafka",
+          "gold_variants": [
+            "Kafka"
+          ],
+          "model_surface": "Kafka",
+          "confidence": 0.4724,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "database or query technology"
+          ]
+        },
+        {
+          "skill": "Looker",
+          "gold_variants": [
+            "Looker"
+          ],
+          "model_surface": "Looker",
+          "confidence": 0.4821,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "software framework or library",
+            "database or query technology"
+          ]
+        },
+        {
+          "skill": "Metabase",
+          "gold_variants": [
+            "Metabase"
+          ],
+          "model_surface": "Metabase",
+          "confidence": 0.526,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "software framework or library",
+            "database or query technology"
+          ]
+        },
+        {
+          "skill": "MySQL",
+          "gold_variants": [
+            "MySQL"
+          ],
+          "model_surface": "MySQL",
+          "confidence": 0.8839,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "database or query technology"
+          ]
+        },
+        {
+          "skill": "n8n",
+          "gold_variants": [
+            "n8n"
+          ],
+          "model_surface": "n8n",
+          "confidence": 0.5776,
+          "sections": [
+            "requirements",
+            "responsibilities"
+          ],
+          "labels": [
+            "software framework or library"
+          ]
+        },
+        {
+          "skill": "PostgreSQL",
+          "gold_variants": [
+            "PostgreSQL"
+          ],
+          "model_surface": "PostgreSQL",
+          "confidence": 0.8791,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "database or query technology"
+          ]
+        },
+        {
+          "skill": "Power BI",
+          "gold_variants": [
+            "Power BI"
+          ],
+          "model_surface": "Power BI",
+          "confidence": 0.5795,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "software framework or library",
+            "database or query technology"
+          ]
+        },
+        {
+          "skill": "Python",
+          "gold_variants": [
+            "Python"
+          ],
+          "model_surface": "Python",
+          "confidence": 0.8705,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "programming language"
+          ]
+        },
+        {
+          "skill": "relational databases",
+          "gold_variants": [
+            "relational databases"
+          ],
+          "model_surface": "databases",
+          "confidence": 0.7102,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "database or query technology"
+          ]
+        },
+        {
+          "skill": "REST API",
+          "gold_variants": [
+            "REST API"
+          ],
+          "model_surface": "REST APIs",
+          "confidence": 0.6498,
+          "sections": [
+            "requirements",
+            "responsibilities"
+          ],
+          "labels": [
+            "database or query technology"
+          ]
+        },
+        {
+          "skill": "SFTP",
+          "gold_variants": [
+            "SFTP"
+          ],
+          "model_surface": "SFTP",
+          "confidence": 0.6119,
+          "sections": [
+            "responsibilities"
+          ],
+          "labels": [
+            "database or query technology"
+          ]
+        },
+        {
+          "skill": "Snowflake",
+          "gold_variants": [
+            "Snowflake"
+          ],
+          "model_surface": "Snowflake",
+          "confidence": 0.6219,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "database or query technology"
+          ]
+        },
+        {
+          "skill": "SQL",
+          "gold_variants": [
+            "SQL"
+          ],
+          "model_surface": "SQL",
+          "confidence": 0.7975,
+          "sections": [
+            "requirements",
+            "responsibilities"
+          ],
+          "labels": [
+            "programming language",
+            "database or query technology"
+          ]
+        },
+        {
+          "skill": "StarRocks",
+          "gold_variants": [
+            "StarRocks"
+          ],
+          "model_surface": "StarRocks",
+          "confidence": 0.4349,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "database or query technology"
+          ]
+        },
+        {
+          "skill": "Tableau",
+          "gold_variants": [
+            "Tableau"
+          ],
+          "model_surface": "Tableau",
+          "confidence": 0.6116,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "software framework or library",
+            "database or query technology"
+          ]
+        },
+        {
+          "skill": "Webhooks",
+          "gold_variants": [
+            "Webhooks"
+          ],
+          "model_surface": "Webhooks",
+          "confidence": 0.6299,
+          "sections": [
+            "requirements",
+            "responsibilities"
+          ],
+          "labels": [
+            "database or query technology"
+          ]
+        }
+      ],
+      "missed": [
+        {
+          "skill": "BI visualization",
+          "gold_variants": [
+            "BI visualization"
+          ]
+        },
+        {
+          "skill": "Billing",
+          "gold_variants": [
+            "Billing"
+          ]
+        },
+        {
+          "skill": "CDP",
+          "gold_variants": [
+            "CDP"
+          ]
+        },
+        {
+          "skill": "CRM",
+          "gold_variants": [
+            "CRM"
+          ]
+        },
+        {
+          "skill": "dashboards and reports",
+          "gold_variants": [
+            "dashboards and reports"
+          ]
+        },
+        {
+          "skill": "data mapping",
+          "gold_variants": [
+            "data mapping"
+          ]
+        },
+        {
+          "skill": "data quality checks",
+          "gold_variants": [
+            "data quality checks"
+          ]
+        },
+        {
+          "skill": "data reconciliation",
+          "gold_variants": [
+            "data reconciliation"
+          ]
+        },
+        {
+          "skill": "data transformation",
+          "gold_variants": [
+            "data transformation"
+          ]
+        },
+        {
+          "skill": "data validation",
+          "gold_variants": [
+            "data validation"
+          ]
+        },
+        {
+          "skill": "Ecommerce",
+          "gold_variants": [
+            "Ecommerce"
+          ]
+        },
+        {
+          "skill": "ELT",
+          "gold_variants": [
+            "ELT"
+          ]
+        },
+        {
+          "skill": "ERP",
+          "gold_variants": [
+            "ERP"
+          ]
+        },
+        {
+          "skill": "ETL",
+          "gold_variants": [
+            "ETL"
+          ]
+        },
+        {
+          "skill": "GCP",
+          "gold_variants": [
+            "GCP"
+          ]
+        },
+        {
+          "skill": "KPI metrics",
+          "gold_variants": [
+            "KPI metrics"
+          ]
+        },
+        {
+          "skill": "Loyalty",
+          "gold_variants": [
+            "Loyalty"
+          ]
+        },
+        {
+          "skill": "Marketing Automation",
+          "gold_variants": [
+            "Marketing Automation"
+          ]
+        },
+        {
+          "skill": "POS",
+          "gold_variants": [
+            "POS"
+          ]
+        },
+        {
+          "skill": "SQL troubleshooting",
+          "gold_variants": [
+            "SQL troubleshooting"
+          ]
+        },
+        {
+          "skill": "system integration",
+          "gold_variants": [
+            "system integration"
+          ]
+        },
+        {
+          "skill": "workflow automation",
+          "gold_variants": [
+            "workflow automation"
+          ]
+        },
+        {
+          "skill": "workflow orchestration",
+          "gold_variants": [
+            "workflow orchestration"
+          ]
+        }
+      ],
+      "extras": []
+    },
+    {
+      "job_id": "2143927",
+      "title": "Senior Data Services Consultant",
+      "source_level": "Chuyên viên cấp cao",
+      "experience_label": "4 năm",
+      "source_skills_arr": [
+        "SQL",
+        "REST API",
+        "Data Analytics"
+      ],
+      "metrics": {
+        "gold": 91,
+        "predicted": 40,
+        "tp": 34,
+        "fp": 6,
+        "fn": 57,
+        "precision": 0.85,
+        "recall": 0.373626,
+        "f1": 0.519084
+      },
+      "found": [
+        {
+          "skill": "Antsomi",
+          "gold_variants": [
+            "Antsomi"
+          ],
+          "model_surface": "Antsomi platforms",
+          "confidence": 0.6943,
+          "sections": [
+            "responsibilities"
+          ],
+          "labels": [
+            "software framework or library",
+            "cloud or data platform"
+          ]
+        },
+        {
+          "skill": "Apache Airflow",
+          "gold_variants": [
+            "Apache Airflow"
+          ],
+          "model_surface": "Apache Airflow",
+          "confidence": 0.8477,
+          "sections": [
+            "requirements",
+            "responsibilities"
+          ],
+          "labels": [
+            "cloud or data platform",
+            "software framework or library"
+          ]
+        },
+        {
+          "skill": "API",
+          "gold_variants": [
+            "API"
+          ],
+          "model_surface": "API",
+          "confidence": 0.6372,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "database or query technology"
+          ]
+        },
+        {
+          "skill": "AWS",
+          "gold_variants": [
+            "AWS"
+          ],
+          "model_surface": "AWS",
+          "confidence": 0.9761,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "cloud or data platform"
+          ]
+        },
+        {
+          "skill": "Azure",
+          "gold_variants": [
+            "Azure"
+          ],
+          "model_surface": "Azure",
+          "confidence": 0.9567,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "cloud or data platform"
+          ]
+        },
+        {
+          "skill": "batch files",
+          "gold_variants": [
+            "batch files"
+          ],
+          "model_surface": "batch files",
+          "confidence": 0.6535,
+          "sections": [
+            "responsibilities"
+          ],
+          "labels": [
+            "database or query technology"
+          ]
+        },
+        {
+          "skill": "batch integration",
+          "gold_variants": [
+            "batch integration"
+          ],
+          "model_surface": "batch",
+          "confidence": 0.5735,
+          "sections": [
+            "requirements",
+            "responsibilities"
+          ],
+          "labels": [
+            "technical method, protocol, or architecture"
+          ]
+        },
+        {
+          "skill": "BigQuery",
+          "gold_variants": [
+            "BigQuery"
+          ],
+          "model_surface": "BigQuery",
+          "confidence": 0.8149,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "database or query technology"
+          ]
+        },
+        {
+          "skill": "CDP",
+          "gold_variants": [
+            "CDP"
+          ],
+          "model_surface": "CDP",
+          "confidence": 0.5483,
+          "sections": [
+            "responsibilities"
+          ],
+          "labels": [
+            "programming language",
+            "database or query technology"
+          ]
+        },
+        {
+          "skill": "cloud storage",
+          "gold_variants": [
+            "cloud storage"
+          ],
+          "model_surface": "cloud storage",
+          "confidence": 0.8806,
+          "sections": [
+            "responsibilities"
+          ],
+          "labels": [
+            "cloud or data platform"
+          ]
+        },
+        {
+          "skill": "data quality frameworks",
+          "gold_variants": [
+            "data quality frameworks"
+          ],
+          "model_surface": "data quality frameworks",
+          "confidence": 0.7391,
+          "sections": [
+            "responsibilities"
+          ],
+          "labels": [
+            "software framework or library"
+          ]
+        },
+        {
+          "skill": "dbt",
+          "gold_variants": [
+            "dbt"
+          ],
+          "model_surface": "dbt",
+          "confidence": 0.6747,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "database or query technology"
+          ]
+        },
+        {
+          "skill": "English",
+          "gold_variants": [
+            "English"
+          ],
+          "model_surface": "English",
+          "confidence": 0.5285,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "programming language"
+          ]
+        },
+        {
+          "skill": "file-based integration",
+          "gold_variants": [
+            "file-based integration"
+          ],
+          "model_surface": "file-based",
+          "confidence": 0.5113,
+          "sections": [
+            "requirements",
+            "responsibilities"
+          ],
+          "labels": [
+            "technical method, protocol, or architecture"
+          ]
+        },
+        {
+          "skill": "Fivetran",
+          "gold_variants": [
+            "Fivetran"
+          ],
+          "model_surface": "Fivetran",
+          "confidence": 0.4391,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "database or query technology"
+          ]
+        },
+        {
+          "skill": "GCP",
+          "gold_variants": [
+            "GCP"
+          ],
+          "model_surface": "GCP",
+          "confidence": 0.5417,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "cloud or data platform"
+          ]
+        },
+        {
+          "skill": "JSON",
+          "gold_variants": [
+            "JSON"
+          ],
+          "model_surface": "JSON",
+          "confidence": 0.7961,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "programming language"
+          ]
+        },
+        {
+          "skill": "JWT",
+          "gold_variants": [
+            "JWT"
+          ],
+          "model_surface": "JWT",
+          "confidence": 0.4362,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "software framework or library"
+          ]
+        },
+        {
+          "skill": "Kafka",
+          "gold_variants": [
+            "Kafka"
+          ],
+          "model_surface": "Kafka",
+          "confidence": 0.4817,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "database or query technology"
+          ]
+        },
+        {
+          "skill": "Metabase",
+          "gold_variants": [
+            "Metabase"
+          ],
+          "model_surface": "Metabase",
+          "confidence": 0.4236,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "database or query technology"
+          ]
+        },
+        {
+          "skill": "MySQL",
+          "gold_variants": [
+            "MySQL"
+          ],
+          "model_surface": "MySQL",
+          "confidence": 0.8293,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "database or query technology"
+          ]
+        },
+        {
+          "skill": "n8n",
+          "gold_variants": [
+            "n8n"
+          ],
+          "model_surface": "n8n",
+          "confidence": 0.8277,
+          "sections": [
+            "requirements",
+            "responsibilities"
+          ],
+          "labels": [
+            "cloud or data platform",
+            "software framework or library"
+          ]
+        },
+        {
+          "skill": "OAuth 2.0",
+          "gold_variants": [
+            "OAuth 2.0"
+          ],
+          "model_surface": "OAuth 2.0",
+          "confidence": 0.4808,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "software framework or library"
+          ]
+        },
+        {
+          "skill": "PostgreSQL",
+          "gold_variants": [
+            "PostgreSQL"
+          ],
+          "model_surface": "PostgreSQL",
+          "confidence": 0.8388,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "database or query technology"
+          ]
+        },
+        {
+          "skill": "Power BI",
+          "gold_variants": [
+            "Power BI"
+          ],
+          "model_surface": "Power BI",
+          "confidence": 0.6258,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "database or query technology"
+          ]
+        },
+        {
+          "skill": "Python",
+          "gold_variants": [
+            "Python"
+          ],
+          "model_surface": "Python",
+          "confidence": 0.9665,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "programming language"
+          ]
+        },
+        {
+          "skill": "relational databases",
+          "gold_variants": [
+            "relational databases"
+          ],
+          "model_surface": "databases",
+          "confidence": 0.5857,
+          "sections": [
+            "requirements",
+            "responsibilities"
+          ],
+          "labels": [
+            "database or query technology"
+          ]
+        },
+        {
+          "skill": "REST API",
+          "gold_variants": [
+            "REST API"
+          ],
+          "model_surface": "REST APIs",
+          "confidence": 0.8188,
+          "sections": [
+            "requirements",
+            "responsibilities"
+          ],
+          "labels": [
+            "database or query technology"
+          ]
+        },
+        {
+          "skill": "SFTP",
+          "gold_variants": [
+            "SFTP"
+          ],
+          "model_surface": "SFTP",
+          "confidence": 0.7201,
+          "sections": [
+            "responsibilities"
+          ],
+          "labels": [
+            "database or query technology"
+          ]
+        },
+        {
+          "skill": "Snowflake",
+          "gold_variants": [
+            "Snowflake"
+          ],
+          "model_surface": "Snowflake",
+          "confidence": 0.4557,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "database or query technology"
+          ]
+        },
+        {
+          "skill": "SQL",
+          "gold_variants": [
+            "SQL"
+          ],
+          "model_surface": "SQL",
+          "confidence": 0.8948,
+          "sections": [
+            "requirements",
+            "responsibilities"
+          ],
+          "labels": [
+            "programming language",
+            "database or query technology"
+          ]
+        },
+        {
+          "skill": "SQL libraries",
+          "gold_variants": [
+            "SQL libraries"
+          ],
+          "model_surface": "SQL libraries",
+          "confidence": 0.7512,
+          "sections": [
+            "responsibilities"
+          ],
+          "labels": [
+            "software framework or library"
+          ]
+        },
+        {
+          "skill": "Tableau",
+          "gold_variants": [
+            "Tableau"
+          ],
+          "model_surface": "Tableau",
+          "confidence": 0.5022,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "database or query technology"
+          ]
+        },
+        {
+          "skill": "Webhooks",
+          "gold_variants": [
+            "Webhooks"
+          ],
+          "model_surface": "Webhooks",
+          "confidence": 0.7448,
+          "sections": [
+            "requirements",
+            "responsibilities"
+          ],
+          "labels": [
+            "database or query technology"
+          ]
+        }
+      ],
+      "missed": [
+        {
+          "skill": "advanced SQL",
+          "gold_variants": [
+            "advanced SQL"
+          ]
+        },
+        {
+          "skill": "Airbyte",
+          "gold_variants": [
+            "Airbyte"
+          ]
+        },
+        {
+          "skill": "alerting",
+          "gold_variants": [
+            "alerting"
+          ]
+        },
+        {
+          "skill": "analytical datasets",
+          "gold_variants": [
+            "analytical datasets"
+          ]
+        },
+        {
+          "skill": "Apache NiFi",
+          "gold_variants": [
+            "Apache NiFi"
+          ]
+        },
+        {
+          "skill": "API Keys",
+          "gold_variants": [
+            "API Keys"
+          ]
+        },
+        {
+          "skill": "API security",
+          "gold_variants": [
+            "API security"
+          ]
+        },
+        {
+          "skill": "asynchronous processing",
+          "gold_variants": [
+            "asynchronous processing"
+          ]
+        },
+        {
+          "skill": "behavioral data",
+          "gold_variants": [
+            "behavioral data"
+          ]
+        },
+        {
+          "skill": "Billing",
+          "gold_variants": [
+            "Billing"
+          ]
+        },
+        {
+          "skill": "CRM",
+          "gold_variants": [
+            "CRM"
+          ]
+        },
+        {
+          "skill": "Customer 360",
+          "gold_variants": [
+            "Customer 360"
+          ]
+        },
+        {
+          "skill": "customer identity",
+          "gold_variants": [
+            "customer identity"
+          ]
+        },
+        {
+          "skill": "dashboards",
+          "gold_variants": [
+            "dashboards"
+          ]
+        },
+        {
+          "skill": "data dictionaries",
+          "gold_variants": [
+            "data dictionaries"
+          ]
+        },
+        {
+          "skill": "data freshness",
+          "gold_variants": [
+            "data freshness"
+          ]
+        },
+        {
+          "skill": "data governance",
+          "gold_variants": [
+            "data governance"
+          ]
+        },
+        {
+          "skill": "data mapping",
+          "gold_variants": [
+            "data mapping"
+          ]
+        },
+        {
+          "skill": "data modeling",
+          "gold_variants": [
+            "data modeling"
+          ]
+        },
+        {
+          "skill": "data quality",
+          "gold_variants": [
+            "data quality"
+          ]
+        },
+        {
+          "skill": "data quality management",
+          "gold_variants": [
+            "data quality management"
+          ]
+        },
+        {
+          "skill": "data reconciliation",
+          "gold_variants": [
+            "data reconciliation"
+          ]
+        },
+        {
+          "skill": "data transformation",
+          "gold_variants": [
+            "data transformation"
+          ]
+        },
+        {
+          "skill": "data validation",
+          "gold_variants": [
+            "data validation"
+          ]
+        },
+        {
+          "skill": "dependency management",
+          "gold_variants": [
+            "dependency management"
+          ]
+        },
+        {
+          "skill": "dimensional modeling",
+          "gold_variants": [
+            "dimensional modeling"
+          ]
+        },
+        {
+          "skill": "Ecommerce",
+          "gold_variants": [
+            "Ecommerce"
+          ]
+        },
+        {
+          "skill": "ELT",
+          "gold_variants": [
+            "ELT"
+          ]
+        },
+        {
+          "skill": "ERP",
+          "gold_variants": [
+            "ERP"
+          ]
+        },
+        {
+          "skill": "error handling",
+          "gold_variants": [
+            "error handling"
+          ]
+        },
+        {
+          "skill": "ETL",
+          "gold_variants": [
+            "ETL"
+          ]
+        },
+        {
+          "skill": "event-driven integration",
+          "gold_variants": [
+            "event-driven integration"
+          ]
+        },
+        {
+          "skill": "failure recovery",
+          "gold_variants": [
+            "failure recovery"
+          ]
+        },
+        {
+          "skill": "idempotency",
+          "gold_variants": [
+            "idempotency"
+          ]
+        },
+        {
+          "skill": "identity resolution",
+          "gold_variants": [
+            "identity resolution"
+          ]
+        },
+        {
+          "skill": "integration architecture",
+          "gold_variants": [
+            "integration architecture"
+          ]
+        },
+        {
+          "skill": "KPI logic",
+          "gold_variants": [
+            "KPI logic"
+          ]
+        },
+        {
+          "skill": "logging",
+          "gold_variants": [
+            "logging"
+          ]
+        },
+        {
+          "skill": "Looker Studio",
+          "gold_variants": [
+            "Looker Studio"
+          ]
+        },
+        {
+          "skill": "Loyalty",
+          "gold_variants": [
+            "Loyalty"
+          ]
+        },
+        {
+          "skill": "Marketing Automation",
+          "gold_variants": [
+            "Marketing Automation"
+          ]
+        },
+        {
+          "skill": "master data",
+          "gold_variants": [
+            "master data"
+          ]
+        },
+        {
+          "skill": "monitoring",
+          "gold_variants": [
+            "monitoring"
+          ]
+        },
+        {
+          "skill": "observability",
+          "gold_variants": [
+            "observability"
+          ]
+        },
+        {
+          "skill": "POS",
+          "gold_variants": [
+            "POS"
+          ]
+        },
+        {
+          "skill": "production data pipelines",
+          "gold_variants": [
+            "production data pipelines"
+          ]
+        },
+        {
+          "skill": "reports",
+          "gold_variants": [
+            "reports"
+          ]
+        },
+        {
+          "skill": "retries",
+          "gold_variants": [
+            "retries"
+          ]
+        },
+        {
+          "skill": "scheduled integration",
+          "gold_variants": [
+            "scheduled integration"
+          ]
+        },
+        {
+          "skill": "segmentation",
+          "gold_variants": [
+            "segmentation"
+          ]
+        },
+        {
+          "skill": "source-to-target mappings",
+          "gold_variants": [
+            "source-to-target mappings"
+          ]
+        },
+        {
+          "skill": "SQL troubleshooting",
+          "gold_variants": [
+            "SQL troubleshooting"
+          ]
+        },
+        {
+          "skill": "StarRocks",
+          "gold_variants": [
+            "StarRocks"
+          ]
+        },
+        {
+          "skill": "streaming",
+          "gold_variants": [
+            "streaming"
+          ]
+        },
+        {
+          "skill": "timeout handling",
+          "gold_variants": [
+            "timeout handling"
+          ]
+        },
+        {
+          "skill": "workflow orchestration",
+          "gold_variants": [
+            "workflow orchestration"
+          ]
+        },
+        {
+          "skill": "workflow scheduling",
+          "gold_variants": [
+            "workflow scheduling"
+          ]
+        }
+      ],
+      "extras": [
+        {
+          "skill": "B2B SaaS",
+          "surface_forms": [
+            "B2B SaaS"
+          ],
+          "confidence": 0.6895,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "cloud or data platform"
+          ]
+        },
+        {
+          "skill": "dashboard templates",
+          "surface_forms": [
+            "dashboard templates"
+          ],
+          "confidence": 0.4479,
+          "sections": [
+            "responsibilities"
+          ],
+          "labels": [
+            "software framework or library"
+          ]
+        },
+        {
+          "skill": "reusable frameworks",
+          "surface_forms": [
+            "reusable frameworks"
+          ],
+          "confidence": 0.445,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "software framework or library"
+          ]
+        },
+        {
+          "skill": "scheduled",
+          "surface_forms": [
+            "scheduled"
+          ],
+          "confidence": 0.4514,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "technical method, protocol, or architecture"
+          ]
+        },
+        {
+          "skill": "SQL queries",
+          "surface_forms": [
+            "SQL queries"
+          ],
+          "confidence": 0.476,
+          "sections": [
+            "responsibilities"
+          ],
+          "labels": [
+            "database or query technology"
+          ]
+        },
+        {
+          "skill": "system architecture",
+          "surface_forms": [
+            "system architecture"
+          ],
+          "confidence": 0.4204,
+          "sections": [
+            "responsibilities"
+          ],
+          "labels": [
+            "technical method, protocol, or architecture"
+          ]
+        }
+      ]
+    },
+    {
+      "job_id": "2144784",
+      "title": "Data Engineer/ Senior Data Engineer",
+      "source_level": "Nhân viên, Chuyên viên",
+      "experience_label": "1 năm",
+      "source_skills_arr": [
+        "Big Data",
+        "Data Engineer",
+        "Data Warehouse"
+      ],
+      "metrics": {
+        "gold": 24,
+        "predicted": 11,
+        "tp": 7,
+        "fp": 4,
+        "fn": 17,
+        "precision": 0.636364,
+        "recall": 0.291667,
+        "f1": 0.4
+      },
+      "found": [
+        {
+          "skill": "CRM",
+          "gold_variants": [
+            "CRM"
+          ],
+          "model_surface": "CRM",
+          "confidence": 0.4446,
+          "sections": [
+            "responsibilities"
+          ],
+          "labels": [
+            "software development or testing tool"
+          ]
+        },
+        {
+          "skill": "Data Lake",
+          "gold_variants": [
+            "Data Lake"
+          ],
+          "model_surface": "Datalake",
+          "confidence": 0.9348,
+          "sections": [
+            "responsibilities"
+          ],
+          "labels": [
+            "cloud or data platform"
+          ]
+        },
+        {
+          "skill": "Data Mart",
+          "gold_variants": [
+            "Data Mart"
+          ],
+          "model_surface": "Datamart",
+          "confidence": 0.938,
+          "sections": [
+            "responsibilities"
+          ],
+          "labels": [
+            "cloud or data platform"
+          ]
+        },
+        {
+          "skill": "DWH",
+          "gold_variants": [
+            "Data Warehouse",
+            "DWH"
+          ],
+          "model_surface": "DWH",
+          "confidence": 0.8888,
+          "sections": [
+            "responsibilities"
+          ],
+          "labels": [
+            "cloud or data platform"
+          ]
+        },
+        {
+          "skill": "MySQL",
+          "gold_variants": [
+            "MySQL"
+          ],
+          "model_surface": "My SQL",
+          "confidence": 0.6364,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "software framework or library"
+          ]
+        },
+        {
+          "skill": "Oracle",
+          "gold_variants": [
+            "Oracle"
+          ],
+          "model_surface": "Oracle",
+          "confidence": 0.5267,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "software framework or library"
+          ]
+        },
+        {
+          "skill": "PostgreSQL",
+          "gold_variants": [
+            "PostgreSQL"
+          ],
+          "model_surface": "Postgre",
+          "confidence": 0.4585,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "software framework or library"
+          ]
+        }
+      ],
+      "missed": [
+        {
+          "skill": "BI reporting",
+          "gold_variants": [
+            "BI reporting"
+          ]
+        },
+        {
+          "skill": "Big Data",
+          "gold_variants": [
+            "Big Data"
+          ]
+        },
+        {
+          "skill": "Core Banking",
+          "gold_variants": [
+            "Core Banking"
+          ]
+        },
+        {
+          "skill": "CSS",
+          "gold_variants": [
+            "CSS"
+          ]
+        },
+        {
+          "skill": "data analysis",
+          "gold_variants": [
+            "data analysis"
+          ]
+        },
+        {
+          "skill": "data architecture",
+          "gold_variants": [
+            "data architecture"
+          ]
+        },
+        {
+          "skill": "data integration",
+          "gold_variants": [
+            "data integration"
+          ]
+        },
+        {
+          "skill": "data modeling",
+          "gold_variants": [
+            "data modeling"
+          ]
+        },
+        {
+          "skill": "data quality controls",
+          "gold_variants": [
+            "data quality controls"
+          ]
+        },
+        {
+          "skill": "ETL",
+          "gold_variants": [
+            "ETL"
+          ]
+        },
+        {
+          "skill": "ETL tools",
+          "gold_variants": [
+            "ETL tools"
+          ]
+        },
+        {
+          "skill": "large-scale databases",
+          "gold_variants": [
+            "large-scale databases"
+          ]
+        },
+        {
+          "skill": "LMS",
+          "gold_variants": [
+            "LMS"
+          ]
+        },
+        {
+          "skill": "LOS",
+          "gold_variants": [
+            "LOS"
+          ]
+        },
+        {
+          "skill": "performance optimization",
+          "gold_variants": [
+            "performance optimization"
+          ]
+        },
+        {
+          "skill": "RDBMS",
+          "gold_variants": [
+            "RDBMS"
+          ]
+        },
+        {
+          "skill": "reporting tools",
+          "gold_variants": [
+            "reporting tools"
+          ]
+        }
+      ],
+      "extras": [
+        {
+          "skill": "Cơ sở dữ liệu quy mô lớn",
+          "surface_forms": [
+            "Cơ sở dữ liệu quy mô lớn"
+          ],
+          "confidence": 0.4091,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "cloud or data platform"
+          ]
+        },
+        {
+          "skill": "ETL tool",
+          "surface_forms": [
+            "ETL tool"
+          ],
+          "confidence": 0.4597,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "database or query technology"
+          ]
+        },
+        {
+          "skill": "kiến trúc",
+          "surface_forms": [
+            "kiến trúc"
+          ],
+          "confidence": 0.4799,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "technical method, protocol, or architecture"
+          ]
+        },
+        {
+          "skill": "TBP",
+          "surface_forms": [
+            "TBP"
+          ],
+          "confidence": 0.4427,
+          "sections": [
+            "responsibilities"
+          ],
+          "labels": [
+            "software development or testing tool"
+          ]
+        }
+      ]
+    },
+    {
+      "job_id": "2139603",
+      "title": "Chuyên viên Hỗ trợ Tích hợp Dịch vụ - Khối Ngân hàng Số (2026TD457689)",
+      "source_level": "Chuyên viên",
+      "experience_label": "1 năm, 3 năm",
+      "source_skills_arr": [
+        "Data Analytics",
+        "API"
+      ],
+      "metrics": {
+        "gold": 24,
+        "predicted": 4,
+        "tp": 3,
+        "fp": 1,
+        "fn": 21,
+        "precision": 0.75,
+        "recall": 0.125,
+        "f1": 0.214286
+      },
+      "found": [
+        {
+          "skill": "API",
+          "gold_variants": [
+            "API"
+          ],
+          "model_surface": "API",
+          "confidence": 0.7184,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "software framework or library",
+            "programming language"
+          ]
+        },
+        {
+          "skill": "JSON",
+          "gold_variants": [
+            "JSON"
+          ],
+          "model_surface": "JSON",
+          "confidence": 0.8032,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "programming language"
+          ]
+        },
+        {
+          "skill": "Postman",
+          "gold_variants": [
+            "Postman"
+          ],
+          "model_surface": "Postman",
+          "confidence": 0.591,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "software development or testing tool"
+          ]
+        }
+      ],
+      "missed": [
+        {
+          "skill": "API Banking",
+          "gold_variants": [
+            "API Banking"
+          ]
+        },
+        {
+          "skill": "API integration",
+          "gold_variants": [
+            "API integration"
+          ]
+        },
+        {
+          "skill": "API testing",
+          "gold_variants": [
+            "API testing"
+          ]
+        },
+        {
+          "skill": "BaaS",
+          "gold_variants": [
+            "BaaS"
+          ]
+        },
+        {
+          "skill": "change control",
+          "gold_variants": [
+            "change control"
+          ]
+        },
+        {
+          "skill": "data validation",
+          "gold_variants": [
+            "data validation"
+          ]
+        },
+        {
+          "skill": "go-live process",
+          "gold_variants": [
+            "go-live process"
+          ]
+        },
+        {
+          "skill": "Open Banking",
+          "gold_variants": [
+            "Open Banking"
+          ]
+        },
+        {
+          "skill": "payment services",
+          "gold_variants": [
+            "payment services"
+          ]
+        },
+        {
+          "skill": "production deployment",
+          "gold_variants": [
+            "production deployment"
+          ]
+        },
+        {
+          "skill": "production support",
+          "gold_variants": [
+            "production support"
+          ]
+        },
+        {
+          "skill": "QA testing",
+          "gold_variants": [
+            "QA testing"
+          ]
+        },
+        {
+          "skill": "security controls",
+          "gold_variants": [
+            "security controls"
+          ]
+        },
+        {
+          "skill": "system integration",
+          "gold_variants": [
+            "system integration"
+          ]
+        },
+        {
+          "skill": "system integration flow",
+          "gold_variants": [
+            "system integration flow"
+          ]
+        },
+        {
+          "skill": "test cases",
+          "gold_variants": [
+            "test cases"
+          ]
+        },
+        {
+          "skill": "test data",
+          "gold_variants": [
+            "test data"
+          ]
+        },
+        {
+          "skill": "test result analysis",
+          "gold_variants": [
+            "test result analysis"
+          ]
+        },
+        {
+          "skill": "test scenarios",
+          "gold_variants": [
+            "test scenarios"
+          ]
+        },
+        {
+          "skill": "Test/UAT/Production environments",
+          "gold_variants": [
+            "Test/UAT/Production environments"
+          ]
+        },
+        {
+          "skill": "testing",
+          "gold_variants": [
+            "testing"
+          ]
+        }
+      ],
+      "extras": [
+        {
+          "skill": "MB Bank",
+          "surface_forms": [
+            "MB Bank"
+          ],
+          "confidence": 0.6574,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "cloud or data platform"
+          ]
+        }
+      ]
+    },
+    {
+      "job_id": "2143574",
+      "title": "Kỹ sư dữ liệu (Data Engineer)",
+      "source_level": "Chuyên viên",
+      "experience_label": "2 năm",
+      "source_skills_arr": [
+        "Oracle",
+        "MySQL",
+        "PostgreSql"
+      ],
+      "metrics": {
+        "gold": 46,
+        "predicted": 26,
+        "tp": 24,
+        "fp": 2,
+        "fn": 22,
+        "precision": 0.923077,
+        "recall": 0.521739,
+        "f1": 0.666667
+      },
+      "found": [
+        {
+          "skill": "Apache Iceberg",
+          "gold_variants": [
+            "Apache Iceberg"
+          ],
+          "model_surface": "Apache Iceberg",
+          "confidence": 0.5847,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "software framework or library"
+          ]
+        },
+        {
+          "skill": "Apache NiFi",
+          "gold_variants": [
+            "Apache NiFi"
+          ],
+          "model_surface": "Apache NiFi",
+          "confidence": 0.7525,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "software development or testing tool"
+          ]
+        },
+        {
+          "skill": "BI",
+          "gold_variants": [
+            "BI"
+          ],
+          "model_surface": "BI",
+          "confidence": 0.5081,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "technical method, protocol, or architecture"
+          ]
+        },
+        {
+          "skill": "Data Lakehouse",
+          "gold_variants": [
+            "Data Lakehouse"
+          ],
+          "model_surface": "Data Lakehouse",
+          "confidence": 0.8964,
+          "sections": [
+            "requirements",
+            "responsibilities"
+          ],
+          "labels": [
+            "cloud or data platform"
+          ]
+        },
+        {
+          "skill": "data storage systems",
+          "gold_variants": [
+            "data storage systems"
+          ],
+          "model_surface": "hệ thống lưu trữ dữ liệu",
+          "confidence": 0.635,
+          "sections": [
+            "responsibilities"
+          ],
+          "labels": [
+            "cloud or data platform"
+          ]
+        },
+        {
+          "skill": "Data Warehouse",
+          "gold_variants": [
+            "Data Warehouse"
+          ],
+          "model_surface": "kho dữ liệu",
+          "confidence": 0.7283,
+          "sections": [
+            "requirements",
+            "responsibilities"
+          ],
+          "labels": [
+            "database or query technology",
+            "cloud or data platform"
+          ]
+        },
+        {
+          "skill": "database system",
+          "gold_variants": [
+            "database system"
+          ],
+          "model_surface": "cơ sở dữ liệu",
+          "confidence": 0.7269,
+          "sections": [
+            "responsibilities"
+          ],
+          "labels": [
+            "cloud or data platform"
+          ]
+        },
+        {
+          "skill": "ELT",
+          "gold_variants": [
+            "ELT"
+          ],
+          "model_surface": "ELT",
+          "confidence": 0.591,
+          "sections": [
+            "responsibilities"
+          ],
+          "labels": [
+            "database or query technology"
+          ]
+        },
+        {
+          "skill": "English",
+          "gold_variants": [
+            "English"
+          ],
+          "model_surface": "tiếng Anh",
+          "confidence": 0.8191,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "programming language"
+          ]
+        },
+        {
+          "skill": "ETL",
+          "gold_variants": [
+            "ETL"
+          ],
+          "model_surface": "ETL/ELT",
+          "confidence": 0.8189,
+          "sections": [
+            "requirements",
+            "responsibilities"
+          ],
+          "labels": [
+            "technical method, protocol, or architecture",
+            "database or query technology"
+          ]
+        },
+        {
+          "skill": "Flink",
+          "gold_variants": [
+            "Flink"
+          ],
+          "model_surface": "Flink",
+          "confidence": 0.5398,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "software framework or library"
+          ]
+        },
+        {
+          "skill": "Hadoop",
+          "gold_variants": [
+            "Hadoop"
+          ],
+          "model_surface": "Hadoop",
+          "confidence": 0.6303,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "software framework or library"
+          ]
+        },
+        {
+          "skill": "Hive Metastore",
+          "gold_variants": [
+            "Hive Metastore"
+          ],
+          "model_surface": "Hive Metastore",
+          "confidence": 0.5687,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "software framework or library"
+          ]
+        },
+        {
+          "skill": "IBM DataStage",
+          "gold_variants": [
+            "IBM DataStage"
+          ],
+          "model_surface": "IBM DataStage",
+          "confidence": 0.6125,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "software development or testing tool"
+          ]
+        },
+        {
+          "skill": "Kafka",
+          "gold_variants": [
+            "Kafka"
+          ],
+          "model_surface": "Kafka",
+          "confidence": 0.5896,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "software framework or library"
+          ]
+        },
+        {
+          "skill": "MySQL",
+          "gold_variants": [
+            "MySQL"
+          ],
+          "model_surface": "MySQL",
+          "confidence": 0.5045,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "software framework or library"
+          ]
+        },
+        {
+          "skill": "PostgreSQL",
+          "gold_variants": [
+            "PostgreSQL"
+          ],
+          "model_surface": "PostgreSQL",
+          "confidence": 0.5932,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "software framework or library"
+          ]
+        },
+        {
+          "skill": "Power BI",
+          "gold_variants": [
+            "Power BI"
+          ],
+          "model_surface": "Power BI",
+          "confidence": 0.494,
+          "sections": [
+            "requirements",
+            "responsibilities"
+          ],
+          "labels": [
+            "software framework or library"
+          ]
+        },
+        {
+          "skill": "Presto",
+          "gold_variants": [
+            "Presto"
+          ],
+          "model_surface": "Presto",
+          "confidence": 0.4415,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "software framework or library"
+          ]
+        },
+        {
+          "skill": "Spark",
+          "gold_variants": [
+            "Spark"
+          ],
+          "model_surface": "Spark",
+          "confidence": 0.6091,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "software framework or library"
+          ]
+        },
+        {
+          "skill": "SQL Server",
+          "gold_variants": [
+            "SQL Server"
+          ],
+          "model_surface": "SQL Server",
+          "confidence": 0.5545,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "software framework or library"
+          ]
+        },
+        {
+          "skill": "Superset",
+          "gold_variants": [
+            "Superset"
+          ],
+          "model_surface": "Superset",
+          "confidence": 0.5134,
+          "sections": [
+            "requirements",
+            "responsibilities"
+          ],
+          "labels": [
+            "software framework or library"
+          ]
+        },
+        {
+          "skill": "Tableau",
+          "gold_variants": [
+            "Tableau"
+          ],
+          "model_surface": "Tableau",
+          "confidence": 0.6068,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "software framework or library"
+          ]
+        },
+        {
+          "skill": "Trino",
+          "gold_variants": [
+            "Trino"
+          ],
+          "model_surface": "Trino",
+          "confidence": 0.463,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "software framework or library"
+          ]
+        }
+      ],
+      "missed": [
+        {
+          "skill": "batch processing",
+          "gold_variants": [
+            "batch processing"
+          ]
+        },
+        {
+          "skill": "dashboards",
+          "gold_variants": [
+            "dashboards"
+          ]
+        },
+        {
+          "skill": "data analysis",
+          "gold_variants": [
+            "data analysis"
+          ]
+        },
+        {
+          "skill": "data cleaning",
+          "gold_variants": [
+            "data cleaning"
+          ]
+        },
+        {
+          "skill": "data enrichment",
+          "gold_variants": [
+            "data enrichment"
+          ]
+        },
+        {
+          "skill": "data integration",
+          "gold_variants": [
+            "data integration"
+          ]
+        },
+        {
+          "skill": "data modeling",
+          "gold_variants": [
+            "data modeling"
+          ]
+        },
+        {
+          "skill": "data pipelines",
+          "gold_variants": [
+            "data pipelines"
+          ]
+        },
+        {
+          "skill": "data quality",
+          "gold_variants": [
+            "data quality"
+          ]
+        },
+        {
+          "skill": "data standardization",
+          "gold_variants": [
+            "data standardization"
+          ]
+        },
+        {
+          "skill": "data transformation",
+          "gold_variants": [
+            "data transformation"
+          ]
+        },
+        {
+          "skill": "Linux",
+          "gold_variants": [
+            "Linux"
+          ]
+        },
+        {
+          "skill": "monitoring",
+          "gold_variants": [
+            "monitoring"
+          ]
+        },
+        {
+          "skill": "Oracle",
+          "gold_variants": [
+            "Oracle"
+          ]
+        },
+        {
+          "skill": "performance optimization",
+          "gold_variants": [
+            "performance optimization"
+          ]
+        },
+        {
+          "skill": "query optimization",
+          "gold_variants": [
+            "query optimization"
+          ]
+        },
+        {
+          "skill": "RDBMS",
+          "gold_variants": [
+            "RDBMS"
+          ]
+        },
+        {
+          "skill": "scheduled jobs",
+          "gold_variants": [
+            "scheduled jobs"
+          ]
+        },
+        {
+          "skill": "SQL",
+          "gold_variants": [
+            "SQL"
+          ]
+        },
+        {
+          "skill": "SQL scripts",
+          "gold_variants": [
+            "SQL scripts"
+          ]
+        },
+        {
+          "skill": "stream processing",
+          "gold_variants": [
+            "stream processing"
+          ]
+        },
+        {
+          "skill": "troubleshooting",
+          "gold_variants": [
+            "troubleshooting"
+          ]
+        }
+      ],
+      "extras": [
+        {
+          "skill": "Big Data & Streaming Processing",
+          "surface_forms": [
+            "Big Data & Streaming Processing"
+          ],
+          "confidence": 0.4078,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "technical method, protocol, or architecture"
+          ]
+        },
+        {
+          "skill": "phân tích dữ liệu",
+          "surface_forms": [
+            "phân tích dữ liệu"
+          ],
+          "confidence": 0.4969,
+          "sections": [
+            "responsibilities"
+          ],
+          "labels": [
+            "software development or testing tool"
+          ]
+        }
+      ]
+    },
+    {
+      "job_id": "2144325",
+      "title": "Chuyên viên Công nghệ & phát triển sản phẩm Cloud, Data Center và ANM",
+      "source_level": "Chuyên viên",
+      "experience_label": "Không yêu cầu",
+      "source_skills_arr": [
+        "Oracle",
+        "MySQL",
+        "Cloud"
+      ],
+      "metrics": {
+        "gold": 33,
+        "predicted": 15,
+        "tp": 12,
+        "fp": 3,
+        "fn": 21,
+        "precision": 0.8,
+        "recall": 0.363636,
+        "f1": 0.5
+      },
+      "found": [
+        {
+          "skill": "AJAX",
+          "gold_variants": [
+            "AJAX"
+          ],
+          "model_surface": "AJAX",
+          "confidence": 0.7914,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "technical method, protocol, or architecture"
+          ]
+        },
+        {
+          "skill": "Cloud",
+          "gold_variants": [
+            "Cloud"
+          ],
+          "model_surface": "cloud",
+          "confidence": 0.5655,
+          "sections": [
+            "responsibilities"
+          ],
+          "labels": [
+            "cloud or data platform"
+          ]
+        },
+        {
+          "skill": "Cloud Data Center",
+          "gold_variants": [
+            "Cloud Data Center"
+          ],
+          "model_surface": "Cloud Data Center",
+          "confidence": 0.8142,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "cloud or data platform"
+          ]
+        },
+        {
+          "skill": "cloud platform",
+          "gold_variants": [
+            "cloud platform"
+          ],
+          "model_surface": "Cloud Platform",
+          "confidence": 0.5098,
+          "sections": [
+            "responsibilities"
+          ],
+          "labels": [
+            "cloud or data platform"
+          ]
+        },
+        {
+          "skill": "CSS",
+          "gold_variants": [
+            "CSS"
+          ],
+          "model_surface": "CSS",
+          "confidence": 0.4485,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "technical method, protocol, or architecture"
+          ]
+        },
+        {
+          "skill": "English",
+          "gold_variants": [
+            "English"
+          ],
+          "model_surface": "Tiếng Anh",
+          "confidence": 0.885,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "programming language"
+          ]
+        },
+        {
+          "skill": "HTML",
+          "gold_variants": [
+            "HTML"
+          ],
+          "model_surface": "HTML",
+          "confidence": 0.7448,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "programming language"
+          ]
+        },
+        {
+          "skill": "JavaScript",
+          "gold_variants": [
+            "JavaScript"
+          ],
+          "model_surface": "JavaScript",
+          "confidence": 0.7613,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "programming language"
+          ]
+        },
+        {
+          "skill": "Kubernetes",
+          "gold_variants": [
+            "Kubernetes"
+          ],
+          "model_surface": "Kubernetes",
+          "confidence": 0.9021,
+          "sections": [
+            "responsibilities"
+          ],
+          "labels": [
+            "cloud or data platform"
+          ]
+        },
+        {
+          "skill": "Linux",
+          "gold_variants": [
+            "Linux"
+          ],
+          "model_surface": "Linux",
+          "confidence": 0.6222,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "cloud or data platform"
+          ]
+        },
+        {
+          "skill": "OpenStack",
+          "gold_variants": [
+            "OpenStack"
+          ],
+          "model_surface": "OpenStack",
+          "confidence": 0.9231,
+          "sections": [
+            "responsibilities"
+          ],
+          "labels": [
+            "cloud or data platform"
+          ]
+        },
+        {
+          "skill": "VMware",
+          "gold_variants": [
+            "VMware"
+          ],
+          "model_surface": "VMware",
+          "confidence": 0.9147,
+          "sections": [
+            "responsibilities"
+          ],
+          "labels": [
+            "cloud or data platform"
+          ]
+        }
+      ],
+      "missed": [
+        {
+          "skill": "Android",
+          "gold_variants": [
+            "Android"
+          ]
+        },
+        {
+          "skill": "cloud architecture",
+          "gold_variants": [
+            "cloud architecture"
+          ]
+        },
+        {
+          "skill": "cloud operations",
+          "gold_variants": [
+            "cloud operations"
+          ]
+        },
+        {
+          "skill": "cloud resource management",
+          "gold_variants": [
+            "cloud resource management"
+          ]
+        },
+        {
+          "skill": "cloud service provisioning",
+          "gold_variants": [
+            "cloud service provisioning"
+          ]
+        },
+        {
+          "skill": "Compute",
+          "gold_variants": [
+            "Compute"
+          ]
+        },
+        {
+          "skill": "computer networking",
+          "gold_variants": [
+            "computer networking"
+          ]
+        },
+        {
+          "skill": "containers",
+          "gold_variants": [
+            "containers"
+          ]
+        },
+        {
+          "skill": "cybersecurity",
+          "gold_variants": [
+            "cybersecurity"
+          ]
+        },
+        {
+          "skill": "Data Center",
+          "gold_variants": [
+            "Data Center"
+          ]
+        },
+        {
+          "skill": "data center operations",
+          "gold_variants": [
+            "data center operations"
+          ]
+        },
+        {
+          "skill": "iOS",
+          "gold_variants": [
+            "iOS"
+          ]
+        },
+        {
+          "skill": "mobile app development",
+          "gold_variants": [
+            "mobile app development"
+          ]
+        },
+        {
+          "skill": "MySQL",
+          "gold_variants": [
+            "MySQL"
+          ]
+        },
+        {
+          "skill": "Networking",
+          "gold_variants": [
+            "Networking"
+          ]
+        },
+        {
+          "skill": "Oracle",
+          "gold_variants": [
+            "Oracle"
+          ]
+        },
+        {
+          "skill": "security architecture",
+          "gold_variants": [
+            "security architecture"
+          ]
+        },
+        {
+          "skill": "security compliance",
+          "gold_variants": [
+            "security compliance"
+          ]
+        },
+        {
+          "skill": "Storage",
+          "gold_variants": [
+            "Storage"
+          ]
+        },
+        {
+          "skill": "virtualization",
+          "gold_variants": [
+            "virtualization"
+          ]
+        },
+        {
+          "skill": "Windows",
+          "gold_variants": [
+            "Windows"
+          ]
+        }
+      ],
+      "extras": [
+        {
+          "skill": "phần mềm",
+          "surface_forms": [
+            "phần mềm"
+          ],
+          "confidence": 0.407,
+          "sections": [
+            "responsibilities"
+          ],
+          "labels": [
+            "software development or testing tool"
+          ]
+        },
+        {
+          "skill": "Trung tâm dữ liệu",
+          "surface_forms": [
+            "Trung tâm dữ liệu"
+          ],
+          "confidence": 0.4606,
+          "sections": [
+            "responsibilities"
+          ],
+          "labels": [
+            "cloud or data platform"
+          ]
+        },
+        {
+          "skill": "ảo hóa",
+          "surface_forms": [
+            "ảo hóa"
+          ],
+          "confidence": 0.4112,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "programming language"
+          ]
+        }
+      ]
+    },
+    {
+      "job_id": "2144686",
+      "title": "AI QUANTITATIVE RESEARCHER INTERN (On-site)",
+      "source_level": "Thực tập",
+      "experience_label": "Không yêu cầu",
+      "source_skills_arr": [
+        "Python",
+        "AI",
+        "PyTorch"
+      ],
+      "metrics": {
+        "gold": 36,
+        "predicted": 10,
+        "tp": 10,
+        "fp": 0,
+        "fn": 26,
+        "precision": 1.0,
+        "recall": 0.277778,
+        "f1": 0.434783
+      },
+      "found": [
+        {
+          "skill": "ensemble methods",
+          "gold_variants": [
+            "ensemble methods"
+          ],
+          "model_surface": "ensemble methods",
+          "confidence": 0.6653,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "technical method, protocol, or architecture"
+          ]
+        },
+        {
+          "skill": "linear algebra",
+          "gold_variants": [
+            "linear algebra"
+          ],
+          "model_surface": "Linear Algebra",
+          "confidence": 0.5532,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "technical method, protocol, or architecture"
+          ]
+        },
+        {
+          "skill": "ML/DL",
+          "gold_variants": [
+            "ML/DL"
+          ],
+          "model_surface": "ML/DL",
+          "confidence": 0.6778,
+          "sections": [
+            "responsibilities"
+          ],
+          "labels": [
+            "technical method, protocol, or architecture"
+          ]
+        },
+        {
+          "skill": "model evaluation",
+          "gold_variants": [
+            "model evaluation"
+          ],
+          "model_surface": "model evaluation",
+          "confidence": 0.471,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "technical method, protocol, or architecture"
+          ]
+        },
+        {
+          "skill": "optimization",
+          "gold_variants": [
+            "optimization"
+          ],
+          "model_surface": "Optimization",
+          "confidence": 0.4797,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "technical method, protocol, or architecture"
+          ]
+        },
+        {
+          "skill": "portfolio optimization",
+          "gold_variants": [
+            "portfolio optimization"
+          ],
+          "model_surface": "portfolio optimization",
+          "confidence": 0.4517,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "technical method, protocol, or architecture"
+          ]
+        },
+        {
+          "skill": "Python",
+          "gold_variants": [
+            "Python"
+          ],
+          "model_surface": "Python",
+          "confidence": 0.9266,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "programming language"
+          ]
+        },
+        {
+          "skill": "PyTorch",
+          "gold_variants": [
+            "PyTorch"
+          ],
+          "model_surface": "PyTorch",
+          "confidence": 0.4477,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "software framework or library"
+          ]
+        },
+        {
+          "skill": "regression",
+          "gold_variants": [
+            "regression"
+          ],
+          "model_surface": "Regression",
+          "confidence": 0.5635,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "technical method, protocol, or architecture"
+          ]
+        },
+        {
+          "skill": "statistics",
+          "gold_variants": [
+            "statistics"
+          ],
+          "model_surface": "statistics",
+          "confidence": 0.4954,
+          "sections": [
+            "requirements"
+          ],
+          "labels": [
+            "technical method, protocol, or architecture"
+          ]
+        }
+      ],
+      "missed": [
+        {
+          "skill": "backtesting",
+          "gold_variants": [
+            "backtesting"
+          ]
+        },
+        {
+          "skill": "calculus",
+          "gold_variants": [
+            "calculus"
+          ]
+        },
+        {
+          "skill": "classification",
+          "gold_variants": [
+            "classification"
+          ]
+        },
+        {
+          "skill": "cloud deployment",
+          "gold_variants": [
+            "cloud deployment"
+          ]
+        },
+        {
+          "skill": "deep learning",
+          "gold_variants": [
+            "deep learning"
+          ]
+        },
+        {
+          "skill": "deep learning pipelines",
+          "gold_variants": [
+            "deep learning pipelines"
+          ]
+        },
+        {
+          "skill": "feature engineering",
+          "gold_variants": [
+            "feature engineering"
+          ]
+        },
+        {
+          "skill": "financial markets",
+          "gold_variants": [
+            "financial markets"
+          ]
+        },
+        {
+          "skill": "hyperparameter tuning",
+          "gold_variants": [
+            "hyperparameter tuning"
+          ]
+        },
+        {
+          "skill": "machine learning",
+          "gold_variants": [
+            "machine learning"
+          ]
+        },
+        {
+          "skill": "market microstructure",
+          "gold_variants": [
+            "market microstructure"
+          ]
+        },
+        {
+          "skill": "model performance optimization",
+          "gold_variants": [
+            "model performance optimization"
+          ]
+        },
+        {
+          "skill": "monitoring",
+          "gold_variants": [
+            "monitoring"
+          ]
+        },
+        {
+          "skill": "predictive modeling",
+          "gold_variants": [
+            "predictive modeling"
+          ]
+        },
+        {
+          "skill": "probability",
+          "gold_variants": [
+            "probability"
+          ]
+        },
+        {
+          "skill": "production deployment",
+          "gold_variants": [
+            "production deployment"
+          ]
+        },
+        {
+          "skill": "quantitative finance",
+          "gold_variants": [
+            "quantitative finance"
+          ]
+        },
+        {
+          "skill": "real-time pipelines",
+          "gold_variants": [
+            "real-time pipelines"
+          ]
+        },
+        {
+          "skill": "risk management",
+          "gold_variants": [
+            "risk management"
+          ]
+        },
+        {
+          "skill": "system integration",
+          "gold_variants": [
+            "system integration"
+          ]
+        },
+        {
+          "skill": "technical analysis",
+          "gold_variants": [
+            "technical analysis"
+          ]
+        },
+        {
+          "skill": "technical indicators",
+          "gold_variants": [
+            "technical indicators"
+          ]
+        },
+        {
+          "skill": "time series data",
+          "gold_variants": [
+            "time series data"
+          ]
+        },
+        {
+          "skill": "time series modeling",
+          "gold_variants": [
+            "time series modeling"
+          ]
+        },
+        {
+          "skill": "time series preprocessing",
+          "gold_variants": [
+            "time series preprocessing"
+          ]
+        },
+        {
+          "skill": "trading strategies",
+          "gold_variants": [
+            "trading strategies"
+          ]
+        }
+      ],
+      "extras": []
+    }
+  ],
+  "benchmark_version": "0.1",
+  "release_date": "2026-11-19",
+  "release_note": "Frozen baseline for Analyst level segmentation. Source-level labels are preserved as provided by Saramin; external SkillSpan evaluation remains a separate benchmark."
+}

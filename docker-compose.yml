@@ -163,12 +163,18 @@ services:
     depends_on:
       job-postgres:
         condition: service_healthy
+      job-olap:
+        condition: service_started
     environment:
       JOB_POSTGRES_HOST: job-postgres
       JOB_POSTGRES_PORT: "5432"
       JOB_POSTGRES_DB: ${JOB_POSTGRES_DB:-it_job_platform}
       JOB_POSTGRES_USER: ${JOB_WEB_DB_USER:-job_web_reader}
       JOB_POSTGRES_PASSWORD: ${JOB_WEB_DB_PASSWORD:?Set JOB_WEB_DB_PASSWORD in the ignored .env file}
+      JOB_OLAP_HOST: job-olap
+      JOB_OLAP_PORT: "9494"
+      JOB_OLAP_TOKEN: ${JOB_OLAP_TOKEN:?Set JOB_OLAP_TOKEN in the ignored .env file}
+      JOB_OLAP_SOURCE_CODE: saramin
       JOB_PROJECT_TRACK: data
 
 volumes:
