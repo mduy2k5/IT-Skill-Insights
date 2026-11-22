@@ -1,106 +1,216 @@
 # IT Skill Insights (v0.1)
 
-**Turn IT job postings into a practical, data-driven map of market-demanded skills.**
+**Turn IT job postings into an actionable, data-driven market intelligence platform for skills, career pathways, and role taxonomies.**
 
-IT Skill Insights is an end-to-end data platform for crawling, staging, standardizing, and analyzing IT job postings. It extracts technical skills and explores employer demand patterns across 16 standardized IT role families and seniority levels.
+IT Skill Insights is an end-to-end data platform engineered to collect, validate, standardize, and analyze IT recruitment data across multiple job boards. It bridges raw, uncurated job postings with deep analytics by combining **NLP/Embedding-based role normalization (JobBERT V3)**, **named entity skill extraction (GLiNER)**, a **dual database layer (PostgreSQL OLTP & DuckDB Star-Schema OLAP)**, and an **interactive visualization dashboard (Apache ECharts)**.
 
 > **Release Version:** `v0.1`  
-> **Key Milestones:** Automated Role Normalization via `TechWolf/JobBERT-v3`, Dimensional Modeling in DuckDB OLAP, and Modern Interactive Analyst Dashboard with Apache ECharts.
+> **Core Innovations:** 
+> - **End-to-End Orchestrated Pipeline**: Crawl $\rightarrow$ Raw Artifacts $\rightarrow$ Candidate Staging & Data Contract Validation $\rightarrow$ NLP Semantic Title Normalization $\rightarrow$ Production OLTP $\rightarrow$ Star-Schema OLAP $\rightarrow$ Analytics Web Dashboard.
+> - **JobBERT V3 Semantic Normalization**: Dual-gated confidence & margin classification with level-cue isolation.
+> - **Dual OLTP/OLAP Database Architecture**: Sub-2ms transactional queries on PostgreSQL + lightning-fast multi-dimensional slicing on DuckDB.
+> - **Production Analytics Dashboard**: Real-time analytical dashboard with Apache ECharts (Bar charts, Donut charts, and Skill $\times$ Level Heatmaps).
 
 ---
 
-## 🚀 Key Features in v0.1
+## 🏗️ Comprehensive System Architecture & Data Flow
 
-### 1. JobBERT V3 Semantic Role Normalization (Architecture: Crawl $\rightarrow$ JobTitleNormalizer $\rightarrow$ OLTP $\rightarrow$ OLAP)
-- **1024-Dimensional Semantic Vectors**: Uses `TechWolf/JobBERT-v3` anchor branch embeddings to represent raw IT job titles.
-- **Level-Cue Stripping Preprocessor**: Removes noisy seniority prefixes (`Senior`, `Intern`, `Chuyên viên`, `Lead`, `Fresher`) before computing vector representations, preventing title level cues from distorting role taxonomy.
-- **Confidence & Margin Gating ($\tau = 0.60, \Delta = 0.06$)**:
-  - `AUTO_ASSIGNED`: Automatically normalizes high-certainty jobs ($S_1 \ge 0.60$ and $\Delta \ge 0.06$).
-  - `AMBIGUOUS_REVIEW`: Flags hybrid titles (e.g., Fullstack vs Backend, BA vs QA) with top-2 ranked candidates for 1-click human review.
-  - `LOW_CONFIDENCE_REVIEW`: Routes novel or out-of-vocabulary titles safely to human review.
-- **Passes Shadow Promotion Gate**: Reduces false merges from **61.9%** (Ruleset v0.1 baseline) down to **4.0%**, while increasing automated classification coverage from **24.1%** to **57.5%** on the held-out benchmark.
-
-### 2. Dual Database Architecture (OLTP & OLAP)
-- **OLTP (PostgreSQL 16)**:
-  - Serves as the single source of truth for job ingestion, source permissions, and job search.
-  - Indexed by `role_family` and `role_decision_status` for sub-2ms job searches.
-- **OLAP Warehouse (DuckDB 2.0)**:
-  - Multi-dimensional Star Schema: `dim_role_family` (16 role groups), `dim_job`, `dim_seniority`, `dim_skill`, and `fact_job_posting`.
-  - Native Quack protocol support over port `9494`.
-
-### 3. Modern Interactive Analyst Dashboard (Light Theme + Apache ECharts)
-- **KPI Metrics**: Total analyzed jobs, active IT role families, identified skills, and automation accuracy rate.
-- **ECharts Interactive Visualizations**:
-  - **Horizontal Bar Chart**: Top role family distributions.
-  - **Donut Chart**: Seniority level proportions.
-  - **Skill $\times$ Level Heatmap**: Interactive matrix visualizing demand intensity across career stages (Intern $\rightarrow$ Fresher $\rightarrow$ Senior $\rightarrow$ Leader).
-- **Core Skill Explorers**: Detailed tag clouds and level breakdowns per role family.
-- **Track Slicing**: Dynamic tab switching (`All Tracks`, `Track IT`, `Track Data`) with instantaneous updates.
-
----
-
-## 🏗️ System Architecture & Data Flow
+The platform is designed following modern Data Engineering principles: raw data immutability, rigorous data quality gating, semantic enrichment, and strict separation between transactional (OLTP) and analytical (OLAP) processing.
 
 ```mermaid
 flowchart TD
-    A["Crawlers (Scrapy: Saramin, TopCV, etc.)"] --> B["Pre-clean & Strip Level Cues"]
-    B --> C["JobTitleNormalizer (JobBERT V3)<br/>Gating: τ = 0.60, Δ = 0.06"]
-    
-    C -->|"S1 >= 0.60 & Margin >= 0.06"| D1["AUTO_ASSIGNED"]
-    C -->|"S1 < 0.60 hoặc Margin < 0.06"| D2["NEEDS_REVIEW Queue"]
-    
-    D1 --> E["PostgreSQL (OLTP)<br/>table: jobs (role_family, role_confidence, role_status)"]
-    D2 --> E
-    
-    E --> F["Sync Pipeline / OLAP Loader"]
-    F --> G["DuckDB Warehouse (OLAP)<br/>dim_role_family, dim_job, fact_job_posting"]
-    
-    G --> H["Flask Web Dashboard (/analyst)<br/>Apache ECharts Visualizations"]
-    E --> I["Web Job Catalog (/ & /jobs)<br/>Search & Filter by Role Family"]
+    %% Source & Collection Layer
+    subgraph S1["1. INGESTION & DATA COLLECTION"]
+        direction TB
+        C1["Job Boards<br/>(Saramin, TopCV, ITViec, etc.)"]
+        SP["Scrapy Crawler Spiders<br/>(Rate limits, robots.txt, robots_checked)"]
+        AR["crawl_artifacts (PostgreSQL)<br/>• Immutable raw JSON/HTML<br/>• SHA-256 Content Hash verification"]
+        C1 --> SP --> AR
+    end
+
+    %% Staging & Data Contract Validation
+    subgraph S2["2. STAGING & CONTRACT VALIDATION"]
+        direction TB
+        JV["Job Data Contract Validator<br/>(job_validation.py)"]
+        JIC["job_ingest_candidates (PostgreSQL)<br/>• verification_status: verified / needs_review / rejected<br/>• Schema, duplicate, & permission checks"]
+        AR --> JV --> JIC
+    end
+
+    %% NLP Semantic Enrichment Layer
+    subgraph S3["3. SEMANTIC ENRICHMENT & NLP TAXONOMY"]
+        direction TB
+        PRE["Level & Noise Stripper<br/>(strip_title_levels_and_noise)"]
+        JBERT["JobBERT V3 Normalizer<br/>(TechWolf/JobBERT-v3 1024-d Anchor Vectors)"]
+        GATE{"Confidence & Margin Gating<br/>τ = 0.60, Δ = 0.06"}
+        
+        AUTO["AUTO_ASSIGNED<br/>(Auto Canon Role Family)"]
+        AMB["AMBIGUOUS_REVIEW<br/>(Top-1 & Top-2 Flagged)"]
+        LOWC["LOW_CONFIDENCE_REVIEW<br/>(Out-of-vocabulary Queue)"]
+        SHAD["shadow_job_role_predictions<br/>(Audit trail & A/B performance tracking)"]
+
+        JIC -->|"verified & approved"| PRE --> JBERT --> GATE
+        GATE -->|"S1 >= 0.60 & Margin >= 0.06"| AUTO
+        GATE -->|"S1 >= 0.60 & Margin < 0.06"| AMB
+        GATE -->|"S1 < 0.60"| LOWC
+        AUTO & AMB & LOWC --> SHAD
+    end
+
+    %% OLTP Layer
+    subgraph S4["4. OPERATIONAL STORE (OLTP - PostgreSQL)"]
+        direction TB
+        JOBS["jobs Table (Single Source of Truth)<br/>• title, cleaned_title, project_track<br/>• role_family, role_confidence, role_margin<br/>• role_decision_status, role_candidate_top2<br/>• Indexes: idx_jobs_role_family (B-Tree)"]
+        DIM_COMP["companies, job_locations, job_compensations, job_source_labels"]
+        VIEW_VERIFIED["olap_verified_jobs (Secure Export View)<br/>• Exposes only approved & verified metadata<br/>• Candidate raw JSON & private descriptions hidden"]
+        
+        AUTO & AMB & LOWC --> JOBS
+        JOBS --- DIM_COMP
+        JOBS --> VIEW_VERIFIED
+    end
+
+    %% OLAP Layer
+    subgraph S5["5. ANALYTICAL WAREHOUSE (OLAP - DuckDB Star-Schema)"]
+        direction TB
+        LOADER["OLAP Loader / Sync Engine<br/>(load_olap.py / sync_oltp_roles_to_olap.py)"]
+        
+        DIM_ROLE["dim_role_family<br/>(16 Standard IT Families)"]
+        DIM_JOB["dim_job<br/>(SCD Type 1/2)"]
+        DIM_SEN["dim_seniority<br/>(Level hierarchy)"]
+        DIM_SKILL["dim_skill<br/>(Taxonomy & Aliases)"]
+        FACT_POST["fact_job_posting<br/>(Posting Metrics & Dates)"]
+        
+        VIEW_VERIFIED --> LOADER
+        LOADER --> DIM_ROLE & DIM_JOB & DIM_SEN & DIM_SKILL & FACT_POST
+    end
+
+    %% Serving & Presentation Layer
+    subgraph S6["6. SERVING & PRESENTATION LAYER"]
+        direction TB
+        CATALOG["Job Catalog Portal (/:5000)<br/>• Sub-2ms fast filtering by Role Family<br/>• Location, work mode, salary, keyword search"]
+        ANALYST["Analyst Pro Dashboard (/analyst)<br/>• ECharts Horizontal Bar Chart (Role distribution)<br/>• ECharts Donut Chart (Seniority proportions)<br/>• ECharts Interactive Heatmap (Skill × Level)<br/>• Multi-track filtering (All, IT, Data)"]
+        
+        JOBS --> CATALOG
+        DIM_ROLE & FACT_POST & DIM_SKILL & DIM_SEN --> ANALYST
+    end
+
+    %% Airflow Orchestration
+    subgraph S0["ORCHESTRATION & SCHEDULE (Apache Airflow)"]
+        DAG["job_pipeline DAG<br/>crawl_jobs >> transform_jobs >> load_olap"]
+    end
+    DAG -.-> SP
+    DAG -.-> JV
+    DAG -.-> LOADER
 ```
+
+---
+
+## 🔬 In-Depth Layer Breakdown
+
+### Layer 1: Ingestion & Raw Artifact Storage
+- **Spiders & Permissions**: Scrapy crawls job sources adhering to `robots.txt`, domain rate limits, and source-level permission agreements (`allow_store_metadata`, `allow_analyze_description`).
+- **Raw Immutability (`crawl_artifacts`)**: Raw crawl payloads (HTML or JSON API responses) are stored verbatim in PostgreSQL with a calculated `content_sha256` checksum to ensure non-repudiation and replayability.
+
+### Layer 2: Data Contract Validation & Staging
+- **Validation Engine (`job_validation.py`)**: Checks mandatory schema fields, detects formatting anomalies, validates salary ranges, and flags duplicates.
+- **Candidate Staging (`job_ingest_candidates`)**: Jobs are placed in staging with explicit status flags (`verified`, `needs_review`, `rejected`). Unverified jobs never enter downstream systems.
+
+### Layer 3: Semantic Enrichment & NLP Normalization (JobBERT V3)
+- **Seniority Isolation**: Prefixes such as `Senior`, `Intern`, `Chuyên viên`, `Lead` are stripped before embedding to prevent level cues from shifting the semantic meaning of role titles.
+- **High-Dimensional Embedding**: Embeds clean titles into 1024-dimensional vectors using `TechWolf/JobBERT-v3` anchor weights.
+- **Dual Confidence & Margin Gating**:
+  $$\text{Auto-assign Condition: } S_1 \ge 0.60 \quad \text{AND} \quad (S_1 - S_2) \ge 0.06$$
+  Where $S_1$ is similarity to the nearest role prototype and $S_2$ is similarity to the second-best role.
+- **Shadow Auditing**: All inferences are tracked in `shadow_job_role_predictions` for continuous A/B evaluation against keyword baselines.
+
+### Layer 4: Operational Store (OLTP - PostgreSQL 16)
+- **Optimized for Search**: Stores normalized job records with `role_family`, `role_confidence`, `role_margin`, and `role_decision_status`.
+- **Database Indexing**: B-Tree indexes on `role_family` and `role_decision_status` deliver sub-2ms query execution for end-user search.
+- **Security & Privacy Boundary (`olap_verified_jobs`)**: View that exposes only verified metadata to the analytical warehouse while protecting candidate JSON and private contact details.
+
+### Layer 5: Analytical Warehouse (OLAP - DuckDB Star-Schema)
+- **Dimensional Modeling**:
+  - `dim_role_family`: 16 canonical IT families (Backend, Frontend, Fullstack, AI/ML, Data Engineering, DevOps, Cybersecurity, QA, etc.).
+  - `dim_seniority`: Standardized career levels (Intern, Fresher, Junior, Middle, Senior, Lead, Manager).
+  - `dim_skill`: Standardized tech taxonomy and aliases.
+  - `fact_job_posting`: Fact table holding posting timestamps, salary ranges, and dimensional foreign keys.
+- **Quack Protocol**: Direct remote DuckDB engine execution over port `9494`.
+
+### Layer 6: User Applications & Interactive Analytics
+- **Job Catalog (`/`)**: Production-ready job board enabling candidates to filter and search listings by clean, standardized role families.
+- **Analyst Pro Dashboard (`/analyst`)**:
+  - **KPI Metrics**: Total analyzed jobs, role counts, skill diversity, and automation precision.
+  - **ECharts Visualizations**: Dynamic bar charts, level proportion donut charts, and an interactive **Skill $\times$ Level Heatmap**.
+  - **Real-Time Track Slicing**: Instantly slice analytics across `All Tracks`, `Track IT`, and `Track Data`.
+
+---
+
+## 📊 Benchmark & Promotion Gate Evaluation
+
+Before promoting JobBERT V3 into production, a rigorous gate evaluation was conducted on an 87-title multi-lingual holdout benchmark:
+
+| Metric | Ruleset v0.1 (Keyword Baseline) | JobBERT V3 (Gated: $\tau=0.60, \Delta=0.06$) | Impact |
+|---|:---:|:---:|:---:|
+| **Auto-Classification Rate** | 24.1% (21/87) | **57.5% (50/87)** | **+138% Coverage** |
+| **False Merges (Lỗi gộp nhầm)** | 13 | **2** | **-84.6% Reduction** |
+| **False Merge Rate** | 61.9% | **4.0%** | **Enterprise Safe** |
+| **Manual Review Queue** | 66 titles | **37 titles** | Greatly reduced human workload |
+| **Promotion Gate Result** | — | **`PROMOTE_APPROVED`** | Passed all safety criteria |
 
 ---
 
 ## 🛠️ Technology Stack
 
-| Component | Technology / Library |
-|---|---|
-| **Language & Runtime** | Python 3.11 |
-| **NLP & Deep Learning** | `TechWolf/JobBERT-v3`, PyTorch, Sentence-Transformers, HuggingFace Hub |
-| **Operational DB (OLTP)** | PostgreSQL 16 (Alpine) |
-| **Analytical DB (OLAP)** | DuckDB 2.0.0 (Quack Remote Engine) |
-| **Web & API Framework** | Flask, Jinja2 |
-| **Frontend Visualization** | Apache ECharts 5.5, Modern Vanilla JS, CSS3 Light Theme |
-| **Scraping & Pipelines** | Scrapy, Apache Airflow 2.9 |
-| **Containerization** | Docker, Docker Compose |
+| Area | Tools & Frameworks | Purpose |
+|---|---|---|
+| **Data Ingestion** | Scrapy, Python 3.11 | Spider collection and crawling pipelines |
+| **Orchestration** | Apache Airflow 2.9 | Scheduled DAG execution and dependency management |
+| **NLP & AI** | `TechWolf/JobBERT-v3`, PyTorch, Sentence-Transformers | 1024-d title embeddings and semantic classification |
+| **Operational DB (OLTP)** | PostgreSQL 16 (Alpine) | Raw artifacts, candidate staging, and normalized job catalog |
+| **Analytical DB (OLAP)** | DuckDB 2.0.0 (Quack Remote) | Multi-dimensional star-schema analytics warehouse |
+| **Backend API** | Flask, Jinja2, Psycopg2 | Web routing, search APIs, and analytical query services |
+| **Frontend & Data Viz** | Apache ECharts 5.5, Vanilla JS, CSS3 Light Theme | Interactive charts, heatmaps, and clean dashboard UI |
+| **Infrastructure** | Docker, Docker Compose | Containerized local and deployment runtime |
 
 ---
 
-## 📂 Repository Structure
+## 📂 Repository Directory Layout
 
 ```text
-├── dags/                       # Airflow DAG definitions for automated crawl & transform
-├── data/                       # Ground-truth benchmarks, evaluation reports, and prototypes
-│   ├── role_family_prototypes_v0_1.json    # 16 standard IT families with prototype anchors
+├── dags/                                   # Airflow DAGs for pipeline automation
+│   └── job_pipeline.py                     # crawl >> transform >> load_olap DAG
+├── data/                                   # Evaluation benchmarks, reports, and taxonomy anchors
+│   ├── role_family_prototypes_v0_1.json    # 16 standard IT families with multi-lingual prototype anchors
 │   ├── title_benchmark_v0_1.json           # 87-title multi-lingual ground truth benchmark
-│   ├── shadow_gate_evaluation_report.json  # Shadow promotion gate evaluation results
-│   └── shadow_deployment_report.md         # A/B testing report: JobBERT vs Ruleset v0.1
+│   ├── shadow_gate_evaluation_report.json  # Detailed JSON evaluation metrics
+│   ├── shadow_deployment_report.md         # A/B gate evaluation report: JobBERT vs Ruleset v0.1
+│   └── jobbert_clustering_discovery_report.md # Hierarchical clustering analysis
 ├── database/
-│   ├── olap/                   # DuckDB schema migrations (001_core, 003_dim_role_family)
-│   └── postgres/               # PostgreSQL migrations (001-007: schema, shadow, role normalization)
-├── scraper/                    # Scrapy spiders and ingestion pipelines
-├── scripts/                    # Automation and evaluation scripts
+│   ├── postgres/                           # PostgreSQL schema & migration scripts
+│   │   ├── 001_job_platform_schema.sql    # Base OLTP tables (job_sources, companies, jobs)
+│   │   ├── 002_crawl_artifacts.sql        # Immutable raw crawl artifact store
+│   │   ├── 004_job_ingest_candidates.sql  # Candidate staging & verification contracts
+│   │   ├── 005_olap_verified_export.sql   # Secure read-only view for OLAP export
+│   │   ├── 006_shadow_role_predictions.sql# Shadow inference audit log table
+│   │   └── 007_job_role_family_normalization.sql # Added role family columns & indexes to jobs table
+│   └── olap/                               # DuckDB OLAP migrations & configurations
+│       ├── duckdbrc                        # Quack server initialization script
+│       └── migrations/                     # 001_warehouse_core.sql, 003_add_role_family_dimension.sql
+├── scraper/                                # Scrapy project & ingestion scripts
+│   └── job_crawler/
+│       ├── job_validation.py               # Data contract validation engine
+│       ├── load_crawl_artifacts.py         # Loads crawl files into crawl_artifacts table
+│       └── load_olap.py                    # Verified OLTP-to-DuckDB warehouse loader
+├── scripts/                                # Maintenance, ML normalization, and sync utilities
 │   ├── map_titles_to_role_families.py      # JobBERT semantic title normalizer CLI
-│   ├── run_shadow_classification.py        # Shadow classification engine
+│   ├── backfill_oltp_job_role_families.py  # Backfills role families directly into PostgreSQL jobs
+│   ├── sync_oltp_roles_to_olap.py          # Syncs normalized roles to DuckDB dim_role_family
 │   ├── evaluate_shadow_vs_ruleset.py       # Promotion gate verification runner
-│   ├── backfill_oltp_job_role_families.py  # OLTP backfill script
-│   └── sync_oltp_roles_to_olap.py          # OLTP -> OLAP DuckDB sync script
-└── web/                        # Web platform and Analyst Dashboard
-    ├── app.py                  # Flask application entry point
-    ├── analyst_service.py      # DuckDB OLAP analytical query service
-    ├── static/css/             # Stylesheets (Light Theme)
-    ├── static/js/analyst.js    # Interactive ECharts rendering logic
-    └── templates/              # HTML templates (index, job_detail, analyst)
+│   └── run_shadow_classification.py        # Shadow batch classification engine
+└── web/                                    # Web presentation and Analyst Dashboard
+    ├── app.py                              # Flask application router & API endpoints
+    ├── analyst_service.py                  # High-performance analytical query service for DuckDB
+    ├── static/css/                         # Clean Light-theme styling
+    ├── static/js/analyst.js                # Apache ECharts rendering & cross-filtering logic
+    └── templates/                          # Jinja2 templates (index.html, analyst.html, job_detail.html)
 ```
 
 ---
@@ -112,8 +222,8 @@ flowchart TD
 - Python 3.11+
 - Git
 
-### 2. Configure Environment
-Copy the example environment settings to `.env`:
+### 2. Configure Environment Variables
+Create a `.env` file in the project root:
 ```bash
 JOB_POSTGRES_HOST=127.0.0.1
 JOB_POSTGRES_PORT=5434
@@ -125,38 +235,26 @@ JOB_WEB_DB_PASSWORD=your_web_password
 JOB_OLAP_TOKEN=your_olap_token
 ```
 
-### 3. Launch Services with Docker Compose
+### 3. Start Core Services with Docker Compose
 ```bash
 docker compose up -d job-postgres job-olap web
 ```
 
-### 4. Run Semantic Normalization & Sync (Optional Manual Run)
+### 4. Run Semantic Normalization & Sync to OLAP
 ```bash
-# Normalize all jobs in PostgreSQL using JobBERT V3
+# Normalize job titles in PostgreSQL using JobBERT V3
 python scripts/backfill_oltp_job_role_families.py
 
-# Sync normalized roles to DuckDB OLAP Warehouse
+# Sync normalized role dimensions and fact keys to DuckDB OLAP
 python scripts/sync_oltp_roles_to_olap.py
 ```
 
-### 5. Access the Platform
-- **Job Catalog**: [http://localhost:5000](http://localhost:5000)
+### 5. Open Web Interfaces
+- **Job Catalog & Search Portal**: [http://localhost:5000](http://localhost:5000)
 - **Analyst Pro Dashboard**: [http://localhost:5000/analyst](http://localhost:5000/analyst)
 
 ---
 
-## 📈 Benchmark & Gate Evaluation (JobBERT V3 vs Ruleset v0.1)
-
-| Metric | Ruleset v0.1 (Baseline) | JobBERT V3 (Gated: $\tau=0.60, \Delta=0.06$) | Impact |
-|---|:---:|:---:|:---:|
-| **Auto-Classification Rate** | 24.1% (21/87) | **57.5% (50/87)** | **+138% Improvement** |
-| **False Merges (Gộp nhầm)** | 13 | **2** | **-84.6% Reduction** |
-| **False Merge Rate** | 61.9% | **4.0%** | **Safe for Analytics** |
-| **Human Review Needed** | 66 jobs | **37 jobs** | Reduced manual workload |
-| **Promotion Gate Result** | — | **`PROMOTE_APPROVED`** | Passed |
-
----
-
 ## 📄 License & Attribution
-- Project developed under IT Skill Insights.
-- Uses pretrained weights from [`TechWolf/JobBERT-v3`](https://huggingface.co/TechWolf/JobBERT-v3) (FEAST 2021).
+- Developed as part of the IT Skill Insights Platform.
+- Pretrained semantic representations powered by [`TechWolf/JobBERT-v3`](https://huggingface.co/TechWolf/JobBERT-v3) (*Decorte et al., ECML-PKDD FEAST 2021*).
