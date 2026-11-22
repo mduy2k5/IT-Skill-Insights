@@ -39,31 +39,50 @@ flowchart TD
     %% NLP Semantic Enrichment Layer
     subgraph S3["3. SEMANTIC ENRICHMENT & NLP TAXONOMY"]
         direction TB
-        PRE["Level & Noise Stripper<br/>(strip_title_levels_and_noise)"]
-        JBERT["JobBERT V3 Normalizer<br/>(TechWolf/JobBERT-v3 1024-d Anchor Vectors)"]
-        GATE{"Confidence & Margin Gating<br/>τ = 0.60, Δ = 0.06"}
         
-        AUTO["AUTO_ASSIGNED<br/>(Auto Canon Role Family)"]
-        AMB["AMBIGUOUS_REVIEW<br/>(Top-1 & Top-2 Flagged)"]
-        LOWC["LOW_CONFIDENCE_REVIEW<br/>(Out-of-vocabulary Queue)"]
-        SHAD["shadow_job_role_predictions<br/>(Audit trail & A/B performance tracking)"]
+        subgraph S3_ROLE["Track A: Role Title Normalization (JobBERT V3)"]
+            PRE["Level & Noise Stripper<br/>(strip_title_levels_and_noise)"]
+            JBERT["JobBERT V3 Normalizer<br/>(TechWolf/JobBERT-v3 1024-d Anchor Vectors)"]
+            GATE{"Confidence & Margin Gating<br/>τ = 0.60, Δ = 0.06"}
+            
+            AUTO["AUTO_ASSIGNED<br/>(Auto Canon Role Family)"]
+            AMB["AMBIGUOUS_REVIEW<br/>(Top-1 & Top-2 Flagged)"]
+            LOWC["LOW_CONFIDENCE_REVIEW<br/>(Out-of-vocabulary Queue)"]
+            SHAD["shadow_job_role_predictions<br/>(Audit trail & A/B tracking)"]
+            
+            PRE --> JBERT --> GATE
+            GATE -->|"S1 >= 0.60 & Margin >= 0.06"| AUTO
+            GATE -->|"S1 >= 0.60 & Margin < 0.06"| AMB
+            GATE -->|"S1 < 0.60"| LOWC
+            AUTO & AMB & LOWC --> SHAD
+        end
 
-        JIC -->|"verified & approved"| PRE --> JBERT --> GATE
-        GATE -->|"S1 >= 0.60 & Margin >= 0.06"| AUTO
-        GATE -->|"S1 >= 0.60 & Margin < 0.06"| AMB
-        GATE -->|"S1 < 0.60"| LOWC
-        AUTO & AMB & LOWC --> SHAD
+        subgraph S3_SKILL["Track B: Skill Extraction & Taxonomy (GLiNER & Dictionary)"]
+            PARSE["JD Section Parser<br/>(Extract requirements & responsibilities)"]
+            GLINER["GLiNER Span Extractor<br/>(Zero-shot & fine-tuned NER span proposals)"]
+            DICT["Skill Dictionary & Alias Matcher<br/>(Canonical keyword normalization)"]
+            SKILL_TAX["Skill Entity Resolution<br/>(Deduplication, thresholding & tagging)"]
+            
+            PARSE --> GLINER & DICT
+            GLINER & DICT --> SKILL_TAX
+        end
+
+        JIC -->|"verified title"| PRE
+        JIC -->|"job description & tags"| PARSE
     end
 
     %% OLTP Layer
     subgraph S4["4. OPERATIONAL STORE (OLTP - PostgreSQL)"]
         direction TB
         JOBS["jobs Table (Single Source of Truth)<br/>• title, cleaned_title, project_track<br/>• role_family, role_confidence, role_margin<br/>• role_decision_status, role_candidate_top2<br/>• Indexes: idx_jobs_role_family (B-Tree)"]
-        DIM_COMP["companies, job_locations, job_compensations, job_source_labels"]
+        DIM_COMP["companies, job_locations, job_compensations"]
+        MAP_SKILL["job_source_labels & fact_job_skill_mapping<br/>(Job-to-Skill Relationships)"]
         VIEW_VERIFIED["olap_verified_jobs (Secure Export View)<br/>• Exposes only approved & verified metadata<br/>• Candidate raw JSON & private descriptions hidden"]
         
         AUTO & AMB & LOWC --> JOBS
+        SKILL_TAX --> MAP_SKILL
         JOBS --- DIM_COMP
+        JOBS --- MAP_SKILL
         JOBS --> VIEW_VERIFIED
     end
 
@@ -113,13 +132,18 @@ flowchart TD
 - **Validation Engine (`job_validation.py`)**: Checks mandatory schema fields, detects formatting anomalies, validates salary ranges, and flags duplicates.
 - **Candidate Staging (`job_ingest_candidates`)**: Jobs are placed in staging with explicit status flags (`verified`, `needs_review`, `rejected`). Unverified jobs never enter downstream systems.
 
-### Layer 3: Semantic Enrichment & NLP Normalization (JobBERT V3)
-- **Seniority Isolation**: Prefixes such as `Senior`, `Intern`, `Chuyên viên`, `Lead` are stripped before embedding to prevent level cues from shifting the semantic meaning of role titles.
-- **High-Dimensional Embedding**: Embeds clean titles into 1024-dimensional vectors using `TechWolf/JobBERT-v3` anchor weights.
-- **Dual Confidence & Margin Gating**:
-  $$\text{Auto-assign Condition: } S_1 \ge 0.60 \quad \text{AND} \quad (S_1 - S_2) \ge 0.06$$
-  Where $S_1$ is similarity to the nearest role prototype and $S_2$ is similarity to the second-best role.
-- **Shadow Auditing**: All inferences are tracked in `shadow_job_role_predictions` for continuous A/B evaluation against keyword baselines.
+### Layer 3: Semantic Enrichment & NLP Normalization
+- **Track A — Role Title Normalization (JobBERT V3)**:
+  - **Seniority Isolation**: Prefixes such as `Senior`, `Intern`, `Chuyên viên`, `Lead` are stripped before embedding to prevent level cues from shifting the semantic meaning of role titles.
+  - **High-Dimensional Embedding**: Embeds clean titles into 1024-dimensional vectors using `TechWolf/JobBERT-v3` anchor weights.
+  - **Dual Confidence & Margin Gating**:
+    $$\text{Auto-assign Condition: } S_1 \ge 0.60 \quad \text{AND} \quad (S_1 - S_2) \ge 0.06$$
+    Where $S_1$ is similarity to the nearest role prototype and $S_2$ is similarity to the second-best role.
+  - **Shadow Auditing**: All inferences are tracked in `shadow_job_role_predictions` for continuous A/B evaluation against keyword baselines.
+- **Track B — Skill Extraction & Taxonomy (GLiNER & Dictionary)**:
+  - **JD Section Parsing**: Automatically breaks job postings into dedicated sections (`requirements`, `responsibilities`, `benefits`).
+  - **GLiNER Entity Extraction**: Identifies technical skill spans in text via zero-shot and fine-tuned Generalist NER models.
+  - **Taxonomy Resolution & Aliasing**: Maps extracted spans and raw platform tags to canonical entities (e.g. `PostgreSQL` $\leftarrow$ `postgres`, `psql`), loading relationships into `job_source_labels` and `fact_job_skill_mapping`.
 
 ### Layer 4: Operational Store (OLTP - PostgreSQL 16)
 - **Optimized for Search**: Stores normalized job records with `role_family`, `role_confidence`, `role_margin`, and `role_decision_status`.
