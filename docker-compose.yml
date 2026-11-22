@@ -160,6 +160,8 @@ services:
     build: ./web
     ports:
       - "127.0.0.1:5000:5000"
+    volumes:
+      - ./web:/app
     depends_on:
       job-postgres:
         condition: service_healthy

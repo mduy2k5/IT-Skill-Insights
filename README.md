@@ -167,6 +167,30 @@ flowchart TD
 
 ---
 
+## 📸 Product & Analytics Walkthrough
+
+### 1. Interactive Analyst Pro Dashboard (`/analyst`)
+Executive view featuring real-time KPIs, Top 10 Role Family distribution (Bar chart), and Seniority Level proportions (Donut chart) powered by **Apache ECharts** and queried directly from **DuckDB OLAP**.
+
+![Analyst Overview & Charts](docs/screenshots/02_analyst_overview_charts.png)
+
+### 2. Market-Wide Skill $\times$ Level Matrix (Interactive Heatmap)
+Cross-dimensional analysis revealing skill prioritization across seniority tiers (Intern, Junior, Middle, Senior, Lead). Darker intensities indicate higher recruitment demand frequency.
+
+![Skill Level Heatmap](docs/screenshots/03_skill_level_heatmap.png)
+
+### 3. Deep-Dive Role Explorer & Skill Differentiation
+Select any of the 16 canonical IT role families to view core skill requirements, career-level skill shifts, and underlying raw job postings validated with `JobBERT V3` confidence scores.
+
+![Role Level Explorer](docs/screenshots/04_role_level_explorer.png)
+
+### 4. Production Job Catalog Portal (`/`)
+End-user job search portal with sub-2ms query response times, powered by normalized `role_family` B-Tree indexing on PostgreSQL 16.
+
+![Job Catalog Portal](docs/screenshots/01_job_catalog_portal.png)
+
+---
+
 ## 📊 Benchmark & Promotion Gate Evaluation
 
 Before promoting JobBERT V3 into production, a rigorous gate evaluation was conducted on an 87-title multi-lingual holdout benchmark:

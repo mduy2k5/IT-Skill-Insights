@@ -2,6 +2,7 @@
 const state = {
   currentTrack: 'all',
   data: null,
+  selectedRoleFamily: null,
   roleChart: null,
   levelChart: null,
   heatmapChart: null,
@@ -35,7 +36,7 @@ async function loadDashboardData(track = 'all') {
     renderRoleChart(data.role_groups);
     renderLevelChart(data.all_levels);
     renderHeatmap(data.role_groups, data.all_levels);
-    renderRoleAccordions(data.role_groups);
+    renderRoleSelector(data.role_groups);
 
     badge.textContent = `${number(data.total_jobs)} Job · DuckDB OLAP`;
   } catch (err) {
@@ -115,6 +116,21 @@ function renderRoleChart(groups) {
       }
     ]
   };
+
+  // Click bar to filter or select role
+  state.roleChart.on('click', params => {
+    if (params.name) {
+      state.selectedRoleFamily = params.name;
+      const select = document.getElementById('role-family-select');
+      if (select) select.value = params.name;
+      if (state.data && state.data.role_groups) {
+        updateRolePills(state.data.role_groups);
+        renderSingleRoleDetails(state.data.role_groups);
+      }
+      const roleSection = document.querySelector('.role-explorer-section');
+      if (roleSection) roleSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  });
 
   state.roleChart.setOption(option);
 }
@@ -291,111 +307,208 @@ function renderHeatmap(groups, allLevels) {
 }
 
 // -------------------------------------------------------------
-// 6. Detailed Role Accordions & Skill Explorer (Light Theme)
+// 6. Role Selection & Detailed Skill View (Dropdown / Pill selector)
 // -------------------------------------------------------------
-function renderRoleAccordions(groups) {
+function renderRoleSelector(groups) {
+  const select = document.getElementById('role-family-select');
+  const pillsBar = document.getElementById('role-pills-bar');
+  if (!select || !groups || groups.length === 0) return;
+
+  // Preserve previous selection if available in current groups, otherwise choose top 1
+  const existingRole = groups.find(g => g.role_family === state.selectedRoleFamily);
+  if (!existingRole) {
+    state.selectedRoleFamily = groups[0].role_family;
+  }
+
+  // Populate Select
+  select.innerHTML = '';
+  groups.forEach(g => {
+    const opt = document.createElement('option');
+    opt.value = g.role_family;
+    opt.textContent = `${g.role_family} (${g.job_count} jobs)`;
+    if (g.role_family === state.selectedRoleFamily) opt.selected = true;
+    select.appendChild(opt);
+  });
+
+  // Populate Quick Filter Pills
+  if (pillsBar) {
+    pillsBar.innerHTML = '';
+    groups.slice(0, 10).forEach(g => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'track-btn' + (g.role_family === state.selectedRoleFamily ? ' active' : '');
+      btn.style.fontSize = '0.8rem';
+      btn.style.padding = '5px 12px';
+      btn.textContent = `${g.role_family} (${g.job_count})`;
+      btn.addEventListener('click', () => {
+        state.selectedRoleFamily = g.role_family;
+        select.value = g.role_family;
+        updateRolePills(groups);
+        renderSingleRoleDetails(groups);
+      });
+      pillsBar.appendChild(btn);
+    });
+  }
+
+  select.onchange = (e) => {
+    state.selectedRoleFamily = e.target.value;
+    updateRolePills(groups);
+    renderSingleRoleDetails(groups);
+  };
+
+  renderSingleRoleDetails(groups);
+}
+
+function updateRolePills(groups) {
+  const pillsBar = document.getElementById('role-pills-bar');
+  if (!pillsBar) return;
+  pillsBar.querySelectorAll('button').forEach(btn => {
+    if (btn.textContent.startsWith(state.selectedRoleFamily)) {
+      btn.classList.add('active');
+    } else {
+      btn.classList.remove('active');
+    }
+  });
+}
+
+function renderSingleRoleDetails(groups) {
   const container = document.getElementById('role-skills-container');
   if (!container) return;
 
-  container.replaceChildren(...groups.map((group, idx) => {
-    const card = document.createElement('details');
-    card.className = 'role-skill-group';
-    card.open = idx < 2; // Open top 2 groups by default
+  const group = groups.find(g => g.role_family === state.selectedRoleFamily) || groups[0];
+  if (!group) {
+    container.innerHTML = '<p class="scope-note">Không tìm thấy dữ liệu cho nhóm nghề này.</p>';
+    return;
+  }
 
-    const summary = document.createElement('summary');
-    const headerLine = node('div', 'role-header-line');
-    headerLine.append(
-      node('span', 'role-skill-name', `💼 ${group.role_family}`),
-      node('span', 'role-skill-count', `${number(group.job_count)} job · ${number(group.unique_skill_count)} kỹ năng`)
-    );
-    summary.append(headerLine);
+  const card = document.createElement('div');
+  card.className = 'role-skill-group';
+  card.style.border = '1px solid #cbd5e1';
+  card.style.borderRadius = '12px';
+  card.style.boxShadow = '0 2px 4px rgba(0, 0, 0, 0.03)';
 
-    const content = node('div', 'role-skill-content');
+  const header = node('div', 'role-skill-content', '');
+  header.style.padding = '18px 24px';
+  header.style.background = '#f8fafc';
+  header.style.borderBottom = '1px solid var(--card-border)';
+  header.style.display = 'flex';
+  header.style.justifyContent = 'space-between';
+  header.style.alignItems = 'center';
+  header.style.flexWrap = 'wrap';
+  header.style.gap = '12px';
 
-    // 1. Core Skills Tag Cloud
-    const q1Title = node('h3', 'sub-section-title', '1. Kỹ năng trọng tâm của nhóm job này');
-    const tagCloud = node('div', 'skills-tag-cloud');
-    if (group.top_skills.length) {
-      group.top_skills.forEach(sk => {
-        const pill = node('span', 'skill-pill');
-        pill.append(
-          node('span', '', sk.skill),
-          node('strong', '', `${sk.job_count} job`)
-        );
-        tagCloud.append(pill);
-      });
-    } else {
-      tagCloud.append(node('p', 'scope-note', 'Chưa có tag kỹ năng từ nguồn cho nhóm này.'));
-    }
-    content.append(q1Title, tagCloud);
+  const titleWrap = document.createElement('div');
+  const h2 = node('h2', '', `💼 Họ nghề: ${group.role_family}`);
+  h2.style.fontSize = '1.25rem';
+  h2.style.fontWeight = '800';
+  h2.style.color = '#0f172a';
+  h2.style.margin = '0 0 4px 0';
 
-    // 2. Level Matrix
-    const q2Title = node('h3', 'sub-section-title', '2. Phân hóa kỹ năng theo từng cấp bậc (Level)');
-    content.append(q2Title);
+  const subtitle = node('p', '', `Tổng cộng ${number(group.job_count)} tin tuyển dụng · ${number(group.unique_skill_count)} kỹ năng khác nhau được nhận diện`);
+  subtitle.style.fontSize = '0.85rem';
+  subtitle.style.color = '#64748b';
+  subtitle.style.margin = '0';
+  titleWrap.append(h2, subtitle);
 
-    if (group.level_skills.length) {
-      const levelGrid = node('div', 'level-matrix-grid');
-      group.level_skills.forEach(lvl => {
-        const lvlCard = node('div', 'level-matrix-card');
-        const lvlHeader = node('div', 'level-card-header');
-        lvlHeader.append(
-          node('span', 'level-card-name', `🎯 ${lvl.level}`),
-          node('span', 'level-card-count', `${lvl.job_count} job`)
-        );
-        lvlCard.append(lvlHeader);
+  const badge = node('span', 'local-badge', `JobBERT V3 Normalized`);
+  badge.style.fontSize = '0.75rem';
+  header.append(titleWrap, badge);
 
-        const skillList = node('ul', 'level-skill-list');
-        if (lvl.top_skills.length) {
-          const maxCount = Math.max(...lvl.top_skills.map(s => s.job_count), 1);
-          lvl.top_skills.forEach(sk => {
-            const row = node('li', 'level-skill-row');
-            row.append(node('span', '', sk.skill));
+  const content = node('div', 'role-skill-content');
+  content.style.padding = '22px 24px';
 
-            const barWrap = node('div', 'skill-bar-wrap');
-            const bg = node('div', 'skill-bar-bg');
-            const fill = node('div', 'skill-bar-fill');
-            fill.style.width = `${Math.min(100, Math.round((sk.job_count / maxCount) * 100))}%`;
-            bg.append(fill);
-            barWrap.append(bg, node('strong', '', `${sk.job_count}`));
-            row.append(barWrap);
-
-            skillList.append(row);
-          });
-        } else {
-          skillList.append(node('li', 'scope-note', 'Chưa có tag skill'));
-        }
-        lvlCard.append(skillList);
-        levelGrid.append(lvlCard);
-      });
-      content.append(levelGrid);
-    } else {
-      content.append(node('p', 'scope-note', 'Nhóm này chưa có phân loại level.'));
-    }
-
-    // 3. Raw Job Titles for Verification
-    const jobListDetails = document.createElement('details');
-    jobListDetails.style.marginTop = '16px';
-    const jobSummary = document.createElement('summary');
-    jobSummary.style.fontSize = '0.85rem';
-    jobSummary.style.color = '#64748b';
-    jobSummary.textContent = `Xem danh sách ${group.jobs.length} chức danh gốc thuộc nhóm này`;
-    const jobUl = node('ul', 'topic-jobs');
-    group.jobs.forEach(j => {
-      const li = node('li', '');
-      const conf = j.confidence ? ` (độ khớp: ${(j.confidence * 100).toFixed(1)}%)` : '';
-      const lvl = j.levels.length ? ` [${j.levels.join(', ')}]` : '';
-      li.append(
-        node('span', 'topic-job-id', j.job_id),
-        node('span', '', `${j.title}${lvl}${conf}`)
+  // 1. Core Skills Tag Cloud
+  const q1Title = node('h3', 'sub-section-title', '1. Kỹ năng trọng tâm & phổ biến nhất');
+  const tagCloud = node('div', 'skills-tag-cloud');
+  if (group.top_skills && group.top_skills.length) {
+    group.top_skills.forEach(sk => {
+      const pill = node('span', 'skill-pill');
+      pill.append(
+        node('span', '', sk.skill),
+        node('strong', '', `${sk.job_count} job`)
       );
-      jobUl.append(li);
+      tagCloud.append(pill);
     });
-    jobListDetails.append(jobSummary, jobUl);
-    content.append(jobListDetails);
+  } else {
+    tagCloud.append(node('p', 'scope-note', 'Chưa có tag kỹ năng từ nguồn cho nhóm này.'));
+  }
+  content.append(q1Title, tagCloud);
 
-    card.append(summary, content);
-    return card;
-  }));
+  // 2. Level Matrix
+  const q2Title = node('h3', 'sub-section-title', '2. Phân hóa kỹ năng theo từng cấp bậc (Level)');
+  content.append(q2Title);
+
+  if (group.level_skills && group.level_skills.length) {
+    const levelGrid = node('div', 'level-matrix-grid');
+    group.level_skills.forEach(lvl => {
+      const lvlCard = node('div', 'level-matrix-card');
+      const lvlHeader = node('div', 'level-card-header');
+      lvlHeader.append(
+        node('span', 'level-card-name', `🎯 ${lvl.level}`),
+        node('span', 'level-card-count', `${lvl.job_count} job`)
+      );
+      lvlCard.append(lvlHeader);
+
+      const skillList = node('ul', 'level-skill-list');
+      if (lvl.top_skills && lvl.top_skills.length) {
+        const maxCount = Math.max(...lvl.top_skills.map(s => s.job_count), 1);
+        lvl.top_skills.forEach(sk => {
+          const row = node('li', 'level-skill-row');
+          row.append(node('span', '', sk.skill));
+
+          const barWrap = node('div', 'skill-bar-wrap');
+          const bg = node('div', 'skill-bar-bg');
+          const fill = node('div', 'skill-bar-fill');
+          fill.style.width = `${Math.min(100, Math.round((sk.job_count / maxCount) * 100))}%`;
+          bg.append(fill);
+          barWrap.append(bg, node('strong', '', `${sk.job_count}`));
+          row.append(barWrap);
+
+          skillList.append(row);
+        });
+      } else {
+        skillList.append(node('li', 'scope-note', 'Chưa có tag skill'));
+      }
+      lvlCard.append(skillList);
+      levelGrid.append(lvlCard);
+    });
+    content.append(levelGrid);
+  } else {
+    content.append(node('p', 'scope-note', 'Nhóm này chưa có phân loại level.'));
+  }
+
+  // 3. Raw Job Titles for Verification
+  const jobListDetails = document.createElement('details');
+  jobListDetails.style.marginTop = '20px';
+  jobListDetails.style.background = '#f8fafc';
+  jobListDetails.style.padding = '12px 16px';
+  jobListDetails.style.borderRadius = '8px';
+  jobListDetails.style.border = '1px solid #e2e8f0';
+
+  const jobSummary = document.createElement('summary');
+  jobSummary.style.fontSize = '0.85rem';
+  jobSummary.style.fontWeight = '600';
+  jobSummary.style.color = '#334155';
+  jobSummary.style.cursor = 'pointer';
+  jobSummary.textContent = `📋 Xem danh sách ${group.jobs.length} tin tuyển dụng gốc thuộc họ nghề này`;
+
+  const jobUl = node('ul', 'topic-jobs');
+  jobUl.style.marginTop = '10px';
+  group.jobs.forEach(j => {
+    const li = node('li', '');
+    const conf = j.confidence ? ` (độ tin cậy: ${(j.confidence * 100).toFixed(1)}%)` : '';
+    const lvl = j.levels.length ? ` [${j.levels.join(', ')}]` : '';
+    li.append(
+      node('span', 'topic-job-id', j.job_id),
+      node('span', '', `${j.title}${lvl}${conf}`)
+    );
+    jobUl.append(li);
+  });
+  jobListDetails.append(jobSummary, jobUl);
+  content.append(jobListDetails);
+
+  card.append(header, content);
+  container.replaceChildren(card);
 }
 
 // -------------------------------------------------------------
